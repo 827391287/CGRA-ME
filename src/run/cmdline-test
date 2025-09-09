@@ -1,0 +1,333 @@
+#!/usr/bin/env python3
+
+import argparse;
+import concurrent.futures;
+import itertools;
+import os;
+import re;
+import shlex;
+import subprocess;
+import sys;
+import tempfile;
+import textwrap;
+
+# add these to globals()
+imported_env_var_names = ["CGRA_MAPPER", "CGRA_ME_ARCHDIR", "CGRA_ME_BENCHMARKDIR", "CGRA_ME_PERFMODELDIR"];
+imported_env_vars = {};
+for var_name in imported_env_var_names:
+	globals()[var_name] = os.getenv(var_name);
+	imported_env_vars[var_name] = globals()[var_name];
+	if globals()[var_name] == None:
+		raise RuntimeError("Must be in CGRA-ME environment. {} is missing from the environment".format(var_name));
+
+AN_ADL1_ARCH_FILE = CGRA_ME_ARCHDIR + '/simple/archfiles/adres-no-torroid.xml';
+A_DFG_FILE = CGRA_ME_BENCHMARKDIR + '/microbench/nomem1/pre-gen-graph_loop.dot';
+A_PERF_PROFILE_DIR = CGRA_ME_PERFMODELDIR + '/freepdk45/min_delay/';
+MAPPER_LIST = ['ILPMapper', 'ILPHeuristicMapper', 'BothSmallTimeThenHeurFullTime']
+
+help_epilogue = textwrap.TextWrapper(expand_tabs=True, tabsize=2, replace_whitespace=False, width=100000).fill("""
+Tests basic command-line usage and exit codes. The main purpose is not
+to make sure the commands do what is expected, or test if particular
+experiments map/not map, but to make sure that certain combinations of
+arguments cause CGRAME to exit successfully or unsuccessfully. This gives
+us confidence that running a particular command works, or at the very least
+does not crash CGRA-ME.
+
+In particular, making sure values are passed correctly should be mainly left
+to a unit test that calls the an argument parsing function directly. Though,
+when it is easy to test something (eg. an expected error message) this
+program may as well test that.
+""".format(
+	**globals()
+));
+
+def main(argv):
+	argp = argparse.ArgumentParser(description='CRGA-ME Command-line Tester', epilog=help_epilogue, formatter_class=argparse.RawTextHelpFormatter);
+	argp.add_argument('--timeout',                     default=10,   type=int, help='Timeout per test, in seconds. (default: %(default)s)');
+	argp.add_argument('--just-check-exit-code-is-not', default=None, type=int, help='For all tests, just make sure the exit code isn\'t this value. Eg., for when running with Valgrind.');
+	argp.add_argument('-j', '--jobs',                  default=1,    type=int, help='Number of simultaneous processes to attempt to run. (default: %(default)s)');
+	arguments = vars(argp.parse_args(argv[1:]));
+
+	if (arguments["just_check_exit_code_is_not"] is not None):
+		SuccessTest = FailureTestWithUnexpctedExitCodesMaker([arguments["just_check_exit_code_is_not"]]);
+		FailureTest = FailureTestWithUnexpctedExitCodesMaker([arguments["just_check_exit_code_is_not"]]);
+	else:
+		SuccessTest = ASuccessTest;
+		FailureTest = AFailureTest;
+
+	tests = [
+		SuccessTest('Help, long opt',           '--help',        output_has('Usage:')),
+		SuccessTest('Help, short opt',          '-h',            output_has('Usage:')),
+		FailureTest('Not an arg',               '--aoeuaoeu',    check_nothing),
+		SuccessTest('List all architectures',   '--arch-list',   output_has('List of C++ CGRA Architectures')),
+	] + [
+		SuccessTest('Listing architecture options, {}'.format(arch), ['--arch-opts-list', arch], output_has(arch))
+			for arch in ['1','2','adres','hycube','clustered']
+	] + [
+		FailureTest('Listing architecture options, {}'.format(arch), ['--arch-opts-list', arch], output_has(arch))
+			for arch in ['5357','not-an-arch']
+	] + [
+		SuccessTest('Gen config without path',                     '--gen-config-file',                                          output_matches("Writing a config file to")),
+		SuccessTest('Gen config with a path',                      '--gen-config-file abc.ini',                                  all_of(output_matches("Writing a config file to"), output_matches("abc.ini"))),
+		SuccessTest('Print mapper help without mapper set',        '--mapper-help',                                              check_nothing),
+		SuccessTest('Print mapper help with mapper set',           '-m ILPMapper --mapper-help',                                 check_nothing),
+		FailureTest('Gen Verilog without arch',                    '--gen-verilog .',                                            output_matches("an architecture.*must be specified")),
+		FailureTest('Gen Verilog with CPP arch, no path',          '--cpp adres --gen-verilog',                                  arg_parse_fails),
+		SuccessTest('Gen Verilog with CPP arch, with path',        '--cpp adres --gen-verilog .',                                check_nothing),
+		# FailureTest('Gen Verilog with CPP arch, no path',        '--gen-verilog --cpp adres',                                  arg_parse_fails), # --cpp is interpreted as a directory...
+		FailureTest('Gen Verilog with XML arch, no path',         ['--xml',AN_ADL1_ARCH_FILE,'--gen-verilog'],                   arg_parse_fails),
+		SuccessTest('Gen Verilog with XML arch, with path',       ['--xml',AN_ADL1_ARCH_FILE,'--gen-verilog','.'],               check_nothing),
+
+		FailureTest('Specify both kinds of architecture',         ['--cpp','adres','--xml',AN_ADL1_ARCH_FILE,'--dfg',A_DFG_FILE],                output_has("You cannot specify both at ADL and C++ architecture")),
+		FailureTest('Run a mapping, DFG file doesn\'t exist',     ['--II','1','--cpp','adres','--dfg','aoeuaoeu'],                               check_nothing),
+		SuccessTest('Run a mapping, cpp long opt',                ['--II','1','--cpp','adres','--dfg',A_DFG_FILE],                               output_has("Reducing MRRG")),
+		FailureTest('Run a mapping, cpp short opt, invalid II',   ['-i',' -1','--cpp','adres','--dfg',A_DFG_FILE],                               check_nothing),
+		SuccessTest('Run a mapping, cpp short opt',               ['-i',  '1','-c',   'adres','--dfg',A_DFG_FILE],                               check_nothing),
+		SuccessTest('Run a mapping, ADL long opt',                ['--II','1','--xml',AN_ADL1_ARCH_FILE,'--dfg',A_DFG_FILE],                     check_nothing),
+		SuccessTest('Run a mapping, ADL short opt',               ['-i',  '1','-x',   AN_ADL1_ARCH_FILE,'--dfg',A_DFG_FILE],                     check_nothing),
+		SuccessTest('Run a mapping, cpp, arch opts',              ['--II','1','--arch-opts=rows=4','-c','adres','--dfg',A_DFG_FILE],             check_nothing),
+		FailureTest('Run a mapping, ADL, arch opts',              ['--II','1','--arch-opts=rows=4','-x',AN_ADL1_ARCH_FILE,'--dfg',A_DFG_FILE],   output_has("Cannot specify architecture options")),
+		FailureTest('Run a mapping, cpp, invalid arch opts, ',    ['--II','1','--arch-opts=rows=-1','-c','adres','--dfg',A_DFG_FILE],            check_nothing),
+		SuccessTest('Run a mapping, cpp, verbose',                ['--cpp','adres','--verbose',    '--dfg',A_DFG_FILE],                          check_nothing),
+		SuccessTest('Run a mapping, cpp, verbose 0',              ['--cpp','adres','--verbose','0','--dfg',A_DFG_FILE],                          check_nothing),
+		SuccessTest('Run a mapping, cpp, verbose 1',              ['--cpp','adres','--verbose','1','--dfg',A_DFG_FILE],                          check_nothing),
+		SuccessTest('Run a mapping, cpp, verbose 2',              ['--cpp','adres','--verbose','2','--dfg',A_DFG_FILE],                          check_nothing),
+		SuccessTest('Run a mapping, cpp, verbose 3',              ['--cpp','adres','--verbose','3','--dfg',A_DFG_FILE],                          check_nothing),
+
+		SuccessTest('Gen visual, cpp short opt',                  ['--gen-visual','--dfg',A_DFG_FILE,'-c','adres'],                              check_nothing),
+		SuccessTest('Gen visual, ADL short opt',                  ['--gen-visual','--dfg',A_DFG_FILE,'-x',AN_ADL1_ARCH_FILE],                    check_nothing),
+		SuccessTest('Gen testbench, cpp short opt',               ['--gen-testbench','--dfg',A_DFG_FILE,'-c','adres'],                           check_nothing),
+		SuccessTest('Gen testbench, ADL short opt',               ['--gen-testbench','--dfg',A_DFG_FILE,'-x',AN_ADL1_ARCH_FILE],                 check_nothing),
+		SuccessTest('Print arch, cpp short opt',                  ['--print-arch','--dfg',A_DFG_FILE,'-c','adres'],                           check_nothing),
+		SuccessTest('Print arch, ADL short opt',                  ['--print-arch','--dfg',A_DFG_FILE,'-x',AN_ADL1_ARCH_FILE],                 check_nothing),
+
+		SuccessTest('Don\'t reduce the MRRG',                      '--II 1 --cpp adres --no-reduce-mrrg --dfg'                         .split(' ') + [A_DFG_FILE],     output_doesnt_have("Reducing MRRG"), timeout_mult=2),
+		SuccessTest('Just optimize the DFG',                       '--II 1 --cpp adres --exit-after-optimizing-dfg --dfg'              .split(' ') + [A_DFG_FILE],     check_nothing),
+		SuccessTest('Print the final DFG',                         '--II 1 --cpp adres --print-final-dfg opt-dfg.dot --dfg'            .split(' ') + [A_DFG_FILE],     check_nothing),
+		FailureTest('Print the final DFG, no file name',           '--II 1 --cpp adres --print-final-dfg --dfg'                        .split(' ') + [A_DFG_FILE],     check_nothing),
+		SuccessTest('Print the MRRG',                              '--II 1 --cpp adres --print-mrrg mrrg.dot --dfg'                    .split(' ') + [A_DFG_FILE],     check_nothing),
+		FailureTest('Print the MRRG, no file name',                '--II 1 --cpp adres --print-mrrg --dfg'                             .split(' ') + [A_DFG_FILE],     check_nothing),
+		SuccessTest('Print clustered MRRG',                        '--II 1 --cpp adres --print-mrrg-clustered mrrg-clust.dot --dfg'    .split(' ') + [A_DFG_FILE],     check_nothing),
+		FailureTest('Print clustered MRRG, no file name',          '--II 1 --cpp adres --print-mrrg-clustered --dfg'                   .split(' ') + [A_DFG_FILE],     check_nothing),
+		SuccessTest('Save mapping, short opt',                     '--II 1 --cpp adres -o mapping.dot --dfg'                           .split(' ') + [A_DFG_FILE],     check_nothing),
+		FailureTest('Save mapping, short opt, no file name',       '--II 1 --cpp adres -o --dfg'                                       .split(' ') + [A_DFG_FILE],     check_nothing),
+		SuccessTest('Save mapping, long opt',                      '--II 1 --cpp adres --save-to-dot mapping.dot --dfg'                .split(' ') + [A_DFG_FILE],     check_nothing),
+		SuccessTest('Set time-out, short opt',                     '--II 1 --cpp adres -t 20 --dfg'                                    .split(' ') + [A_DFG_FILE],     check_nothing),
+		SuccessTest('Set time-out, long opt',                      '--II 1 --cpp adres --timelimit 20 --dfg'                           .split(' ') + [A_DFG_FILE],     check_nothing),
+		FailureTest('Set time-out, invalid',                       '--II 1 --cpp adres -t -1 --dfg'                                    .split(' ') + [A_DFG_FILE],     check_nothing),
+	] + [
+		SuccessTest('Map via {} {}'.format(mapper_select_opt, mapper_name), '--cpp adres {} {} --dfg'.format(mapper_select_opt, mapper_name).split(' ') + [A_DFG_FILE], check_nothing, timeout_mult=5)
+		for mapper_select_opt,mapper_name in itertools.product(['-m','--mapper'], MAPPER_LIST)
+	] + [
+		SuccessTest('Map via {} with seed'.format(mapper_name), '--cpp adres -m {0} --mapper-opts {0}.seed=17539 --verbose=3 -g'.format(mapper_name).split(' ') + [A_DFG_FILE], output_has("seed = 17539"), timeout_mult=5)
+		for mapper_name in MAPPER_LIST
+	] + [
+		SuccessTest('Map, then load the mapping, cpp, long opt', [['-c','adres','--save-to-dot','mapping.dot','-g',A_DFG_FILE],['--load-mapping','mapping.dot','-g',A_DFG_FILE]], check_nothing),
+		SuccessTest('Map, then load the mapping, cpp, short opt',[['-c','adres','-o',           'mapping.dot','-g',A_DFG_FILE],['-l',            'mapping.dot','-g',A_DFG_FILE]], check_nothing),
+		SuccessTest('Map, then load the mapping, ADL, short opt',[['-x',AN_ADL1_ARCH_FILE,'-o', 'mapping.dot','-g',A_DFG_FILE],['-l',            'mapping.dot','-g',A_DFG_FILE]], check_nothing),
+		FailureTest('Map, then load the mapping, specify arch',  [['-c','adres','-o',           'mapping.dot','-g',A_DFG_FILE],['-c','adres','--load-mapping','mapping.dot','-g',A_DFG_FILE]], check_nothing),
+
+		FailureTest('Report area, cpp, no perf profile',           ['-c','adres','--report-area'], check_nothing),
+		SuccessTest('Report area, cpp',                            ['-c','adres','--report-area','--perf-profile',A_PERF_PROFILE_DIR], check_nothing),
+		FailureTest('Report area, ADL, no perf profile',           ['-x',AN_ADL1_ARCH_FILE,'--report-area'], check_nothing),
+		SuccessTest('Report area, ADL',                            ['-x',AN_ADL1_ARCH_FILE,'--report-area','--perf-profile',A_PERF_PROFILE_DIR], check_nothing),
+		FailureTest('Report timing, cpp, no perf profile, no DFG', ['-c','adres','--report-timing'], check_nothing),
+		FailureTest('Report timing, cpp, no perf profile',         ['-c','adres','--report-timing','-g',A_DFG_FILE], check_nothing),
+		FailureTest('Report timing, cpp, no DFG',                  ['-c','adres','--report-timing','--perf-profile',A_PERF_PROFILE_DIR], check_nothing),
+		SuccessTest('Report timing, cpp',                          ['-c','adres','--report-timing','--perf-profile',A_PERF_PROFILE_DIR,'-g',A_DFG_FILE], check_nothing),
+
+		SuccessTest('Map, then load the mapping and report timing, cpp',[
+			['-c','adres','-o',           'mapping.dot','-g',A_DFG_FILE],
+			['--report-timing','--perf-profile',A_PERF_PROFILE_DIR,'-l','mapping.dot','-g',A_DFG_FILE],
+		], check_nothing),
+
+		SuccessTest('Map, then load the mapping and report area, ADL',  [
+			['-x',AN_ADL1_ARCH_FILE,'-o', 'mapping.dot','-g',A_DFG_FILE],
+			['--report-area',  '--perf-profile',A_PERF_PROFILE_DIR,'-l','mapping.dot','-g',A_DFG_FILE],
+		], check_nothing),
+	];
+	max_test_index_str_width = len(str(len(tests)-1));
+
+	print("=> Running {} tests, each with a {} second timeout...".format(len(tests), arguments["timeout"]));
+
+	def on_test_completion(num_tests_done, future, test_index):
+		test = tests[test_index]
+		print('==> Test #{:>0{}} done ({:6.1%}): "{}":'.format(
+			test_index, max_test_index_str_width,
+			num_tests_done / len(tests),
+			test.name
+		), end='');
+		try:
+			future.result();
+			print(' PASSED', flush=True);
+			return True
+		except TestFailedWithOutputs as e:
+			print(' FAILED')
+			print('===> Command Line: {}'       .format(test.stringify_args(CGRA_MAPPER)));
+			print('===> Message: {}'            .format(e.args[0]));
+			print('===> Standard Out:\n{}'      .format(e.args[1]));
+			print('===> Standard Error:\n{}'    .format(e.args[2]));
+			print('===> End Outputs');
+			print('', end='', flush=True);
+		except subprocess.TimeoutExpired as e:
+			print(' TIMED OUT (may happen in debug compiles)')
+			print('===> Command Line: {}'       .format(test.stringify_args(CGRA_MAPPER)));
+			print('', end='', flush=True);
+		return False
+
+
+	def run_test_wrapper(test):
+		with tempfile.TemporaryDirectory() as tempdir:
+			run_test(test, tempdir, arguments['timeout'])
+
+	dones = set()
+	first_exception = None
+	num_failures = 0
+	with concurrent.futures.ThreadPoolExecutor(max_workers=arguments['jobs']) as executor:
+		futures = [executor.submit(run_test_wrapper, test) for test in tests]
+		future_to_test_index = {fut:i for i,fut in enumerate(futures)}
+
+		while len(dones) < len(tests):
+			try:
+				for future in concurrent.futures.as_completed(set(futures) - dones):
+					dones.add(future)
+					test_ok = on_test_completion(len(dones), future, future_to_test_index[future])
+					num_failures += int(not test_ok)
+			except BaseException as e:
+				if first_exception is not None:
+					print("=> Another exception in main loop. Giving up on graceful exit. You may have to hit ctl-c a few more times to get a quick exit.", flush=True)
+					raise # let the executor 's __exit__ take over
+
+				num_failed_to_cancel = 0
+				for future in futures:
+					if future.done() or future.cancel():
+						dones.add(future)
+					else:
+						num_failed_to_cancel += 1
+
+				print("=> {} raised in main loop. Further tests cancelled. {} blocking exit".format(type(e).__name__, num_failed_to_cancel), flush=True)
+				if first_exception is None:
+					first_exception = e
+
+	num_failures += len(tests) - len(dones)
+	if num_failures == 0:
+		print("=> ... all {} tests passed".format(len(tests)));
+	else:
+		print("=> ... {} of {} tests failed".format(num_failures, len(tests)));
+
+	if first_exception is not None:
+		raise first_exception
+
+	return num_failures;
+
+
+def run_test(test, tempdir, timeout):
+	out_lines, err_lines = ([],[]);
+
+	for arg_list in test.args:
+		command_line = make_commandline(CGRA_MAPPER, arg_list);
+		cgrame_proc = subprocess.Popen(
+			command_line,
+			cwd=tempdir,
+			stdout=subprocess.PIPE,
+			stderr=subprocess.PIPE,
+			universal_newlines=True, # assume the output is text
+		);
+
+		outs, errs = cgrame_proc.communicate(timeout=timeout*test.timeout_mult); # let the TimeoutException propagate
+		out_lines += outs.split('\n');
+		err_lines += errs.split('\n');
+
+	try:
+		test.check_output(out_lines, err_lines);
+
+		if cgrame_proc.returncode in test.unexpcted_exit_codes:
+			raise TestFailed('Expected exit code to not be one of {}, but CGRA-ME exited with code {}'.format(test.unexpcted_exit_codes, cgrame_proc.returncode));
+
+		if test.expect_success is not None:
+			if test.expect_success:
+				if cgrame_proc.returncode != 0:
+					raise TestFailed('Expected successful exit, but CGRA-ME exited with code {}'.format(cgrame_proc.returncode));
+			else:
+				if cgrame_proc.returncode == 0:
+					raise TestFailed('Expected unsuccessful exit, but CGRA-ME exited with code {}'.format(cgrame_proc.returncode));
+	except TestFailed as e:
+		raise TestFailedWithOutputs(str(e), '\n'.join(out_lines), '\n'.join(err_lines))
+
+def check_nothing(outs, errs):
+	pass;
+
+def output_matches(regex_string, invert=False):
+	regex = re.compile(regex_string);
+	def checker(outs, errs):
+		if invert == any(regex.search(line) != None for line in outs):
+			raise TestFailed('{}utput line contained "{}"'.format('O' if invert else 'No o', regex_string));
+	return checker;
+
+def output_doesnt_match(regex_string):
+	return output_matches(regex_string, invert=True)
+
+def output_has(string, invert=False):
+	def checker(outs, errs):
+		if invert == any(string in line for line in outs):
+			raise TestFailed('{}utput line contained "{}"'.format('O' if invert else 'No o', string));
+	return checker;
+
+def output_doesnt_have(string):
+	return output_has(string, invert=True)
+
+def arg_parse_fails(outs, errs):
+	output_has("Problem parsing command-line")(outs, errs);
+
+def all_of(*args):
+	def checker(outs, errs):
+		for arg in args:
+			arg(outs, errs);
+	return checker;
+
+def make_commandline(mapper, arg_list):
+	return shlex.split(mapper) + arg_list;
+
+class Test:
+	def __init__(self, name, args, check_output, *, expect_success, unexpcted_exit_codes=None, timeout_mult=1.0):
+		self.name = name;
+		self.expect_success = expect_success;
+		self.unexpcted_exit_codes = [] if unexpcted_exit_codes is None else unexpcted_exit_codes;
+		self.check_output = check_output;
+		self.timeout_mult = timeout_mult;
+
+		# make sure args is a list[list[str]]
+		if isinstance(args,str):
+			self.args = [args.split(' ')];
+		elif isinstance(args,list):
+			if isinstance(args[0],list):
+				self.args = args;
+			else:
+				self.args = [args];
+		else:
+			self.args = args;
+
+	def stringify_args(self, mapper_exe):
+		return ' && '.join(shlex.join(make_commandline(mapper_exe, arg_list)) for arg_list in self.args);
+
+class ASuccessTest(Test):
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, expect_success=True, **kwargs);
+
+class AFailureTest(Test):
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, expect_success=False, **kwargs);
+
+def FailureTestWithUnexpctedExitCodesMaker(unexpcted_exit_codes):
+	def maker(name, args, check_output__this_is_ignored, **kwargs):
+		return Test(name, args, check_nothing, expect_success=None, unexpcted_exit_codes=unexpcted_exit_codes, **kwargs);
+	return maker;
+
+class TestFailed(Exception):
+	pass;
+
+class TestFailedWithOutputs(Exception):
+	pass;
+
+if __name__ == '__main__':
+	exit(main(sys.argv));

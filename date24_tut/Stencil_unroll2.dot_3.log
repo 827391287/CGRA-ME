@@ -1,0 +1,90 @@
+
+CGRA - Modelling and Exploration (http://cgra-me.ece.utoronto.ca/)
+Copyright (c) 2015-2023 University of Toronto. All Rights Reserved.
+For research and academic purposes only. Commercial use is prohibited.
+Please email questions to: Jason Anderson (janders@ece.utoronto.ca)
+Compiled: Sep  8 2025 21:45:01
+
+[INFO] Parsing DFG...
+[INFO] Using C++ architecture ID 3
+[INFO] Architecture description: Elastic RIKEN Architecture
+[INFO] Creating "3" Architecture from C++...
+[INFO] Creating MRRG...
+[INFO] Creating Mapper 'ClusteredMapper'...
+[INFO] Reducing MRRG...
+[INFO] Mapping...
+SEED: 10
+Num of ops: 40Final Result
+cluster
+Const_30(const)
+FMUL_16(fmul)
+FADD_25(fadd)
+cluster
+Const_31(const)
+FMUL_13(fmul)
+FADD_20(fadd)
+cluster
+Const_32(const)
+FMUL_14(fmul)
+FADD_22(fadd)
+cluster
+Const_33(const)
+FMUL_17(fmul)
+FADD_26(fadd)
+cluster
+Const_34(const)
+FMUL_11(fmul)
+FADD_21(fadd)
+cluster
+Const_35(const)
+FMUL_18(fmul)
+FADD_24(fadd)
+cluster
+Const_36(const)
+FMUL_15(fmul)
+cluster
+Const_37(const)
+FMUL_12(fmul)
+cluster
+Const_38(const)
+FMUL_10(fmul)
+cluster
+Const_39(const)
+FMUL_19(fmul)
+cluster
+Load_0(input)
+cluster
+Load_1(input)
+cluster
+Load_2(input)
+cluster
+Load_3(input)
+cluster
+Load_4(input)
+cluster
+Load_5(input)
+cluster
+Load_6(input)
+cluster
+Load_7(input)
+cluster
+Load_8(input)
+cluster
+Load_9(input)
+cluster
+FADD_27(fadd)
+cluster
+FADD_23(fadd)
+cluster
+Store_29(output)
+cluster
+Store_28(output)
+start of PCKM:Packing Mapper +0.000000 @0.000000
+  end of PCKM:Packing Mapper +0.014764 @0.014764
+start of PCKM:Packing Mapper +0.000000 @0.000000
+  end of PCKM:Packing Mapper +0.014787 @0.014787
+   start of CGRA-ME +0.000000 @0.000000
+create architecture +0.022610 @0.022610
+        create MRRG +0.012864 @0.035473
+        reduce MRRG +0.043243 @0.078716
+     end of CGRA-ME +0.021805 @0.100522

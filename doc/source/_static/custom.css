@@ -1,0 +1,6 @@
+div.body {
+	/* override the default (a fixed px value) and allow it to fill it's parent.
+	   This, combined with the page_width option in conf.py allows
+	   the content to fill the page */
+	max-width: 100% !important;
+}

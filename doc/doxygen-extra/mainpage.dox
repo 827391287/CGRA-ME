@@ -1,0 +1,11 @@
+/**
+ * \mainpage
+ * This is the soruce code documentation for CGRA-ME
+ *
+ * \htmlonly
+ * <p><a href="../latex/refman.pdf">This documentation as a PDF</a></p>
+ * <p><a href="../../index.html">Back to the written documentation</a></p>
+ * \endhtmlonly
+ *
+ * CGRA-ME main website: <a href="http://cgra-me.ece.utoronto.ca">cgra-me.ece.utoronto.ca</a>
+ */

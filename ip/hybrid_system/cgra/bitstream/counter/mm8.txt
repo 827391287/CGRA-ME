@@ -1,0 +1,11 @@
+i4_load1:mem_1
+i4_load2:mem_2
+i4_load3:mem_7
+i4_load4:mem_5
+i4_load5:mem_3
+i4_load6:mem_4
+i4_load7:mem_0
+i4_load8:mem_6
+input0:io_top_0
+input1:io_top_1
+output:io_top_4

@@ -1,0 +1,45 @@
+# DFG Generation related
+*.bc
+*.ll
+*.tag
+*.dot
+!benchmarks/**/pre-gen-graph_loop.dot
+!benchmarks/**/graph_db/*.dot
+
+# User custom benchmarks
+/benchmarks/userbench/*
+!/benchmarks/userbench/README
+
+# Build products
+build
+builds/
+thirdparty/.git-init-was-run
+
+# Exclude exp-run
+benchmarks/exp-run/
+benchmarks/**/*.lp
+
+# Visualization output
+/output/
+
+# Verilog verification related
+verilog-verif/**/cgra_src
+verilog-verif/**/cgrame.v
+verilog-verif/**/work
+verilog-verif/**/FLAGFILES
+verilog-verif/**/*.transcript
+verilog-verif/**/*.wlf
+verilog-verif/**/tb_src/testbench.v
+
+# Git merge files
+*.orig
+
+# Temp & hidden files
+*~
+*.swp
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+.*DS_Store
+**/__pycache__

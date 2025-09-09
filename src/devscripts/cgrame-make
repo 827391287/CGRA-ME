@@ -1,0 +1,11 @@
+#!/bin/bash
+
+cd "$CGRA_ME_ROOTDIR"
+cmd=( make )
+if [ -e build ]; then
+	cmd+=( "BUILD_TYPE=$(basename $(readlink build))" )
+fi
+cmd+=( "$@" )
+
+set -x
+"${cmd[@]}"

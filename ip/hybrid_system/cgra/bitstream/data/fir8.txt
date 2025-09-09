@@ -1,0 +1,9 @@
+i4_load0:mem_0
+i4_load00:mem_5
+i4_load1:mem_2
+i4_load11:mem_6
+i4_load2:mem_4
+i4_load22:mem_1
+i4_store1:mem_3
+i4_store11:mem_7
+end:top_0

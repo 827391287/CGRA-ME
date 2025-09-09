@@ -1,0 +1,5 @@
+i4_load0:mem_0
+i4_load1:mem_2
+i4_store:mem_1
+input0:io_top_2
+input1:io_top_0

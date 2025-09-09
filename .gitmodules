@@ -1,0 +1,3 @@
+[submodule "thirdparty/coreir"]
+	path = thirdparty/coreir
+	url = ../../uoft/coreir.git

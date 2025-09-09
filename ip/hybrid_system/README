@@ -1,0 +1,14 @@
+This folders contails files for the hybrid system connection. 
+1. cgra folder contains ADRES CGRA architecher for 8x8 and 4x4 as 
+well as the bitstreams for four applications: Matrix Multiply, 
+K Nearest Neighbor, Taylor Expansion and FIR filter. 
+
+2. riscv folder contains System Verilog source code for the riscv 
+processor. 
+
+3. hybrid_conn folder contains the System Verilog source code for 
+the connections of the hybrid system includeing memory banks, control
+file developed for CGRA-ME framework and the top level simulation file. 
+
+To use the system, compile all necessary files and run do runlab.do in 
+Modelsim. 
