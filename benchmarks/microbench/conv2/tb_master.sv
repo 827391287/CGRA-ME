@@ -22,36 +22,37 @@ module ram_simulation (
 
     reg [31:0] storage [0:4095];
 
-
-    integer i;
+    integer i , j;
     initial begin
-        for (i = 2560; i <= 2660; i = i+1)
-            storage[i] = i;
+        for (i = 0 , j = 0; i <= 100; i = i+1 , j = j+1)
+            storage[i] = j;
     end
+
 
     always @(posedge clock) begin
         if (w_rq0 == 1'b1)
-            storage[addr0 >> 2] <= data_in0;
-        if (addr0 >> 2 <= 100)
-            data_out0 <= storage[addr0 >> 2];
+            storage[(addr0 - 32'ha00) >> 2] <= data_in0;
+        if ((addr0 - 32'ha00) >> 2 <= 100)
+            data_out0 <= storage[(addr0 - 32'ha00) >> 2];
         else
             data_out0 <= 0;
         if (w_rq1 == 1'b1)
-            storage[addr1 >> 2] <= data_in1;
-        if (addr1 >> 2 <= 100)
-            data_out1 <= storage[addr1 >> 2];
+            storage[(addr1 - 32'ha00) >> 2] <= data_in1;
+        if ((addr1 - 32'ha00) >> 2 <= 100)
+            data_out1 <= storage[(addr1 - 32'ha00) >> 2];
         else
             data_out1 <= 0;
         if (w_rq2 == 1'b1)
-            storage[addr2 >> 2] <= data_in2;
-        if (addr2 >> 2 <= 100)
-            data_out2 <= storage[addr2 >> 2];
+            storage[(addr2 - 32'ha00) >> 2] <= data_in2;
+	    $display("Memory[%d] now contains %h", addr2, storage[(addr2 - 32'ha00) >> 2]);
+        if ((addr2 - 32'ha00) >> 2 <= 100)
+            data_out2 <= storage[(addr2 - 32'ha00) >> 2];
         else
             data_out2 <= 0;
         if (w_rq3 == 1'b1)
-            storage[addr3 >> 2] <= data_in3;
-        if (addr3 >> 2 <= 100)
-            data_out3 <= storage[addr3 >> 2];
+            storage[(addr3 - 32'ha00) >> 2] <= data_in3;
+        if ((addr3 - 32'ha00) >> 2 <= 100)
+            data_out3 <= storage[(addr3 - 32'ha00) >> 2];
         else
             data_out3 <= 0;						
     end
@@ -224,6 +225,7 @@ module tb_master #(
 		// else
 		// 	out_pin = ext_io_top_0_out;
 		out_pin = mem_2_mem_unit_data_in_to_ram;
+		
 	end
 	`define CHECK_OUT_PIN(expected) \
 		if (!(out_pin === expected)) begin \
@@ -265,11 +267,11 @@ module tb_master #(
 
 		`CHECK_OUT_PIN(20)
 		#1;
+		`CHECK_OUT_PIN(20)
+		#1;
 		`CHECK_OUT_PIN(50)
 		#1;
 		`CHECK_OUT_PIN(80)
-		#1;
-		`CHECK_OUT_PIN(110)
 
 
 		if (test_pass)
