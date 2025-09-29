@@ -11,7 +11,7 @@ LOOP_TAGS ?= loop
 CFLAGS ?= -O3
 
 # Optimizations that are usually not wanted -- they assume a more complicated ISA, and may remove loops altogether.
-OPT_DISABLE_FLAGS ?= -fno-vectorize -fno-slp-vectorize -fno-unroll-loops
+OPT_DISABLE_FLAGS ?= -fno-vectorize -fno-slp-vectorize -fno-unroll-loops -fno-signed-zeros -ffp-contract=off
 
 # Extra flags pased when creating the DFG
 DFG_FLAGS ?=
@@ -63,6 +63,7 @@ endif
 
 %.bc: %.tagged.c
 	clang -emit-llvm -c '$*.tagged.c' -o '$*.bc' $(CFLAGS) $(OPT_DISABLE_FLAGS)
+	
 
 %.ll: %.bc
 	llvm-dis '$*.bc'

@@ -1,0 +1,594 @@
+
+CGRA - Modelling and Exploration (http://cgra-me.ece.utoronto.ca/)
+Copyright (c) 2015-2023 University of Toronto. All Rights Reserved.
+For research and academic purposes only. Commercial use is prohibited.
+Please email questions to: Jason Anderson (janders@ece.utoronto.ca)
+Compiled: Sep  8 2025 21:45:01
+
+[INFO] Parsing DFG...
+[INFO] Using C++ architecture ID hycube
+[INFO] Architecture description: HyCUBE CGRA Architecture
+[INFO] Creating "hycube" Architecture from C++...
+[INFO] Creating MRRG...
+[INFO] Creating Mapper 'ClusteredMapper'...
+[INFO] Reducing MRRG...
+[INFO] Mapping...
+SEED: 10
+Num of ops: 7Calculating ASAP!
+Visiting op 'const3(const)' with 0 operands:
+Latestest start: 0
+Verifying bounds for const3(const)
+Rescheduled ops: 
+Number scheduled: 1
+Visiting op 'i3_data_size1(const)' with 0 operands:
+Latestest start: 0
+Verifying bounds for i3_data_size1(const)
+Rescheduled ops: 
+Number scheduled: 2
+Visiting op 'i3_mul1(mul)' with 2 operands:
+Not scheduled: i6_add(add)
+Latestest start: -1
+Visiting op 'i4_load(load)' with 1 operands:
+Not scheduled: i3_mul1(mul)
+Latestest start: -1
+Visiting op 'i5_add(add)' with 2 operands:
+Not scheduled: i4_load(load)
+Latestest start: -1
+Visiting op 'i5_output(output)' with 1 operands:
+Not scheduled: i5_add(add)
+Latestest start: -1
+Visiting op 'i6_add(add)' with 2 operands:
+Latestest start: 1
+Verifying bounds for i6_add(add)
+Rescheduled ops: 
+Number scheduled: 3
+ASAP Scheduling total :7 Scheduled: 3
+Visiting op 'i3_mul1(mul)' with 2 operands:
+Latestest start: 2
+Verifying bounds for i3_mul1(mul)
+Rescheduling i3_data_size1(const) at: 1
+Rescheduled ops: 
+Number scheduled: 4
+Visiting op 'i4_load(load)' with 1 operands:
+Latestest start: 2
+Verifying bounds for i4_load(load)
+Rescheduled ops: 
+Number scheduled: 5
+Visiting op 'i5_add(add)' with 2 operands:
+Latestest start: 4
+Verifying bounds for i5_add(add)
+Rescheduled ops: 
+Number scheduled: 6
+Visiting op 'i5_output(output)' with 1 operands:
+Latestest start: 5
+Verifying bounds for i5_output(output)
+Rescheduled ops: 
+Number scheduled: 7
+ASAP Scheduling total :7 Scheduled: 7
+ASAP Scheduling complete!
+Scheduling complete!
+i6_add  1
+i5_output  5
+i5_add  4
+i4_load  2
+i3_mul1  2
+i3_data_size1  1
+const3  0
+TMPack Result
+cluster 0
+const3(const) 0
+i6_add(add) 0
+cluster 1
+i3_data_size1(const) 1
+i3_mul1(mul) 1
+cluster 2
+i4_load(load) 2
+cluster 3
+i5_add(add) 3
+cluster 4
+i5_output(output) 4
+Finding delta Costs:
+Total Cost: 14.245
+ITERATION: 0
+Initial Temperature is 31.8809
+initial mapping: Operation Mapping Result:
+const3(const):   0:pe_c0_r1.const_val.const
+
+i3_data_size1(const):   0:pe_c1_r0.const_val.const
+
+i3_mul1(mul):   0:pe_c1_r0.ALU.fu
+
+i4_load(load):   0:mem_0.mem_unit.mem
+
+i5_add(add):   0:pe_c0_r0.ALU.fu
+
+i5_output(output):   0:io_bottom_1.IOPin.io
+
+i6_add(add):   0:pe_c0_r1.ALU.fu
+
+
+Connection Mapping Result:
+const3_out:
+__NOT_MAPPED__
+i3_data_size1_out:
+__NOT_MAPPED__
+i3_mul1_out:
+__NOT_MAPPED__
+i4_load_out:
+__NOT_MAPPED__
+i5_add_out:
+__NOT_MAPPED__
+i6_add_out:
+__NOT_MAPPED__
+Begin annealing
+Iteration start: temp=31.8809
+Iteration start: temp=30.2869
+Iteration start: temp=28.7725
+Iteration start: temp=27.3339
+Iteration start: temp=25.9672
+Iteration start: temp=24.6688
+Iteration start: temp=23.4354
+Iteration start: temp=22.2636
+Iteration start: temp=21.1504
+Iteration start: temp=20.0929
+Iteration start: temp=19.0883
+Iteration start: temp=18.1339
+Iteration start: temp=17.2272
+Iteration start: temp=16.3658
+Iteration start: temp=15.5475
+Iteration start: temp=14.7701
+Iteration start: temp=14.0316
+Iteration start: temp=13.3301
+Iteration start: temp=12.6636
+Iteration start: temp=12.0304
+Iteration start: temp=11.4289
+Iteration start: temp=10.8574
+Iteration start: temp=10.3145
+Iteration start: temp=9.79882
+Iteration start: temp=9.30888
+Iteration start: temp=8.84343
+Iteration start: temp=8.40126
+Iteration start: temp=7.9812
+Iteration start: temp=7.58214
+Iteration start: temp=7.20303
+Iteration start: temp=6.84288
+Iteration start: temp=6.50074
+Iteration start: temp=6.1757
+Iteration start: temp=5.86691
+Iteration start: temp=5.57357
+Iteration start: temp=5.29489
+Iteration start: temp=5.03015
+Iteration start: temp=4.77864
+Iteration start: temp=4.53971
+Iteration start: temp=4.31272
+Iteration start: temp=4.09708
+Iteration start: temp=3.89223
+Iteration start: temp=3.69762
+Iteration start: temp=3.51274
+Iteration start: temp=3.3371
+Iteration start: temp=3.17025
+Iteration start: temp=3.01173
+Iteration start: temp=2.86115
+Iteration start: temp=2.71809
+Iteration start: temp=2.58219
+Iteration start: temp=2.45308
+Iteration start: temp=2.33042
+Iteration start: temp=2.2139
+Iteration start: temp=2.10321
+Iteration start: temp=1.99805
+Iteration start: temp=1.89814
+Iteration start: temp=1.80324
+Iteration start: temp=1.71307
+Iteration start: temp=1.37046
+Iteration start: temp=1.30194
+Iteration start: temp=1.23684
+Iteration start: temp=0.989472
+Iteration start: temp=0.791577
+Iteration start: temp=0.633262
+Iteration start: temp=0.50661
+Iteration start: temp=0.405288
+Iteration start: temp=0.32423
+Iteration start: temp=0.259384
+Iteration start: temp=0.207507
+Iteration start: temp=0.166006
+Iteration start: temp=0.132805
+Iteration start: temp=0.106244
+Iteration start: temp=0.084995
+Iteration start: temp=0.067996
+Operation Mapping Result:
+const3(const):   0:pe_c0_r0.const_val.const
+
+i3_data_size1(const):   0:pe_c0_r1.const_val.const
+
+i3_mul1(mul):   0:pe_c0_r1.ALU.fu
+
+i4_load(load):   0:mem_1.mem_unit.mem
+
+i5_add(add):   0:pe_c1_r1.ALU.fu
+
+i5_output(output):   0:io_right_1.IOPin.io
+
+i6_add(add):   0:pe_c0_r0.ALU.fu
+
+
+Connection Mapping Result:
+const3_out:
+__NOT_MAPPED__
+i3_data_size1_out:
+__NOT_MAPPED__
+i3_mul1_out:
+__NOT_MAPPED__
+i4_load_out:
+__NOT_MAPPED__
+i5_add_out:
+__NOT_MAPPED__
+i6_add_out:
+__NOT_MAPPED__
+MAPPING From: const3 i6_add 1  1
+0:pe_c0_r0.ALU.fu
+const3 i6_add   1any2input
+cost 5.05
+0:pe_c0_r0.const_val.out
+0:pe_c0_r0.const_val.out
+0:pe_c0_r0.crossbar.mux_5.in6
+0:pe_c0_r0.crossbar.mux_5.mux
+0:pe_c0_r0.regb.reg
+0:pe_c0_r0.ALU.in_b
+MAPPING From: i3_data_size1 i3_mul1 1  1
+0:pe_c0_r1.ALU.fu
+i3_data_size1 i3_mul1   1any2input
+cost 5.05
+0:pe_c0_r1.const_val.out
+0:pe_c0_r1.const_val.out
+0:pe_c0_r1.crossbar.mux_5.in6
+0:pe_c0_r1.crossbar.mux_5.mux
+0:pe_c0_r1.regb.reg
+0:pe_c0_r1.ALU.in_b
+MAPPING From: i3_mul1 i4_load 1  1
+0:mem_1.mem_unit.mem
+i3_mul1 i4_load   0addr
+cost 7.07
+0:pe_c0_r1.ALU.out
+0:pe_c0_r1.ALU.out
+0:pe_c0_r1.crossbar.in4
+0:pe_c0_r1.crossbar.mux_3.in4
+0:pe_c0_r1.crossbar.mux_3.mux
+0:mem_1.in1
+0:mem_1.mux_addr.in1
+0:mem_1.mux_addr.mux
+MAPPING From: i4_load i5_add 1  1
+0:pe_c1_r1.ALU.fu
+i4_load i5_add   2any2input
+cost 11.11
+0:mem_1.mem_unit.data_out
+0:mem_1.mem_unit.data_out
+0:pe_c0_r1.mux_3.in0
+0:pe_c0_r1.mux_3.mux
+0:pe_c0_r1.crossbar.mux_1.in3
+0:pe_c0_r1.crossbar.mux_1.mux
+0:pe_c1_r1.mux_3.in0
+0:pe_c1_r1.mux_3.mux
+0:pe_c1_r1.crossbar.mux_4.in3
+0:pe_c1_r1.crossbar.mux_4.mux
+0:pe_c1_r1.rega.reg
+0:pe_c1_r1.ALU.in_a
+MAPPING From: i5_add i5_output i5_add 2  2
+0:pe_c1_r1.ALU.fu
+i5_add i5_add   1any2input
+cost 6.06
+0:pe_c1_r1.ALU.out
+0:pe_c1_r1.ALU.out
+0:pe_c1_r1.crossbar.in4
+0:pe_c1_r1.crossbar.mux_5.in4
+0:pe_c1_r1.crossbar.mux_5.mux
+0:pe_c1_r1.regb.reg
+0:pe_c1_r1.ALU.in_b
+0:io_right_1.IOPin.io
+i5_add i5_output   1
+cost 6.06
+0:pe_c1_r1.ALU.out
+0:pe_c1_r1.ALU.out
+0:pe_c1_r1.crossbar.in4
+0:pe_c1_r1.crossbar.mux_1.in4
+0:pe_c1_r1.crossbar.mux_1.mux
+0:io_right_1.reg_in.reg
+0:io_right_1.IOPin.in
+MAPPING From: i6_add i3_mul1 i6_add 2  2
+0:pe_c0_r1.ALU.fu
+i6_add i3_mul1   1any2input
+cost 10.1
+0:pe_c0_r0.ALU.out
+0:pe_c0_r0.ALU.out
+0:pe_c0_r0.crossbar.in4
+0:pe_c0_r0.crossbar.mux_2.in4
+0:pe_c0_r0.crossbar.mux_2.mux
+0:pe_c0_r1.mux_0.in0
+0:pe_c0_r1.mux_0.mux
+0:pe_c0_r1.crossbar.mux_4.in0
+0:pe_c0_r1.crossbar.mux_4.mux
+0:pe_c0_r1.rega.reg
+0:pe_c0_r1.ALU.in_a
+0:pe_c0_r0.ALU.fu
+i6_add i6_add   1any2input
+cost 6.06
+0:pe_c0_r0.ALU.out
+0:pe_c0_r0.ALU.out
+0:pe_c0_r0.crossbar.in4
+0:pe_c0_r0.crossbar.mux_4.in4
+0:pe_c0_r0.crossbar.mux_4.mux
+0:pe_c0_r0.rega.reg
+0:pe_c0_r0.ALU.in_a
+GRAPH COVERED: 1   1
+Number of routing resoucres used: 52
+Finding delta Costs:
+Total Cost: 7.655
+[INFO] clusters greater than 1: 2
+start of PCKM:Packing Mapper +0.000000 @0.000000
+                    Schedule +0.004240 @0.004240
+                      TMPACK +0.000303 @0.004543
+  end of PCKM:Packing Mapper +0.008057 @0.012600
+[INFO] Mapping Success: 1
+[INFO] Mapping Time: 0.012597
+[INFO] Mapping Timeout: 0
+Operation Mapping Result:
+const3(const):   0:pe_c0_r0.const_val.const
+
+i3_data_size1(const):   0:pe_c0_r1.const_val.const
+
+i3_mul1(mul):   0:pe_c0_r1.ALU.fu
+
+i4_load(load):   0:mem_1.mem_unit.mem
+
+i5_add(add):   0:pe_c1_r1.ALU.fu
+
+i5_output(output):   0:io_right_1.IOPin.io
+
+i6_add(add):   0:pe_c0_r0.ALU.fu
+
+
+Connection Mapping Result:
+const3_out:
+  0:pe_c0_r0.regb.reg
+  0:pe_c0_r0.regb.out
+  0:pe_c0_r0.regb.m_out
+  0:pe_c0_r0.const_val.out
+  0:pe_c0_r0.crossbar.in6
+  0:pe_c0_r0.ALU.in_b
+  0:pe_c0_r0.crossbar.mux_5.in6
+  0:pe_c0_r0.crossbar.mux_5.mux
+  0:pe_c0_r0.regb.m_in
+  0:pe_c0_r0.regb.in
+  0:pe_c0_r0.crossbar.out5
+  0:pe_c0_r0.crossbar.mux_5.out
+
+i3_data_size1_out:
+  0:pe_c0_r1.crossbar.mux_5.in6
+  0:pe_c0_r1.crossbar.mux_5.mux
+  0:pe_c0_r1.regb.m_in
+  0:pe_c0_r1.regb.in
+  0:pe_c0_r1.crossbar.out5
+  0:pe_c0_r1.crossbar.mux_5.out
+  0:pe_c0_r1.ALU.in_b
+  0:pe_c0_r1.const_val.out
+  0:pe_c0_r1.crossbar.in6
+  0:pe_c0_r1.regb.reg
+  0:pe_c0_r1.regb.out
+  0:pe_c0_r1.regb.m_out
+
+i3_mul1_out:
+  0:pe_c0_r1.ALU.out
+  0:mem_1.mux_addr.in1
+  0:mem_1.mux_addr.mux
+  0:mem_1.mux_addr.out
+  0:mem_1.mem_unit.addr
+  0:mem_1.in1
+  0:pe_c0_r1.crossbar.mux_3.in4
+  0:pe_c0_r1.crossbar.mux_3.mux
+  0:pe_c0_r1.out3
+  0:pe_c0_r1.crossbar.out3
+  0:pe_c0_r1.crossbar.mux_3.out
+  0:pe_c0_r1.crossbar.in4
+
+i4_load_out:
+  0:pe_c0_r1.mux_3.mux
+  0:pe_c0_r1.mux_3.out
+  0:pe_c0_r1.crossbar.in3
+  0:pe_c0_r1.mux_3.in0
+  0:pe_c0_r1.crossbar.mux_1.mux
+  0:pe_c0_r1.out1
+  0:pe_c0_r1.crossbar.out1
+  0:pe_c1_r1.in3
+  0:pe_c0_r1.crossbar.mux_1.out
+  0:mem_1.mem_unit.data_out
+  0:pe_c0_r1.in3
+  0:mem_1.out
+  0:pe_c1_r1.ALU.in_a
+  0:pe_c0_r1.crossbar.mux_1.in3
+  0:pe_c1_r1.crossbar.mux_4.in3
+  0:pe_c1_r1.crossbar.mux_4.mux
+  0:pe_c1_r1.rega.m_in
+  0:pe_c1_r1.crossbar.out4
+  0:pe_c1_r1.rega.in
+  0:pe_c1_r1.crossbar.mux_4.out
+  0:pe_c1_r1.mux_3.in0
+  0:pe_c1_r1.mux_3.mux
+  0:pe_c1_r1.mux_3.out
+  0:pe_c1_r1.crossbar.in3
+  0:pe_c1_r1.rega.reg
+  0:pe_c1_r1.rega.out
+  0:pe_c1_r1.rega.m_out
+
+i5_add_out:
+  0:pe_c1_r1.ALU.in_b
+  0:pe_c1_r1.ALU.out
+  0:io_right_1.reg_in.reg
+  0:io_right_1.reg_in.out
+  0:io_right_1.reg_in.m_out
+  0:io_right_1.IOPin.in
+  0:pe_c1_r1.crossbar.in4
+  0:pe_c1_r1.crossbar.mux_1.in4
+  0:pe_c1_r1.crossbar.mux_1.mux
+  0:pe_c1_r1.out1
+  0:io_right_1.in
+  0:io_right_1.reg_in.in
+  0:io_right_1.reg_in.m_in
+  0:pe_c1_r1.crossbar.out1
+  0:pe_c1_r1.crossbar.mux_1.out
+  0:pe_c1_r1.crossbar.mux_5.in4
+  0:pe_c1_r1.crossbar.mux_5.mux
+  0:pe_c1_r1.regb.m_in
+  0:pe_c1_r1.regb.in
+  0:pe_c1_r1.crossbar.out5
+  0:pe_c1_r1.crossbar.mux_5.out
+  0:pe_c1_r1.regb.reg
+  0:pe_c1_r1.regb.out
+  0:pe_c1_r1.regb.m_out
+
+i6_add_out:
+  0:pe_c0_r0.crossbar.mux_4.mux
+  0:pe_c0_r0.rega.m_in
+  0:pe_c0_r0.crossbar.out4
+  0:pe_c0_r0.rega.in
+  0:pe_c0_r0.crossbar.mux_4.out
+  0:pe_c0_r1.ALU.in_a
+  0:pe_c0_r0.rega.out
+  0:pe_c0_r0.rega.reg
+  0:pe_c0_r0.rega.m_out
+  0:pe_c0_r0.crossbar.mux_4.in4
+  0:pe_c0_r1.mux_0.mux
+  0:pe_c0_r1.mux_0.out
+  0:pe_c0_r1.crossbar.in0
+  0:pe_c0_r1.mux_0.in0
+  0:pe_c0_r0.crossbar.mux_2.mux
+  0:pe_c0_r1.in0
+  0:pe_c0_r0.out2
+  0:pe_c0_r0.crossbar.out2
+  0:pe_c0_r0.crossbar.mux_2.out
+  0:pe_c0_r0.crossbar.mux_2.in4
+  0:pe_c0_r0.crossbar.in4
+  0:pe_c0_r0.ALU.in_a
+  0:pe_c0_r0.ALU.out
+  0:pe_c0_r1.crossbar.mux_4.in0
+  0:pe_c0_r1.crossbar.mux_4.mux
+  0:pe_c0_r1.rega.m_in
+  0:pe_c0_r1.crossbar.out4
+  0:pe_c0_r1.rega.in
+  0:pe_c0_r1.crossbar.mux_4.out
+  0:pe_c0_r1.rega.reg
+  0:pe_c0_r1.rega.out
+  0:pe_c0_r1.rega.m_out
+
+No isolated found
+config table: 
+	0x55e252786040 0x55e2527863f0 0x55e252786780 0x55e25278af20 0x55e25278b2d0 0x55e25278b660 0x55e25278d750 0x55e25278db00 0x55e25278de90 0x55e25278fec0 0x55e252790270 0x55e252790600 0x55e2527839b0 0x55e252783d40 0x55e2527840d0 0x55e252788870 0x55e252788c20 0x55e252788fb0 0x55e25277e6e0 0x55e25277ea70 0x55e25277f230 0x55e252781250 0x55e2527815e0 0x55e252781de0 0x55e252733bd0 0x55e252734da0 0x55e2527354c0 0x55e252735be0 0x55e252736300 0x55e252734680 0x55e252734a10 0x55e252735130 0x55e252735850 0x55e252735f70 0x55e252733f60 0x55e2527342f0 0x55e25272fd60 0x55e25272b550 0x55e25272b8c0 0x55e25272bc30 0x55e25272bfa0 0x55e25272c310 0x55e25272c680 0x55e25274a940 0x55e25274bb10 0x55e25274c230 0x55e25274c950 0x55e25274d070 0x55e25274b3f0 0x55e25274b780 0x55e25274bea0 0x55e25274c5c0 0x55e25274cce0 0x55e25274acd0 0x55e25274b060 0x55e252746ad0 0x55e252742240 0x55e2527425b0 0x55e252742940 0x55e252742cd0 0x55e252743060 0x55e2527433f0 0x55e2527616b0 0x55e252762880 0x55e252762fa0 0x55e2527636c0 0x55e252763de0 0x55e252762160 0x55e2527624f0 0x55e252762c10 0x55e252763330 0x55e252763a50 0x55e252761a40 0x55e252761dd0 0x55e25275d840 0x55e252758fb0 0x55e252759320 0x55e2527596b0 0x55e252759a40 0x55e252759dd0 0x55e25275a160 0x55e252778540 0x55e252779710 0x55e252779e30 0x55e25277a550 0x55e25277ac70 0x55e252778ff0 0x55e252779380 0x55e252779aa0 0x55e25277a1c0 0x55e25277a8e0 0x55e2527788d0 0x55e252778c60 0x55e2527746d0 0x55e25276fe40 0x55e2527701b0 0x55e252770540 0x55e2527708d0 0x55e252770c60 0x55e252770ff0 
+Value mappings: (val node: {mrrg node })
+0x55e252726210:0:pe_c0_r0.regb.reg 0:pe_c0_r0.regb.out 0:pe_c0_r0.regb.m_out 0:pe_c0_r0.const_val.out 0:pe_c0_r0.crossbar.in6 0:pe_c0_r0.ALU.in_b 0:pe_c0_r0.crossbar.mux_5.in6 0:pe_c0_r0.crossbar.mux_5.mux 0:pe_c0_r0.regb.m_in 0:pe_c0_r0.regb.in 0:pe_c0_r0.crossbar.out5 0:pe_c0_r0.crossbar.mux_5.out 
+0x55e2527260e0:0:pe_c0_r1.crossbar.mux_5.in6 0:pe_c0_r1.crossbar.mux_5.mux 0:pe_c0_r1.regb.m_in 0:pe_c0_r1.regb.in 0:pe_c0_r1.crossbar.out5 0:pe_c0_r1.crossbar.mux_5.out 0:pe_c0_r1.ALU.in_b 0:pe_c0_r1.const_val.out 0:pe_c0_r1.crossbar.in6 0:pe_c0_r1.regb.reg 0:pe_c0_r1.regb.out 0:pe_c0_r1.regb.m_out 
+0x55e252725fd0:0:pe_c0_r1.ALU.out 0:mem_1.mux_addr.in1 0:mem_1.mux_addr.mux 0:mem_1.mux_addr.out 0:mem_1.mem_unit.addr 0:mem_1.in1 0:pe_c0_r1.crossbar.mux_3.in4 0:pe_c0_r1.crossbar.mux_3.mux 0:pe_c0_r1.out3 0:pe_c0_r1.crossbar.out3 0:pe_c0_r1.crossbar.mux_3.out 0:pe_c0_r1.crossbar.in4 
+0x55e25271ea50:0:pe_c0_r1.mux_3.mux 0:pe_c0_r1.mux_3.out 0:pe_c0_r1.crossbar.in3 0:pe_c0_r1.mux_3.in0 0:pe_c0_r1.crossbar.mux_1.mux 0:pe_c0_r1.out1 0:pe_c0_r1.crossbar.out1 0:pe_c1_r1.in3 0:pe_c0_r1.crossbar.mux_1.out 0:mem_1.mem_unit.data_out 0:pe_c0_r1.in3 0:mem_1.out 0:pe_c1_r1.ALU.in_a 0:pe_c0_r1.crossbar.mux_1.in3 0:pe_c1_r1.crossbar.mux_4.in3 0:pe_c1_r1.crossbar.mux_4.mux 0:pe_c1_r1.rega.m_in 0:pe_c1_r1.crossbar.out4 0:pe_c1_r1.rega.in 0:pe_c1_r1.crossbar.mux_4.out 0:pe_c1_r1.mux_3.in0 0:pe_c1_r1.mux_3.mux 0:pe_c1_r1.mux_3.out 0:pe_c1_r1.crossbar.in3 0:pe_c1_r1.rega.reg 0:pe_c1_r1.rega.out 0:pe_c1_r1.rega.m_out 
+0x55e252724c90:0:pe_c1_r1.ALU.in_b 0:pe_c1_r1.ALU.out 0:io_right_1.reg_in.reg 0:io_right_1.reg_in.out 0:io_right_1.reg_in.m_out 0:io_right_1.IOPin.in 0:pe_c1_r1.crossbar.in4 0:pe_c1_r1.crossbar.mux_1.in4 0:pe_c1_r1.crossbar.mux_1.mux 0:pe_c1_r1.out1 0:io_right_1.in 0:io_right_1.reg_in.in 0:io_right_1.reg_in.m_in 0:pe_c1_r1.crossbar.out1 0:pe_c1_r1.crossbar.mux_1.out 0:pe_c1_r1.crossbar.mux_5.in4 0:pe_c1_r1.crossbar.mux_5.mux 0:pe_c1_r1.regb.m_in 0:pe_c1_r1.regb.in 0:pe_c1_r1.crossbar.out5 0:pe_c1_r1.crossbar.mux_5.out 0:pe_c1_r1.regb.reg 0:pe_c1_r1.regb.out 0:pe_c1_r1.regb.m_out 
+0x55e252724e30:0:pe_c0_r0.crossbar.mux_4.mux 0:pe_c0_r0.rega.m_in 0:pe_c0_r0.crossbar.out4 0:pe_c0_r0.rega.in 0:pe_c0_r0.crossbar.mux_4.out 0:pe_c0_r1.ALU.in_a 0:pe_c0_r0.rega.out 0:pe_c0_r0.rega.reg 0:pe_c0_r0.rega.m_out 0:pe_c0_r0.crossbar.mux_4.in4 0:pe_c0_r1.mux_0.mux 0:pe_c0_r1.mux_0.out 0:pe_c0_r1.crossbar.in0 0:pe_c0_r1.mux_0.in0 0:pe_c0_r0.crossbar.mux_2.mux 0:pe_c0_r1.in0 0:pe_c0_r0.out2 0:pe_c0_r0.crossbar.out2 0:pe_c0_r0.crossbar.mux_2.out 0:pe_c0_r0.crossbar.mux_2.in4 0:pe_c0_r0.crossbar.in4 0:pe_c0_r0.ALU.in_a 0:pe_c0_r0.ALU.out 0:pe_c0_r1.crossbar.mux_4.in0 0:pe_c0_r1.crossbar.mux_4.mux 0:pe_c0_r1.rega.m_in 0:pe_c0_r1.crossbar.out4 0:pe_c0_r1.rega.in 0:pe_c0_r1.crossbar.mux_4.out 0:pe_c0_r1.rega.reg 0:pe_c0_r1.rega.out 0:pe_c0_r1.rega.m_out 
+BitStream {
+IOPinConfig: {0}
+RegInConfig: {x}
+RegOutConfig: {x}
+IOPinConfig: {0}
+RegInConfig: {x}
+RegOutConfig: {x}
+IOPinConfig: {0}
+RegInConfig: {x}
+RegOutConfig: {x}
+IOPinConfig: {1}
+RegInConfig: {1}
+RegOutConfig: {x}
+IOPinConfig: {0}
+RegInConfig: {x}
+RegOutConfig: {x}
+IOPinConfig: {0}
+RegInConfig: {x}
+RegOutConfig: {x}
+MuxAddr: {x}
+MuxData: {x}
+WriteRq: {0}
+MuxAddr: {1}
+MuxData: {x}
+WriteRq: {0}
+ALUconfig: {0000}
+Mux0config: {x}
+Mux1config: {x}
+Mux2config: {x}
+Mux3config: {x}
+RESConfig: {x}
+Reg0config: {x}
+Reg1config: {x}
+Reg2config: {x}
+Reg3config: {x}
+RegAConfig: {1}
+RegBConfig: {1}
+ConstVal: {00000000000000000000000000000001}
+Mux0config: {xxx}
+Mux1config: {xxx}
+Mux2config: {100}
+Mux3config: {xxx}
+Mux4config: {100}
+Mux5config: {110}
+ALUconfig: {0010}
+Mux0config: {0}
+Mux1config: {x}
+Mux2config: {x}
+Mux3config: {0}
+RESConfig: {x}
+Reg0config: {x}
+Reg1config: {x}
+Reg2config: {x}
+Reg3config: {x}
+RegAConfig: {1}
+RegBConfig: {1}
+ConstVal: {00000000000000000000000000000100}
+Mux0config: {xxx}
+Mux1config: {011}
+Mux2config: {xxx}
+Mux3config: {100}
+Mux4config: {000}
+Mux5config: {110}
+ALUconfig: {xxxx}
+Mux0config: {x}
+Mux1config: {x}
+Mux2config: {x}
+Mux3config: {x}
+RESConfig: {x}
+Reg0config: {x}
+Reg1config: {x}
+Reg2config: {x}
+Reg3config: {x}
+RegAConfig: {x}
+RegBConfig: {x}
+ConstVal: {00000000000000000000000000000000}
+Mux0config: {xxx}
+Mux1config: {xxx}
+Mux2config: {xxx}
+Mux3config: {xxx}
+Mux4config: {xxx}
+Mux5config: {xxx}
+ALUconfig: {0000}
+Mux0config: {x}
+Mux1config: {x}
+Mux2config: {x}
+Mux3config: {0}
+RESConfig: {x}
+Reg0config: {x}
+Reg1config: {x}
+Reg2config: {x}
+Reg3config: {x}
+RegAConfig: {1}
+RegBConfig: {1}
+ConstVal: {00000000000000000000000000000000}
+Mux0config: {xxx}
+Mux1config: {100}
+Mux2config: {xxx}
+Mux3config: {xxx}
+Mux4config: {011}
+Mux5config: {100}
+}start of CGRA-ME +0.000000 @0.000000
+         mapping +0.020488 @0.020488
+  end of CGRA-ME +0.002701 @0.023189

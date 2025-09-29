@@ -12,8 +12,11 @@ int main() {
     for (i = 0; i < N; i++) {
         //DFGLoop: loop
         sum += a[i];
+		
     }
-    printf("sum = %d\n", sum);
+	printf("sum = %d\n", sum);
+    
 
     return sum;
 }
+

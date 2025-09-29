@@ -1,4 +1,5 @@
-#list of designs for the Riken_test
+
+#list of designs for the DATE'24 tutorial
 @designs = ("conv_unroll2.dot", "Stencil_unroll2.dot", "fft_radix4.dot");
 @results = ();
 

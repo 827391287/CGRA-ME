@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
+#include "fourier.h"
 
 int main(int argc, char *argv[]) {
 	unsigned MAXSIZE;
