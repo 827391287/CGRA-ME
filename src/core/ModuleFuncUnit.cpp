@@ -19,21 +19,22 @@ const std::map<OpGraphOpCode, LLVMMode> FuncUnit::all_modes =
     // Adding functionality to the funcunit
     // You can add a mode to the FuncUnit by specifying all_modes.push_back ({"module name", {"functionality"}, "wire name that feeds into the multiplexer"});
     // Functionality can be multiple lines, hence the reason why it is a vector. Each string represents one line, hence the reason it is a vector
-	{OpCode::NOP,    {"op_nop",      "nop",          {"assign c = a;"},           "nop_sel"}},
-    {OpCode::ADD,    {"op_add",      "add",         {"assign c = a + b ;"},      "add_sel"}},
-    {OpCode::SUB,    {"op_sub",      "sub",         {"assign c = a - b;"},      "sub_sel"}},
-    {OpCode::MUL,    {"op_multiply", "multiply",    {"assign c = a * b;"},      "mul_sel"}},
-    {OpCode::DIV,    {"op_divide",   "divide",      {"assign c = a / b;"},      "div_sel"}},
-    {OpCode::AND,    {"op_and",      "and",         {"assign c = a & b;"},      "and_sel"}},
-    {OpCode::OR,     {"op_or",       "or",          {"assign c = a | b;"},      "or_sel"}},
-    {OpCode::XOR,    {"op_xor",      "xor",         {"assign c = a ^ b;"},      "xor_sel"}},
-    {OpCode::SHL,    {"op_shl",      "shl",         {"assign c = a << b;"},     "shl_sel"}},
-    {OpCode::LSHR,   {"op_lshr",     "lshr",        {"assign c = a >> b;"},     "lshr_sel"}},
-    {OpCode::ASHR,   {"op_ashr",     "ashr",        {"assign c = a >>> b;"},    "ashr_sel"}},
-    {OpCode::CONST,  {"op_const",    "const",       {"//const;"},               "const_sel"}},
-    {OpCode::LOAD,   {"op_load",     "load",        {"//load;"},                "load_sel"}},
-    {OpCode::STORE,  {"op_store",    "store",       {"//store;"},               "store_sel"}},
-    {OpCode::ICMP,   {"op_cmp",	     "cmp",	    {"assign c = a == b? 1: 0;"},"cmp_sel"}}
+	{OpCode::NOP,     {"op_nop",      "nop",          {"assign c = a;"},           "nop_sel"}},
+    {OpCode::ADD,     {"op_add",      "add",         {"assign c = a + b ;"},      "add_sel"}},
+    {OpCode::SUB,     {"op_sub",      "sub",         {"assign c = a - b;"},      "sub_sel"}},
+    {OpCode::MUL,     {"op_multiply", "multiply",    {"assign c = a * b;"},      "mul_sel"}},
+    {OpCode::DIV,     {"op_divide",   "divide",      {"assign c = a / b;"},      "div_sel"}},
+    {OpCode::AND,     {"op_and",      "and",         {"assign c = a & b;"},      "and_sel"}},
+    {OpCode::OR,      {"op_or",       "or",          {"assign c = a | b;"},      "or_sel"}},
+    {OpCode::XOR,     {"op_xor",      "xor",         {"assign c = a ^ b;"},      "xor_sel"}},
+    {OpCode::SHL,     {"op_shl",      "shl",         {"assign c = a << b;"},     "shl_sel"}},
+    {OpCode::LSHR,    {"op_lshr",     "lshr",        {"assign c = a >> b;"},     "lshr_sel"}},
+    {OpCode::ASHR,    {"op_ashr",     "ashr",        {"assign c = a >>> b;"},    "ashr_sel"}},
+    {OpCode::CONST,   {"op_const",    "const",       {"//const;"},               "const_sel"}},
+    {OpCode::LOAD,    {"op_load",     "load",        {"//load;"},                "load_sel"}},
+    {OpCode::STORE,   {"op_store",    "store",       {"//store;"},               "store_sel"}},
+    {OpCode::ICMP,    {"op_cmp",	  "cmp",	     {"assign c = a == b? 1: 0;"},"cmp_sel"}},
+	{OpCode::ADDRCAL, {"op_addrcal",  "addrcal",     {"assign c = a + b * 4;"},   "addrcal_sel"}}
 };
 
 // Returns a unique name for a funcunit

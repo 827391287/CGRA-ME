@@ -398,50 +398,81 @@ namespace
                 return result;
             }();
 
-            // lower gep nodes. Has to be done in this code, unless we want to save all relevant information on the GEP nodes...
-            const auto orig_geps = filter_collection(og.opNodes(), [&og](auto&& op) { return og.getNodeRef(op).getOpCode() == OpGraphOpCode::GEP; });
-            for (const auto& gep_op : orig_geps) {
-                const auto inst_ptr = dyn_cast<GetElementPtrInst>(dfg_op_to_llvm_value.at(gep_op));
-                if (not inst_ptr) {
-                    errs() << "Warning: Instruction " << *dfg_op_to_llvm_value.at(gep_op)
-                        << " for GEP op node " << og.getNodeRef(gep_op).getName() << " is not a GEP. Will not lower";
-                    continue;
-                }
-                const auto& inst = *inst_ptr;
 
-                // start with the 0th arg (guaranteed to be present)
-                OpGraph::OpDescriptor tip = llvm_value_to_dfg_op.at(inst.getOperand(0));
+			const auto orig_geps = filter_collection(og.opNodes(), [&og](auto&& op) { return og.getNodeRef(op).getOpCode() == OpGraphOpCode::GEP; });
+			for (const auto& gep_op : orig_geps) {
+    			const auto inst_ptr = dyn_cast<GetElementPtrInst>(dfg_op_to_llvm_value.at(gep_op));
+    			if (not inst_ptr) {
+        			errs() << "Warning: Instruction " << *dfg_op_to_llvm_value.at(gep_op)
+            			<< " for GEP op node " << og.getNodeRef(gep_op).getName() << " is not a GEP. Will not lower";
+       				 continue;
+    			}
+    			const auto& inst = *inst_ptr;
 
-                // chain the rest together, and connect the inputs
-                {gep_type_iterator GTI = gep_type_begin(&inst);
-                int gep_operand_num = 1;
-                for(auto operand_it = std::next(inst.op_begin()); operand_it != inst.op_end(); ++operand_it, ++GTI, ++gep_operand_num) {
-                    const auto data_size = inst.getParent()->getModule()->getDataLayout().getTypeAllocSize(GTI.getIndexedType());
-                    const auto data_size_op = og.emplace(makeOpName(&inst, "data_size", gep_operand_num), 32, OpCode::CONST, data_size);
-                    const auto mult_by_size = og.emplace(makeOpName(&inst, "mul", gep_operand_num), 32, OpCode::MUL);
-                    const auto add_to_prev  = og.emplace(makeOpName(&inst, "add", gep_operand_num), 32, OpCode::ADD);
-                    og.link(data_size_op, mult_by_size, Operands::BINARY_ANY);
-                    og.link(llvm_value_to_dfg_op.at(*operand_it), mult_by_size, Operands::BINARY_ANY);
-                    og.link(tip, add_to_prev, Operands::BINARY_ANY);
-                    og.link(mult_by_size, add_to_prev, Operands::BINARY_ANY);
-                    tip = add_to_prev;
-                }}
+    			// 检查是否是简单的数组索引访问（基地址 + 一个索引）
+    			if (inst.getNumOperands() == 2) {
+        			// 简单情况：a[i] 类型的访问，使用 ADDRCAL 替换
+        
+        			// 获取基地址
+        			OpGraph::OpDescriptor base_addr = llvm_value_to_dfg_op.at(inst.getOperand(0));
+        
+        			// 获取索引
+        			OpGraph::OpDescriptor index = llvm_value_to_dfg_op.at(inst.getOperand(1));
 
-                // make links from final tip to the original's fanout
-                for (const auto& edge : og.outEdges(gep_op)) {
-                    og.link_like(tip, og.targetOfEdge(edge), edge);
-                }
+        			// 创建 ADDRCAL 节点：result = base_addr + index * 4
+       				const auto addrcal_op = og.emplace(makeOpName(&inst, "addrcal"), 32, OpCode::ADDRCAL);
+        
+       				// 连接操作数
+        			og.link(base_addr, addrcal_op, Operands::BINARY_LHS);  // 基地址
+        			og.link(index, addrcal_op, Operands::BINARY_RHS);      // 索引
+        
+        			// 将原GEP的输出重定向到ADDRCAL
+        			for (const auto& edge : og.outEdges(gep_op)) {
+            		og.link_like(addrcal_op, og.targetOfEdge(edge), edge);
+        			}
 
-                // update maps & erase original node
-                llvm_value_to_dfg_op[inst_ptr] = tip;
-                dfg_op_to_llvm_value[tip] = inst_ptr;
-                og.erase(gep_op);
-            }
+        		// 更新映射
+        		llvm_value_to_dfg_op[inst_ptr] = addrcal_op;
+        		dfg_op_to_llvm_value[addrcal_op] = inst_ptr;
+        
+    			} else {
+        			// 复杂情况：多维数组或结构体访问，使用原来的 lowering 逻辑
+        			// start with the 0th arg (guaranteed to be present)
+        			OpGraph::OpDescriptor tip = llvm_value_to_dfg_op.at(inst.getOperand(0));
 
-            // validate after GEP lowering
-            verifyAndPrintReport(og, std::cerr, true, true);
+        			// chain the rest together, and connect the inputs
+        			{gep_type_iterator GTI = gep_type_begin(&inst);
+        			int gep_operand_num = 1;
+        			for(auto operand_it = std::next(inst.op_begin()); operand_it != inst.op_end(); ++operand_it, ++GTI, ++gep_operand_num) {
+            			const auto data_size = inst.getParent()->getModule()->getDataLayout().getTypeAllocSize(GTI.getIndexedType());
+            			const auto data_size_op = og.emplace(makeOpName(&inst, "data_size", gep_operand_num), 32, OpCode::CONST, data_size);
+            			const auto mult_by_size = og.emplace(makeOpName(&inst, "mul", gep_operand_num), 32, OpCode::MUL);
+            			const auto add_to_prev  = og.emplace(makeOpName(&inst, "add", gep_operand_num), 32, OpCode::ADD);
+            			og.link(data_size_op, mult_by_size, Operands::BINARY_ANY);
+						og.link(llvm_value_to_dfg_op.at(*operand_it), mult_by_size, Operands::BINARY_ANY);
+						og.link(tip, add_to_prev, Operands::BINARY_ANY);
+            			og.link(mult_by_size, add_to_prev, Operands::BINARY_ANY);
+            			tip = add_to_prev;
+        			}}
 
-            og = removeCastNodes(std::move(og));
+        			// make links from final tip to the original's fanout
+        			for (const auto& edge : og.outEdges(gep_op)) {
+            			og.link_like(tip, og.targetOfEdge(edge), edge);
+        			}
+
+        			// update maps & erase original node
+        			llvm_value_to_dfg_op[inst_ptr] = tip;
+        			dfg_op_to_llvm_value[tip] = inst_ptr;
+    			}
+    
+    			// 删除原始GEP节点
+    			og.erase(gep_op);
+			}
+
+			// validate after GEP lowering
+			verifyAndPrintReport(og, std::cerr, true, true);
+
+			og = removeCastNodes(std::move(og));
 
             // ****
             // all further optimization and transformation is done in CGRA-ME at runtime. Just print and return.

@@ -76,7 +76,8 @@ enum class OpCode : signed char
     ADD_FULL,
     ADD_HALF,
     ADD_QUART,
-    SELECT
+    SELECT,
+	ADDRCAL
 };
 
 using OperandTag = std::string;

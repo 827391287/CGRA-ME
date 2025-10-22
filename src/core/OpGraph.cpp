@@ -79,6 +79,7 @@ const auto opcode_names = []{ // immediately invoked
     {"add_quart", OpCode::ADD_QUART},
     {"select", OpCode::SELECT},
     {"int2fp", OpCode::INT2FP},
+	{"addrcal", OpCode::ADDRCAL}
     };
     std::sort(result.begin(), result.end());
     return result;
