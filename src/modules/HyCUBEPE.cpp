@@ -70,6 +70,7 @@ HyCUBEPE::HyCUBEPE(std::string name, bool predExist, int pe_conn_in, int pe_conn
         OpCode::ASHR,
         OpCode::LSHR,
         OpCode::ICMP,
+		OpCode::ADDRCAL
     }, size, fu_II, latency), 0, 0.75, 0.5, 0.25);
 
     // Crossbar
