@@ -41,7 +41,7 @@ using namespace llvm;
 
 namespace
 {
-    // Used to represent the instructions that are commutative. Candidate for replacement is using llvm::Instruction::isCommutative
+    // Used to represent the instructions that are commutative. Candidate for replacement is using llvm::Instruction::isCommutive
     static const std::set<OpGraphOpCode> commutative_ops = { OpCode::ADD,   OpCode::MUL, OpCode::AND, OpCode::OR, OpCode::XOR};
 
     cl::opt<std::string> inputTagPairs("in-tag-pairs", cl::Positional, cl::desc("<input file that contains tag number and string pairs>"));
@@ -50,6 +50,29 @@ namespace
 
     OpGraphOpCode LLVMtoOp(const Instruction& I)
     {
+        // MODIFICATION START: 识别自定义函数调用
+        // 优先检查指令是否为对我们自定义函数的调用
+        if (auto* call_inst = dyn_cast<CallInst>(&I)) {
+            Function* called_func = call_inst->getCalledFunction();
+            if (called_func && called_func->hasName()) {
+                StringRef func_name = called_func->getName();
+            
+                // 通过函数名直接映射到我们新的DFG操作节点
+                if (func_name == "GET_REAL") {
+                    return OpCode::GET_REAL;
+                }
+                else if (func_name == "GET_IMAG") {
+                    return OpCode::GET_IMAG;
+                }
+                else if (func_name == "COMBINE") {
+                    return OpCode::COMBINE;
+                }
+                // 注意：如果还有其他函数调用需要处理，可以在这里添加
+                // 如果不是我们关心的函数，则会继续执行下面的 switch
+            }
+        }
+        // MODIFICATION END
+
         switch(I.getOpcode())
         {
             case Instruction::PHI       :   return OpCode::PHI;
@@ -78,6 +101,12 @@ namespace
             case Instruction::GetElementPtr : return OpCode::GEP;
             case Instruction::ICmp      : return OpCode::ICMP;
             case Instruction::Br        :   return OpCode::BR;
+            
+            // MODIFICATION START: 允许CallInst通过
+            // 对于我们不特殊处理的函数调用，可以当作NOP，或者发出警告
+            case Instruction::Call      :   return OpCode::NOP;
+            // MODIFICATION END
+
 
             // ignore these instructions (mostly casts)
             case Instruction::SExt      :   return OpCode::NOP;
@@ -96,18 +125,7 @@ namespace
         }
     }
 
-    /**
-     * Helper object for creating op names that are unique.
-     * Helps with converting numbers to strings, concatenating them together, and adding a unique prefix
-     * At construction time, gets a the name for each Instruction in L or if it is nameless,
-     *   uses a unique integer.
-     *
-     * Example:
-     *   OpNameMaker onm {L};
-     *   onm(I,4); // if I is anon and the 5th instruction returns "i5_4"
-     *   onm(I,"abc",4); // returns "i5_abc4"
-     *   onm(I2,"abc"); // If I2's result is named "val", returns "val_abc"
-     */
+    // ... OpNameMaker struct remains unchanged ...
     struct OpNameMaker {
         std::map<const Value*,std::string> instruction_unique_part = {};
         std::map<std::string, int> other_category_counts = {};
@@ -174,6 +192,7 @@ namespace
         }
     };
 
+
     std::string operandTypeFor(const OpGraphOp* op, int op_num) {
         if (commutative_ops.find(op->opcode) != commutative_ops.end()) {
             return Operands::BINARY_ANY;
@@ -199,6 +218,30 @@ namespace
                 case 2: return "branch_false";
             }
         }
+        // MODIFICATION START: 为新操作定义操作数端口类型
+        else if (op->opcode == OpCode::GET_REAL || op->opcode == OpCode::GET_IMAG) {
+            // 单输入操作，我们约定使用LHS端口
+            return Operands::BINARY_LHS;
+        }
+        else if (op->opcode == OpCode::COMBINE) {
+            // 双输入操作
+            if (op_num == 0) {
+                return Operands::BINARY_LHS;  // real part
+            }
+            else if (op_num == 1) {
+                return Operands::BINARY_RHS;  // imag part
+            }
+        }
+        else if (op->opcode == OpCode::ADDRCAL) {
+            // 双输入操作
+            if (op_num == 0) {
+                return Operands::BINARY_LHS; // base address
+            }
+            else if (op_num == 1) {
+                return Operands::BINARY_RHS; // index
+            }
+        }
+        // MODIFICATION END
         else if (op_num == 0) {
             return Operands::BINARY_LHS;
         }
@@ -209,10 +252,7 @@ namespace
         errs() << "Unhandled case for operand setting"; std::abort();
     }
 
-    /**
-     * Given a LLVM value, try really hard to get a single constant integer out of it
-     * .second is only valid if .first is true.
-     */
+    // ... try_extract_integral_constant function remains unchanged ...
     std::pair<bool, uint64_t> try_extract_integral_constant(const Value& val) {
         if(const auto& as_constant = dyn_cast<Constant>(&val)) {
             const auto& stripped_const = as_constant->stripPointerCasts();
@@ -237,7 +277,9 @@ namespace
         return {false, 0};
     }
 
+
     struct DfgOutImpl {
+        // ... DfgOutImpl constructor and initial parts of runOnLoop remain unchanged ...
         std::vector<OpGraph*> graphs = {};
         std::map<unsigned int, std::string> tag_pairs = {};
         std::vector<std::string> loop_tags = {};
@@ -264,9 +306,10 @@ namespace
                 errs() << "Warning: No tag pair is provided as input, no DFG will be generated." << "\n";
         }
 
+
         bool runOnLoop(Loop* L)
         {
-            // Loop tag is in ths first basic block of the loop
+            // ... Loop tag finding logic remains unchanged ...
             int found_tag_num = 0;
             Instruction* the_loop_tag = nullptr;
             for(auto it = L->getHeader()->begin(); it != L->getHeader()->end(); ++it)
@@ -312,47 +355,31 @@ namespace
                 return false;
             }
 
-            // Heper for making node names unique
+
+            // ... Initial graph construction logic remains largely the same ...
             OpNameMaker makeOpName {L};
-
-            // the opgraph
             OpGraph og;
-
-            // Make an op in the graph for every Instruction or external Value operand
-            // And, return a map from Value to Op
-            auto llvm_value_to_dfg_op = [&]() { // (immediately invoked)
+            auto llvm_value_to_dfg_op = [&]() {
                 std::map<const Value*, OpGraph::OpDescriptor> result;
-
                 for(const auto& bb : L->blocks()) {
                     for(const auto& inst : *bb) {
                         if (&inst == the_loop_tag) { continue; }
-
-                        // make an op node for it
                         result[&inst] = og.emplace(makeOpName(&inst, inst.getOpcodeName()), 32, LLVMtoOp(inst));
-
-                        // make op nodes for any operands
                         for (const auto& operand : inst.operands()) {
+                            // MODIFICATION: For CallInst, the last operand is the function itself, skip it.
+                            if (isa<CallInst>(inst) && operand == inst.getOperand(inst.getNumOperands() - 1)) {
+                                continue;
+                            }
                             const auto& operand_as_value = *operand;
-
-                            // skip if already handled
                             if (result.find(&operand_as_value) != result.end()) { continue; }
-
-                            // skip if is an Instruction and it is *in* this Loop
                             const auto* operand_as_inst_ptr = dyn_cast<Instruction>(&operand_as_value);
                             if (operand_as_inst_ptr && L->contains(operand_as_inst_ptr)) { continue; }
-
-
-                            // Now, make an op for the operand...
-                            result[&operand_as_value] = og.insert([&]() -> OpGraphOp { // (immediately invoked)
+                            result[&operand_as_value] = og.insert([&]() -> OpGraphOp {
                                 const auto op_name = makeOpName(operand);
-
-                                // try to handle various constants
                                 const auto success_and_value = try_extract_integral_constant(*operand);
                                 if (success_and_value.first) {
                                     return {std::move(op_name), 32, OpCode::CONST, (std::int64_t)success_and_value.second};
                                 }
-
-                                // else, assume it's some sort of input
                                 return {std::move(op_name), 32, OpCode::INPUT};
                             }());
                         }
@@ -361,22 +388,21 @@ namespace
                 return result;
             }();
 
-            // Link everything together and create output nodes
             for(const auto& bb : L->blocks()) {
                 for(const auto& inst : *bb) {
                     if (&inst == the_loop_tag) { continue; }
                     const auto& op_for_inst = llvm_value_to_dfg_op.at(&inst);
-
                     int operand_num = -1;
                     for (const auto& operand : inst.operands()) {
+                        // MODIFICATION: For CallInst, the last operand is the function itself, skip creating an edge for it.
+                        if (isa<CallInst>(inst) && operand == inst.getOperand(inst.getNumOperands() - 1)) {
+                            continue;
+                        }
                         operand_num += 1;
                         const auto& operand_as_value = *operand;
                         const auto& operand_op = llvm_value_to_dfg_op.at(&operand_as_value);
                         og.link(operand_op, op_for_inst, operandTypeFor(op_for_inst, operand_num));
                     }
-
-                    // if this Instruction has users outside of this loop, or non-Instruction users,
-                    //   make an output node connected to it.
                     if(std::any_of(inst.user_begin(), inst.user_end(), [&](const auto& user) {
                         const auto* user_as_instruction_ptr = dyn_cast<Instruction>(&*user);
                         return not user_as_instruction_ptr || not L->contains(user_as_instruction_ptr);
@@ -386,11 +412,10 @@ namespace
                 }
             }
 
-            // initial graph is constructed. validate it.
+
             verifyAndPrintReport(og, std::cerr, true, true);
 
-            // make reverse map
-            auto dfg_op_to_llvm_value = [&]() { // (immediately invoked)
+            auto dfg_op_to_llvm_value = [&]() {
                 std::map<OpGraph::OpDescriptor, const Value*> result;
                 for (const auto& value_and_op : llvm_value_to_dfg_op) {
                     result.emplace(value_and_op.second, value_and_op.first);
@@ -398,98 +423,87 @@ namespace
                 return result;
             }();
 
+            // MODIFICATION START: GEP lowering with ADDRCAL specialization
+            // This logic replaces the original GEP lowering loop entirely.
+            
+            // Collect all GEP nodes first to avoid iterator invalidation issues.
+            const auto orig_geps = filter_collection(og.opNodes(), [&og](auto&& op) { return og.getNodeRef(op).getOpCode() == OpGraphOpCode::GEP; });
+            for (const auto& gep_op : orig_geps) {
+                const auto inst_ptr = dyn_cast<GetElementPtrInst>(dfg_op_to_llvm_value.at(gep_op));
+                if (not inst_ptr) {
+                    errs() << "Warning: Instruction " << *dfg_op_to_llvm_value.at(gep_op)
+                           << " for GEP op node " << og.getNodeRef(gep_op).getName() << " is not a GEP. Will not lower\n";
+                    continue;
+                }
+                const auto& inst = *inst_ptr;
 
-			const auto orig_geps = filter_collection(og.opNodes(), [&og](auto&& op) { return og.getNodeRef(op).getOpCode() == OpGraphOpCode::GEP; });
-			for (const auto& gep_op : orig_geps) {
-    			const auto inst_ptr = dyn_cast<GetElementPtrInst>(dfg_op_to_llvm_value.at(gep_op));
-    			if (not inst_ptr) {
-        			errs() << "Warning: Instruction " << *dfg_op_to_llvm_value.at(gep_op)
-            			<< " for GEP op node " << og.getNodeRef(gep_op).getName() << " is not a GEP. Will not lower";
-       				 continue;
-    			}
-    			const auto& inst = *inst_ptr;
+                // Case 1: Simple array access like base[index]
+                // This corresponds to a GEP with 2 operands: base pointer and index.
+                // We assume the element size is handled by the hardware (e.g., implicitly 4 bytes for int).
+                if (inst.getNumOperands() == 2) {
+                    // Get the DFG nodes for the base address and the index
+                    OpGraph::OpDescriptor base_addr = llvm_value_to_dfg_op.at(inst.getOperand(0));
+                    OpGraph::OpDescriptor index = llvm_value_to_dfg_op.at(inst.getOperand(1));
 
-    			// 检查是否是简单的数组索引访问（基地址 + 一个索引）
-    			if (inst.getNumOperands() == 2) {
-        			// 简单情况：a[i] 类型的访问，使用 ADDRCAL 替换
-        
-        			// 获取基地址
-        			OpGraph::OpDescriptor base_addr = llvm_value_to_dfg_op.at(inst.getOperand(0));
-        
-        			// 获取索引
-        			OpGraph::OpDescriptor index = llvm_value_to_dfg_op.at(inst.getOperand(1));
+                    // Create the new ADDRCAL node
+                    const auto addrcal_op = og.emplace(makeOpName(&inst, "addrcal"), 32, OpCode::ADDRCAL);
+                    
+                    // Connect base and index to the ADDRCAL node
+                    og.link(base_addr, addrcal_op, operandTypeFor(addrcal_op, 0)); // base
+                    og.link(index, addrcal_op, operandTypeFor(addrcal_op, 1));     // index
+                    
+                    // Reroute all outgoing edges from the old GEP node to the new ADDRCAL node
+                    for (const auto& edge : og.outEdges(gep_op)) {
+                        og.link_like(addrcal_op, og.targetOfEdge(edge), edge);
+                    }
 
-        			// 创建 ADDRCAL 节点：result = base_addr + index * 4
-       				const auto addrcal_op = og.emplace(makeOpName(&inst, "addrcal"), 32, OpCode::ADDRCAL);
-        
-       				// 连接操作数
-        			og.link(base_addr, addrcal_op, Operands::BINARY_LHS);  // 基地址
-        			og.link(index, addrcal_op, Operands::BINARY_RHS);      // 索引
-        
-        			// 将原GEP的输出重定向到ADDRCAL
-        			for (const auto& edge : og.outEdges(gep_op)) {
-            		og.link_like(addrcal_op, og.targetOfEdge(edge), edge);
-        			}
+                    // Update maps to point to the new node
+                    llvm_value_to_dfg_op[inst_ptr] = addrcal_op;
+                    dfg_op_to_llvm_value[addrcal_op] = inst_ptr;
+                
+                } else {
+                    // Case 2: Complex GEP (structs, multi-dimensional arrays)
+                    // Use the original lowering logic which expands it into MULs and ADDs.
+                    OpGraph::OpDescriptor tip = llvm_value_to_dfg_op.at(inst.getOperand(0));
 
-        		// 更新映射
-        		llvm_value_to_dfg_op[inst_ptr] = addrcal_op;
-        		dfg_op_to_llvm_value[addrcal_op] = inst_ptr;
-        
-    			} else {
-        			// 复杂情况：多维数组或结构体访问，使用原来的 lowering 逻辑
-        			// start with the 0th arg (guaranteed to be present)
-        			OpGraph::OpDescriptor tip = llvm_value_to_dfg_op.at(inst.getOperand(0));
+                    {gep_type_iterator GTI = gep_type_begin(&inst);
+                    int gep_operand_num = 1;
+                    for(auto operand_it = std::next(inst.op_begin()); operand_it != inst.op_end(); ++operand_it, ++GTI, ++gep_operand_num) {
+                        const auto data_size = inst.getParent()->getModule()->getDataLayout().getTypeAllocSize(GTI.getIndexedType());
+                        const auto data_size_op = og.emplace(makeOpName(&inst, "data_size", gep_operand_num), 32, OpCode::CONST, data_size);
+                        const auto mult_by_size = og.emplace(makeOpName(&inst, "mul", gep_operand_num), 32, OpCode::MUL);
+                        const auto add_to_prev  = og.emplace(makeOpName(&inst, "add", gep_operand_num), 32, OpCode::ADD);
+                        og.link(data_size_op, mult_by_size, Operands::BINARY_ANY);
+                        og.link(llvm_value_to_dfg_op.at(*operand_it), mult_by_size, Operands::BINARY_ANY);
+                        og.link(tip, add_to_prev, Operands::BINARY_ANY);
+                        og.link(mult_by_size, add_to_prev, Operands::BINARY_ANY);
+                        tip = add_to_prev;
+                    }}
 
-        			// chain the rest together, and connect the inputs
-        			{gep_type_iterator GTI = gep_type_begin(&inst);
-        			int gep_operand_num = 1;
-        			for(auto operand_it = std::next(inst.op_begin()); operand_it != inst.op_end(); ++operand_it, ++GTI, ++gep_operand_num) {
-            			const auto data_size = inst.getParent()->getModule()->getDataLayout().getTypeAllocSize(GTI.getIndexedType());
-            			const auto data_size_op = og.emplace(makeOpName(&inst, "data_size", gep_operand_num), 32, OpCode::CONST, data_size);
-            			const auto mult_by_size = og.emplace(makeOpName(&inst, "mul", gep_operand_num), 32, OpCode::MUL);
-            			const auto add_to_prev  = og.emplace(makeOpName(&inst, "add", gep_operand_num), 32, OpCode::ADD);
-            			og.link(data_size_op, mult_by_size, Operands::BINARY_ANY);
-						og.link(llvm_value_to_dfg_op.at(*operand_it), mult_by_size, Operands::BINARY_ANY);
-						og.link(tip, add_to_prev, Operands::BINARY_ANY);
-            			og.link(mult_by_size, add_to_prev, Operands::BINARY_ANY);
-            			tip = add_to_prev;
-        			}}
-
-        			// make links from final tip to the original's fanout
-        			for (const auto& edge : og.outEdges(gep_op)) {
-            			og.link_like(tip, og.targetOfEdge(edge), edge);
-        			}
-
-        			// update maps & erase original node
-        			llvm_value_to_dfg_op[inst_ptr] = tip;
-        			dfg_op_to_llvm_value[tip] = inst_ptr;
-    			}
+                    for (const auto& edge : og.outEdges(gep_op)) {
+                        og.link_like(tip, og.targetOfEdge(edge), edge);
+                    }
+                    
+                    llvm_value_to_dfg_op[inst_ptr] = tip;
+                    dfg_op_to_llvm_value[tip] = inst_ptr;
+                }
     
-    			// 删除原始GEP节点
-    			og.erase(gep_op);
-			}
+                // After processing, remove the original GEP node from the graph.
+                og.erase(gep_op);
+            }
+            // MODIFICATION END
 
-			// validate after GEP lowering
-			verifyAndPrintReport(og, std::cerr, true, true);
-
-			og = removeCastNodes(std::move(og));
-
-            // ****
-            // all further optimization and transformation is done in CGRA-ME at runtime. Just print and return.
-            // ****
-
-            // a final validation
+            // ... The rest of the file remains unchanged ...
+            verifyAndPrintReport(og, std::cerr, true, true);
+            og = removeCastNodes(std::move(og));
             verifyAndPrintReport(og, std::cerr, true, true);
 
-            // create a ranking to keep the print order stable-ish
-            const auto op_print_ranking = [&]() { // (immediately invoked)
+            const auto op_print_ranking = [&]() {
                 std::map<OpGraph::OpDescriptor, int> result;
                 for (const auto& bb : make_iterator_range(L->block_begin(), L->block_end())) {
                     for (const auto& inst : *bb) {
                         const auto lookup_result = llvm_value_to_dfg_op.find(&inst);
                         if (lookup_result == llvm_value_to_dfg_op.end()) { continue; }
-
-                        // find any fanin that won't be otherwise printed. A depth-first search
                         std::vector<OpGraph::OpDescriptor> to_visit = og.inputOps(lookup_result->second);
                         std::set<OpGraph::OpDescriptor> visited;
                         std::vector<OpGraph::OpDescriptor> dfs_order;
@@ -500,35 +514,30 @@ namespace
                             const auto& inst_lookup = dfg_op_to_llvm_value.find(curr);
                             if (inst_lookup != dfg_op_to_llvm_value.end()) {
                                 if (const auto inst = dyn_cast<Instruction>(inst_lookup->second)) {
-                                    if (L->contains(inst)) { continue; } // won't come up in the outer loops
+                                    if (L->contains(inst)) { continue; }
                                 }
                             }
                             const auto& inputs = og.inputOps(curr);
                             std::copy(inputs.begin(), inputs.end(), std::back_inserter(to_visit));
                             dfs_order.push_back(curr);
                         }
-
-                        // rank backward. DFS was a fanin DFS, and we want immediate fanins printed last.
                         for (auto it = dfs_order.rbegin(); it != dfs_order.rend(); ++it) {
                             result.insert({*it, static_cast<int>(result.size())});
                         }
-
-                        // now rank the current op
                         result.insert({lookup_result->second, static_cast<int>(result.size())});
                     }
                 }
-
                 return result;
             }();
-
-            // now, actually print
+            
             std::ofstream f("graph_" + tag_name + ".dot", std::ios::out);
             og.serialize(f, op_print_ranking);
 
             return false;
         }
     };
-
+    
+    // ... Legacy and New PM Registration remains unchanged ...
     struct LegacyDFGOut : public LoopPass
     {
         static char ID; // Pass identification, replacement for typeid

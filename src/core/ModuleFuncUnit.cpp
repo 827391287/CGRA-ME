@@ -34,7 +34,10 @@ const std::map<OpGraphOpCode, LLVMMode> FuncUnit::all_modes =
     {OpCode::LOAD,    {"op_load",     "load",        {"//load;"},                "load_sel"}},
     {OpCode::STORE,   {"op_store",    "store",       {"//store;"},               "store_sel"}},
     {OpCode::ICMP,    {"op_cmp",	  "cmp",	     {"assign c = a == b? 1: 0;"},"cmp_sel"}},
-	{OpCode::ADDRCAL, {"op_addrcal",  "addrcal",     {"assign c = a + b * 4;"},   "addrcal_sel"}}
+	{OpCode::ADDRCAL, {"op_addrcal",  "addrcal",     {"assign c = a + b * 4;"},   "addrcal_sel"}},
+	{OpCode::GET_REAL, {"op_get_real", "get_real",    {"assign c = $signed(a[31:16]);"},    "get_real_sel"}},
+    {OpCode::GET_IMAG, {"op_get_imag", "get_imag",    {"assign c = $signed(a[15:0]);"}, "get_imag_sel"}},
+    {OpCode::COMBINE,  {"op_combine",  "combine",     {"assign c = {a[15:0], b[15:0]};"}, "combine_sel"}}
 };
 
 // Returns a unique name for a funcunit
@@ -75,7 +78,7 @@ FuncUnit::FuncUnit(std::string name, Location loc, std::vector<OpGraphOpCode> su
 	    std::string width_suffix = "_" + std::to_string((int)size) + "b";
 	    for (unsigned i = 0; i < supported_modes.size(); i++)
 	    {
-			if (all_modes.at(supported_modes.at(i)).ModuleName == "op_nop" or all_modes.at(supported_modes.at(i)).ModuleName == "op_not"){
+			if (all_modes.at(supported_modes.at(i)).ModuleName == "op_nop" or all_modes.at(supported_modes.at(i)).ModuleName == "op_not" or all_modes.at(supported_modes.at(i)).ModuleName == "op_get_real" or all_modes.at(supported_modes.at(i)).ModuleName == "op_get_imag"){
 				addSubModule(new CustomModuleSingleInput(
 					all_modes.at(supported_modes.at(i)).ModuleName + width_suffix, loc,
 					all_modes.at(supported_modes.at(i)).Functionality,
@@ -97,7 +100,7 @@ FuncUnit::FuncUnit(std::string name, Location loc, std::vector<OpGraphOpCode> su
 	    {
 	        addConnection("this.in_a", all_modes.at(supported_modes.at(i)).ModuleName + width_suffix + ".a");
 
-			if (all_modes.at(supported_modes.at(i)).ModuleName != "op_nop" and all_modes.at(supported_modes.at(i)).ModuleName != "op_not"){
+			if (all_modes.at(supported_modes.at(i)).ModuleName != "op_nop" and all_modes.at(supported_modes.at(i)).ModuleName != "op_not" and all_modes.at(supported_modes.at(i)).ModuleName != "op_get_real" and all_modes.at(supported_modes.at(i)).ModuleName != "op_get_imag"){
 				addConnection("this.in_b", all_modes.at(supported_modes.at(i)).ModuleName + width_suffix + ".b");
 			}
 	    }
@@ -114,7 +117,7 @@ FuncUnit::FuncUnit(std::string name, Location loc, std::vector<OpGraphOpCode> su
         addPort("out", PORT_OUTPUT, "size", size);
 
         std::string width_suffix = "_" + std::to_string((int)size) + "b";
-        if (all_modes.at(supported_modes.at(0)).ModuleName == "op_nop" or all_modes.at(supported_modes.at(0)).ModuleName == "op_not"){
+        if (all_modes.at(supported_modes.at(0)).ModuleName == "op_nop" or all_modes.at(supported_modes.at(0)).ModuleName == "op_not" or all_modes.at(supported_modes.at(0)).ModuleName == "op_get_real" or all_modes.at(supported_modes.at(0)).ModuleName == "op_get_imag"){
 				addSubModule(new CustomModuleSingleInput(
 					all_modes.at(supported_modes.at(0)).ModuleName + width_suffix, loc,
 					all_modes.at(supported_modes.at(0)).Functionality,
