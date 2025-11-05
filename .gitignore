@@ -2,13 +2,13 @@
 *.bc
 *.ll
 *.tag
-*.dot
+# *.dot
 !benchmarks/**/pre-gen-graph_loop.dot
 !benchmarks/**/graph_db/*.dot
 
 # User custom benchmarks
-/benchmarks/userbench/*
-!/benchmarks/userbench/README
+# /benchmarks/userbench/*
+# !/benchmarks/userbench/README
 
 # Build products
 build
