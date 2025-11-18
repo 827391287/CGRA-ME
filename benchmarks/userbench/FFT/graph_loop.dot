@@ -5,13 +5,13 @@ digraph G {
     i1_phi [opcode=phi];
     input1 [opcode=input];
     i3_add [opcode=add];
-    const1 [opcode=const, constVal="3584"];
+    const1 [opcode=const, constVal="3072"];
     i4_addrcal [opcode=addrcal];
     i5_load [opcode=load, memName=""];
     i6_call [opcode=get_real];
     i7_call [opcode=get_imag];
     i8_add [opcode=add];
-    const2 [opcode=const, constVal="3072"];
+    const2 [opcode=const, constVal="2560"];
     i9_addrcal [opcode=addrcal];
     i10_load [opcode=load, memName=""];
     i11_addrcal [opcode=addrcal];

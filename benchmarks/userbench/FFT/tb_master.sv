@@ -16,73 +16,71 @@ module ram_simulation (
 
     reg [31:0] storage [0:1023];
 
-    // Q15格式下的旋转因子 (cos_val << 16 | (sin_val & 0xFFFF))
-    // short cos_val = (short)(cos(angle) * 32767.0);
-    // short sin_val = (short)(sin(angle) * 32767.0);
-    // N=16
+
     localparam W16_0 = 32'h7FFF0000; // cos(0)=1, sin(0)=0
-    localparam W16_1 = {16'sd30342, -16'sd12724}; // cos(-pi/8)*32767, sin(-pi/8)*32767
-    localparam W16_2 = {16'sd23170, -16'sd23170}; // cos(-pi/4)*32767, sin(-pi/4)*32767
-    localparam W16_3 = {16'sd12724, -16'sd30342}; // cos(-3pi/8)*32767, sin(-3pi/8)*32767
-    localparam W16_4 = {16'sd0,     -16'sd32767}; // cos(-pi/2)*32767, sin(-pi/2)*32767
-    localparam W16_5 = {-16'sd12724, -16'sd30342};
-    localparam W16_6 = {-16'sd23170, -16'sd23170};
-    localparam W16_7 = {-16'sd30342, -16'sd12724};
-    
+    localparam W16_1 = 32'h769ECC84; // cos(-pi/8)=30342(0x769E), sin(-pi/8)=-12724(0xCC84)
+    localparam W16_2 = 32'h5A82A57E; // cos(-pi/4)=23170(0x5A82), sin(-pi/4)=-23170(0xA57E)
+    localparam W16_3 = 32'h31BCD3C2; // cos(-3pi/8)=12724(0x31BC), sin(-3pi/8)=-30342(0xD3C2)
+    localparam W16_4 = 32'h00008001; // cos(-pi/2)=0(0x0000), sin(-pi/2)=-32767(0x8001)
+    localparam W16_5 = 32'hCE44D3C2; // cos(-5pi/8)=-12724(0xCE44), sin(-5pi/8)=-30342(0xD3C2)
+    localparam W16_6 = 32'hA57EA57E; // cos(-3pi/4)=-23170(0xA57E), sin(-3pi/4)=-23170(0xA57E)
+    localparam W16_7 = 32'h8962CC84; // cos(-7pi/8)=-30342(0x8962), sin(-7pi/8)=-12724(0xCC84)
+
     localparam W8_0 = W16_0;
     localparam W8_1 = W16_2;
     localparam W8_2 = W16_4;
     localparam W8_3 = W16_6;
-
     localparam W4_0 = W16_0;
     localparam W4_1 = W16_4;
 
     localparam W2_0 = W16_0;
 
-    // 初始化RAM，模拟CPU预处理完成后的状态
+
     initial begin
         integer i;
-        // --- 诊断信息 #1: 确认 initial 块开始执行 ---
+
         $display("[%t] RAM_SIM: Initial block started.", $time);
-        
-        // 1. 将所有内存清零
+       
         for (i = 0; i < 1024; i = i+1) begin
             storage[i] = 32'h00000000;
         end
-        // --- 诊断信息 #2: 确认清零后 storage[0] 的值 ---
+      
         $display("[%t] RAM_SIM: Memory cleared. storage[0] = %h", $time, storage[0]);
 
-        // 2. 在地址0x0处写入FFT的点数 N=16
+
         storage[0] = 32'd16;
 
-        // --- 诊断信息 #3: 确认写入N后 storage[0] 的值 ---
-        $display("[%t] RAM_SIM: N written. storage[0] = %d (hex: %h)", $time, storage[0], storage[0]);
-        // 3. 准备 data_out 数组的初始内容 (CPU已完成位反转)
-        //    字节地址: 0xc00 -> 字索引: 0x300 (768)
-        storage[32'h300] = 32'h00010000; // 冲激信号 data_out[0] = 1.0 + 0j
-        // --- 诊断信息 #4: 确认写入输入数据后 storage[0x300] 的值 ---
-        $display("[%t] RAM_SIM: Input data written. storage[0x300] = %h", $time, storage[32'h300]);
-        // 4. 预填充旋转因子表 twiddle_table
-        //    基地址: 0xe00 -> 字索引: 0x380 (896)
-        storage[32'h380 + 1] = W2_0; // m=2, index=1
-        
-        storage[32'h380 + 2] = W4_0; // m=4, index=2
-        storage[32'h380 + 3] = W4_1; // m=4, index=3
 
-        storage[32'h380 + 4] = W8_0; // m=8, index=4
-        storage[32'h380 + 5] = W8_1; // m=8, index=5
-        storage[32'h380 + 6] = W8_2; // m=8, index=6
-        storage[32'h380 + 7] = W8_3; // m=8, index=7
+        $display("[%t] RAM_SIM: N written. storage[0] = %d (hex: %h)", $time, storage[0], storage[0]);
+
+        storage[32'h280] = 32'h00010000; 
+
+
+        $display("[%t] RAM_SIM: Input data written. storage[0x280] = %h", $time, storage[32'h280]);
+	$display("[%t] RAM_SIM: Input data written. storage[0x281] = %h", $time, storage[32'h281]);
         
-        storage[32'h380 + 8]  = W16_0; // m=16, index=8
-        storage[32'h380 + 9]  = W16_1; // m=16, index=9
-        storage[32'h380 + 10] = W16_2; // m=16, index=10
-        storage[32'h380 + 11] = W16_3; // m=16, index=11
-        storage[32'h380 + 12] = W16_4; // m=16, index=12
-        storage[32'h380 + 13] = W16_5; // m=16, index=13
-        storage[32'h380 + 14] = W16_6; // m=16, index=14
-        storage[32'h380 + 15] = W16_7; // m=16, index=15
-        $display("[%t] RAM_SIM: Twiddle factors written. storage[0x380+1] = %h", $time, storage[32'h380+1]);
+
+        storage[32'h300 + 1] = W2_0; // m=2, index=1
+        
+        storage[32'h300 + 2] = W4_0; // m=4, index=2
+        storage[32'h300 + 3] = W4_1; // m=4, index=3
+
+        storage[32'h300 + 4] = W8_0; // m=8, index=4
+        storage[32'h300 + 5] = W8_1; // m=8, index=5
+        storage[32'h300 + 6] = W8_2; // m=8, index=6
+        storage[32'h300 + 7] = W8_3; // m=8, index=7
+        
+        storage[32'h300 + 8]  = W16_0; // m=16, index=8
+        storage[32'h300 + 9]  = W16_1; // m=16, index=9
+        storage[32'h300 + 10] = W16_2; // m=16, index=10
+        storage[32'h300 + 11] = W16_3; // m=16, index=11
+        storage[32'h300 + 12] = W16_4; // m=16, index=12
+        storage[32'h300 + 13] = W16_5; // m=16, index=13
+        storage[32'h300 + 14] = W16_6; // m=16, index=14
+        storage[32'h300 + 15] = W16_7; // m=16, index=15
+        $display("[%t] RAM_SIM: Twiddle factors written. storage[0x300+1] = %h", $time, storage[32'h300+1]);
+	$display("[%t] RAM_SIM: Twiddle factors written. storage[0x300+9] = %h", $time, storage[32'h300+9]);
+
         $display("[%t] RAM_SIM: Initial block finished.", $time);
     end
 
@@ -265,8 +263,6 @@ module tb_master;
 
 		wait(configurator_done);
         
-        	// Wait for one clock cycle to ensure stable state transition
-        	@(posedge DUT_clock);
 		
 		configurator_enable = 0;
 		Config_Clock_en = 0;

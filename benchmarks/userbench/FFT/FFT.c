@@ -3,9 +3,9 @@
 #include "cgra_complex.h"
 
 volatile int* n = (int*)0;
-static int* data_in = (int*)0xa00;
-static int* data_out = (int*)0xc00;
-static int* twiddle_table = (int*)0xe00;
+static int* data_in = (int*)0x800;
+static int* data_out = (int*)0xa00;
+static int* twiddle_table = (int*)0xc00;
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
