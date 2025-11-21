@@ -70,11 +70,15 @@ int main() {
                 // 蝶形运算 - Q15乘法处理
                 int tr = ((int)ar0 * real_k - (int)ai0 * imag_k) >> 15;
                 int ti = ((int)ar0 * imag_k + (int)ai0 * real_k) >> 15;
-                // 计算新的实部和虚部
-                short new_real_j = real_j + tr;
-                short new_imag_j = imag_j + ti;
-                short new_real_k = real_j - tr;
-                short new_imag_k = imag_j - ti; 
+                
+                // <<< START OF MODIFICATION: 添加逐级缩放 >>>
+                // 在每次蝶形运算后将结果右移1位（除以2），以防止溢出并消除增益
+                short new_real_j = (real_j + tr) >> 1;
+                short new_imag_j = (imag_j + ti) >> 1;
+                short new_real_k = (real_j - tr) >> 1;
+                short new_imag_k = (imag_j - ti) >> 1; 
+                // <<< END OF MODIFICATION >>>
+
                 // 合并存储
                 data_out[j] = COMBINE(new_real_j,new_imag_j);
                 data_out[k] = COMBINE(new_real_k,new_imag_k);
@@ -86,5 +90,3 @@ int main() {
     printf("FFT with unified macros completed for N=%d\n", N);
     return 0;
 }
-
-

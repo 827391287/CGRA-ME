@@ -7,336 +7,516 @@ module CGRA_configurator(
     output reg done
 );
 
-    localparam TOTAL_NUM_BITS = 3291;
+    localparam TOTAL_NUM_BITS = 5118;
 	reg [0:TOTAL_NUM_BITS-1] storage = {
-		1'bx,1'bx,1'bx,1'b0,1'b0,1'b1,1'b0,1'b1,1'b1, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'b0,1'b1,1'b1,1'b1,1'b0,1'b1, // crossbar::Mux4config
-		1'b0,1'b0,1'b1,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'bx,1'bx,1'bx,1'b0,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'b0,1'b0,1'b1,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b0,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r3::ConstVal
-		1'b0,1'b1,1'b1, // pe_c3_r3::RegBConfig
-		1'b0,1'b1,1'b1, // pe_c3_r3::RegAConfig
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c4_r4::ConstVal
+		1'bx,1'bx,1'bx, // pe_c4_r4::RegBConfig
+		1'bx,1'bx,1'bx, // pe_c4_r4::RegAConfig
+		1'bx,1'bx,1'bx, // pe_c4_r4::Reg3config
+		1'bx,1'bx,1'bx, // pe_c4_r4::Reg2config
+		1'bx,1'bx,1'bx, // pe_c4_r4::Reg1config
+		1'bx,1'bx,1'bx, // pe_c4_r4::Reg0config
+		1'bx,1'bx,1'bx, // pe_c4_r4::RESConfig
+		1'bx,1'bx,1'bx, // pe_c4_r4::Mux3config
+		1'bx,1'bx,1'bx, // pe_c4_r4::Mux2config
+		1'bx,1'bx,1'bx, // pe_c4_r4::Mux1config
+		1'bx,1'b0,1'bx, // pe_c4_r4::Mux0config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // pe_c4_r4::ALUconfig
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'b0,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c4_r3::ConstVal
+		1'bx,1'bx,1'bx, // pe_c4_r3::RegBConfig
+		1'bx,1'bx,1'bx, // pe_c4_r3::RegAConfig
+		1'bx,1'bx,1'bx, // pe_c4_r3::Reg3config
+		1'bx,1'bx,1'bx, // pe_c4_r3::Reg2config
+		1'bx,1'bx,1'bx, // pe_c4_r3::Reg1config
+		1'b1,1'b0,1'b0, // pe_c4_r3::Reg0config
+		1'bx,1'bx,1'bx, // pe_c4_r3::RESConfig
+		1'bx,1'bx,1'bx, // pe_c4_r3::Mux3config
+		1'bx,1'bx,1'bx, // pe_c4_r3::Mux2config
+		1'bx,1'bx,1'bx, // pe_c4_r3::Mux1config
+		1'bx,1'b1,1'bx, // pe_c4_r3::Mux0config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // pe_c4_r3::ALUconfig
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'bx,1'bx,1'bx,1'b0,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'b0,1'b0,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c4_r2::ConstVal
+		1'bx,1'bx,1'bx, // pe_c4_r2::RegBConfig
+		1'bx,1'bx,1'bx, // pe_c4_r2::RegAConfig
+		1'bx,1'bx,1'bx, // pe_c4_r2::Reg3config
+		1'bx,1'bx,1'bx, // pe_c4_r2::Reg2config
+		1'bx,1'bx,1'bx, // pe_c4_r2::Reg1config
+		1'bx,1'b0,1'b1, // pe_c4_r2::Reg0config
+		1'bx,1'bx,1'bx, // pe_c4_r2::RESConfig
+		1'bx,1'bx,1'bx, // pe_c4_r2::Mux3config
+		1'bx,1'bx,1'bx, // pe_c4_r2::Mux2config
+		1'bx,1'bx,1'bx, // pe_c4_r2::Mux1config
+		1'b0,1'b1,1'bx, // pe_c4_r2::Mux0config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // pe_c4_r2::ALUconfig
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'b1,1'b1,1'b0, // crossbar::Mux5config
+		1'bx,1'bx,1'bx,1'b1,1'b1,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b0,1'b0,1'b1,1'bx,1'bx,1'bx,1'b0,1'b0,1'b0, // crossbar::Mux3config
+		1'b0,1'b0,1'b0,1'bx,1'bx,1'bx,1'b0,1'b0,1'b0, // crossbar::Mux2config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c4_r1::ConstVal
+		1'b0,1'b1,1'bx, // pe_c4_r1::RegBConfig
+		1'b0,1'b0,1'b1, // pe_c4_r1::RegAConfig
+		1'b0,1'b0,1'b1, // pe_c4_r1::Reg3config
+		1'bx,1'bx,1'bx, // pe_c4_r1::Reg2config
+		1'bx,1'bx,1'bx, // pe_c4_r1::Reg1config
+		1'bx,1'bx,1'bx, // pe_c4_r1::Reg0config
+		1'bx,1'bx,1'bx, // pe_c4_r1::RESConfig
+		1'bx,1'b0,1'b1, // pe_c4_r1::Mux3config
+		1'bx,1'bx,1'bx, // pe_c4_r1::Mux2config
+		1'bx,1'bx,1'bx, // pe_c4_r1::Mux1config
+		1'b0,1'bx,1'b0, // pe_c4_r1::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // pe_c4_r1::ALUconfig
+		1'b1,1'b1,1'b0,1'b1,1'b1,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'b0,1'b1,1'b1,1'b0,1'b1,1'b1,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b0,1'b0,1'b1,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'b0,1'b0,1'b1,1'bx,1'bx,1'bx,1'b0,1'b0,1'b1, // crossbar::Mux2config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b0,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b0,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c4_r0::ConstVal
+		1'b1,1'b1,1'b0, // pe_c4_r0::RegBConfig
+		1'b1,1'b1,1'b0, // pe_c4_r0::RegAConfig
+		1'bx,1'bx,1'bx, // pe_c4_r0::Reg3config
+		1'bx,1'bx,1'bx, // pe_c4_r0::Reg2config
+		1'bx,1'bx,1'bx, // pe_c4_r0::Reg1config
+		1'bx,1'bx,1'bx, // pe_c4_r0::Reg0config
+		1'bx,1'bx,1'bx, // pe_c4_r0::RESConfig
+		1'b0,1'b0,1'bx, // pe_c4_r0::Mux3config
+		1'bx,1'bx,1'bx, // pe_c4_r0::Mux2config
+		1'bx,1'bx,1'bx, // pe_c4_r0::Mux1config
+		1'bx,1'bx,1'bx, // pe_c4_r0::Mux0config
+		1'b0,1'b1,1'b0,1'b1,1'bx,1'bx,1'bx,1'bx,1'b0,1'b1,1'b0,1'b1, // pe_c4_r0::ALUconfig
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'bx,1'bx,1'bx,1'b1,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r4::ConstVal
+		1'bx,1'bx,1'bx, // pe_c3_r4::RegBConfig
+		1'bx,1'bx,1'bx, // pe_c3_r4::RegAConfig
+		1'bx,1'bx,1'bx, // pe_c3_r4::Reg3config
+		1'bx,1'bx,1'bx, // pe_c3_r4::Reg2config
+		1'b0,1'b1,1'b0, // pe_c3_r4::Reg1config
+		1'bx,1'bx,1'bx, // pe_c3_r4::Reg0config
+		1'bx,1'bx,1'bx, // pe_c3_r4::RESConfig
+		1'bx,1'bx,1'bx, // pe_c3_r4::Mux3config
+		1'bx,1'bx,1'bx, // pe_c3_r4::Mux2config
+		1'bx,1'b1,1'bx, // pe_c3_r4::Mux1config
+		1'bx,1'bx,1'bx, // pe_c3_r4::Mux0config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // pe_c3_r4::ALUconfig
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b0,1'b0,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r3::ConstVal
+		1'bx,1'bx,1'bx, // pe_c3_r3::RegBConfig
+		1'bx,1'bx,1'bx, // pe_c3_r3::RegAConfig
 		1'bx,1'bx,1'bx, // pe_c3_r3::Reg3config
 		1'bx,1'bx,1'bx, // pe_c3_r3::Reg2config
 		1'bx,1'bx,1'bx, // pe_c3_r3::Reg1config
 		1'bx,1'bx,1'bx, // pe_c3_r3::Reg0config
-		1'b0,1'b1,1'b0, // pe_c3_r3::RESConfig
+		1'bx,1'bx,1'bx, // pe_c3_r3::RESConfig
 		1'bx,1'bx,1'bx, // pe_c3_r3::Mux3config
 		1'bx,1'bx,1'bx, // pe_c3_r3::Mux2config
 		1'bx,1'bx,1'bx, // pe_c3_r3::Mux1config
-		1'bx,1'bx,1'bx, // pe_c3_r3::Mux0config
-		1'b0,1'b1,1'b0,1'b1,1'b0,1'b0,1'b0,1'b0,1'bx,1'bx,1'bx,1'bx, // pe_c3_r3::ALUconfig
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'b0,1'bx,1'bx, // pe_c3_r3::Mux0config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // pe_c3_r3::ALUconfig
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'b0,1'b0,1'b0, // crossbar::Mux5config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'b1,1'b1,1'b0, // crossbar::Mux4config
+		1'b1,1'b0,1'b0,1'b0,1'b0,1'b1,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'b0,1'b0,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'b0,1'b1,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
 		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r2::ConstVal
-		1'bx,1'bx,1'bx, // pe_c3_r2::RegBConfig
-		1'bx,1'bx,1'bx, // pe_c3_r2::RegAConfig
+		1'bx,1'b0,1'b1, // pe_c3_r2::RegBConfig
+		1'bx,1'b0,1'b1, // pe_c3_r2::RegAConfig
 		1'bx,1'bx,1'bx, // pe_c3_r2::Reg3config
 		1'bx,1'bx,1'bx, // pe_c3_r2::Reg2config
-		1'bx,1'bx,1'bx, // pe_c3_r2::Reg1config
+		1'b0,1'b1,1'bx, // pe_c3_r2::Reg1config
 		1'bx,1'bx,1'bx, // pe_c3_r2::Reg0config
 		1'bx,1'bx,1'bx, // pe_c3_r2::RESConfig
-		1'bx,1'bx,1'bx, // pe_c3_r2::Mux3config
-		1'bx,1'b0,1'bx, // pe_c3_r2::Mux2config
-		1'bx,1'bx,1'bx, // pe_c3_r2::Mux1config
-		1'bx,1'bx,1'bx, // pe_c3_r2::Mux0config
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // pe_c3_r2::ALUconfig
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'b0,1'b1,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r1::ConstVal
-		1'bx,1'bx,1'bx, // pe_c3_r1::RegBConfig
-		1'bx,1'bx,1'bx, // pe_c3_r1::RegAConfig
-		1'bx,1'bx,1'bx, // pe_c3_r1::Reg3config
+		1'bx,1'bx,1'b0, // pe_c3_r2::Mux3config
+		1'bx,1'bx,1'bx, // pe_c3_r2::Mux2config
+		1'b1,1'bx,1'bx, // pe_c3_r2::Mux1config
+		1'b0,1'bx,1'b0, // pe_c3_r2::Mux0config
+		1'bx,1'bx,1'bx,1'bx,1'b1,1'b0,1'b1,1'b1,1'bx,1'bx,1'bx,1'bx, // pe_c3_r2::ALUconfig
+		1'b0,1'b1,1'b1,1'b0,1'b0,1'b1,1'b0,1'b1,1'b1, // crossbar::Mux5config
+		1'b1,1'b0,1'b0,1'b1,1'b1,1'b0,1'b1,1'b1,1'b0, // crossbar::Mux4config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'b1,1'b0,1'b0, // crossbar::Mux3config
+		1'b0,1'b0,1'b1,1'bx,1'bx,1'bx,1'b0,1'b0,1'b1, // crossbar::Mux2config
+		1'bx,1'bx,1'bx,1'b0,1'b0,1'b1,1'b0,1'b0,1'b0, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b1,1'b1,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r1::ConstVal
+		1'b1,1'b1,1'b1, // pe_c3_r1::RegBConfig
+		1'b1,1'b1,1'b1, // pe_c3_r1::RegAConfig
+		1'b1,1'b0,1'b0, // pe_c3_r1::Reg3config
 		1'bx,1'bx,1'bx, // pe_c3_r1::Reg2config
 		1'bx,1'bx,1'bx, // pe_c3_r1::Reg1config
 		1'bx,1'bx,1'bx, // pe_c3_r1::Reg0config
 		1'bx,1'bx,1'bx, // pe_c3_r1::RESConfig
-		1'bx,1'bx,1'bx, // pe_c3_r1::Mux3config
-		1'bx,1'b0,1'bx, // pe_c3_r1::Mux2config
-		1'bx,1'bx,1'bx, // pe_c3_r1::Mux1config
-		1'bx,1'bx,1'bx, // pe_c3_r1::Mux0config
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // pe_c3_r1::ALUconfig
-		1'b0,1'b0,1'b1,1'b0,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'b0,1'b1,1'b1,1'b0,1'b1,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1, // crossbar::Mux3config
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'bx,1'b1,1'b0, // pe_c3_r1::Mux3config
+		1'bx,1'bx,1'bx, // pe_c3_r1::Mux2config
+		1'b0,1'bx,1'b0, // pe_c3_r1::Mux1config
+		1'bx,1'bx,1'b0, // pe_c3_r1::Mux0config
+		1'b1,1'b0,1'b0,1'b0,1'b1,1'b1,1'b1,1'b0,1'b0,1'b0,1'b0,1'b1, // pe_c3_r1::ALUconfig
+		1'bx,1'bx,1'bx,1'b1,1'b1,1'b0,1'b0,1'b1,1'b1, // crossbar::Mux5config
+		1'b1,1'b0,1'b1,1'b0,1'b0,1'b1,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b1,1'b0,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'b1,1'b1,1'b0, // crossbar::Mux2config
+		1'b0,1'b0,1'b1,1'b0,1'b0,1'b1,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b0,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r0::ConstVal
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r0::ConstVal
 		1'b1,1'b1,1'b0, // pe_c3_r0::RegBConfig
-		1'b1,1'b1,1'b0, // pe_c3_r0::RegAConfig
+		1'b0,1'b1,1'b1, // pe_c3_r0::RegAConfig
 		1'bx,1'bx,1'bx, // pe_c3_r0::Reg3config
 		1'bx,1'bx,1'bx, // pe_c3_r0::Reg2config
 		1'bx,1'bx,1'bx, // pe_c3_r0::Reg1config
 		1'bx,1'bx,1'bx, // pe_c3_r0::Reg0config
-		1'bx,1'bx,1'bx, // pe_c3_r0::RESConfig
-		1'bx,1'bx,1'bx, // pe_c3_r0::Mux3config
-		1'bx,1'b0,1'bx, // pe_c3_r0::Mux2config
-		1'bx,1'bx,1'bx, // pe_c3_r0::Mux1config
-		1'bx,1'b0,1'bx, // pe_c3_r0::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'bx,1'bx,1'bx,1'bx,1'b0,1'b1,1'b0,1'b1, // pe_c3_r0::ALUconfig
-		1'bx,1'bx,1'bx,1'b0,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'b1,1'b1,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'b0,1'b0,1'b1,1'b1,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'b0,1'b1,1'bx, // pe_c3_r0::RESConfig
+		1'bx,1'b0,1'b0, // pe_c3_r0::Mux3config
+		1'bx,1'bx,1'bx, // pe_c3_r0::Mux2config
+		1'b0,1'bx,1'bx, // pe_c3_r0::Mux1config
+		1'bx,1'bx,1'bx, // pe_c3_r0::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'bx,1'bx,1'bx,1'bx, // pe_c3_r0::ALUconfig
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b1,1'b0,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'b1,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c2_r3::ConstVal
-		1'b1,1'b0,1'b0, // pe_c2_r3::RegBConfig
-		1'b0,1'b1,1'bx, // pe_c2_r3::RegAConfig
-		1'bx,1'bx,1'bx, // pe_c2_r3::Reg3config
-		1'bx,1'bx,1'bx, // pe_c2_r3::Reg2config
-		1'b1,1'b0,1'b0, // pe_c2_r3::Reg1config
-		1'bx,1'bx,1'bx, // pe_c2_r3::Reg0config
-		1'bx,1'bx,1'bx, // pe_c2_r3::RESConfig
-		1'b0,1'bx,1'bx, // pe_c2_r3::Mux3config
-		1'bx,1'bx,1'bx, // pe_c2_r3::Mux2config
-		1'bx,1'b1,1'bx, // pe_c2_r3::Mux1config
-		1'bx,1'b0,1'bx, // pe_c2_r3::Mux0config
-		1'b1,1'b0,1'b0,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // pe_c2_r3::ALUconfig
-		1'bx,1'bx,1'bx,1'b1,1'b1,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'b1,1'b1,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'b0,1'b1,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'bx,1'bx,1'bx,1'b0,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'b0,1'b0,1'b1,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c2_r2::ConstVal
-		1'b1,1'b0,1'b0, // pe_c2_r2::RegBConfig
-		1'b0,1'b1,1'bx, // pe_c2_r2::RegAConfig
-		1'bx,1'bx,1'bx, // pe_c2_r2::Reg3config
-		1'b0,1'b1,1'b0, // pe_c2_r2::Reg2config
-		1'bx,1'bx,1'bx, // pe_c2_r2::Reg1config
-		1'bx,1'bx,1'bx, // pe_c2_r2::Reg0config
-		1'bx,1'bx,1'bx, // pe_c2_r2::RESConfig
-		1'b0,1'b0,1'bx, // pe_c2_r2::Mux3config
-		1'bx,1'b1,1'bx, // pe_c2_r2::Mux2config
-		1'bx,1'bx,1'bx, // pe_c2_r2::Mux1config
-		1'bx,1'b0,1'bx, // pe_c2_r2::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // pe_c2_r2::ALUconfig
-		1'b0,1'b0,1'b1,1'b1,1'b1,1'b0,1'b0,1'b1,1'b1, // crossbar::Mux5config
-		1'b0,1'b1,1'b0,1'b0,1'b0,1'b1,1'b1,1'b1,1'b0, // crossbar::Mux4config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1, // crossbar::Mux3config
-		1'bx,1'bx,1'bx,1'b0,1'b0,1'b1,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c2_r4::ConstVal
+		1'bx,1'bx,1'bx, // pe_c2_r4::RegBConfig
+		1'bx,1'bx,1'bx, // pe_c2_r4::RegAConfig
+		1'bx,1'bx,1'bx, // pe_c2_r4::Reg3config
+		1'bx,1'bx,1'bx, // pe_c2_r4::Reg2config
+		1'b0,1'b1,1'bx, // pe_c2_r4::Reg1config
+		1'bx,1'bx,1'bx, // pe_c2_r4::Reg0config
+		1'bx,1'bx,1'bx, // pe_c2_r4::RESConfig
+		1'bx,1'bx,1'bx, // pe_c2_r4::Mux3config
+		1'bx,1'bx,1'bx, // pe_c2_r4::Mux2config
+		1'b1,1'bx,1'bx, // pe_c2_r4::Mux1config
+		1'bx,1'bx,1'bx, // pe_c2_r4::Mux0config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // pe_c2_r4::ALUconfig
+		1'b0,1'b1,1'b1,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'b1,1'b0,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'b0,1'b0,1'b1, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b1,1'b1,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c2_r1::ConstVal
-		1'b1,1'b1,1'b1, // pe_c2_r1::RegBConfig
-		1'b1,1'b1,1'b1, // pe_c2_r1::RegAConfig
+		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c2_r3::ConstVal
+		1'b1,1'bx,1'b0, // pe_c2_r3::RegBConfig
+		1'b1,1'bx,1'b0, // pe_c2_r3::RegAConfig
+		1'bx,1'bx,1'bx, // pe_c2_r3::Reg3config
+		1'bx,1'bx,1'bx, // pe_c2_r3::Reg2config
+		1'bx,1'bx,1'bx, // pe_c2_r3::Reg1config
+		1'bx,1'bx,1'bx, // pe_c2_r3::Reg0config
+		1'bx,1'bx,1'bx, // pe_c2_r3::RESConfig
+		1'bx,1'bx,1'bx, // pe_c2_r3::Mux3config
+		1'bx,1'bx,1'bx, // pe_c2_r3::Mux2config
+		1'b0,1'bx,1'bx, // pe_c2_r3::Mux1config
+		1'bx,1'bx,1'bx, // pe_c2_r3::Mux0config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'b0,1'b0,1'b0,1'b1, // pe_c2_r3::ALUconfig
+		1'b0,1'b1,1'b1,1'bx,1'bx,1'bx,1'b1,1'b1,1'b0, // crossbar::Mux5config
+		1'b0,1'b0,1'b1,1'b1,1'b1,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'b0,1'b0,1'b1, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'b1,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c2_r2::ConstVal
+		1'b1,1'b1,1'b0, // pe_c2_r2::RegBConfig
+		1'b1,1'b0,1'b1, // pe_c2_r2::RegAConfig
+		1'b0,1'b0,1'b1, // pe_c2_r2::Reg3config
+		1'bx,1'bx,1'bx, // pe_c2_r2::Reg2config
+		1'b1,1'b0,1'b0, // pe_c2_r2::Reg1config
+		1'bx,1'bx,1'bx, // pe_c2_r2::Reg0config
+		1'bx,1'bx,1'bx, // pe_c2_r2::RESConfig
+		1'bx,1'b0,1'b1, // pe_c2_r2::Mux3config
+		1'bx,1'bx,1'bx, // pe_c2_r2::Mux2config
+		1'b1,1'b0,1'bx, // pe_c2_r2::Mux1config
+		1'bx,1'b0,1'bx, // pe_c2_r2::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'bx,1'bx,1'bx,1'bx,1'b0,1'b0,1'b0,1'b1, // pe_c2_r2::ALUconfig
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'bx,1'bx,1'bx,1'b0,1'b1,1'b0,1'b1,1'b0,1'b0, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'b1,1'b1,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'b0,1'b0,1'b0,1'bx,1'bx,1'bx,1'b1,1'b1,1'b0, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c2_r1::ConstVal
+		1'bx,1'bx,1'bx, // pe_c2_r1::RegBConfig
+		1'bx,1'bx,1'bx, // pe_c2_r1::RegAConfig
 		1'bx,1'bx,1'bx, // pe_c2_r1::Reg3config
 		1'bx,1'bx,1'bx, // pe_c2_r1::Reg2config
 		1'bx,1'bx,1'bx, // pe_c2_r1::Reg1config
-		1'bx,1'b0,1'b1, // pe_c2_r1::Reg0config
+		1'bx,1'bx,1'bx, // pe_c2_r1::Reg0config
 		1'bx,1'bx,1'bx, // pe_c2_r1::RESConfig
 		1'bx,1'b0,1'b0, // pe_c2_r1::Mux3config
-		1'b0,1'bx,1'bx, // pe_c2_r1::Mux2config
-		1'bx,1'bx,1'bx, // pe_c2_r1::Mux1config
-		1'b0,1'b1,1'bx, // pe_c2_r1::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b1,1'b0,1'b1,1'b1, // pe_c2_r1::ALUconfig
-		1'bx,1'bx,1'bx,1'b1,1'b0,1'b0,1'b1,1'b0,1'b1, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'b0,1'b0,1'b1,1'b0,1'b1,1'b1, // crossbar::Mux4config
+		1'bx,1'b0,1'bx, // pe_c2_r1::Mux2config
+		1'bx,1'bx,1'b0, // pe_c2_r1::Mux1config
+		1'b0,1'bx,1'bx, // pe_c2_r1::Mux0config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // pe_c2_r1::ALUconfig
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'b1,1'b1,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
 		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'b1,1'b0,1'b0, // crossbar::Mux3config
-		1'b0,1'b0,1'b1,1'bx,1'bx,1'bx,1'b1,1'b0,1'b0, // crossbar::Mux2config
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'b1,1'b0,1'b1,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'bx,1'bx,1'bx,1'b1,1'b1,1'b0,1'b0,1'b0,1'b1, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c2_r0::ConstVal
-		1'b0,1'b1,1'b1, // pe_c2_r0::RegBConfig
-		1'b0,1'b1,1'b1, // pe_c2_r0::RegAConfig
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c2_r0::ConstVal
+		1'b1,1'bx,1'b0, // pe_c2_r0::RegBConfig
+		1'bx,1'bx,1'bx, // pe_c2_r0::RegAConfig
 		1'bx,1'bx,1'bx, // pe_c2_r0::Reg3config
 		1'bx,1'bx,1'bx, // pe_c2_r0::Reg2config
-		1'bx,1'bx,1'bx, // pe_c2_r0::Reg1config
+		1'b1,1'bx,1'b0, // pe_c2_r0::Reg1config
 		1'bx,1'bx,1'bx, // pe_c2_r0::Reg0config
-		1'b0,1'b1,1'b0, // pe_c2_r0::RESConfig
-		1'bx,1'bx,1'bx, // pe_c2_r0::Mux3config
+		1'b0,1'b0,1'b1, // pe_c2_r0::RESConfig
+		1'b0,1'b0,1'bx, // pe_c2_r0::Mux3config
 		1'bx,1'bx,1'bx, // pe_c2_r0::Mux2config
-		1'bx,1'b0,1'b0, // pe_c2_r0::Mux1config
+		1'bx,1'bx,1'b1, // pe_c2_r0::Mux1config
 		1'bx,1'bx,1'bx, // pe_c2_r0::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'bx,1'bx,1'bx,1'bx, // pe_c2_r0::ALUconfig
-		1'b1,1'b0,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'b0,1'b0,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'b1,1'b0,1'b0,1'b0,1'b0,1'b1, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'b0,1'b0,1'b1,1'b1, // pe_c2_r0::ALUconfig
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b1,1'b0,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'b1,1'b1,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'b0,1'b0,1'b0, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c1_r4::ConstVal
+		1'bx,1'bx,1'bx, // pe_c1_r4::RegBConfig
+		1'bx,1'bx,1'bx, // pe_c1_r4::RegAConfig
+		1'bx,1'bx,1'bx, // pe_c1_r4::Reg3config
+		1'bx,1'bx,1'bx, // pe_c1_r4::Reg2config
+		1'b1,1'b0,1'b0, // pe_c1_r4::Reg1config
+		1'bx,1'bx,1'bx, // pe_c1_r4::Reg0config
+		1'bx,1'bx,1'bx, // pe_c1_r4::RESConfig
+		1'bx,1'bx,1'bx, // pe_c1_r4::Mux3config
+		1'bx,1'bx,1'bx, // pe_c1_r4::Mux2config
+		1'b1,1'bx,1'bx, // pe_c1_r4::Mux1config
+		1'bx,1'bx,1'b0, // pe_c1_r4::Mux0config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // pe_c1_r4::ALUconfig
+		1'b0,1'b1,1'b1,1'b0,1'b0,1'b0,1'b1,1'b0,1'b0, // crossbar::Mux5config
+		1'b0,1'b0,1'b1,1'b0,1'b1,1'b0,1'b0,1'b0,1'b1, // crossbar::Mux4config
+		1'bx,1'bx,1'bx,1'b0,1'b0,1'b1,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'b0,1'b0,1'b0, // crossbar::Mux2config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c1_r3::ConstVal
-		1'b1,1'bx,1'b0, // pe_c1_r3::RegBConfig
-		1'b1,1'bx,1'b0, // pe_c1_r3::RegAConfig
+		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c1_r3::ConstVal
+		1'b1,1'b1,1'b1, // pe_c1_r3::RegBConfig
+		1'b1,1'b1,1'b1, // pe_c1_r3::RegAConfig
 		1'bx,1'bx,1'bx, // pe_c1_r3::Reg3config
-		1'bx,1'bx,1'bx, // pe_c1_r3::Reg2config
+		1'bx,1'b0,1'b1, // pe_c1_r3::Reg2config
 		1'bx,1'bx,1'bx, // pe_c1_r3::Reg1config
-		1'bx,1'bx,1'bx, // pe_c1_r3::Reg0config
+		1'b0,1'b0,1'b1, // pe_c1_r3::Reg0config
 		1'bx,1'bx,1'bx, // pe_c1_r3::RESConfig
-		1'b0,1'bx,1'bx, // pe_c1_r3::Mux3config
-		1'bx,1'bx,1'bx, // pe_c1_r3::Mux2config
-		1'b0,1'b0,1'bx, // pe_c1_r3::Mux1config
-		1'b0,1'bx,1'bx, // pe_c1_r3::Mux0config
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'b1,1'b0,1'b1,1'b1, // pe_c1_r3::ALUconfig
-		1'bx,1'bx,1'bx,1'b0,1'b0,1'b1,1'b0,1'b1,1'b1, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'b1,1'b1,1'b0,1'b0,1'b0,1'b0, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'b1,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'b0,1'b0,1'b1,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'b1,1'b1,1'b0,1'b0,1'b0,1'b1,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'b1,1'b1,1'b0, // crossbar::Mux0config
+		1'bx,1'bx,1'bx, // pe_c1_r3::Mux3config
+		1'bx,1'b1,1'bx, // pe_c1_r3::Mux2config
+		1'bx,1'bx,1'b0, // pe_c1_r3::Mux1config
+		1'bx,1'b0,1'b1, // pe_c1_r3::Mux0config
+		1'b1,1'b0,1'b0,1'b0,1'b1,1'b0,1'b1,1'b1,1'b0,1'b0,1'b0,1'b1, // pe_c1_r3::ALUconfig
+		1'b0,1'b0,1'b1,1'b0,1'b0,1'b0,1'b0,1'b1,1'b1, // crossbar::Mux5config
+		1'b1,1'b1,1'b0,1'b1,1'b0,1'b0,1'b0,1'b0,1'b1, // crossbar::Mux4config
+		1'b1,1'b0,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'b0,1'b0,1'b1,1'b0,1'b0,1'b0, // crossbar::Mux2config
+		1'bx,1'bx,1'bx,1'b0,1'b0,1'b1,1'b0,1'b0,1'b0, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
 		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b1,1'b1,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c1_r2::ConstVal
-		1'b0,1'b1,1'b1, // pe_c1_r2::RegBConfig
-		1'b0,1'b1,1'b1, // pe_c1_r2::RegAConfig
-		1'b1,1'b1,1'b1, // pe_c1_r2::Reg3config
+		1'b1,1'b1,1'b1, // pe_c1_r2::RegBConfig
+		1'b1,1'b1,1'b1, // pe_c1_r2::RegAConfig
+		1'bx,1'bx,1'bx, // pe_c1_r2::Reg3config
 		1'bx,1'bx,1'bx, // pe_c1_r2::Reg2config
-		1'b0,1'b1,1'b0, // pe_c1_r2::Reg1config
+		1'b1,1'b0,1'b0, // pe_c1_r2::Reg1config
 		1'bx,1'bx,1'bx, // pe_c1_r2::Reg0config
 		1'bx,1'bx,1'bx, // pe_c1_r2::RESConfig
-		1'b1,1'b1,1'b1, // pe_c1_r2::Mux3config
+		1'b0,1'bx,1'bx, // pe_c1_r2::Mux3config
 		1'bx,1'bx,1'bx, // pe_c1_r2::Mux2config
-		1'bx,1'b1,1'bx, // pe_c1_r2::Mux1config
-		1'bx,1'bx,1'b0, // pe_c1_r2::Mux0config
-		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'bx,1'bx,1'bx,1'bx, // pe_c1_r2::ALUconfig
-		1'b0,1'b0,1'b0,1'b1,1'b1,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'b1,1'b1,1'b0,1'b0,1'b0,1'b0,1'b1,1'b1,1'b0, // crossbar::Mux4config
-		1'b1,1'b0,1'b0,1'b1,1'b0,1'b0,1'b1,1'b0,1'b0, // crossbar::Mux3config
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'b0,1'b0,1'b1, // crossbar::Mux2config
-		1'bx,1'bx,1'bx,1'b0,1'b1,1'b0,1'b0,1'b0,1'b0, // crossbar::Mux1config
-		1'b0,1'b0,1'b1,1'b0,1'b0,1'b1,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b1,1'b0,1'bx, // pe_c1_r2::Mux1config
+		1'bx,1'b0,1'b0, // pe_c1_r2::Mux0config
+		1'b0,1'b1,1'b0,1'b0,1'b1,1'b1,1'b1,1'b0,1'b1,1'b0,1'b0,1'b0, // pe_c1_r2::ALUconfig
+		1'b1,1'b1,1'b0,1'b1,1'b1,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'b0,1'b0,1'b1,1'b0,1'b0,1'b1,1'b1,1'b1,1'b0, // crossbar::Mux4config
+		1'b1,1'b0,1'b0,1'b1,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'b0,1'b0,1'b1,1'b0,1'b0,1'b0, // crossbar::Mux2config
+		1'bx,1'bx,1'bx,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
 		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c1_r1::ConstVal
 		1'b1,1'b1,1'b1, // pe_c1_r1::RegBConfig
 		1'b1,1'b1,1'b0, // pe_c1_r1::RegAConfig
 		1'bx,1'bx,1'bx, // pe_c1_r1::Reg3config
-		1'bx,1'b0,1'b1, // pe_c1_r1::Reg2config
-		1'b0,1'b1,1'b0, // pe_c1_r1::Reg1config
+		1'bx,1'bx,1'bx, // pe_c1_r1::Reg2config
+		1'b0,1'b0,1'b1, // pe_c1_r1::Reg1config
 		1'bx,1'bx,1'bx, // pe_c1_r1::Reg0config
 		1'bx,1'bx,1'bx, // pe_c1_r1::RESConfig
 		1'b0,1'b0,1'b0, // pe_c1_r1::Mux3config
-		1'bx,1'b1,1'bx, // pe_c1_r1::Mux2config
-		1'b0,1'b1,1'b0, // pe_c1_r1::Mux1config
-		1'b0,1'b0,1'b0, // pe_c1_r1::Mux0config
-		1'b0,1'b1,1'b0,1'b0,1'b0,1'b0,1'b1,1'b1,1'b1,1'b0,1'b0,1'b0, // pe_c1_r1::ALUconfig
-		1'b0,1'b1,1'b0,1'b0,1'b1,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'b1,1'b1,1'b0,1'b0,1'b0,1'b1,1'b1,1'b1,1'b0, // crossbar::Mux4config
-		1'b1,1'b0,1'b0,1'b0,1'b1,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'b0,1'b0,1'b1,1'b0,1'b0,1'b1,1'b0,1'b0,1'b1, // crossbar::Mux2config
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'bx,1'bx,1'bx, // pe_c1_r1::Mux2config
+		1'b1,1'b0,1'bx, // pe_c1_r1::Mux1config
+		1'bx,1'b0,1'b0, // pe_c1_r1::Mux0config
+		1'b0,1'b1,1'b0,1'b0,1'b0,1'b0,1'b1,1'b1,1'b0,1'b0,1'b0,1'b0, // pe_c1_r1::ALUconfig
+		1'bx,1'bx,1'bx,1'b0,1'b0,1'b0,1'b1,1'b0,1'b1, // crossbar::Mux5config
+		1'b1,1'b1,1'b0,1'b0,1'b0,1'b1,1'b0,1'b1,1'b1, // crossbar::Mux4config
+		1'b0,1'b0,1'b1,1'b1,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'b1,1'b1,1'b0,1'b0,1'b0,1'b1, // crossbar::Mux2config
+		1'b1,1'b1,1'b0,1'b0,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c1_r0::ConstVal
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c1_r0::ConstVal
 		1'b1,1'b1,1'b1, // pe_c1_r0::RegBConfig
-		1'b1,1'b1,1'b0, // pe_c1_r0::RegAConfig
+		1'b0,1'b1,1'b1, // pe_c1_r0::RegAConfig
 		1'bx,1'bx,1'bx, // pe_c1_r0::Reg3config
 		1'bx,1'bx,1'bx, // pe_c1_r0::Reg2config
-		1'b0,1'b0,1'b1, // pe_c1_r0::Reg1config
+		1'bx,1'b0,1'b1, // pe_c1_r0::Reg1config
 		1'bx,1'bx,1'bx, // pe_c1_r0::Reg0config
-		1'bx,1'bx,1'bx, // pe_c1_r0::RESConfig
-		1'b0,1'bx,1'b0, // pe_c1_r0::Mux3config
-		1'b0,1'b0,1'bx, // pe_c1_r0::Mux2config
-		1'b1,1'bx,1'bx, // pe_c1_r0::Mux1config
-		1'bx,1'bx,1'bx, // pe_c1_r0::Mux0config
-		1'b0,1'b1,1'b0,1'b0,1'b0,1'b0,1'b1,1'b1,1'b0,1'b0,1'b0,1'b0, // pe_c1_r0::ALUconfig
+		1'b0,1'b1,1'b0, // pe_c1_r0::RESConfig
+		1'b0,1'b0,1'bx, // pe_c1_r0::Mux3config
+		1'bx,1'bx,1'bx, // pe_c1_r0::Mux2config
+		1'bx,1'b1,1'bx, // pe_c1_r0::Mux1config
+		1'bx,1'b0,1'bx, // pe_c1_r0::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b1,1'b0,1'b1, // pe_c1_r0::ALUconfig
 		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'b1,1'b1,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'b1,1'b0,1'b0,1'b1,1'b0,1'b0, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'bx,1'bx,1'bx,1'b0,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'b0,1'b0,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'b1,1'b1,1'b0,1'b1,1'b0,1'b1,1'b0,1'b0,1'b1, // crossbar::Mux0config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'b1,1'b0,1'b0, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r4::ConstVal
+		1'bx,1'bx,1'bx, // pe_c0_r4::RegBConfig
+		1'bx,1'bx,1'bx, // pe_c0_r4::RegAConfig
+		1'bx,1'bx,1'bx, // pe_c0_r4::Reg3config
+		1'bx,1'bx,1'bx, // pe_c0_r4::Reg2config
+		1'b1,1'bx,1'b0, // pe_c0_r4::Reg1config
+		1'bx,1'bx,1'bx, // pe_c0_r4::Reg0config
+		1'bx,1'bx,1'bx, // pe_c0_r4::RESConfig
+		1'bx,1'bx,1'bx, // pe_c0_r4::Mux3config
+		1'bx,1'bx,1'bx, // pe_c0_r4::Mux2config
+		1'bx,1'bx,1'b1, // pe_c0_r4::Mux1config
+		1'bx,1'b0,1'bx, // pe_c0_r4::Mux0config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // pe_c0_r4::ALUconfig
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'bx,1'bx,1'bx,1'b0,1'b1,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'b1,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
 		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r3::ConstVal
-		1'b1,1'bx,1'b0, // pe_c0_r3::RegBConfig
+		1'bx,1'bx,1'bx, // pe_c0_r3::RegBConfig
 		1'bx,1'bx,1'bx, // pe_c0_r3::RegAConfig
 		1'bx,1'bx,1'bx, // pe_c0_r3::Reg3config
-		1'bx,1'bx,1'bx, // pe_c0_r3::Reg2config
+		1'bx,1'b0,1'b1, // pe_c0_r3::Reg2config
 		1'bx,1'bx,1'bx, // pe_c0_r3::Reg1config
 		1'bx,1'bx,1'bx, // pe_c0_r3::Reg0config
-		1'bx,1'b0,1'b1, // pe_c0_r3::RESConfig
-		1'b0,1'bx,1'bx, // pe_c0_r3::Mux3config
-		1'bx,1'bx,1'bx, // pe_c0_r3::Mux2config
-		1'bx,1'b0,1'b0, // pe_c0_r3::Mux1config
-		1'b0,1'bx,1'bx, // pe_c0_r3::Mux0config
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'b1,1'b1,1'b0,1'b1, // pe_c0_r3::ALUconfig
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'b0,1'b1,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'b1,1'b0,1'b0, // crossbar::Mux3config
-		1'b1,1'b0,1'b1,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'b1,1'b0,1'b1,1'b0,1'b1,1'b0,1'b0,1'b1,1'b0, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r2::ConstVal
-		1'b1,1'bx,1'b0, // pe_c0_r2::RegBConfig
-		1'bx,1'bx,1'bx, // pe_c0_r2::RegAConfig
-		1'bx,1'bx,1'bx, // pe_c0_r2::Reg3config
-		1'b0,1'b0,1'b1, // pe_c0_r2::Reg2config
-		1'b0,1'b1,1'b0, // pe_c0_r2::Reg1config
-		1'bx,1'bx,1'bx, // pe_c0_r2::Reg0config
-		1'b0,1'b0,1'b1, // pe_c0_r2::RESConfig
-		1'bx,1'bx,1'bx, // pe_c0_r2::Mux3config
-		1'b0,1'b0,1'b1, // pe_c0_r2::Mux2config
-		1'bx,1'bx,1'b1, // pe_c0_r2::Mux1config
-		1'bx,1'bx,1'bx, // pe_c0_r2::Mux0config
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'b0,1'b0,1'b1,1'b1, // pe_c0_r2::ALUconfig
-		1'b1,1'b0,1'b0,1'b0,1'b0,1'b1,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'b0,1'b1,1'b1,1'b0,1'b0,1'b0,1'b1,1'b1,1'b0, // crossbar::Mux4config
-		1'b1,1'b0,1'b1,1'bx,1'bx,1'bx,1'b1,1'b0,1'b0, // crossbar::Mux3config
+		1'bx,1'bx,1'bx, // pe_c0_r3::RESConfig
+		1'bx,1'bx,1'bx, // pe_c0_r3::Mux3config
+		1'bx,1'b1,1'bx, // pe_c0_r3::Mux2config
+		1'bx,1'b0,1'bx, // pe_c0_r3::Mux1config
+		1'bx,1'bx,1'bx, // pe_c0_r3::Mux0config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // pe_c0_r3::ALUconfig
+		1'bx,1'bx,1'bx,1'b0,1'b0,1'b1,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'bx,1'bx,1'bx,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // crossbar::Mux4config
+		1'bx,1'bx,1'bx,1'b1,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'b0,1'b0,1'b1,1'b0,1'b0,1'b1,1'b1,1'b1,1'b0, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'b1,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r1::ConstVal
-		1'b1,1'b1,1'b1, // pe_c0_r1::RegBConfig
-		1'b1,1'b1,1'b0, // pe_c0_r1::RegAConfig
+		1'b0,1'b0,1'b1,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'b0,1'b0,1'b1,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r2::ConstVal
+		1'b0,1'b1,1'b1, // pe_c0_r2::RegBConfig
+		1'b0,1'b1,1'bx, // pe_c0_r2::RegAConfig
+		1'bx,1'bx,1'bx, // pe_c0_r2::Reg3config
+		1'bx,1'bx,1'bx, // pe_c0_r2::Reg2config
+		1'b1,1'b0,1'b0, // pe_c0_r2::Reg1config
+		1'bx,1'bx,1'bx, // pe_c0_r2::Reg0config
+		1'bx,1'bx,1'bx, // pe_c0_r2::RESConfig
+		1'bx,1'bx,1'bx, // pe_c0_r2::Mux3config
+		1'bx,1'bx,1'bx, // pe_c0_r2::Mux2config
+		1'bx,1'b1,1'bx, // pe_c0_r2::Mux1config
+		1'bx,1'b0,1'b0, // pe_c0_r2::Mux0config
+		1'b0,1'b1,1'b0,1'b0,1'b1,1'b1,1'b0,1'b1,1'bx,1'bx,1'bx,1'bx, // pe_c0_r2::ALUconfig
+		1'bx,1'bx,1'bx,1'b0,1'b0,1'b1,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'bx,1'bx,1'bx,1'b0,1'b0,1'b0,1'b1,1'b1,1'b0, // crossbar::Mux4config
+		1'b1,1'b0,1'b0,1'b1,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'b0,1'b0,1'b1,1'b0,1'b0,1'b0, // crossbar::Mux2config
+		1'b0,1'b0,1'b1,1'b0,1'b1,1'b0,1'b1,1'b1,1'b0, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r1::ConstVal
+		1'b0,1'b1,1'b1, // pe_c0_r1::RegBConfig
+		1'b0,1'b1,1'bx, // pe_c0_r1::RegAConfig
 		1'bx,1'bx,1'bx, // pe_c0_r1::Reg3config
 		1'bx,1'bx,1'bx, // pe_c0_r1::Reg2config
-		1'b0,1'b1,1'b0, // pe_c0_r1::Reg1config
+		1'bx,1'bx,1'bx, // pe_c0_r1::Reg1config
 		1'bx,1'bx,1'bx, // pe_c0_r1::Reg0config
-		1'b0,1'b0,1'b1, // pe_c0_r1::RESConfig
+		1'bx,1'bx,1'bx, // pe_c0_r1::RESConfig
 		1'bx,1'bx,1'b0, // pe_c0_r1::Mux3config
-		1'bx,1'bx,1'bx, // pe_c0_r1::Mux2config
-		1'b0,1'b1,1'b0, // pe_c0_r1::Mux1config
-		1'bx,1'b0,1'bx, // pe_c0_r1::Mux0config
-		1'b0,1'b1,1'b0,1'b0,1'b1,1'b1,1'b0,1'b1,1'b0,1'b1,1'b0,1'b1, // pe_c0_r1::ALUconfig
-		1'bx,1'bx,1'bx,1'b1,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'b0,1'b0,1'b1,1'b1,1'b1,1'b0, // crossbar::Mux4config
-		1'b1,1'b0,1'b0,1'bx,1'bx,1'bx,1'b0,1'b1,1'b0, // crossbar::Mux3config
-		1'bx,1'bx,1'bx,1'b0,1'b0,1'b1,1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'b0,1'b0,1'b1,1'bx,1'bx,1'bx,1'b1,1'b1,1'b0, // crossbar::Mux1config
+		1'bx,1'b0,1'bx, // pe_c0_r1::Mux2config
+		1'b0,1'b0,1'bx, // pe_c0_r1::Mux1config
+		1'bx,1'b0,1'b0, // pe_c0_r1::Mux0config
+		1'b0,1'b1,1'b0,1'b0,1'b1,1'b1,1'b0,1'b1,1'bx,1'bx,1'bx,1'bx, // pe_c0_r1::ALUconfig
+		1'b1,1'b0,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'b0,1'b1,1'b1,1'bx,1'bx,1'bx,1'b1,1'b1,1'b0, // crossbar::Mux4config
+		1'b1,1'b0,1'b1,1'b1,1'b0,1'b0,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'b0,1'b0,1'b1,1'b1,1'b1,1'b0, // crossbar::Mux2config
+		1'b1,1'b1,1'b0,1'b0,1'b0,1'b1,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r0::ConstVal
-		1'b0,1'b1,1'b1, // pe_c0_r0::RegBConfig
-		1'b0,1'b1,1'bx, // pe_c0_r0::RegAConfig
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r0::ConstVal
+		1'b1,1'b0,1'b1, // pe_c0_r0::RegBConfig
+		1'b1,1'bx,1'b0, // pe_c0_r0::RegAConfig
 		1'bx,1'bx,1'bx, // pe_c0_r0::Reg3config
-		1'b0,1'b1,1'b0, // pe_c0_r0::Reg2config
+		1'bx,1'bx,1'bx, // pe_c0_r0::Reg2config
 		1'bx,1'bx,1'bx, // pe_c0_r0::Reg1config
 		1'bx,1'bx,1'bx, // pe_c0_r0::Reg0config
-		1'bx,1'bx,1'bx, // pe_c0_r0::RESConfig
-		1'bx,1'bx,1'b0, // pe_c0_r0::Mux3config
-		1'bx,1'bx,1'b1, // pe_c0_r0::Mux2config
+		1'b0,1'b0,1'b1, // pe_c0_r0::RESConfig
+		1'b0,1'bx,1'b0, // pe_c0_r0::Mux3config
+		1'bx,1'bx,1'bx, // pe_c0_r0::Mux2config
 		1'b0,1'b0,1'bx, // pe_c0_r0::Mux1config
 		1'bx,1'bx,1'bx, // pe_c0_r0::Mux0config
-		1'b0,1'b1,1'b0,1'b0,1'b1,1'b1,1'b0,1'b1,1'bx,1'bx,1'bx,1'bx, // pe_c0_r0::ALUconfig
-		1'b0,1'b0,1'b1, // mem_3::WriteRq
-		1'bx,1'bx,1'bx,1'bx,1'b1,1'b1, // mem_3::MuxData
-		1'bx,1'bx,1'b1,1'b1,1'b0,1'b0, // mem_3::MuxAddr
+		1'bx,1'bx,1'bx,1'bx,1'b0,1'b0,1'b1,1'b1,1'b0,1'b1,1'b0,1'b1, // pe_c0_r0::ALUconfig
+		1'b0,1'b1,1'b0, // mem_4::WriteRq
+		1'bx,1'bx,1'bx,1'b1,1'b0,1'b0,1'bx,1'bx,1'bx, // mem_4::MuxData
+		1'bx,1'bx,1'bx,1'b1,1'b1,1'b0,1'bx,1'bx,1'bx, // mem_4::MuxAddr
+		1'b0,1'b1,1'b0, // mem_3::WriteRq
+		1'bx,1'bx,1'bx,1'b0,1'b0,1'b1,1'bx,1'bx,1'bx, // mem_3::MuxData
+		1'bx,1'bx,1'bx,1'b0,1'b1,1'b0,1'bx,1'bx,1'bx, // mem_3::MuxAddr
 		1'b0,1'b0,1'b0, // mem_2::WriteRq
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // mem_2::MuxData
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // mem_2::MuxAddr
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // mem_2::MuxData
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // mem_2::MuxAddr
 		1'b0,1'b0,1'b0, // mem_1::WriteRq
-		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // mem_1::MuxData
-		1'b1,1'b0,1'bx,1'bx,1'bx,1'bx, // mem_1::MuxAddr
-		1'b0,1'b0,1'b1, // mem_0::WriteRq
-		1'bx,1'bx,1'bx,1'bx,1'b1,1'b0, // mem_0::MuxData
-		1'b0,1'b0,1'bx,1'bx,1'b0,1'b1, // mem_0::MuxAddr
-		1'bx,1'b0,1'b1, // io_top_3::RegOutConfig
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // mem_1::MuxData
+		1'b1,1'b0,1'b0,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // mem_1::MuxAddr
+		1'b0,1'b0,1'b0, // mem_0::WriteRq
+		1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx,1'bx, // mem_0::MuxData
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'bx,1'bx,1'bx, // mem_0::MuxAddr
+		1'bx,1'bx,1'bx, // io_top_4::RegOutConfig
+		1'bx,1'bx,1'bx, // io_top_4::RegInConfig
+		1'b0,1'b0,1'b0, // io_top_4::IOPinConfig
+		1'bx,1'bx,1'bx, // io_top_3::RegOutConfig
 		1'bx,1'bx,1'bx, // io_top_3::RegInConfig
 		1'b0,1'b0,1'b0, // io_top_3::IOPinConfig
 		1'bx,1'bx,1'bx, // io_top_2::RegOutConfig
 		1'bx,1'bx,1'bx, // io_top_2::RegInConfig
 		1'b0,1'b0,1'b0, // io_top_2::IOPinConfig
-		1'bx,1'bx,1'bx, // io_top_1::RegOutConfig
+		1'bx,1'b0,1'b1, // io_top_1::RegOutConfig
 		1'bx,1'bx,1'bx, // io_top_1::RegInConfig
 		1'b0,1'b0,1'b0, // io_top_1::IOPinConfig
 		1'bx,1'bx,1'bx, // io_top_0::RegOutConfig
 		1'bx,1'bx,1'bx, // io_top_0::RegInConfig
 		1'b0,1'b0,1'b0, // io_top_0::IOPinConfig
+		1'bx,1'bx,1'bx, // io_right_4::RegOutConfig
+		1'bx,1'bx,1'bx, // io_right_4::RegInConfig
+		1'b0,1'b0,1'b0, // io_right_4::IOPinConfig
 		1'bx,1'bx,1'bx, // io_right_3::RegOutConfig
 		1'bx,1'bx,1'bx, // io_right_3::RegInConfig
 		1'b0,1'b0,1'b0, // io_right_3::IOPinConfig
@@ -349,6 +529,9 @@ module CGRA_configurator(
 		1'bx,1'bx,1'bx, // io_right_0::RegOutConfig
 		1'bx,1'bx,1'bx, // io_right_0::RegInConfig
 		1'b0,1'b0,1'b0, // io_right_0::IOPinConfig
+		1'bx,1'bx,1'bx, // io_bottom_4::RegOutConfig
+		1'bx,1'bx,1'bx, // io_bottom_4::RegInConfig
+		1'b0,1'b0,1'b0, // io_bottom_4::IOPinConfig
 		1'bx,1'bx,1'bx, // io_bottom_3::RegOutConfig
 		1'bx,1'bx,1'bx, // io_bottom_3::RegInConfig
 		1'b0,1'b0,1'b0, // io_bottom_3::IOPinConfig
@@ -364,7 +547,7 @@ module CGRA_configurator(
 		1'b0,1'b1 // CGRA::ContextsUsed
 	};
 
-	reg [31:0] next_pos = 0;
+	reg [31:0] next_pos;
 	always @(posedge clock) begin
 		if (sync_reset) begin
 			next_pos <= 0;

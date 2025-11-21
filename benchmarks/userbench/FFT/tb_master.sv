@@ -10,7 +10,9 @@ module ram_simulation (
     // Port 2
     input [31:0] addr2, input [31:0] data_in2, input w_rq2, output reg [31:0] data_out2,
     // Port 3
-    input [31:0] addr3, input [31:0] data_in3, input w_rq3, output reg [31:0] data_out3
+    input [31:0] addr3, input [31:0] data_in3, input w_rq3, output reg [31:0] data_out3,
+	// Port 4
+    input [31:0] addr4, input [31:0] data_in4, input w_rq4, output reg [31:0] data_out4
 );
 
 
@@ -47,17 +49,18 @@ module ram_simulation (
       
         $display("[%t] RAM_SIM: Memory cleared. storage[0] = %h", $time, storage[0]);
 
+        #1;
 
         storage[0] = 32'd16;
 
 
         $display("[%t] RAM_SIM: N written. storage[0] = %d (hex: %h)", $time, storage[0], storage[0]);
 
-        storage[32'h280] = 32'h00010000; 
+        storage[32'h280] = 32'h7FFF0000; 
 
 
         $display("[%t] RAM_SIM: Input data written. storage[0x280] = %h", $time, storage[32'h280]);
-	$display("[%t] RAM_SIM: Input data written. storage[0x281] = %h", $time, storage[32'h281]);
+
         
 
         storage[32'h300 + 1] = W2_0; // m=2, index=1
@@ -104,6 +107,10 @@ module ram_simulation (
         // Port 3 logic
         if (w_rq3) storage[addr3 >> 2] <= data_in3;
         data_out3 <= storage[addr3 >> 2];
+
+		// Port 4 logic
+        if (w_rq4) storage[addr4 >> 2] <= data_in4;
+        data_out4 <= storage[addr4 >> 2];
     end
 
 endmodule
@@ -134,13 +141,24 @@ module tb_master;
 	logic configurator_done;
 
 	
-	wire [31:0] ext_io_top_0_out, ext_io_top_1_out, ext_io_top_2_out, ext_io_top_3_out;
-	wire [31:0] ext_io_bottom_0_out, ext_io_bottom_1_out, ext_io_bottom_2_out, ext_io_bottom_3_out;
-	wire [31:0] ext_io_right_0_out, ext_io_right_1_out, ext_io_right_2_out, ext_io_right_3_out;
-    
-	wire [31:0] ext_io_top_0_in, ext_io_top_1_in, ext_io_top_2_in, ext_io_top_3_in;
-	wire [31:0] ext_io_bottom_0_in, ext_io_bottom_1_in, ext_io_bottom_2_in, ext_io_bottom_3_in;
-	wire [31:0] ext_io_right_0_in, ext_io_right_1_in, ext_io_right_2_in, ext_io_right_3_in;
+	reg [31:0] i_val;
+	
+	wire [31:0] ext_io_top_0_out, ext_io_top_1_out, ext_io_top_2_out, ext_io_top_3_out,ext_io_top_4_out;
+	wire [31:0] ext_io_bottom_0_out, ext_io_bottom_1_out, ext_io_bottom_2_out, ext_io_bottom_3_out,ext_io_bottom_4_out;
+	wire [31:0] ext_io_right_0_out, ext_io_right_1_out, ext_io_right_2_out, ext_io_right_3_out,ext_io_right_4_out;
+
+        wire [31:0] ext_io_top_0_in, ext_io_top_1_in, ext_io_top_2_in, ext_io_top_3_in, ext_io_top_4_in;
+	wire [31:0] ext_io_bottom_0_in, ext_io_bottom_1_in, ext_io_bottom_2_in, ext_io_bottom_3_in, ext_io_bottom_4_in;
+	wire [31:0] ext_io_right_0_in, ext_io_right_1_in, ext_io_right_2_in, ext_io_right_3_in, ext_io_right_4_in;
+	
+	
+	assign ext_io_top_1_in = i_val;
+	assign ext_io_top_0_in = 32'b0;
+	assign ext_io_top_2_in = 32'b0;
+	assign ext_io_top_3_in = 32'b0;
+	assign ext_io_top_4_in = 32'b0;
+
+
 
 	wire [31:0] ram_data_in;
 	wire [31:0] ram_data_out;
@@ -164,6 +182,10 @@ module tb_master;
 	wire [31:0] mem_3_mem_unit_data_in_to_ram;
 	wire [31:0] mem_3_mem_unit_data_out_from_ram;
 	wire mem_3_mem_unit_w_rq_to_ram;
+	wire [31:0] mem_4_mem_unit_addr_to_ram;
+	wire [31:0] mem_4_mem_unit_data_in_to_ram;
+	wire [31:0] mem_4_mem_unit_data_out_from_ram;
+	wire mem_4_mem_unit_w_rq_to_ram;
 
 	cgra_U0 DUT(
 		.Config_Clock(Config_Clock),
@@ -180,16 +202,19 @@ module tb_master;
         .io_top_1_IOPin_bidir_in(ext_io_top_1_in), .io_top_1_IOPin_bidir_out(ext_io_top_1_out),
         .io_top_2_IOPin_bidir_in(ext_io_top_2_in), .io_top_2_IOPin_bidir_out(ext_io_top_2_out),
         .io_top_3_IOPin_bidir_in(ext_io_top_3_in), .io_top_3_IOPin_bidir_out(ext_io_top_3_out),
+		.io_top_4_IOPin_bidir_in(ext_io_top_4_in), .io_top_4_IOPin_bidir_out(ext_io_top_4_out),
 
         .io_bottom_0_IOPin_bidir_in(ext_io_bottom_0_in), .io_bottom_0_IOPin_bidir_out(ext_io_bottom_0_out),
         .io_bottom_1_IOPin_bidir_in(ext_io_bottom_1_in), .io_bottom_1_IOPin_bidir_out(ext_io_bottom_1_out),
         .io_bottom_2_IOPin_bidir_in(ext_io_bottom_2_in), .io_bottom_2_IOPin_bidir_out(ext_io_bottom_2_out),
         .io_bottom_3_IOPin_bidir_in(ext_io_bottom_3_in), .io_bottom_3_IOPin_bidir_out(ext_io_bottom_3_out),
+		.io_bottom_4_IOPin_bidir_in(ext_io_bottom_4_in), .io_bottom_4_IOPin_bidir_out(ext_io_bottom_4_out),
 
         .io_right_0_IOPin_bidir_in(ext_io_right_0_in), .io_right_0_IOPin_bidir_out(ext_io_right_0_out),
         .io_right_1_IOPin_bidir_in(ext_io_right_1_in), .io_right_1_IOPin_bidir_out(ext_io_right_1_out),
         .io_right_2_IOPin_bidir_in(ext_io_right_2_in), .io_right_2_IOPin_bidir_out(ext_io_right_2_out),
         .io_right_3_IOPin_bidir_in(ext_io_right_3_in), .io_right_3_IOPin_bidir_out(ext_io_right_3_out),
+		.io_right_4_IOPin_bidir_in(ext_io_right_4_in), .io_right_4_IOPin_bidir_out(ext_io_right_4_out),
 
 		// Memory Ports
 		.mem_0_mem_unit_addr_to_ram(mem_0_mem_unit_addr_to_ram),
@@ -207,7 +232,11 @@ module tb_master;
 		.mem_3_mem_unit_addr_to_ram(mem_3_mem_unit_addr_to_ram),
 		.mem_3_mem_unit_data_in_to_ram(mem_3_mem_unit_data_in_to_ram),
 		.mem_3_mem_unit_data_out_from_ram(mem_3_mem_unit_data_out_from_ram),
-		.mem_3_mem_unit_w_rq_to_ram(mem_3_mem_unit_w_rq_to_ram)
+		.mem_3_mem_unit_w_rq_to_ram(mem_3_mem_unit_w_rq_to_ram),
+		.mem_4_mem_unit_addr_to_ram(mem_4_mem_unit_addr_to_ram),
+		.mem_4_mem_unit_data_in_to_ram(mem_4_mem_unit_data_in_to_ram),
+		.mem_4_mem_unit_data_out_from_ram(mem_4_mem_unit_data_out_from_ram),
+		.mem_4_mem_unit_w_rq_to_ram(mem_4_mem_unit_w_rq_to_ram)
 	);
 
 	CGRA_configurator configurator(
@@ -240,7 +269,12 @@ module tb_master;
 		.addr3(mem_3_mem_unit_addr_to_ram),
 		.data_in3(mem_3_mem_unit_data_in_to_ram),
 		.data_out3(mem_3_mem_unit_data_out_from_ram),
-		.w_rq3(mem_3_mem_unit_w_rq_to_ram)
+		.w_rq3(mem_3_mem_unit_w_rq_to_ram),
+
+		.addr4(mem_4_mem_unit_addr_to_ram),
+		.data_in4(mem_4_mem_unit_data_in_to_ram),
+		.data_out4(mem_4_mem_unit_data_out_from_ram),
+		.w_rq4(mem_4_mem_unit_w_rq_to_ram)
 	);
 
 
@@ -252,14 +286,14 @@ module tb_master;
 		Config_Reset = 1;
 		CGRA_Reset = 0; 
 		CGRA_Enable = 0;
-
+		i_val = 0; 
 		DUT_clock = 0;
 
 		#1;
 		Config_Reset = 0;
 		configurator_reset = 0;
 		configurator_enable = 1;
-        	$display("[%t] --- Phase 1: Configuring CGRA ---", $time);
+        $display("[%t] --- Phase 1: Configuring CGRA ---", $time);
 
 		wait(configurator_done);
         
@@ -268,25 +302,49 @@ module tb_master;
 		Config_Clock_en = 0;
         	$display("[%t] --- Configuration Done ---", $time);
 		
-        	CGRA_Reset = 1;
+                CGRA_Reset = 1;
 		CGRA_Clock_en = 1;
 		CGRA_Enable = 1;
         
 		#1;
 		CGRA_Reset = 0; // Release CGRA reset
-        	$display("[%t] --- Phase 2: Running CGRA ---", $time);
+        $display("[%t] --- Phase 2: Running CGRA ---", $time);
 		$display("CGRA is now running. Please observe RAM contents in the waveform.");
 
 
 		
-		repeat (500) @(posedge (DUT_clock & CGRA_Clock_en));
+		begin
+			integer N = 16;
+			integer BlockSize, i, basedist;
+			
+			$display("[%t] --- Simulating FFT Loop Control for N=%d ---", $time, N);
 
-		$display("[%t] --- Simulation finished after 500 cycles. ---", $time);
-		$display("Please check the contents of ram.storage in your waveform viewer.");
+			// for (int BlockSize = 2; BlockSize <= N; BlockSize <<= 1)
+			for (BlockSize = 2; BlockSize <= N; BlockSize = BlockSize * 2) begin
+				basedist = BlockSize / 2;
+				$display("[%t] STAGE: BlockSize = %d, basedist = %d", $time, BlockSize, basedist);
+
+				// for (int i = 0; i < N; i += BlockSize)
+				for (i = 0; i < N; i = i + BlockSize) begin
+					@(posedge (DUT_clock & CGRA_Clock_en));
+					i_val <= i;
+                                        $display("[%t]   Providing i = %d to CGRA input1 (ext_io_top_1_in)", $time, i);
+
+                                        if (basedist > 1) begin
+
+						repeat (basedist) @(posedge (DUT_clock & CGRA_Clock_en));
+                                        end
+					$display("[%t]   CGRA kernel finished for i = %d", $time, i);
+				end
+			end
+			
+			$display("[%t] --- FFT Simulation Finished ---", $time);
+		end
+
+		#100; 
 		$finish;
-		// --- END OF MODIFIED PART ---
+		
 	end
-
 	always
 		#5 DUT_clock = !DUT_clock;
 
