@@ -121,231 +121,169 @@ endmodule
 
 module tb_master;
 
+    logic DUT_clock;
 
+    // 配置相关信号
+    logic Config_Clock_en;
+    logic Config_Clock;
+    logic Config_Reset;
+    assign Config_Clock = DUT_clock & Config_Clock_en;
 
-	logic DUT_clock;
+    logic ConfigIn;
+    logic ConfigOut;
+    logic configurator_enable;
+    logic configurator_reset;
+    logic configurator_done;
 
-	logic Config_Clock_en;
-	logic Config_Clock;
-	logic Config_Reset;
-	assign Config_Clock = DUT_clock & Config_Clock_en;
+    // CGRA 运行相关信号
+    logic CGRA_Clock_en;
+    logic CGRA_Reset;
+    logic CGRA_Enable;
 
-	logic ConfigIn;
-	logic ConfigOut;
-	logic CGRA_Clock_en;
-	logic CGRA_Reset;
-	logic CGRA_Enable;
+    // --- [修改点 1] 定义输入信号变量 ---
+    reg [31:0] i_val;           // 对应 input0 (变量 i)
+    reg [31:0] basedist_val;    // 对应 input1/2 (变量 basedist/limit)
+    
+    // IO 端口定义
+    wire [31:0] ext_io_top_0_out, ext_io_top_1_out, ext_io_top_2_out, ext_io_top_3_out, ext_io_top_4_out;
+    wire [31:0] ext_io_bottom_0_out, ext_io_bottom_1_out, ext_io_bottom_2_out, ext_io_bottom_3_out, ext_io_bottom_4_out;
+    wire [31:0] ext_io_right_0_out, ext_io_right_1_out, ext_io_right_2_out, ext_io_right_3_out, ext_io_right_4_out;
 
-	logic configurator_enable;
-	logic configurator_reset;
-	logic configurator_done;
+    wire [31:0] ext_io_top_0_in, ext_io_top_1_in, ext_io_top_2_in, ext_io_top_3_in, ext_io_top_4_in;
+    wire [31:0] ext_io_bottom_0_in, ext_io_bottom_1_in, ext_io_bottom_2_in, ext_io_bottom_3_in, ext_io_bottom_4_in;
+    wire [31:0] ext_io_right_0_in, ext_io_right_1_in, ext_io_right_2_in, ext_io_right_3_in, ext_io_right_4_in;
+    
+    // --- [修改点 2] 驱动 IO 端口 ---
+    // 假设 input0 (i) 映射到了 Top 1
+    assign ext_io_top_1_in = i_val;
+    
+    // 假设 input1 (basedist) 映射到了 Top 2 (根据具体 bitstream 调整)
+    // 这里我们将 basedist 同时驱动到 Top 2 和 Top 3 以防万一
+    assign ext_io_top_2_in = basedist_val;
+    assign ext_io_top_3_in = basedist_val;
 
-	
-	reg [31:0] i_val;
-	
-	wire [31:0] ext_io_top_0_out, ext_io_top_1_out, ext_io_top_2_out, ext_io_top_3_out,ext_io_top_4_out;
-	wire [31:0] ext_io_bottom_0_out, ext_io_bottom_1_out, ext_io_bottom_2_out, ext_io_bottom_3_out,ext_io_bottom_4_out;
-	wire [31:0] ext_io_right_0_out, ext_io_right_1_out, ext_io_right_2_out, ext_io_right_3_out,ext_io_right_4_out;
+    // 其他端口置 0
+    assign ext_io_top_0_in = 32'b0;
+    assign ext_io_top_4_in = 32'b0;
 
-        wire [31:0] ext_io_top_0_in, ext_io_top_1_in, ext_io_top_2_in, ext_io_top_3_in, ext_io_top_4_in;
-	wire [31:0] ext_io_bottom_0_in, ext_io_bottom_1_in, ext_io_bottom_2_in, ext_io_bottom_3_in, ext_io_bottom_4_in;
-	wire [31:0] ext_io_right_0_in, ext_io_right_1_in, ext_io_right_2_in, ext_io_right_3_in, ext_io_right_4_in;
-	
-	
-	assign ext_io_top_1_in = i_val;
-	assign ext_io_top_0_in = 32'b0;
-	assign ext_io_top_2_in = 32'b0;
-	assign ext_io_top_3_in = 32'b0;
-	assign ext_io_top_4_in = 32'b0;
+    // 底部和右侧端口置 0
+    assign ext_io_bottom_0_in = 0; assign ext_io_bottom_1_in = 0; assign ext_io_bottom_2_in = 0;
+    assign ext_io_bottom_3_in = 0; assign ext_io_bottom_4_in = 0;
+    assign ext_io_right_0_in = 0; assign ext_io_right_1_in = 0; assign ext_io_right_2_in = 0;
+    assign ext_io_right_3_in = 0; assign ext_io_right_4_in = 0;
 
+    // Memory Wires (保持不变)
+    wire [31:0] mem_0_mem_unit_addr_to_ram, mem_0_mem_unit_data_in_to_ram, mem_0_mem_unit_data_out_from_ram; wire mem_0_mem_unit_w_rq_to_ram;
+    wire [31:0] mem_1_mem_unit_addr_to_ram, mem_1_mem_unit_data_in_to_ram, mem_1_mem_unit_data_out_from_ram; wire mem_1_mem_unit_w_rq_to_ram;
+    wire [31:0] mem_2_mem_unit_addr_to_ram, mem_2_mem_unit_data_in_to_ram, mem_2_mem_unit_data_out_from_ram; wire mem_2_mem_unit_w_rq_to_ram;
+    wire [31:0] mem_3_mem_unit_addr_to_ram, mem_3_mem_unit_data_in_to_ram, mem_3_mem_unit_data_out_from_ram; wire mem_3_mem_unit_w_rq_to_ram;
+    wire [31:0] mem_4_mem_unit_addr_to_ram, mem_4_mem_unit_data_in_to_ram, mem_4_mem_unit_data_out_from_ram; wire mem_4_mem_unit_w_rq_to_ram;
 
-
-	wire [31:0] ram_data_in;
-	wire [31:0] ram_data_out;
-	wire [31:0] ram_address;
-	wire ram_w_rq;
-
-
-	wire [31:0] mem_0_mem_unit_addr_to_ram;
-	wire [31:0] mem_0_mem_unit_data_in_to_ram;
-	wire [31:0] mem_0_mem_unit_data_out_from_ram;
-	wire mem_0_mem_unit_w_rq_to_ram;
-	wire [31:0] mem_1_mem_unit_addr_to_ram;
-	wire [31:0] mem_1_mem_unit_data_in_to_ram;
-	wire [31:0] mem_1_mem_unit_data_out_from_ram;
-	wire mem_1_mem_unit_w_rq_to_ram;
-	wire [31:0] mem_2_mem_unit_addr_to_ram;
-	wire [31:0] mem_2_mem_unit_data_in_to_ram;
-	wire [31:0] mem_2_mem_unit_data_out_from_ram;
-	wire mem_2_mem_unit_w_rq_to_ram;
-	wire [31:0] mem_3_mem_unit_addr_to_ram;
-	wire [31:0] mem_3_mem_unit_data_in_to_ram;
-	wire [31:0] mem_3_mem_unit_data_out_from_ram;
-	wire mem_3_mem_unit_w_rq_to_ram;
-	wire [31:0] mem_4_mem_unit_addr_to_ram;
-	wire [31:0] mem_4_mem_unit_data_in_to_ram;
-	wire [31:0] mem_4_mem_unit_data_out_from_ram;
-	wire mem_4_mem_unit_w_rq_to_ram;
-
-	cgra_U0 DUT(
-		.Config_Clock(Config_Clock),
-		.Config_Reset(Config_Reset),
-		.ConfigIn(ConfigIn),
-		.ConfigOut(ConfigOut),
-
-		.CGRA_Clock(DUT_clock & CGRA_Clock_en),
-		.CGRA_Reset(CGRA_Reset),
-		.CGRA_Enable(CGRA_Enable),
-
-		// IO Ports
+    // DUT 实例化 (保持不变)
+    cgra_U0 DUT(
+        .Config_Clock(Config_Clock), .Config_Reset(Config_Reset), .ConfigIn(ConfigIn), .ConfigOut(ConfigOut),
+        .CGRA_Clock(DUT_clock & CGRA_Clock_en), .CGRA_Reset(CGRA_Reset), .CGRA_Enable(CGRA_Enable),
+        // IOs
         .io_top_0_IOPin_bidir_in(ext_io_top_0_in), .io_top_0_IOPin_bidir_out(ext_io_top_0_out),
         .io_top_1_IOPin_bidir_in(ext_io_top_1_in), .io_top_1_IOPin_bidir_out(ext_io_top_1_out),
         .io_top_2_IOPin_bidir_in(ext_io_top_2_in), .io_top_2_IOPin_bidir_out(ext_io_top_2_out),
         .io_top_3_IOPin_bidir_in(ext_io_top_3_in), .io_top_3_IOPin_bidir_out(ext_io_top_3_out),
-		.io_top_4_IOPin_bidir_in(ext_io_top_4_in), .io_top_4_IOPin_bidir_out(ext_io_top_4_out),
-
+        .io_top_4_IOPin_bidir_in(ext_io_top_4_in), .io_top_4_IOPin_bidir_out(ext_io_top_4_out),
+        // Bottom IOs
         .io_bottom_0_IOPin_bidir_in(ext_io_bottom_0_in), .io_bottom_0_IOPin_bidir_out(ext_io_bottom_0_out),
         .io_bottom_1_IOPin_bidir_in(ext_io_bottom_1_in), .io_bottom_1_IOPin_bidir_out(ext_io_bottom_1_out),
         .io_bottom_2_IOPin_bidir_in(ext_io_bottom_2_in), .io_bottom_2_IOPin_bidir_out(ext_io_bottom_2_out),
         .io_bottom_3_IOPin_bidir_in(ext_io_bottom_3_in), .io_bottom_3_IOPin_bidir_out(ext_io_bottom_3_out),
-		.io_bottom_4_IOPin_bidir_in(ext_io_bottom_4_in), .io_bottom_4_IOPin_bidir_out(ext_io_bottom_4_out),
-
+        .io_bottom_4_IOPin_bidir_in(ext_io_bottom_4_in), .io_bottom_4_IOPin_bidir_out(ext_io_bottom_4_out),
+        // Right IOs
         .io_right_0_IOPin_bidir_in(ext_io_right_0_in), .io_right_0_IOPin_bidir_out(ext_io_right_0_out),
         .io_right_1_IOPin_bidir_in(ext_io_right_1_in), .io_right_1_IOPin_bidir_out(ext_io_right_1_out),
         .io_right_2_IOPin_bidir_in(ext_io_right_2_in), .io_right_2_IOPin_bidir_out(ext_io_right_2_out),
         .io_right_3_IOPin_bidir_in(ext_io_right_3_in), .io_right_3_IOPin_bidir_out(ext_io_right_3_out),
-		.io_right_4_IOPin_bidir_in(ext_io_right_4_in), .io_right_4_IOPin_bidir_out(ext_io_right_4_out),
+        .io_right_4_IOPin_bidir_in(ext_io_right_4_in), .io_right_4_IOPin_bidir_out(ext_io_right_4_out),
+        // Memory Ports
+        .mem_0_mem_unit_addr_to_ram(mem_0_mem_unit_addr_to_ram), .mem_0_mem_unit_data_in_to_ram(mem_0_mem_unit_data_in_to_ram), .mem_0_mem_unit_data_out_from_ram(mem_0_mem_unit_data_out_from_ram), .mem_0_mem_unit_w_rq_to_ram(mem_0_mem_unit_w_rq_to_ram),
+        .mem_1_mem_unit_addr_to_ram(mem_1_mem_unit_addr_to_ram), .mem_1_mem_unit_data_in_to_ram(mem_1_mem_unit_data_in_to_ram), .mem_1_mem_unit_data_out_from_ram(mem_1_mem_unit_data_out_from_ram), .mem_1_mem_unit_w_rq_to_ram(mem_1_mem_unit_w_rq_to_ram),
+        .mem_2_mem_unit_addr_to_ram(mem_2_mem_unit_addr_to_ram), .mem_2_mem_unit_data_in_to_ram(mem_2_mem_unit_data_in_to_ram), .mem_2_mem_unit_data_out_from_ram(mem_2_mem_unit_data_out_from_ram), .mem_2_mem_unit_w_rq_to_ram(mem_2_mem_unit_w_rq_to_ram),
+        .mem_3_mem_unit_addr_to_ram(mem_3_mem_unit_addr_to_ram), .mem_3_mem_unit_data_in_to_ram(mem_3_mem_unit_data_in_to_ram), .mem_3_mem_unit_data_out_from_ram(mem_3_mem_unit_data_out_from_ram), .mem_3_mem_unit_w_rq_to_ram(mem_3_mem_unit_w_rq_to_ram),
+        .mem_4_mem_unit_addr_to_ram(mem_4_mem_unit_addr_to_ram), .mem_4_mem_unit_data_in_to_ram(mem_4_mem_unit_data_in_to_ram), .mem_4_mem_unit_data_out_from_ram(mem_4_mem_unit_data_out_from_ram), .mem_4_mem_unit_w_rq_to_ram(mem_4_mem_unit_w_rq_to_ram)
+    );
 
-		// Memory Ports
-		.mem_0_mem_unit_addr_to_ram(mem_0_mem_unit_addr_to_ram),
-		.mem_0_mem_unit_data_in_to_ram(mem_0_mem_unit_data_in_to_ram),
-		.mem_0_mem_unit_data_out_from_ram(mem_0_mem_unit_data_out_from_ram),
-		.mem_0_mem_unit_w_rq_to_ram(mem_0_mem_unit_w_rq_to_ram),
-		.mem_1_mem_unit_addr_to_ram(mem_1_mem_unit_addr_to_ram),
-		.mem_1_mem_unit_data_in_to_ram(mem_1_mem_unit_data_in_to_ram),
-		.mem_1_mem_unit_data_out_from_ram(mem_1_mem_unit_data_out_from_ram),
-		.mem_1_mem_unit_w_rq_to_ram(mem_1_mem_unit_w_rq_to_ram),
-		.mem_2_mem_unit_addr_to_ram(mem_2_mem_unit_addr_to_ram),
-		.mem_2_mem_unit_data_in_to_ram(mem_2_mem_unit_data_in_to_ram),
-		.mem_2_mem_unit_data_out_from_ram(mem_2_mem_unit_data_out_from_ram),
-		.mem_2_mem_unit_w_rq_to_ram(mem_2_mem_unit_w_rq_to_ram),
-		.mem_3_mem_unit_addr_to_ram(mem_3_mem_unit_addr_to_ram),
-		.mem_3_mem_unit_data_in_to_ram(mem_3_mem_unit_data_in_to_ram),
-		.mem_3_mem_unit_data_out_from_ram(mem_3_mem_unit_data_out_from_ram),
-		.mem_3_mem_unit_w_rq_to_ram(mem_3_mem_unit_w_rq_to_ram),
-		.mem_4_mem_unit_addr_to_ram(mem_4_mem_unit_addr_to_ram),
-		.mem_4_mem_unit_data_in_to_ram(mem_4_mem_unit_data_in_to_ram),
-		.mem_4_mem_unit_data_out_from_ram(mem_4_mem_unit_data_out_from_ram),
-		.mem_4_mem_unit_w_rq_to_ram(mem_4_mem_unit_w_rq_to_ram)
-	);
+    CGRA_configurator configurator(
+        .clock(Config_Clock), .enable(configurator_enable), .sync_reset(configurator_reset),
+        .bitstream(ConfigIn), .done(configurator_done)
+    );
 
-	CGRA_configurator configurator(
-		.clock(Config_Clock),
-		.enable(configurator_enable),
-		.sync_reset(configurator_reset),
+    ram_simulation ram(
+        .clock(DUT_clock & CGRA_Clock_en),
+        .addr0(mem_0_mem_unit_addr_to_ram), .data_in0(mem_0_mem_unit_data_in_to_ram), .data_out0(mem_0_mem_unit_data_out_from_ram), .w_rq0(mem_0_mem_unit_w_rq_to_ram),
+        .addr1(mem_1_mem_unit_addr_to_ram), .data_in1(mem_1_mem_unit_data_in_to_ram), .data_out1(mem_1_mem_unit_data_out_from_ram), .w_rq1(mem_1_mem_unit_w_rq_to_ram),
+        .addr2(mem_2_mem_unit_addr_to_ram), .data_in2(mem_2_mem_unit_data_in_to_ram), .data_out2(mem_2_mem_unit_data_out_from_ram), .w_rq2(mem_2_mem_unit_w_rq_to_ram),
+        .addr3(mem_3_mem_unit_addr_to_ram), .data_in3(mem_3_mem_unit_data_in_to_ram), .data_out3(mem_3_mem_unit_data_out_from_ram), .w_rq3(mem_3_mem_unit_w_rq_to_ram),
+        .addr4(mem_4_mem_unit_addr_to_ram), .data_in4(mem_4_mem_unit_data_in_to_ram), .data_out4(mem_4_mem_unit_data_out_from_ram), .w_rq4(mem_4_mem_unit_w_rq_to_ram)
+    );
 
-		.bitstream(ConfigIn),
-		.done(configurator_done)
-	);
+    initial begin
+        // 1. 初始化
+        Config_Clock_en = 1; CGRA_Clock_en = 0; configurator_reset = 1; Config_Reset = 1;
+        CGRA_Reset = 0; CGRA_Enable = 0; i_val = 0; basedist_val = 0; DUT_clock = 0;
 
-	ram_simulation ram(
-		.clock(DUT_clock & CGRA_Clock_en),
-
-		.addr0(mem_0_mem_unit_addr_to_ram),
-		.data_in0(mem_0_mem_unit_data_in_to_ram),
-		.data_out0(mem_0_mem_unit_data_out_from_ram),
-		.w_rq0(mem_0_mem_unit_w_rq_to_ram),
-
-		.addr1(mem_1_mem_unit_addr_to_ram),
-		.data_in1(mem_1_mem_unit_data_in_to_ram),
-		.data_out1(mem_1_mem_unit_data_out_from_ram),
-		.w_rq1(mem_1_mem_unit_w_rq_to_ram),
-
-		.addr2(mem_2_mem_unit_addr_to_ram),
-		.data_in2(mem_2_mem_unit_data_in_to_ram),
-		.data_out2(mem_2_mem_unit_data_out_from_ram),
-		.w_rq2(mem_2_mem_unit_w_rq_to_ram),
-
-		.addr3(mem_3_mem_unit_addr_to_ram),
-		.data_in3(mem_3_mem_unit_data_in_to_ram),
-		.data_out3(mem_3_mem_unit_data_out_from_ram),
-		.w_rq3(mem_3_mem_unit_w_rq_to_ram),
-
-		.addr4(mem_4_mem_unit_addr_to_ram),
-		.data_in4(mem_4_mem_unit_data_in_to_ram),
-		.data_out4(mem_4_mem_unit_data_out_from_ram),
-		.w_rq4(mem_4_mem_unit_w_rq_to_ram)
-	);
-
-
-
-	initial begin
-		Config_Clock_en = 1;
-		CGRA_Clock_en = 0;
-		configurator_reset = 1;
-		Config_Reset = 1;
-		CGRA_Reset = 0; 
-		CGRA_Enable = 0;
-		i_val = 0; 
-		DUT_clock = 0;
-
-		#1;
-		Config_Reset = 0;
-		configurator_reset = 0;
-		configurator_enable = 1;
+        #1;
+        Config_Reset = 0; configurator_reset = 0; configurator_enable = 1;
         $display("[%t] --- Phase 1: Configuring CGRA ---", $time);
 
-		wait(configurator_done);
+        wait(configurator_done);
         
-		
-		configurator_enable = 0;
-		Config_Clock_en = 0;
-        	$display("[%t] --- Configuration Done ---", $time);
-		
-                CGRA_Reset = 1;
-		CGRA_Clock_en = 1;
-		CGRA_Enable = 1;
+        configurator_enable = 0; Config_Clock_en = 0;
+        $display("[%t] --- Configuration Done ---", $time);
         
-		#1;
-		CGRA_Reset = 0; // Release CGRA reset
+        CGRA_Reset = 1; CGRA_Clock_en = 1; CGRA_Enable = 1;
+        
+        #1;
+        CGRA_Reset = 0; // 释放 CGRA 复位
         $display("[%t] --- Phase 2: Running CGRA ---", $time);
-		$display("CGRA is now running. Please observe RAM contents in the waveform.");
 
+        // 2. 运行 FFT 控制逻辑
+        begin
+            integer N = 16;
+            integer BlockSize, i, basedist;
+            
+            // --- [修改点 3] 关键时序参数 ---
+            integer II = 3;  // Context 数量，决定了硬件处理一个点需要多少周期
+            
+            $display("[%t] --- Simulating FFT Loop Control for N=%d ---", $time, N);
 
-		
-		begin
-			integer N = 16;
-			integer BlockSize, i, basedist;
-			
-			$display("[%t] --- Simulating FFT Loop Control for N=%d ---", $time, N);
+            for (BlockSize = 2; BlockSize <= N; BlockSize = BlockSize * 2) begin
+                basedist = BlockSize / 2;
+                $display("[%t] STAGE: BlockSize = %d, basedist = %d", $time, BlockSize, basedist);
 
-			// for (int BlockSize = 2; BlockSize <= N; BlockSize <<= 1)
-			for (BlockSize = 2; BlockSize <= N; BlockSize = BlockSize * 2) begin
-				basedist = BlockSize / 2;
-				$display("[%t] STAGE: BlockSize = %d, basedist = %d", $time, BlockSize, basedist);
+                for (i = 0; i < N; i = i + BlockSize) begin
+                    // 等待时钟上升沿，更新输入
+                    @(posedge (DUT_clock & CGRA_Clock_en));
+                    
+                    // --- [修改点 4] 同时提供 i 和 basedist ---
+                    i_val <= i;             // Input 0
+                    basedist_val <= basedist; // Input 1 / Limit
+                    
+                    $display("[%t]   Loop Start: i = %d, basedist = %d", $time, i, basedist);
 
-				// for (int i = 0; i < N; i += BlockSize)
-				for (i = 0; i < N; i = i + BlockSize) begin
-					@(posedge (DUT_clock & CGRA_Clock_en));
-					i_val <= i;
-                                        $display("[%t]   Providing i = %d to CGRA input1 (ext_io_top_1_in)", $time, i);
+                    if (basedist >= 1) begin
+                        // --- [修改点 5] 等待硬件循环结束 ---
+                        // 硬件需要 (basedist * II) 个周期来处理完这批数据
+                        repeat (basedist * II) @(posedge (DUT_clock & CGRA_Clock_en));
+                    end
+                    
+                    $display("[%t]   Loop Finished for i = %d", $time, i);
+                end
+            end
+            
+            $display("[%t] --- FFT Simulation Finished ---", $time);
+        end
 
-                                        if (basedist > 1) begin
+        #100; 
+        $finish;
+    end
 
-						repeat (basedist) @(posedge (DUT_clock & CGRA_Clock_en));
-                                        end
-					$display("[%t]   CGRA kernel finished for i = %d", $time, i);
-				end
-			end
-			
-			$display("[%t] --- FFT Simulation Finished ---", $time);
-		end
-
-		#100; 
-		$finish;
-		
-	end
-	always
-		#5 DUT_clock = !DUT_clock;
+    always #5 DUT_clock = !DUT_clock;
 
 endmodule
