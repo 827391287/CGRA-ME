@@ -212,7 +212,7 @@ loop_bss_done:
 
 	/* 6. 清零所有通用寄存器 (避免 X 态传播) */
 	addi x1, zero, 0
-	addi x2, zero, 0
+	//addi x2, zero, 0
 	/* addi x3, zero, 0 */ /* gp 已经初始化，不要清零 */
 	addi x4, zero, 0
 	addi x5, zero, 0

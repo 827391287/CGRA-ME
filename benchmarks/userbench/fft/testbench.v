@@ -9,28 +9,28 @@ module CGRA_configurator(
 
     localparam TOTAL_NUM_BITS = 5821;
 	reg [0:TOTAL_NUM_BITS-1] storage = {
-		1'bx,1'bx,1'bx, // crossbar::Mux6config
-		1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b1,1'b0,1'b1, // crossbar::Mux6config
+		1'b0,1'b0,1'b1, // crossbar::Mux5config
+		1'b1,1'b0,1'b1, // crossbar::Mux4config
 		1'bx,1'bx,1'bx, // crossbar::Mux3config
 		1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c7_r7::ConstVal
-		1'bx, // pe_c7_r7::RegBConfig
-		1'bx, // pe_c7_r7::RegAConfig
-		1'bx, // pe_c7_r7::Reg4config
+		1'b1,1'b1,1'b1, // crossbar::Mux0config
+		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c7_r7::ConstVal
+		1'b1, // pe_c7_r7::RegBConfig
+		1'b1, // pe_c7_r7::RegAConfig
+		1'b1, // pe_c7_r7::Reg4config
 		1'bx, // pe_c7_r7::Reg3config
 		1'bx, // pe_c7_r7::Reg2config
 		1'bx, // pe_c7_r7::Reg1config
 		1'bx, // pe_c7_r7::Reg0config
 		1'bx, // pe_c7_r7::RESConfig
-		1'bx, // pe_c7_r7::Mux4config
+		1'b1, // pe_c7_r7::Mux4config
 		1'bx, // pe_c7_r7::Mux3config
 		1'bx, // pe_c7_r7::Mux2config
 		1'bx, // pe_c7_r7::Mux1config
 		1'bx, // pe_c7_r7::Mux0config
-		1'bx,1'bx,1'bx,1'bx, // pe_c7_r7::ALUconfig
+		1'b0,1'b0,1'b0,1'b0, // pe_c7_r7::ALUconfig
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
@@ -38,7 +38,7 @@ module CGRA_configurator(
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux0config
 		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c7_r6::ConstVal
 		1'bx, // pe_c7_r6::RegBConfig
 		1'bx, // pe_c7_r6::RegAConfig
@@ -52,14 +52,14 @@ module CGRA_configurator(
 		1'bx, // pe_c7_r6::Mux7config
 		1'bx, // pe_c7_r6::Mux4config
 		1'bx, // pe_c7_r6::Mux3config
-		1'bx, // pe_c7_r6::Mux2config
+		1'b0, // pe_c7_r6::Mux2config
 		1'bx, // pe_c7_r6::Mux1config
 		1'bx, // pe_c7_r6::Mux0config
 		1'bx,1'bx,1'bx,1'bx, // pe_c7_r6::ALUconfig
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux4config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
@@ -77,7 +77,7 @@ module CGRA_configurator(
 		1'bx, // pe_c7_r5::Mux7config
 		1'bx, // pe_c7_r5::Mux4config
 		1'bx, // pe_c7_r5::Mux3config
-		1'bx, // pe_c7_r5::Mux2config
+		1'b0, // pe_c7_r5::Mux2config
 		1'bx, // pe_c7_r5::Mux1config
 		1'bx, // pe_c7_r5::Mux0config
 		1'bx,1'bx,1'bx,1'bx, // pe_c7_r5::ALUconfig
@@ -114,7 +114,7 @@ module CGRA_configurator(
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c7_r3::ConstVal
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c7_r3::ConstVal
 		1'bx, // pe_c7_r3::RegBConfig
 		1'bx, // pe_c7_r3::RegAConfig
 		1'bx, // pe_c7_r3::Reg7config
@@ -184,11 +184,11 @@ module CGRA_configurator(
 		1'bx,1'bx,1'bx, // crossbar::Mux6config
 		1'bx,1'bx,1'bx, // crossbar::Mux5config
 		1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'b1,1'b1,1'b1, // crossbar::Mux3config
+		1'bx,1'bx,1'bx, // crossbar::Mux3config
 		1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c7_r0::ConstVal
+		1'b1,1'b1,1'b1,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c7_r0::ConstVal
 		1'bx, // pe_c7_r0::RegBConfig
 		1'bx, // pe_c7_r0::RegAConfig
 		1'bx, // pe_c7_r0::Reg7config
@@ -231,9 +231,9 @@ module CGRA_configurator(
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux8config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
+		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux4config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
@@ -245,23 +245,23 @@ module CGRA_configurator(
 		1'bx, // pe_c6_r6::Reg6config
 		1'bx, // pe_c6_r6::Reg5config
 		1'bx, // pe_c6_r6::Reg4config
-		1'bx, // pe_c6_r6::Reg3config
+		1'b1, // pe_c6_r6::Reg3config
 		1'bx, // pe_c6_r6::Reg2config
 		1'bx, // pe_c6_r6::Reg1config
 		1'bx, // pe_c6_r6::Reg0config
 		1'bx, // pe_c6_r6::RESConfig
 		1'bx, // pe_c6_r6::Mux7config
-		1'bx, // pe_c6_r6::Mux6config
+		1'b0, // pe_c6_r6::Mux6config
 		1'bx, // pe_c6_r6::Mux5config
 		1'bx, // pe_c6_r6::Mux4config
-		1'bx, // pe_c6_r6::Mux3config
+		1'b1, // pe_c6_r6::Mux3config
 		1'bx, // pe_c6_r6::Mux2config
 		1'bx, // pe_c6_r6::Mux1config
 		1'bx, // pe_c6_r6::Mux0config
 		1'bx,1'bx,1'bx,1'bx, // pe_c6_r6::ALUconfig
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux8config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
+		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
@@ -269,7 +269,7 @@ module CGRA_configurator(
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c6_r5::ConstVal
+		1'b1,1'b1,1'b1,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c6_r5::ConstVal
 		1'bx, // pe_c6_r5::RegBConfig
 		1'bx, // pe_c6_r5::RegAConfig
 		1'bx, // pe_c6_r5::Reg7config
@@ -288,16 +288,16 @@ module CGRA_configurator(
 		1'bx, // pe_c6_r5::Mux3config
 		1'bx, // pe_c6_r5::Mux2config
 		1'bx, // pe_c6_r5::Mux1config
-		1'bx, // pe_c6_r5::Mux0config
+		1'b0, // pe_c6_r5::Mux0config
 		1'bx,1'bx,1'bx,1'bx, // pe_c6_r5::ALUconfig
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux8config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux4config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
 		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c6_r4::ConstVal
@@ -313,9 +313,9 @@ module CGRA_configurator(
 		1'bx, // pe_c6_r4::Reg0config
 		1'bx, // pe_c6_r4::RESConfig
 		1'bx, // pe_c6_r4::Mux7config
-		1'bx, // pe_c6_r4::Mux6config
+		1'b0, // pe_c6_r4::Mux6config
 		1'bx, // pe_c6_r4::Mux5config
-		1'bx, // pe_c6_r4::Mux4config
+		1'b0, // pe_c6_r4::Mux4config
 		1'bx, // pe_c6_r4::Mux3config
 		1'bx, // pe_c6_r4::Mux2config
 		1'bx, // pe_c6_r4::Mux1config
@@ -323,7 +323,7 @@ module CGRA_configurator(
 		1'bx,1'bx,1'bx,1'bx, // pe_c6_r4::ALUconfig
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux8config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
+		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
@@ -331,7 +331,7 @@ module CGRA_configurator(
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c6_r3::ConstVal
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c6_r3::ConstVal
 		1'bx, // pe_c6_r3::RegBConfig
 		1'bx, // pe_c6_r3::RegAConfig
 		1'bx, // pe_c6_r3::Reg7config
@@ -350,19 +350,19 @@ module CGRA_configurator(
 		1'bx, // pe_c6_r3::Mux3config
 		1'bx, // pe_c6_r3::Mux2config
 		1'bx, // pe_c6_r3::Mux1config
-		1'bx, // pe_c6_r3::Mux0config
+		1'b0, // pe_c6_r3::Mux0config
 		1'bx,1'bx,1'bx,1'bx, // pe_c6_r3::ALUconfig
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux8config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
+		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux3config
+		1'b0,1'b1,1'b0,1'b1, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c6_r2::ConstVal
+		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux0config
+		1'b1,1'b1,1'b1,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c6_r2::ConstVal
 		1'bx, // pe_c6_r2::RegBConfig
 		1'bx, // pe_c6_r2::RegAConfig
 		1'bx, // pe_c6_r2::Reg7config
@@ -374,26 +374,26 @@ module CGRA_configurator(
 		1'bx, // pe_c6_r2::Reg1config
 		1'bx, // pe_c6_r2::Reg0config
 		1'bx, // pe_c6_r2::RESConfig
-		1'bx, // pe_c6_r2::Mux7config
+		1'b0, // pe_c6_r2::Mux7config
 		1'bx, // pe_c6_r2::Mux6config
 		1'bx, // pe_c6_r2::Mux5config
 		1'bx, // pe_c6_r2::Mux4config
-		1'bx, // pe_c6_r2::Mux3config
+		1'b0, // pe_c6_r2::Mux3config
 		1'bx, // pe_c6_r2::Mux2config
 		1'bx, // pe_c6_r2::Mux1config
-		1'bx, // pe_c6_r2::Mux0config
+		1'b0, // pe_c6_r2::Mux0config
 		1'bx,1'bx,1'bx,1'bx, // pe_c6_r2::ALUconfig
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux8config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux4config
+		1'b0,1'b1,1'b0,1'b1, // crossbar::Mux3config
+		1'b0,1'b1,1'b0,1'b1, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c6_r1::ConstVal
+		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c6_r1::ConstVal
 		1'bx, // pe_c6_r1::RegBConfig
 		1'bx, // pe_c6_r1::RegAConfig
 		1'bx, // pe_c6_r1::Reg7config
@@ -410,7 +410,7 @@ module CGRA_configurator(
 		1'bx, // pe_c6_r1::Mux5config
 		1'bx, // pe_c6_r1::Mux4config
 		1'bx, // pe_c6_r1::Mux3config
-		1'bx, // pe_c6_r1::Mux2config
+		1'b0, // pe_c6_r1::Mux2config
 		1'bx, // pe_c6_r1::Mux1config
 		1'bx, // pe_c6_r1::Mux0config
 		1'bx,1'bx,1'bx,1'bx, // pe_c6_r1::ALUconfig
@@ -418,7 +418,7 @@ module CGRA_configurator(
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
@@ -436,110 +436,110 @@ module CGRA_configurator(
 		1'bx, // pe_c6_r0::Mux6config
 		1'bx, // pe_c6_r0::Mux3config
 		1'bx, // pe_c6_r0::Mux2config
-		1'b0, // pe_c6_r0::Mux1config
+		1'bx, // pe_c6_r0::Mux1config
 		1'bx, // pe_c6_r0::Mux0config
 		1'bx,1'bx,1'bx,1'bx, // pe_c6_r0::ALUconfig
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux7config
+		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c5_r7::ConstVal
-		1'bx, // pe_c5_r7::RegBConfig
-		1'bx, // pe_c5_r7::RegAConfig
+		1'b1,1'b1,1'b1,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c5_r7::ConstVal
+		1'b1, // pe_c5_r7::RegBConfig
+		1'b1, // pe_c5_r7::RegAConfig
 		1'bx, // pe_c5_r7::Reg5config
-		1'bx, // pe_c5_r7::Reg4config
+		1'b1, // pe_c5_r7::Reg4config
 		1'bx, // pe_c5_r7::Reg3config
 		1'bx, // pe_c5_r7::Reg2config
 		1'bx, // pe_c5_r7::Reg1config
 		1'bx, // pe_c5_r7::Reg0config
-		1'bx, // pe_c5_r7::RESConfig
+		1'b1, // pe_c5_r7::RESConfig
 		1'bx, // pe_c5_r7::Mux5config
-		1'bx, // pe_c5_r7::Mux4config
+		1'b1, // pe_c5_r7::Mux4config
 		1'bx, // pe_c5_r7::Mux3config
 		1'bx, // pe_c5_r7::Mux2config
 		1'bx, // pe_c5_r7::Mux1config
-		1'bx, // pe_c5_r7::Mux0config
-		1'bx,1'bx,1'bx,1'bx, // pe_c5_r7::ALUconfig
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux8config
+		1'b0, // pe_c5_r7::Mux0config
+		1'b0,1'b0,1'b0,1'b0, // pe_c5_r7::ALUconfig
+		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux9config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux8config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux3config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux2config
+		1'b0,1'b1,1'b0,1'b1, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c5_r6::ConstVal
-		1'bx, // pe_c5_r6::RegBConfig
-		1'bx, // pe_c5_r6::RegAConfig
+		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c5_r6::ConstVal
+		1'b1, // pe_c5_r6::RegBConfig
+		1'b1, // pe_c5_r6::RegAConfig
 		1'bx, // pe_c5_r6::Reg7config
 		1'bx, // pe_c5_r6::Reg6config
 		1'bx, // pe_c5_r6::Reg5config
-		1'bx, // pe_c5_r6::Reg4config
+		1'b1, // pe_c5_r6::Reg4config
 		1'bx, // pe_c5_r6::Reg3config
 		1'bx, // pe_c5_r6::Reg2config
 		1'bx, // pe_c5_r6::Reg1config
-		1'bx, // pe_c5_r6::Reg0config
-		1'bx, // pe_c5_r6::RESConfig
+		1'b1, // pe_c5_r6::Reg0config
+		1'b1, // pe_c5_r6::RESConfig
 		1'bx, // pe_c5_r6::Mux7config
 		1'bx, // pe_c5_r6::Mux6config
-		1'bx, // pe_c5_r6::Mux5config
-		1'bx, // pe_c5_r6::Mux4config
+		1'b0, // pe_c5_r6::Mux5config
+		1'b1, // pe_c5_r6::Mux4config
 		1'bx, // pe_c5_r6::Mux3config
 		1'bx, // pe_c5_r6::Mux2config
 		1'bx, // pe_c5_r6::Mux1config
-		1'bx, // pe_c5_r6::Mux0config
-		1'bx,1'bx,1'bx,1'bx, // pe_c5_r6::ALUconfig
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux8config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
+		1'b1, // pe_c5_r6::Mux0config
+		1'b0,1'b0,1'b0,1'b0, // pe_c5_r6::ALUconfig
+		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux9config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux8config
+		1'b0,1'b1,1'b0,1'b1, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux4config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c5_r5::ConstVal
-		1'bx, // pe_c5_r5::RegBConfig
-		1'bx, // pe_c5_r5::RegAConfig
+		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux0config
+		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c5_r5::ConstVal
+		1'b1, // pe_c5_r5::RegBConfig
+		1'b1, // pe_c5_r5::RegAConfig
 		1'bx, // pe_c5_r5::Reg7config
 		1'bx, // pe_c5_r5::Reg6config
 		1'bx, // pe_c5_r5::Reg5config
-		1'bx, // pe_c5_r5::Reg4config
+		1'b1, // pe_c5_r5::Reg4config
 		1'bx, // pe_c5_r5::Reg3config
 		1'bx, // pe_c5_r5::Reg2config
 		1'bx, // pe_c5_r5::Reg1config
-		1'bx, // pe_c5_r5::Reg0config
-		1'bx, // pe_c5_r5::RESConfig
+		1'b1, // pe_c5_r5::Reg0config
+		1'b1, // pe_c5_r5::RESConfig
 		1'bx, // pe_c5_r5::Mux7config
-		1'bx, // pe_c5_r5::Mux6config
+		1'b0, // pe_c5_r5::Mux6config
 		1'bx, // pe_c5_r5::Mux5config
-		1'bx, // pe_c5_r5::Mux4config
+		1'b1, // pe_c5_r5::Mux4config
 		1'bx, // pe_c5_r5::Mux3config
 		1'bx, // pe_c5_r5::Mux2config
 		1'bx, // pe_c5_r5::Mux1config
-		1'bx, // pe_c5_r5::Mux0config
-		1'bx,1'bx,1'bx,1'bx, // pe_c5_r5::ALUconfig
+		1'b1, // pe_c5_r5::Mux0config
+		1'b1,1'b1,1'b1,1'b0, // pe_c5_r5::ALUconfig
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux8config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux4config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux0config
 		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c5_r4::ConstVal
 		1'bx, // pe_c5_r4::RegBConfig
 		1'bx, // pe_c5_r4::RegAConfig
-		1'bx, // pe_c5_r4::Reg7config
+		1'b1, // pe_c5_r4::Reg7config
 		1'bx, // pe_c5_r4::Reg6config
 		1'bx, // pe_c5_r4::Reg5config
 		1'bx, // pe_c5_r4::Reg4config
@@ -548,55 +548,55 @@ module CGRA_configurator(
 		1'bx, // pe_c5_r4::Reg1config
 		1'bx, // pe_c5_r4::Reg0config
 		1'bx, // pe_c5_r4::RESConfig
-		1'bx, // pe_c5_r4::Mux7config
+		1'b1, // pe_c5_r4::Mux7config
 		1'bx, // pe_c5_r4::Mux6config
-		1'bx, // pe_c5_r4::Mux5config
-		1'bx, // pe_c5_r4::Mux4config
+		1'b0, // pe_c5_r4::Mux5config
+		1'b0, // pe_c5_r4::Mux4config
 		1'bx, // pe_c5_r4::Mux3config
-		1'bx, // pe_c5_r4::Mux2config
+		1'b0, // pe_c5_r4::Mux2config
 		1'bx, // pe_c5_r4::Mux1config
 		1'bx, // pe_c5_r4::Mux0config
 		1'bx,1'bx,1'bx,1'bx, // pe_c5_r4::ALUconfig
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux8config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'b0,1'b1,1'b0,1'b1, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux9config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux8config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux7config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux6config
+		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux5config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux4config
+		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux0config
-		1'b1,1'b1,1'b1,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c5_r3::ConstVal
-		1'bx, // pe_c5_r3::RegBConfig
-		1'bx, // pe_c5_r3::RegAConfig
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c5_r3::ConstVal
+		1'b1, // pe_c5_r3::RegBConfig
+		1'b1, // pe_c5_r3::RegAConfig
 		1'bx, // pe_c5_r3::Reg7config
 		1'bx, // pe_c5_r3::Reg6config
-		1'bx, // pe_c5_r3::Reg5config
+		1'b1, // pe_c5_r3::Reg5config
 		1'bx, // pe_c5_r3::Reg4config
 		1'bx, // pe_c5_r3::Reg3config
 		1'bx, // pe_c5_r3::Reg2config
 		1'bx, // pe_c5_r3::Reg1config
 		1'bx, // pe_c5_r3::Reg0config
 		1'bx, // pe_c5_r3::RESConfig
-		1'bx, // pe_c5_r3::Mux7config
-		1'bx, // pe_c5_r3::Mux6config
-		1'bx, // pe_c5_r3::Mux5config
-		1'bx, // pe_c5_r3::Mux4config
-		1'b0, // pe_c5_r3::Mux3config
-		1'bx, // pe_c5_r3::Mux2config
+		1'b0, // pe_c5_r3::Mux7config
+		1'b0, // pe_c5_r3::Mux6config
+		1'b1, // pe_c5_r3::Mux5config
+		1'b0, // pe_c5_r3::Mux4config
+		1'bx, // pe_c5_r3::Mux3config
+		1'b0, // pe_c5_r3::Mux2config
 		1'bx, // pe_c5_r3::Mux1config
 		1'bx, // pe_c5_r3::Mux0config
-		1'bx,1'bx,1'bx,1'bx, // pe_c5_r3::ALUconfig
-		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux9config
+		1'b1,1'b0,1'b0,1'b0, // pe_c5_r3::ALUconfig
+		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux9config
 		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux8config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
+		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
 		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c5_r2::ConstVal
 		1'b1, // pe_c5_r2::RegBConfig
@@ -609,19 +609,19 @@ module CGRA_configurator(
 		1'bx, // pe_c5_r2::Reg2config
 		1'bx, // pe_c5_r2::Reg1config
 		1'bx, // pe_c5_r2::Reg0config
-		1'bx, // pe_c5_r2::RESConfig
+		1'b1, // pe_c5_r2::RESConfig
 		1'b0, // pe_c5_r2::Mux7config
 		1'bx, // pe_c5_r2::Mux6config
 		1'bx, // pe_c5_r2::Mux5config
 		1'bx, // pe_c5_r2::Mux4config
 		1'bx, // pe_c5_r2::Mux3config
-		1'b0, // pe_c5_r2::Mux2config
-		1'bx, // pe_c5_r2::Mux1config
+		1'bx, // pe_c5_r2::Mux2config
+		1'b0, // pe_c5_r2::Mux1config
 		1'bx, // pe_c5_r2::Mux0config
 		1'b0,1'b0,1'b0,1'b0, // pe_c5_r2::ALUconfig
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux8config
-		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux7config
+		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
@@ -647,20 +647,20 @@ module CGRA_configurator(
 		1'bx, // pe_c5_r1::Mux4config
 		1'bx, // pe_c5_r1::Mux3config
 		1'bx, // pe_c5_r1::Mux2config
-		1'bx, // pe_c5_r1::Mux1config
-		1'b0, // pe_c5_r1::Mux0config
+		1'b0, // pe_c5_r1::Mux1config
+		1'bx, // pe_c5_r1::Mux0config
 		1'bx,1'bx,1'bx,1'bx, // pe_c5_r1::ALUconfig
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux7config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux6config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux5config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux3config
-		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux2config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c5_r0::ConstVal
-		1'bx, // pe_c5_r0::RegBConfig
-		1'bx, // pe_c5_r0::RegAConfig
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c5_r0::ConstVal
+		1'b1, // pe_c5_r0::RegBConfig
+		1'b1, // pe_c5_r0::RegAConfig
 		1'bx, // pe_c5_r0::Reg7config
 		1'bx, // pe_c5_r0::Reg6config
 		1'bx, // pe_c5_r0::Reg3config
@@ -668,22 +668,22 @@ module CGRA_configurator(
 		1'bx, // pe_c5_r0::Reg1config
 		1'bx, // pe_c5_r0::Reg0config
 		1'bx, // pe_c5_r0::RESConfig
-		1'bx, // pe_c5_r0::Mux7config
-		1'bx, // pe_c5_r0::Mux6config
+		1'b0, // pe_c5_r0::Mux7config
+		1'b0, // pe_c5_r0::Mux6config
 		1'bx, // pe_c5_r0::Mux3config
 		1'bx, // pe_c5_r0::Mux2config
-		1'b0, // pe_c5_r0::Mux1config
+		1'bx, // pe_c5_r0::Mux1config
 		1'bx, // pe_c5_r0::Mux0config
-		1'bx,1'bx,1'bx,1'bx, // pe_c5_r0::ALUconfig
+		1'b1,1'b0,1'b0,1'b0, // pe_c5_r0::ALUconfig
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux4config
+		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c4_r7::ConstVal
+		1'b1,1'b1,1'b1,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c4_r7::ConstVal
 		1'bx, // pe_c4_r7::RegBConfig
 		1'bx, // pe_c4_r7::RegAConfig
 		1'bx, // pe_c4_r7::Reg5config
@@ -697,20 +697,20 @@ module CGRA_configurator(
 		1'bx, // pe_c4_r7::Mux4config
 		1'bx, // pe_c4_r7::Mux3config
 		1'bx, // pe_c4_r7::Mux2config
-		1'bx, // pe_c4_r7::Mux1config
+		1'b0, // pe_c4_r7::Mux1config
 		1'b0, // pe_c4_r7::Mux0config
 		1'bx,1'bx,1'bx,1'bx, // pe_c4_r7::ALUconfig
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux8config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
+		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux7config
+		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'b0,1'b1,1'b0,1'b1, // crossbar::Mux2config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b1,1'b1,1'b1,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c4_r6::ConstVal
+		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c4_r6::ConstVal
 		1'bx, // pe_c4_r6::RegBConfig
 		1'bx, // pe_c4_r6::RegAConfig
 		1'bx, // pe_c4_r6::Reg7config
@@ -724,58 +724,58 @@ module CGRA_configurator(
 		1'bx, // pe_c4_r6::RESConfig
 		1'bx, // pe_c4_r6::Mux7config
 		1'bx, // pe_c4_r6::Mux6config
-		1'bx, // pe_c4_r6::Mux5config
+		1'b0, // pe_c4_r6::Mux5config
 		1'bx, // pe_c4_r6::Mux4config
-		1'bx, // pe_c4_r6::Mux3config
+		1'b0, // pe_c4_r6::Mux3config
 		1'bx, // pe_c4_r6::Mux2config
-		1'bx, // pe_c4_r6::Mux1config
-		1'bx, // pe_c4_r6::Mux0config
+		1'b0, // pe_c4_r6::Mux1config
+		1'b0, // pe_c4_r6::Mux0config
 		1'bx,1'bx,1'bx,1'bx, // pe_c4_r6::ALUconfig
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux8config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux9config
+		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux8config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux7config
+		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux6config
+		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux5config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c4_r5::ConstVal
-		1'bx, // pe_c4_r5::RegBConfig
-		1'bx, // pe_c4_r5::RegAConfig
+		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c4_r5::ConstVal
+		1'b1, // pe_c4_r5::RegBConfig
+		1'b1, // pe_c4_r5::RegAConfig
 		1'bx, // pe_c4_r5::Reg7config
 		1'bx, // pe_c4_r5::Reg6config
 		1'bx, // pe_c4_r5::Reg5config
 		1'bx, // pe_c4_r5::Reg4config
 		1'bx, // pe_c4_r5::Reg3config
-		1'bx, // pe_c4_r5::Reg2config
+		1'b1, // pe_c4_r5::Reg2config
 		1'bx, // pe_c4_r5::Reg1config
 		1'bx, // pe_c4_r5::Reg0config
 		1'bx, // pe_c4_r5::RESConfig
-		1'bx, // pe_c4_r5::Mux7config
+		1'b0, // pe_c4_r5::Mux7config
 		1'bx, // pe_c4_r5::Mux6config
-		1'bx, // pe_c4_r5::Mux5config
+		1'b0, // pe_c4_r5::Mux5config
 		1'bx, // pe_c4_r5::Mux4config
 		1'bx, // pe_c4_r5::Mux3config
-		1'bx, // pe_c4_r5::Mux2config
+		1'b1, // pe_c4_r5::Mux2config
 		1'bx, // pe_c4_r5::Mux1config
-		1'bx, // pe_c4_r5::Mux0config
-		1'bx,1'bx,1'bx,1'bx, // pe_c4_r5::ALUconfig
-		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux9config
+		1'b0, // pe_c4_r5::Mux0config
+		1'b1,1'b1,1'b1,1'b0, // pe_c4_r5::ALUconfig
+		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux9config
 		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux8config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux7config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux6config
+		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux5config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux4config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux0config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
 		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c4_r4::ConstVal
 		1'b1, // pe_c4_r4::RegBConfig
 		1'b1, // pe_c4_r4::RegAConfig
-		1'bx, // pe_c4_r4::Reg7config
+		1'b1, // pe_c4_r4::Reg7config
 		1'bx, // pe_c4_r4::Reg6config
 		1'bx, // pe_c4_r4::Reg5config
 		1'bx, // pe_c4_r4::Reg4config
@@ -783,91 +783,91 @@ module CGRA_configurator(
 		1'bx, // pe_c4_r4::Reg2config
 		1'bx, // pe_c4_r4::Reg1config
 		1'bx, // pe_c4_r4::Reg0config
-		1'bx, // pe_c4_r4::RESConfig
-		1'bx, // pe_c4_r4::Mux7config
-		1'bx, // pe_c4_r4::Mux6config
-		1'bx, // pe_c4_r4::Mux5config
+		1'b1, // pe_c4_r4::RESConfig
+		1'b1, // pe_c4_r4::Mux7config
+		1'b0, // pe_c4_r4::Mux6config
+		1'b0, // pe_c4_r4::Mux5config
 		1'b0, // pe_c4_r4::Mux4config
 		1'b0, // pe_c4_r4::Mux3config
 		1'bx, // pe_c4_r4::Mux2config
 		1'bx, // pe_c4_r4::Mux1config
 		1'bx, // pe_c4_r4::Mux0config
-		1'b0,1'b1,1'b0,1'b0, // pe_c4_r4::ALUconfig
-		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux9config
-		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux8config
-		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux7config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
-		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b1,1'b1,1'b1,1'b0, // pe_c4_r4::ALUconfig
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux9config
+		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux8config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux7config
+		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux6config
+		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux5config
+		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux4config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux0config
 		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c4_r3::ConstVal
 		1'b1, // pe_c4_r3::RegBConfig
 		1'b1, // pe_c4_r3::RegAConfig
-		1'bx, // pe_c4_r3::Reg7config
+		1'b1, // pe_c4_r3::Reg7config
 		1'bx, // pe_c4_r3::Reg6config
 		1'bx, // pe_c4_r3::Reg5config
-		1'b1, // pe_c4_r3::Reg4config
+		1'bx, // pe_c4_r3::Reg4config
 		1'bx, // pe_c4_r3::Reg3config
-		1'b1, // pe_c4_r3::Reg2config
+		1'bx, // pe_c4_r3::Reg2config
 		1'bx, // pe_c4_r3::Reg1config
 		1'bx, // pe_c4_r3::Reg0config
 		1'bx, // pe_c4_r3::RESConfig
-		1'b0, // pe_c4_r3::Mux7config
-		1'bx, // pe_c4_r3::Mux6config
-		1'bx, // pe_c4_r3::Mux5config
-		1'b1, // pe_c4_r3::Mux4config
+		1'b1, // pe_c4_r3::Mux7config
+		1'b0, // pe_c4_r3::Mux6config
+		1'b0, // pe_c4_r3::Mux5config
+		1'b0, // pe_c4_r3::Mux4config
 		1'b0, // pe_c4_r3::Mux3config
-		1'b1, // pe_c4_r3::Mux2config
-		1'bx, // pe_c4_r3::Mux1config
+		1'bx, // pe_c4_r3::Mux2config
+		1'b0, // pe_c4_r3::Mux1config
 		1'bx, // pe_c4_r3::Mux0config
 		1'b0,1'b1,1'b0,1'b0, // pe_c4_r3::ALUconfig
-		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux9config
-		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux8config
-		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux7config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
+		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux9config
+		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux8config
+		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux7config
+		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux4config
-		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux3config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux4config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux0config
 		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c4_r2::ConstVal
 		1'b1, // pe_c4_r2::RegBConfig
 		1'b1, // pe_c4_r2::RegAConfig
 		1'bx, // pe_c4_r2::Reg7config
-		1'b1, // pe_c4_r2::Reg6config
+		1'bx, // pe_c4_r2::Reg6config
 		1'bx, // pe_c4_r2::Reg5config
 		1'bx, // pe_c4_r2::Reg4config
 		1'bx, // pe_c4_r2::Reg3config
 		1'bx, // pe_c4_r2::Reg2config
-		1'b1, // pe_c4_r2::Reg1config
+		1'bx, // pe_c4_r2::Reg1config
 		1'bx, // pe_c4_r2::Reg0config
-		1'b1, // pe_c4_r2::RESConfig
-		1'bx, // pe_c4_r2::Mux7config
-		1'b1, // pe_c4_r2::Mux6config
+		1'bx, // pe_c4_r2::RESConfig
+		1'b0, // pe_c4_r2::Mux7config
+		1'b0, // pe_c4_r2::Mux6config
 		1'b0, // pe_c4_r2::Mux5config
 		1'bx, // pe_c4_r2::Mux4config
-		1'bx, // pe_c4_r2::Mux3config
-		1'bx, // pe_c4_r2::Mux2config
-		1'b1, // pe_c4_r2::Mux1config
-		1'bx, // pe_c4_r2::Mux0config
+		1'b0, // pe_c4_r2::Mux3config
+		1'b0, // pe_c4_r2::Mux2config
+		1'bx, // pe_c4_r2::Mux1config
+		1'b0, // pe_c4_r2::Mux0config
 		1'b1,1'b1,1'b1,1'b0, // pe_c4_r2::ALUconfig
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux8config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
+		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux9config
+		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux8config
+		1'b0,1'b1,1'b0,1'b1, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux5config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux3config
+		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c4_r1::ConstVal
-		1'bx, // pe_c4_r1::RegBConfig
-		1'bx, // pe_c4_r1::RegAConfig
+		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c4_r1::ConstVal
+		1'b1, // pe_c4_r1::RegBConfig
+		1'b1, // pe_c4_r1::RegAConfig
 		1'bx, // pe_c4_r1::Reg7config
 		1'bx, // pe_c4_r1::Reg6config
 		1'bx, // pe_c4_r1::Reg5config
@@ -876,25 +876,25 @@ module CGRA_configurator(
 		1'bx, // pe_c4_r1::Reg2config
 		1'bx, // pe_c4_r1::Reg1config
 		1'bx, // pe_c4_r1::Reg0config
-		1'bx, // pe_c4_r1::RESConfig
-		1'bx, // pe_c4_r1::Mux7config
+		1'b1, // pe_c4_r1::RESConfig
+		1'b0, // pe_c4_r1::Mux7config
 		1'bx, // pe_c4_r1::Mux6config
-		1'bx, // pe_c4_r1::Mux5config
+		1'b0, // pe_c4_r1::Mux5config
 		1'bx, // pe_c4_r1::Mux4config
-		1'bx, // pe_c4_r1::Mux3config
-		1'bx, // pe_c4_r1::Mux2config
+		1'b0, // pe_c4_r1::Mux3config
+		1'b0, // pe_c4_r1::Mux2config
 		1'bx, // pe_c4_r1::Mux1config
 		1'bx, // pe_c4_r1::Mux0config
-		1'bx,1'bx,1'bx,1'bx, // pe_c4_r1::ALUconfig
+		1'b0,1'b1,1'b0,1'b0, // pe_c4_r1::ALUconfig
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
-		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux5config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c4_r0::ConstVal
+		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c4_r0::ConstVal
 		1'bx, // pe_c4_r0::RegBConfig
 		1'bx, // pe_c4_r0::RegAConfig
 		1'bx, // pe_c4_r0::Reg7config
@@ -908,49 +908,49 @@ module CGRA_configurator(
 		1'bx, // pe_c4_r0::Mux6config
 		1'bx, // pe_c4_r0::Mux3config
 		1'bx, // pe_c4_r0::Mux2config
-		1'b0, // pe_c4_r0::Mux1config
+		1'bx, // pe_c4_r0::Mux1config
 		1'bx, // pe_c4_r0::Mux0config
 		1'bx,1'bx,1'bx,1'bx, // pe_c4_r0::ALUconfig
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
+		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux7config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux3config
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux4config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux0config
 		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r7::ConstVal
-		1'bx, // pe_c3_r7::RegBConfig
-		1'bx, // pe_c3_r7::RegAConfig
-		1'bx, // pe_c3_r7::Reg5config
+		1'b1, // pe_c3_r7::RegBConfig
+		1'b1, // pe_c3_r7::RegAConfig
+		1'b1, // pe_c3_r7::Reg5config
 		1'bx, // pe_c3_r7::Reg4config
 		1'bx, // pe_c3_r7::Reg3config
-		1'bx, // pe_c3_r7::Reg2config
+		1'b1, // pe_c3_r7::Reg2config
 		1'bx, // pe_c3_r7::Reg1config
 		1'bx, // pe_c3_r7::Reg0config
 		1'bx, // pe_c3_r7::RESConfig
-		1'bx, // pe_c3_r7::Mux5config
+		1'b1, // pe_c3_r7::Mux5config
 		1'bx, // pe_c3_r7::Mux4config
 		1'bx, // pe_c3_r7::Mux3config
-		1'b0, // pe_c3_r7::Mux2config
-		1'bx, // pe_c3_r7::Mux1config
+		1'b1, // pe_c3_r7::Mux2config
+		1'b0, // pe_c3_r7::Mux1config
 		1'bx, // pe_c3_r7::Mux0config
-		1'bx,1'bx,1'bx,1'bx, // pe_c3_r7::ALUconfig
-		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux9config
-		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux8config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
+		1'b0,1'b0,1'b0,1'b1, // pe_c3_r7::ALUconfig
+		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux9config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux8config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux5config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r6::ConstVal
+		1'b0,1'b1,1'b0,1'b1, // crossbar::Mux1config
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux0config
+		1'b1,1'b1,1'b1,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r6::ConstVal
 		1'b1, // pe_c3_r6::RegBConfig
 		1'b1, // pe_c3_r6::RegAConfig
-		1'bx, // pe_c3_r6::Reg7config
-		1'bx, // pe_c3_r6::Reg6config
+		1'b1, // pe_c3_r6::Reg7config
+		1'b1, // pe_c3_r6::Reg6config
 		1'bx, // pe_c3_r6::Reg5config
 		1'bx, // pe_c3_r6::Reg4config
 		1'bx, // pe_c3_r6::Reg3config
@@ -958,29 +958,29 @@ module CGRA_configurator(
 		1'bx, // pe_c3_r6::Reg1config
 		1'bx, // pe_c3_r6::Reg0config
 		1'b1, // pe_c3_r6::RESConfig
-		1'bx, // pe_c3_r6::Mux7config
-		1'b0, // pe_c3_r6::Mux6config
-		1'bx, // pe_c3_r6::Mux5config
-		1'b0, // pe_c3_r6::Mux4config
-		1'bx, // pe_c3_r6::Mux3config
-		1'bx, // pe_c3_r6::Mux2config
+		1'b1, // pe_c3_r6::Mux7config
+		1'b1, // pe_c3_r6::Mux6config
+		1'b0, // pe_c3_r6::Mux5config
+		1'bx, // pe_c3_r6::Mux4config
+		1'b0, // pe_c3_r6::Mux3config
+		1'b0, // pe_c3_r6::Mux2config
 		1'bx, // pe_c3_r6::Mux1config
 		1'bx, // pe_c3_r6::Mux0config
-		1'b1,1'b1,1'b1,1'b0, // pe_c3_r6::ALUconfig
-		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux9config
-		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux8config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
+		1'b0,1'b0,1'b0,1'b1, // pe_c3_r6::ALUconfig
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux8config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux3config
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux5config
+		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux4config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux0config
 		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r5::ConstVal
-		1'b1, // pe_c3_r5::RegBConfig
-		1'b1, // pe_c3_r5::RegAConfig
-		1'b1, // pe_c3_r5::Reg7config
+		1'bx, // pe_c3_r5::RegBConfig
+		1'bx, // pe_c3_r5::RegAConfig
+		1'bx, // pe_c3_r5::Reg7config
 		1'bx, // pe_c3_r5::Reg6config
 		1'bx, // pe_c3_r5::Reg5config
 		1'bx, // pe_c3_r5::Reg4config
@@ -988,126 +988,126 @@ module CGRA_configurator(
 		1'bx, // pe_c3_r5::Reg2config
 		1'bx, // pe_c3_r5::Reg1config
 		1'bx, // pe_c3_r5::Reg0config
-		1'b1, // pe_c3_r5::RESConfig
-		1'b1, // pe_c3_r5::Mux7config
+		1'bx, // pe_c3_r5::RESConfig
+		1'b0, // pe_c3_r5::Mux7config
 		1'bx, // pe_c3_r5::Mux6config
-		1'bx, // pe_c3_r5::Mux5config
-		1'b0, // pe_c3_r5::Mux4config
-		1'bx, // pe_c3_r5::Mux3config
-		1'bx, // pe_c3_r5::Mux2config
+		1'b0, // pe_c3_r5::Mux5config
+		1'bx, // pe_c3_r5::Mux4config
+		1'b0, // pe_c3_r5::Mux3config
+		1'b0, // pe_c3_r5::Mux2config
 		1'bx, // pe_c3_r5::Mux1config
 		1'bx, // pe_c3_r5::Mux0config
-		1'b0,1'b0,1'b0,1'b1, // pe_c3_r5::ALUconfig
-		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux9config
-		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux8config
-		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux7config
+		1'bx,1'bx,1'bx,1'bx, // pe_c3_r5::ALUconfig
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux9config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux8config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
-		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'b0,1'b1,1'b0,1'b1, // crossbar::Mux3config
+		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux5config
+		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux4config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux1config
-		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux0config
-		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r4::ConstVal
+		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux1config
+		1'b0,1'b1,1'b0,1'b1, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r4::ConstVal
 		1'b1, // pe_c3_r4::RegBConfig
 		1'b1, // pe_c3_r4::RegAConfig
 		1'bx, // pe_c3_r4::Reg7config
 		1'bx, // pe_c3_r4::Reg6config
 		1'bx, // pe_c3_r4::Reg5config
-		1'bx, // pe_c3_r4::Reg4config
-		1'b1, // pe_c3_r4::Reg3config
+		1'b1, // pe_c3_r4::Reg4config
+		1'bx, // pe_c3_r4::Reg3config
 		1'bx, // pe_c3_r4::Reg2config
 		1'bx, // pe_c3_r4::Reg1config
 		1'bx, // pe_c3_r4::Reg0config
-		1'b1, // pe_c3_r4::RESConfig
+		1'bx, // pe_c3_r4::RESConfig
 		1'b0, // pe_c3_r4::Mux7config
 		1'bx, // pe_c3_r4::Mux6config
 		1'b0, // pe_c3_r4::Mux5config
-		1'bx, // pe_c3_r4::Mux4config
-		1'b1, // pe_c3_r4::Mux3config
-		1'bx, // pe_c3_r4::Mux2config
+		1'b1, // pe_c3_r4::Mux4config
+		1'b0, // pe_c3_r4::Mux3config
+		1'b0, // pe_c3_r4::Mux2config
 		1'bx, // pe_c3_r4::Mux1config
-		1'b0, // pe_c3_r4::Mux0config
-		1'b1,1'b0,1'b0,1'b0, // pe_c3_r4::ALUconfig
-		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux9config
-		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux8config
-		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux7config
-		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux6config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'bx, // pe_c3_r4::Mux0config
+		1'b0,1'b1,1'b0,1'b0, // pe_c3_r4::ALUconfig
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux9config
+		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux8config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
+		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux6config
+		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux5config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux4config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux2config
-		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r3::ConstVal
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux1config
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux0config
+		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r3::ConstVal
 		1'b1, // pe_c3_r3::RegBConfig
 		1'b1, // pe_c3_r3::RegAConfig
-		1'bx, // pe_c3_r3::Reg7config
+		1'b1, // pe_c3_r3::Reg7config
 		1'bx, // pe_c3_r3::Reg6config
-		1'bx, // pe_c3_r3::Reg5config
+		1'b1, // pe_c3_r3::Reg5config
 		1'bx, // pe_c3_r3::Reg4config
 		1'bx, // pe_c3_r3::Reg3config
 		1'bx, // pe_c3_r3::Reg2config
 		1'bx, // pe_c3_r3::Reg1config
 		1'bx, // pe_c3_r3::Reg0config
 		1'bx, // pe_c3_r3::RESConfig
-		1'b0, // pe_c3_r3::Mux7config
-		1'bx, // pe_c3_r3::Mux6config
-		1'b0, // pe_c3_r3::Mux5config
+		1'b1, // pe_c3_r3::Mux7config
+		1'b0, // pe_c3_r3::Mux6config
+		1'b1, // pe_c3_r3::Mux5config
 		1'b0, // pe_c3_r3::Mux4config
-		1'bx, // pe_c3_r3::Mux3config
+		1'b0, // pe_c3_r3::Mux3config
 		1'b0, // pe_c3_r3::Mux2config
 		1'bx, // pe_c3_r3::Mux1config
-		1'b0, // pe_c3_r3::Mux0config
-		1'b0,1'b1,1'b0,1'b0, // pe_c3_r3::ALUconfig
-		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux9config
+		1'bx, // pe_c3_r3::Mux0config
+		1'b0,1'b0,1'b0,1'b0, // pe_c3_r3::ALUconfig
+		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux9config
 		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux8config
 		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux7config
-		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux6config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux2config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r2::ConstVal
+		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux6config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux5config
+		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux4config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux1config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux0config
+		1'b1,1'b1,1'b1,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r2::ConstVal
 		1'b1, // pe_c3_r2::RegBConfig
 		1'b1, // pe_c3_r2::RegAConfig
 		1'bx, // pe_c3_r2::Reg7config
 		1'bx, // pe_c3_r2::Reg6config
-		1'bx, // pe_c3_r2::Reg5config
+		1'b1, // pe_c3_r2::Reg5config
 		1'bx, // pe_c3_r2::Reg4config
-		1'bx, // pe_c3_r2::Reg3config
+		1'b1, // pe_c3_r2::Reg3config
 		1'bx, // pe_c3_r2::Reg2config
 		1'bx, // pe_c3_r2::Reg1config
 		1'bx, // pe_c3_r2::Reg0config
 		1'bx, // pe_c3_r2::RESConfig
-		1'bx, // pe_c3_r2::Mux7config
-		1'bx, // pe_c3_r2::Mux6config
-		1'bx, // pe_c3_r2::Mux5config
+		1'b0, // pe_c3_r2::Mux7config
+		1'b0, // pe_c3_r2::Mux6config
+		1'b1, // pe_c3_r2::Mux5config
 		1'b0, // pe_c3_r2::Mux4config
-		1'bx, // pe_c3_r2::Mux3config
-		1'bx, // pe_c3_r2::Mux2config
+		1'b1, // pe_c3_r2::Mux3config
+		1'b0, // pe_c3_r2::Mux2config
 		1'b0, // pe_c3_r2::Mux1config
 		1'b0, // pe_c3_r2::Mux0config
-		1'b0,1'b1,1'b0,1'b0, // pe_c3_r2::ALUconfig
-		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux9config
-		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux8config
-		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux7config
+		1'b0,1'b0,1'b0,1'b1, // pe_c3_r2::ALUconfig
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux9config
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux8config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux4config
-		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux3config
-		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux2config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux4config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux2config
+		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r1::ConstVal
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r1::ConstVal
 		1'b1, // pe_c3_r1::RegBConfig
 		1'b1, // pe_c3_r1::RegAConfig
 		1'bx, // pe_c3_r1::Reg7config
 		1'bx, // pe_c3_r1::Reg6config
 		1'bx, // pe_c3_r1::Reg5config
-		1'b1, // pe_c3_r1::Reg4config
+		1'bx, // pe_c3_r1::Reg4config
 		1'bx, // pe_c3_r1::Reg3config
 		1'bx, // pe_c3_r1::Reg2config
 		1'bx, // pe_c3_r1::Reg1config
@@ -1115,76 +1115,76 @@ module CGRA_configurator(
 		1'bx, // pe_c3_r1::RESConfig
 		1'b0, // pe_c3_r1::Mux7config
 		1'b0, // pe_c3_r1::Mux6config
-		1'b0, // pe_c3_r1::Mux5config
-		1'b1, // pe_c3_r1::Mux4config
+		1'bx, // pe_c3_r1::Mux5config
+		1'bx, // pe_c3_r1::Mux4config
 		1'bx, // pe_c3_r1::Mux3config
-		1'bx, // pe_c3_r1::Mux2config
-		1'bx, // pe_c3_r1::Mux1config
-		1'b0, // pe_c3_r1::Mux0config
+		1'b0, // pe_c3_r1::Mux2config
+		1'b0, // pe_c3_r1::Mux1config
+		1'bx, // pe_c3_r1::Mux0config
 		1'b0,1'b0,1'b0,1'b1, // pe_c3_r1::ALUconfig
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
 		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux3config
-		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux2config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r0::ConstVal
+		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c3_r0::ConstVal
 		1'bx, // pe_c3_r0::RegBConfig
 		1'bx, // pe_c3_r0::RegAConfig
 		1'bx, // pe_c3_r0::Reg7config
 		1'bx, // pe_c3_r0::Reg6config
-		1'b1, // pe_c3_r0::Reg3config
+		1'bx, // pe_c3_r0::Reg3config
 		1'bx, // pe_c3_r0::Reg2config
 		1'bx, // pe_c3_r0::Reg1config
 		1'bx, // pe_c3_r0::Reg0config
 		1'bx, // pe_c3_r0::RESConfig
 		1'bx, // pe_c3_r0::Mux7config
 		1'bx, // pe_c3_r0::Mux6config
-		1'b1, // pe_c3_r0::Mux3config
+		1'bx, // pe_c3_r0::Mux3config
 		1'bx, // pe_c3_r0::Mux2config
 		1'bx, // pe_c3_r0::Mux1config
 		1'b0, // pe_c3_r0::Mux0config
 		1'bx,1'bx,1'bx,1'bx, // pe_c3_r0::ALUconfig
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux4config
-		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux3config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux7config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux6config
+		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux5config
+		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux4config
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux0config
 		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c2_r7::ConstVal
-		1'bx, // pe_c2_r7::RegBConfig
-		1'bx, // pe_c2_r7::RegAConfig
+		1'b1, // pe_c2_r7::RegBConfig
+		1'b1, // pe_c2_r7::RegAConfig
 		1'bx, // pe_c2_r7::Reg5config
 		1'bx, // pe_c2_r7::Reg4config
 		1'bx, // pe_c2_r7::Reg3config
 		1'bx, // pe_c2_r7::Reg2config
 		1'bx, // pe_c2_r7::Reg1config
 		1'bx, // pe_c2_r7::Reg0config
-		1'bx, // pe_c2_r7::RESConfig
-		1'bx, // pe_c2_r7::Mux5config
-		1'bx, // pe_c2_r7::Mux4config
+		1'b1, // pe_c2_r7::RESConfig
+		1'b0, // pe_c2_r7::Mux5config
+		1'b0, // pe_c2_r7::Mux4config
 		1'bx, // pe_c2_r7::Mux3config
-		1'bx, // pe_c2_r7::Mux2config
+		1'b0, // pe_c2_r7::Mux2config
 		1'b0, // pe_c2_r7::Mux1config
 		1'bx, // pe_c2_r7::Mux0config
-		1'bx,1'bx,1'bx,1'bx, // pe_c2_r7::ALUconfig
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux8config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
+		1'b1,1'b0,1'b0,1'b0, // pe_c2_r7::ALUconfig
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux9config
+		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux8config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
-		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'b0,1'b1,1'b0,1'b1, // crossbar::Mux5config
+		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux4config
+		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
 		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c2_r6::ConstVal
-		1'bx, // pe_c2_r6::RegBConfig
-		1'bx, // pe_c2_r6::RegAConfig
+		1'b1, // pe_c2_r6::RegBConfig
+		1'b1, // pe_c2_r6::RegAConfig
 		1'bx, // pe_c2_r6::Reg7config
 		1'bx, // pe_c2_r6::Reg6config
 		1'bx, // pe_c2_r6::Reg5config
@@ -1193,27 +1193,27 @@ module CGRA_configurator(
 		1'bx, // pe_c2_r6::Reg2config
 		1'bx, // pe_c2_r6::Reg1config
 		1'bx, // pe_c2_r6::Reg0config
-		1'bx, // pe_c2_r6::RESConfig
-		1'b0, // pe_c2_r6::Mux7config
-		1'bx, // pe_c2_r6::Mux6config
-		1'bx, // pe_c2_r6::Mux5config
+		1'b1, // pe_c2_r6::RESConfig
+		1'bx, // pe_c2_r6::Mux7config
+		1'b0, // pe_c2_r6::Mux6config
+		1'b0, // pe_c2_r6::Mux5config
 		1'bx, // pe_c2_r6::Mux4config
 		1'bx, // pe_c2_r6::Mux3config
-		1'bx, // pe_c2_r6::Mux2config
-		1'bx, // pe_c2_r6::Mux1config
+		1'b0, // pe_c2_r6::Mux2config
+		1'b0, // pe_c2_r6::Mux1config
 		1'bx, // pe_c2_r6::Mux0config
-		1'bx,1'bx,1'bx,1'bx, // pe_c2_r6::ALUconfig
+		1'b0,1'b0,1'b0,1'b0, // pe_c2_r6::ALUconfig
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
-		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux8config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
-		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux6config
-		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux5config
-		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux4config
-		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux3config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux8config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux7config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
+		1'b0,1'b1,1'b0,1'b1, // crossbar::Mux5config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c2_r5::ConstVal
+		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c2_r5::ConstVal
 		1'b1, // pe_c2_r5::RegBConfig
 		1'bx, // pe_c2_r5::RegAConfig
 		1'bx, // pe_c2_r5::Reg7config
@@ -1224,121 +1224,121 @@ module CGRA_configurator(
 		1'bx, // pe_c2_r5::Reg2config
 		1'bx, // pe_c2_r5::Reg1config
 		1'bx, // pe_c2_r5::Reg0config
-		1'bx, // pe_c2_r5::RESConfig
+		1'b1, // pe_c2_r5::RESConfig
 		1'bx, // pe_c2_r5::Mux7config
-		1'b0, // pe_c2_r5::Mux6config
+		1'bx, // pe_c2_r5::Mux6config
 		1'b0, // pe_c2_r5::Mux5config
-		1'bx, // pe_c2_r5::Mux4config
-		1'b0, // pe_c2_r5::Mux3config
+		1'b0, // pe_c2_r5::Mux4config
+		1'bx, // pe_c2_r5::Mux3config
 		1'bx, // pe_c2_r5::Mux2config
-		1'b0, // pe_c2_r5::Mux1config
+		1'bx, // pe_c2_r5::Mux1config
 		1'bx, // pe_c2_r5::Mux0config
-		1'b0,1'b0,1'b1,1'b1, // pe_c2_r5::ALUconfig
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
-		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux8config
-		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux7config
-		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux6config
+		1'b1,1'b1,1'b0,1'b1, // pe_c2_r5::ALUconfig
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux9config
+		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux8config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
 		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux5config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux1config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
 		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c2_r4::ConstVal
 		1'b1, // pe_c2_r4::RegBConfig
-		1'bx, // pe_c2_r4::RegAConfig
+		1'b1, // pe_c2_r4::RegAConfig
 		1'bx, // pe_c2_r4::Reg7config
 		1'bx, // pe_c2_r4::Reg6config
 		1'bx, // pe_c2_r4::Reg5config
 		1'bx, // pe_c2_r4::Reg4config
 		1'bx, // pe_c2_r4::Reg3config
 		1'bx, // pe_c2_r4::Reg2config
-		1'b1, // pe_c2_r4::Reg1config
-		1'b1, // pe_c2_r4::Reg0config
+		1'bx, // pe_c2_r4::Reg1config
+		1'bx, // pe_c2_r4::Reg0config
 		1'b1, // pe_c2_r4::RESConfig
 		1'bx, // pe_c2_r4::Mux7config
-		1'bx, // pe_c2_r4::Mux6config
-		1'b0, // pe_c2_r4::Mux5config
+		1'b0, // pe_c2_r4::Mux6config
+		1'bx, // pe_c2_r4::Mux5config
 		1'b0, // pe_c2_r4::Mux4config
-		1'bx, // pe_c2_r4::Mux3config
+		1'b0, // pe_c2_r4::Mux3config
 		1'bx, // pe_c2_r4::Mux2config
-		1'b1, // pe_c2_r4::Mux1config
-		1'b1, // pe_c2_r4::Mux0config
-		1'b0,1'b0,1'b1,1'b1, // pe_c2_r4::ALUconfig
-		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux9config
-		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux8config
-		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux7config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'bx, // pe_c2_r4::Mux1config
+		1'bx, // pe_c2_r4::Mux0config
+		1'b0,1'b1,1'b0,1'b0, // pe_c2_r4::ALUconfig
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux8config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
+		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux6config
+		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux5config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux4config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux2config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
 		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c2_r3::ConstVal
 		1'b1, // pe_c2_r3::RegBConfig
-		1'b1, // pe_c2_r3::RegAConfig
+		1'bx, // pe_c2_r3::RegAConfig
 		1'bx, // pe_c2_r3::Reg7config
 		1'bx, // pe_c2_r3::Reg6config
 		1'bx, // pe_c2_r3::Reg5config
-		1'bx, // pe_c2_r3::Reg4config
+		1'b1, // pe_c2_r3::Reg4config
 		1'bx, // pe_c2_r3::Reg3config
 		1'bx, // pe_c2_r3::Reg2config
 		1'bx, // pe_c2_r3::Reg1config
 		1'bx, // pe_c2_r3::Reg0config
 		1'b1, // pe_c2_r3::RESConfig
 		1'bx, // pe_c2_r3::Mux7config
-		1'bx, // pe_c2_r3::Mux6config
+		1'b0, // pe_c2_r3::Mux6config
 		1'b0, // pe_c2_r3::Mux5config
-		1'b0, // pe_c2_r3::Mux4config
+		1'b1, // pe_c2_r3::Mux4config
 		1'bx, // pe_c2_r3::Mux3config
 		1'bx, // pe_c2_r3::Mux2config
 		1'bx, // pe_c2_r3::Mux1config
-		1'b0, // pe_c2_r3::Mux0config
-		1'b0,1'b0,1'b0,1'b0, // pe_c2_r3::ALUconfig
+		1'bx, // pe_c2_r3::Mux0config
+		1'b0,1'b0,1'b1,1'b1, // pe_c2_r3::ALUconfig
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
-		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux8config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
-		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux6config
-		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux3config
-		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux2config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux8config
+		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux7config
+		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux6config
+		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux5config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux4config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c2_r2::ConstVal
-		1'b1, // pe_c2_r2::RegBConfig
+		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c2_r2::ConstVal
+		1'bx, // pe_c2_r2::RegBConfig
 		1'bx, // pe_c2_r2::RegAConfig
-		1'bx, // pe_c2_r2::Reg7config
+		1'b1, // pe_c2_r2::Reg7config
 		1'bx, // pe_c2_r2::Reg6config
 		1'bx, // pe_c2_r2::Reg5config
-		1'b1, // pe_c2_r2::Reg4config
+		1'bx, // pe_c2_r2::Reg4config
 		1'bx, // pe_c2_r2::Reg3config
 		1'bx, // pe_c2_r2::Reg2config
 		1'bx, // pe_c2_r2::Reg1config
 		1'bx, // pe_c2_r2::Reg0config
-		1'b1, // pe_c2_r2::RESConfig
-		1'bx, // pe_c2_r2::Mux7config
-		1'bx, // pe_c2_r2::Mux6config
-		1'b0, // pe_c2_r2::Mux5config
-		1'b1, // pe_c2_r2::Mux4config
+		1'bx, // pe_c2_r2::RESConfig
+		1'b1, // pe_c2_r2::Mux7config
+		1'b0, // pe_c2_r2::Mux6config
+		1'bx, // pe_c2_r2::Mux5config
+		1'bx, // pe_c2_r2::Mux4config
 		1'b0, // pe_c2_r2::Mux3config
 		1'bx, // pe_c2_r2::Mux2config
-		1'bx, // pe_c2_r2::Mux1config
-		1'bx, // pe_c2_r2::Mux0config
-		1'b1,1'b1,1'b0,1'b1, // pe_c2_r2::ALUconfig
+		1'b0, // pe_c2_r2::Mux1config
+		1'b0, // pe_c2_r2::Mux0config
+		1'bx,1'bx,1'bx,1'bx, // pe_c2_r2::ALUconfig
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
-		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux8config
-		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux7config
-		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux6config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux8config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
+		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux3config
+		1'b0,1'b1,1'b0,1'b1, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c2_r1::ConstVal
-		1'b1, // pe_c2_r1::RegBConfig
+		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c2_r1::ConstVal
+		1'bx, // pe_c2_r1::RegBConfig
 		1'bx, // pe_c2_r1::RegAConfig
 		1'bx, // pe_c2_r1::Reg7config
 		1'bx, // pe_c2_r1::Reg6config
@@ -1349,76 +1349,76 @@ module CGRA_configurator(
 		1'bx, // pe_c2_r1::Reg1config
 		1'bx, // pe_c2_r1::Reg0config
 		1'bx, // pe_c2_r1::RESConfig
-		1'bx, // pe_c2_r1::Mux7config
-		1'bx, // pe_c2_r1::Mux6config
+		1'b0, // pe_c2_r1::Mux7config
+		1'b0, // pe_c2_r1::Mux6config
 		1'bx, // pe_c2_r1::Mux5config
 		1'bx, // pe_c2_r1::Mux4config
-		1'b0, // pe_c2_r1::Mux3config
+		1'bx, // pe_c2_r1::Mux3config
 		1'bx, // pe_c2_r1::Mux2config
-		1'b0, // pe_c2_r1::Mux1config
+		1'bx, // pe_c2_r1::Mux1config
 		1'bx, // pe_c2_r1::Mux0config
-		1'b1,1'b1,1'b0,1'b1, // pe_c2_r1::ALUconfig
-		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux7config
-		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux6config
+		1'bx,1'bx,1'bx,1'bx, // pe_c2_r1::ALUconfig
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
 		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux5config
-		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c2_r0::ConstVal
-		1'b1, // pe_c2_r0::RegBConfig
-		1'b1, // pe_c2_r0::RegAConfig
-		1'b1, // pe_c2_r0::Reg7config
-		1'bx, // pe_c2_r0::Reg6config
-		1'b1, // pe_c2_r0::Reg3config
-		1'bx, // pe_c2_r0::Reg2config
-		1'bx, // pe_c2_r0::Reg1config
-		1'bx, // pe_c2_r0::Reg0config
-		1'bx, // pe_c2_r0::RESConfig
-		1'b1, // pe_c2_r0::Mux7config
-		1'b0, // pe_c2_r0::Mux6config
-		1'b1, // pe_c2_r0::Mux3config
-		1'bx, // pe_c2_r0::Mux2config
-		1'b0, // pe_c2_r0::Mux1config
-		1'bx, // pe_c2_r0::Mux0config
-		1'b1,1'b0,1'b0,1'b0, // pe_c2_r0::ALUconfig
-		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux7config
-		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux6config
-		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux5config
-		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux4config
-		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c1_r7::ConstVal
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c2_r0::ConstVal
+		1'bx, // pe_c2_r0::RegBConfig
+		1'bx, // pe_c2_r0::RegAConfig
+		1'bx, // pe_c2_r0::Reg7config
+		1'bx, // pe_c2_r0::Reg6config
+		1'bx, // pe_c2_r0::Reg3config
+		1'bx, // pe_c2_r0::Reg2config
+		1'b1, // pe_c2_r0::Reg1config
+		1'bx, // pe_c2_r0::Reg0config
+		1'bx, // pe_c2_r0::RESConfig
+		1'bx, // pe_c2_r0::Mux7config
+		1'b0, // pe_c2_r0::Mux6config
+		1'bx, // pe_c2_r0::Mux3config
+		1'bx, // pe_c2_r0::Mux2config
+		1'b1, // pe_c2_r0::Mux1config
+		1'bx, // pe_c2_r0::Mux0config
+		1'bx,1'bx,1'bx,1'bx, // pe_c2_r0::ALUconfig
+		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux7config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux6config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux4config
+		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c1_r7::ConstVal
 		1'b1, // pe_c1_r7::RegBConfig
 		1'b1, // pe_c1_r7::RegAConfig
 		1'bx, // pe_c1_r7::Reg5config
 		1'bx, // pe_c1_r7::Reg4config
 		1'bx, // pe_c1_r7::Reg3config
-		1'b1, // pe_c1_r7::Reg2config
+		1'bx, // pe_c1_r7::Reg2config
 		1'bx, // pe_c1_r7::Reg1config
 		1'bx, // pe_c1_r7::Reg0config
-		1'b1, // pe_c1_r7::RESConfig
-		1'bx, // pe_c1_r7::Mux5config
+		1'bx, // pe_c1_r7::RESConfig
+		1'b0, // pe_c1_r7::Mux5config
 		1'bx, // pe_c1_r7::Mux4config
-		1'b0, // pe_c1_r7::Mux3config
-		1'b1, // pe_c1_r7::Mux2config
+		1'bx, // pe_c1_r7::Mux3config
+		1'b0, // pe_c1_r7::Mux2config
 		1'b0, // pe_c1_r7::Mux1config
 		1'b0, // pe_c1_r7::Mux0config
 		1'b0,1'b1,1'b0,1'b1, // pe_c1_r7::ALUconfig
-		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux9config
-		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux8config
-		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux7config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux9config
+		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux8config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux7config
+		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux2config
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux4config
+		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux3config
+		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b1,1'b1,1'b1,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c1_r6::ConstVal
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c1_r6::ConstVal
 		1'b1, // pe_c1_r6::RegBConfig
 		1'b1, // pe_c1_r6::RegAConfig
 		1'bx, // pe_c1_r6::Reg7config
@@ -1429,60 +1429,60 @@ module CGRA_configurator(
 		1'bx, // pe_c1_r6::Reg2config
 		1'bx, // pe_c1_r6::Reg1config
 		1'bx, // pe_c1_r6::Reg0config
-		1'b1, // pe_c1_r6::RESConfig
+		1'bx, // pe_c1_r6::RESConfig
 		1'bx, // pe_c1_r6::Mux7config
 		1'b0, // pe_c1_r6::Mux6config
-		1'bx, // pe_c1_r6::Mux5config
-		1'bx, // pe_c1_r6::Mux4config
+		1'b0, // pe_c1_r6::Mux5config
+		1'b0, // pe_c1_r6::Mux4config
 		1'bx, // pe_c1_r6::Mux3config
-		1'bx, // pe_c1_r6::Mux2config
-		1'bx, // pe_c1_r6::Mux1config
-		1'bx, // pe_c1_r6::Mux0config
-		1'b0,1'b0,1'b0,1'b0, // pe_c1_r6::ALUconfig
-		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux9config
-		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux8config
+		1'b0, // pe_c1_r6::Mux2config
+		1'b0, // pe_c1_r6::Mux1config
+		1'b0, // pe_c1_r6::Mux0config
+		1'b0,1'b1,1'b0,1'b0, // pe_c1_r6::ALUconfig
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux9config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux8config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
 		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux4config
-		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux3config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux2config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
 		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c1_r5::ConstVal
 		1'b1, // pe_c1_r5::RegBConfig
 		1'b1, // pe_c1_r5::RegAConfig
 		1'bx, // pe_c1_r5::Reg7config
-		1'bx, // pe_c1_r5::Reg6config
+		1'b1, // pe_c1_r5::Reg6config
 		1'bx, // pe_c1_r5::Reg5config
 		1'bx, // pe_c1_r5::Reg4config
 		1'bx, // pe_c1_r5::Reg3config
 		1'bx, // pe_c1_r5::Reg2config
 		1'bx, // pe_c1_r5::Reg1config
-		1'b1, // pe_c1_r5::Reg0config
+		1'bx, // pe_c1_r5::Reg0config
 		1'bx, // pe_c1_r5::RESConfig
 		1'bx, // pe_c1_r5::Mux7config
-		1'bx, // pe_c1_r5::Mux6config
-		1'b0, // pe_c1_r5::Mux5config
-		1'b0, // pe_c1_r5::Mux4config
+		1'b1, // pe_c1_r5::Mux6config
+		1'bx, // pe_c1_r5::Mux5config
+		1'bx, // pe_c1_r5::Mux4config
 		1'bx, // pe_c1_r5::Mux3config
-		1'bx, // pe_c1_r5::Mux2config
+		1'b0, // pe_c1_r5::Mux2config
 		1'b0, // pe_c1_r5::Mux1config
-		1'b1, // pe_c1_r5::Mux0config
+		1'bx, // pe_c1_r5::Mux0config
 		1'b1,1'b0,1'b1,1'b1, // pe_c1_r5::ALUconfig
-		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux9config
-		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux8config
-		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux7config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux8config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux4config
-		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux3config
-		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux2config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux0config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
 		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c1_r4::ConstVal
-		1'b1, // pe_c1_r4::RegBConfig
-		1'b1, // pe_c1_r4::RegAConfig
+		1'bx, // pe_c1_r4::RegBConfig
+		1'bx, // pe_c1_r4::RegAConfig
 		1'bx, // pe_c1_r4::Reg7config
 		1'bx, // pe_c1_r4::Reg6config
 		1'bx, // pe_c1_r4::Reg5config
@@ -1490,28 +1490,28 @@ module CGRA_configurator(
 		1'bx, // pe_c1_r4::Reg3config
 		1'bx, // pe_c1_r4::Reg2config
 		1'bx, // pe_c1_r4::Reg1config
-		1'b1, // pe_c1_r4::Reg0config
-		1'b1, // pe_c1_r4::RESConfig
+		1'bx, // pe_c1_r4::Reg0config
+		1'bx, // pe_c1_r4::RESConfig
 		1'bx, // pe_c1_r4::Mux7config
-		1'b0, // pe_c1_r4::Mux6config
-		1'b0, // pe_c1_r4::Mux5config
+		1'bx, // pe_c1_r4::Mux6config
+		1'bx, // pe_c1_r4::Mux5config
 		1'b0, // pe_c1_r4::Mux4config
 		1'bx, // pe_c1_r4::Mux3config
 		1'bx, // pe_c1_r4::Mux2config
-		1'b0, // pe_c1_r4::Mux1config
-		1'b1, // pe_c1_r4::Mux0config
-		1'b0,1'b0,1'b0,1'b0, // pe_c1_r4::ALUconfig
-		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux9config
-		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux8config
-		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux7config
-		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux6config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux4config
-		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux3config
+		1'bx, // pe_c1_r4::Mux1config
+		1'b0, // pe_c1_r4::Mux0config
+		1'bx,1'bx,1'bx,1'bx, // pe_c1_r4::ALUconfig
+		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux9config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux8config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
+		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux6config
+		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux5config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
 		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b1,1'b1,1'b1,1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c1_r3::ConstVal
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c1_r3::ConstVal
 		1'b1, // pe_c1_r3::RegBConfig
 		1'b1, // pe_c1_r3::RegAConfig
 		1'bx, // pe_c1_r3::Reg7config
@@ -1522,134 +1522,134 @@ module CGRA_configurator(
 		1'bx, // pe_c1_r3::Reg2config
 		1'bx, // pe_c1_r3::Reg1config
 		1'bx, // pe_c1_r3::Reg0config
-		1'bx, // pe_c1_r3::RESConfig
+		1'b1, // pe_c1_r3::RESConfig
 		1'b0, // pe_c1_r3::Mux7config
 		1'bx, // pe_c1_r3::Mux6config
-		1'bx, // pe_c1_r3::Mux5config
+		1'b0, // pe_c1_r3::Mux5config
 		1'b0, // pe_c1_r3::Mux4config
 		1'b0, // pe_c1_r3::Mux3config
-		1'b0, // pe_c1_r3::Mux2config
+		1'bx, // pe_c1_r3::Mux2config
 		1'bx, // pe_c1_r3::Mux1config
-		1'b0, // pe_c1_r3::Mux0config
-		1'b1,1'b0,1'b1,1'b1, // pe_c1_r3::ALUconfig
+		1'bx, // pe_c1_r3::Mux0config
+		1'b0,1'b1,1'b0,1'b0, // pe_c1_r3::ALUconfig
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux9config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux8config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
-		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux6config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
-		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux4config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux2config
-		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux1config
-		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c1_r2::ConstVal
-		1'bx, // pe_c1_r2::RegBConfig
-		1'bx, // pe_c1_r2::RegAConfig
-		1'bx, // pe_c1_r2::Reg7config
-		1'bx, // pe_c1_r2::Reg6config
-		1'bx, // pe_c1_r2::Reg5config
-		1'bx, // pe_c1_r2::Reg4config
-		1'bx, // pe_c1_r2::Reg3config
-		1'bx, // pe_c1_r2::Reg2config
-		1'bx, // pe_c1_r2::Reg1config
-		1'bx, // pe_c1_r2::Reg0config
-		1'bx, // pe_c1_r2::RESConfig
-		1'bx, // pe_c1_r2::Mux7config
-		1'bx, // pe_c1_r2::Mux6config
-		1'b0, // pe_c1_r2::Mux5config
-		1'b0, // pe_c1_r2::Mux4config
-		1'b0, // pe_c1_r2::Mux3config
-		1'bx, // pe_c1_r2::Mux2config
-		1'b0, // pe_c1_r2::Mux1config
-		1'bx, // pe_c1_r2::Mux0config
-		1'bx,1'bx,1'bx,1'bx, // pe_c1_r2::ALUconfig
-		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux9config
-		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux8config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
-		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux6config
-		1'b0,1'b1,1'b0,1'b1, // crossbar::Mux5config
-		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux4config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux8config
+		1'b1,1'b0,1'b0,1'b1, // crossbar::Mux7config
+		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux6config
+		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux5config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux4config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c1_r1::ConstVal
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c1_r2::ConstVal
+		1'b1, // pe_c1_r2::RegBConfig
+		1'bx, // pe_c1_r2::RegAConfig
+		1'bx, // pe_c1_r2::Reg7config
+		1'bx, // pe_c1_r2::Reg6config
+		1'bx, // pe_c1_r2::Reg5config
+		1'b1, // pe_c1_r2::Reg4config
+		1'bx, // pe_c1_r2::Reg3config
+		1'bx, // pe_c1_r2::Reg2config
+		1'bx, // pe_c1_r2::Reg1config
+		1'bx, // pe_c1_r2::Reg0config
+		1'b1, // pe_c1_r2::RESConfig
+		1'b0, // pe_c1_r2::Mux7config
+		1'b0, // pe_c1_r2::Mux6config
+		1'bx, // pe_c1_r2::Mux5config
+		1'b1, // pe_c1_r2::Mux4config
+		1'b0, // pe_c1_r2::Mux3config
+		1'bx, // pe_c1_r2::Mux2config
+		1'bx, // pe_c1_r2::Mux1config
+		1'bx, // pe_c1_r2::Mux0config
+		1'b0,1'b0,1'b1,1'b1, // pe_c1_r2::ALUconfig
+		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux9config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux8config
+		1'b0,1'b0,1'b0,1'b1, // crossbar::Mux7config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux4config
+		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c1_r1::ConstVal
 		1'b1, // pe_c1_r1::RegBConfig
 		1'b1, // pe_c1_r1::RegAConfig
 		1'bx, // pe_c1_r1::Reg7config
 		1'bx, // pe_c1_r1::Reg6config
 		1'bx, // pe_c1_r1::Reg5config
 		1'bx, // pe_c1_r1::Reg4config
-		1'bx, // pe_c1_r1::Reg3config
-		1'b1, // pe_c1_r1::Reg2config
+		1'b1, // pe_c1_r1::Reg3config
+		1'bx, // pe_c1_r1::Reg2config
 		1'bx, // pe_c1_r1::Reg1config
 		1'bx, // pe_c1_r1::Reg0config
 		1'bx, // pe_c1_r1::RESConfig
-		1'b0, // pe_c1_r1::Mux7config
-		1'bx, // pe_c1_r1::Mux6config
+		1'bx, // pe_c1_r1::Mux7config
+		1'b0, // pe_c1_r1::Mux6config
 		1'b0, // pe_c1_r1::Mux5config
-		1'b0, // pe_c1_r1::Mux4config
-		1'bx, // pe_c1_r1::Mux3config
-		1'b1, // pe_c1_r1::Mux2config
-		1'bx, // pe_c1_r1::Mux1config
-		1'bx, // pe_c1_r1::Mux0config
+		1'bx, // pe_c1_r1::Mux4config
+		1'b1, // pe_c1_r1::Mux3config
+		1'bx, // pe_c1_r1::Mux2config
+		1'b0, // pe_c1_r1::Mux1config
+		1'b0, // pe_c1_r1::Mux0config
 		1'b0,1'b1,1'b0,1'b1, // pe_c1_r1::ALUconfig
-		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux7config
-		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux6config
-		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux5config
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux7config
+		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux6config
+		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux5config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux1config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux2config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
 		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c1_r0::ConstVal
 		1'b1, // pe_c1_r0::RegBConfig
 		1'b1, // pe_c1_r0::RegAConfig
-		1'b1, // pe_c1_r0::Reg7config
+		1'bx, // pe_c1_r0::Reg7config
 		1'bx, // pe_c1_r0::Reg6config
 		1'bx, // pe_c1_r0::Reg3config
 		1'bx, // pe_c1_r0::Reg2config
 		1'bx, // pe_c1_r0::Reg1config
 		1'bx, // pe_c1_r0::Reg0config
-		1'b1, // pe_c1_r0::RESConfig
-		1'b1, // pe_c1_r0::Mux7config
+		1'bx, // pe_c1_r0::RESConfig
+		1'bx, // pe_c1_r0::Mux7config
 		1'bx, // pe_c1_r0::Mux6config
-		1'b0, // pe_c1_r0::Mux3config
-		1'bx, // pe_c1_r0::Mux2config
-		1'bx, // pe_c1_r0::Mux1config
+		1'bx, // pe_c1_r0::Mux3config
+		1'b0, // pe_c1_r0::Mux2config
+		1'b0, // pe_c1_r0::Mux1config
 		1'b0, // pe_c1_r0::Mux0config
-		1'b0,1'b1,1'b0,1'b1, // pe_c1_r0::ALUconfig
+		1'b1,1'b0,1'b1,1'b1, // pe_c1_r0::ALUconfig
 		1'b0,1'b0,1'b1, // crossbar::Mux6config
 		1'b1,1'b0,1'b0, // crossbar::Mux5config
 		1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'b0,1'b1,1'b1, // crossbar::Mux3config
+		1'b0,1'b0,1'b0, // crossbar::Mux3config
 		1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'b1,1'b1,1'b1, // crossbar::Mux1config
-		1'b0,1'b1,1'b0, // crossbar::Mux0config
-		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r7::ConstVal
+		1'bx,1'bx,1'bx, // crossbar::Mux1config
+		1'b1,1'b0,1'b1, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r7::ConstVal
 		1'b1, // pe_c0_r7::RegBConfig
 		1'b1, // pe_c0_r7::RegAConfig
-		1'bx, // pe_c0_r7::Reg5config
+		1'b1, // pe_c0_r7::Reg5config
 		1'bx, // pe_c0_r7::Reg3config
 		1'bx, // pe_c0_r7::Reg2config
-		1'b1, // pe_c0_r7::Reg1config
+		1'bx, // pe_c0_r7::Reg1config
 		1'bx, // pe_c0_r7::Reg0config
-		1'b1, // pe_c0_r7::RESConfig
-		1'b0, // pe_c0_r7::Mux5config
+		1'bx, // pe_c0_r7::RESConfig
+		1'b1, // pe_c0_r7::Mux5config
 		1'bx, // pe_c0_r7::Mux3config
-		1'b0, // pe_c0_r7::Mux2config
-		1'b1, // pe_c0_r7::Mux1config
-		1'bx, // pe_c0_r7::Mux0config
+		1'bx, // pe_c0_r7::Mux2config
+		1'b0, // pe_c0_r7::Mux1config
+		1'b0, // pe_c0_r7::Mux0config
 		1'b0,1'b1,1'b0,1'b1, // pe_c0_r7::ALUconfig
-		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux7config
-		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux6config
+		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux7config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux6config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux3config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
+		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux3config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux0config
-		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r6::ConstVal
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r6::ConstVal
 		1'b1, // pe_c0_r6::RegBConfig
 		1'b1, // pe_c0_r6::RegAConfig
 		1'b1, // pe_c0_r6::Reg6config
@@ -1663,20 +1663,20 @@ module CGRA_configurator(
 		1'bx, // pe_c0_r6::Mux5config
 		1'bx, // pe_c0_r6::Mux3config
 		1'b1, // pe_c0_r6::Mux2config
-		1'bx, // pe_c0_r6::Mux1config
-		1'b0, // pe_c0_r6::Mux0config
+		1'b0, // pe_c0_r6::Mux1config
+		1'bx, // pe_c0_r6::Mux0config
 		1'b0,1'b1,1'b0,1'b1, // pe_c0_r6::ALUconfig
-		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux7config
-		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux6config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux6config
+		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux5config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
-		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux3config
-		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux2config
+		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux0config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
 		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r5::ConstVal
-		1'b1, // pe_c0_r5::RegBConfig
-		1'b1, // pe_c0_r5::RegAConfig
+		1'bx, // pe_c0_r5::RegBConfig
+		1'bx, // pe_c0_r5::RegAConfig
 		1'bx, // pe_c0_r5::Reg6config
 		1'bx, // pe_c0_r5::Reg5config
 		1'bx, // pe_c0_r5::Reg3config
@@ -1684,97 +1684,97 @@ module CGRA_configurator(
 		1'bx, // pe_c0_r5::Reg1config
 		1'b1, // pe_c0_r5::Reg0config
 		1'bx, // pe_c0_r5::RESConfig
-		1'bx, // pe_c0_r5::Mux6config
-		1'b0, // pe_c0_r5::Mux5config
+		1'b0, // pe_c0_r5::Mux6config
+		1'bx, // pe_c0_r5::Mux5config
 		1'bx, // pe_c0_r5::Mux3config
-		1'b0, // pe_c0_r5::Mux2config
-		1'b0, // pe_c0_r5::Mux1config
+		1'bx, // pe_c0_r5::Mux2config
+		1'bx, // pe_c0_r5::Mux1config
 		1'b1, // pe_c0_r5::Mux0config
-		1'b0,1'b0,1'b0,1'b1, // pe_c0_r5::ALUconfig
-		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux7config
-		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux6config
-		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux5config
-		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux4config
+		1'bx,1'bx,1'bx,1'bx, // pe_c0_r5::ALUconfig
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
+		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux6config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux5config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux4config
 		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux3config
-		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux2config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux2config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
 		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r4::ConstVal
 		1'b1, // pe_c0_r4::RegBConfig
-		1'b1, // pe_c0_r4::RegAConfig
+		1'bx, // pe_c0_r4::RegAConfig
 		1'bx, // pe_c0_r4::Reg6config
-		1'b1, // pe_c0_r4::Reg5config
+		1'bx, // pe_c0_r4::Reg5config
 		1'bx, // pe_c0_r4::Reg3config
 		1'bx, // pe_c0_r4::Reg2config
 		1'bx, // pe_c0_r4::Reg1config
 		1'bx, // pe_c0_r4::Reg0config
-		1'b1, // pe_c0_r4::RESConfig
+		1'bx, // pe_c0_r4::RESConfig
 		1'b0, // pe_c0_r4::Mux6config
-		1'b1, // pe_c0_r4::Mux5config
+		1'bx, // pe_c0_r4::Mux5config
 		1'bx, // pe_c0_r4::Mux3config
-		1'b0, // pe_c0_r4::Mux2config
-		1'b0, // pe_c0_r4::Mux1config
+		1'bx, // pe_c0_r4::Mux2config
+		1'bx, // pe_c0_r4::Mux1config
 		1'b0, // pe_c0_r4::Mux0config
-		1'b1,1'b0,1'b0,1'b0, // pe_c0_r4::ALUconfig
-		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux7config
-		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux6config
-		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux5config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b1,1'b1,1'b0,1'b1, // pe_c0_r4::ALUconfig
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
+		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux6config
+		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux5config
+		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux4config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux3config
-		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux2config
-		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux1config
-		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r3::ConstVal
+		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux2config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux1config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
+		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r3::ConstVal
 		1'b1, // pe_c0_r3::RegBConfig
-		1'b1, // pe_c0_r3::RegAConfig
+		1'bx, // pe_c0_r3::RegAConfig
 		1'bx, // pe_c0_r3::Reg6config
 		1'bx, // pe_c0_r3::Reg5config
-		1'bx, // pe_c0_r3::Reg3config
+		1'b1, // pe_c0_r3::Reg3config
 		1'bx, // pe_c0_r3::Reg2config
 		1'bx, // pe_c0_r3::Reg1config
 		1'bx, // pe_c0_r3::Reg0config
-		1'b1, // pe_c0_r3::RESConfig
-		1'b0, // pe_c0_r3::Mux6config
-		1'bx, // pe_c0_r3::Mux5config
-		1'b0, // pe_c0_r3::Mux3config
+		1'bx, // pe_c0_r3::RESConfig
+		1'bx, // pe_c0_r3::Mux6config
+		1'b0, // pe_c0_r3::Mux5config
+		1'b1, // pe_c0_r3::Mux3config
 		1'bx, // pe_c0_r3::Mux2config
-		1'b0, // pe_c0_r3::Mux1config
+		1'bx, // pe_c0_r3::Mux1config
 		1'b0, // pe_c0_r3::Mux0config
-		1'b0,1'b0,1'b0,1'b1, // pe_c0_r3::ALUconfig
+		1'b0,1'b0,1'b1,1'b1, // pe_c0_r3::ALUconfig
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux7config
 		1'b0,1'b0,1'b0,1'b0, // crossbar::Mux6config
 		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux5config
-		1'b0,1'b1,1'b0,1'b0, // crossbar::Mux4config
-		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux3config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux3config
 		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux2config
 		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux1config
 		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r2::ConstVal
+		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r2::ConstVal
 		1'b1, // pe_c0_r2::RegBConfig
 		1'bx, // pe_c0_r2::RegAConfig
 		1'bx, // pe_c0_r2::Reg6config
-		1'bx, // pe_c0_r2::Reg5config
+		1'b1, // pe_c0_r2::Reg5config
 		1'bx, // pe_c0_r2::Reg3config
 		1'bx, // pe_c0_r2::Reg2config
 		1'bx, // pe_c0_r2::Reg1config
 		1'b1, // pe_c0_r2::Reg0config
 		1'bx, // pe_c0_r2::RESConfig
-		1'b0, // pe_c0_r2::Mux6config
-		1'bx, // pe_c0_r2::Mux5config
+		1'bx, // pe_c0_r2::Mux6config
+		1'b1, // pe_c0_r2::Mux5config
 		1'b0, // pe_c0_r2::Mux3config
-		1'b0, // pe_c0_r2::Mux2config
+		1'bx, // pe_c0_r2::Mux2config
 		1'bx, // pe_c0_r2::Mux1config
 		1'b1, // pe_c0_r2::Mux0config
 		1'b1,1'b1,1'b0,1'b1, // pe_c0_r2::ALUconfig
 		1'b1,1'b0,1'b1,1'b0, // crossbar::Mux7config
 		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux6config
-		1'b0,1'b1,1'b1,1'b0, // crossbar::Mux5config
-		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux4config
-		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux3config
+		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux5config
+		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b1,1'b0,1'b0,1'b0, // crossbar::Mux3config
 		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux2config
-		1'bx,1'bx,1'bx,1'bx, // crossbar::Mux1config
-		1'b1,1'b1,1'b0,1'b0, // crossbar::Mux0config
-		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r1::ConstVal
+		1'b1,1'b1,1'b1,1'b0, // crossbar::Mux1config
+		1'b0,1'b0,1'b1,1'b0, // crossbar::Mux0config
+		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r1::ConstVal
 		1'b1, // pe_c0_r1::RegBConfig
 		1'b1, // pe_c0_r1::RegAConfig
 		1'bx, // pe_c0_r1::Reg6config
@@ -1788,31 +1788,31 @@ module CGRA_configurator(
 		1'b0, // pe_c0_r1::Mux5config
 		1'b1, // pe_c0_r1::Mux3config
 		1'bx, // pe_c0_r1::Mux2config
-		1'bx, // pe_c0_r1::Mux1config
+		1'b0, // pe_c0_r1::Mux1config
 		1'bx, // pe_c0_r1::Mux0config
 		1'b0,1'b0,1'b0,1'b0, // pe_c0_r1::ALUconfig
-		1'bx,1'bx,1'bx, // crossbar::Mux6config
+		1'b0,1'b0,1'b1, // crossbar::Mux6config
 		1'b0,1'b1,1'b0, // crossbar::Mux5config
-		1'b1,1'b0,1'b1, // crossbar::Mux4config
-		1'b0,1'b0,1'b1, // crossbar::Mux3config
+		1'bx,1'bx,1'bx, // crossbar::Mux4config
+		1'b0,1'b1,1'b1, // crossbar::Mux3config
 		1'bx,1'bx,1'bx, // crossbar::Mux2config
-		1'b0,1'b1,1'b1, // crossbar::Mux1config
+		1'bx,1'bx,1'bx, // crossbar::Mux1config
 		1'bx,1'bx,1'bx, // crossbar::Mux0config
-		1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r0::ConstVal
+		1'b1,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0, // pe_c0_r0::ConstVal
 		1'b1, // pe_c0_r0::RegBConfig
-		1'bx, // pe_c0_r0::RegAConfig
+		1'b1, // pe_c0_r0::RegAConfig
 		1'bx, // pe_c0_r0::Reg6config
 		1'bx, // pe_c0_r0::Reg3config
-		1'b1, // pe_c0_r0::Reg2config
+		1'bx, // pe_c0_r0::Reg2config
 		1'bx, // pe_c0_r0::Reg1config
 		1'bx, // pe_c0_r0::Reg0config
 		1'b1, // pe_c0_r0::RESConfig
 		1'b0, // pe_c0_r0::Mux6config
 		1'bx, // pe_c0_r0::Mux3config
-		1'b1, // pe_c0_r0::Mux2config
+		1'b0, // pe_c0_r0::Mux2config
 		1'bx, // pe_c0_r0::Mux1config
 		1'bx, // pe_c0_r0::Mux0config
-		1'b0,1'b0,1'b1,1'b1, // pe_c0_r0::ALUconfig
+		1'b0,1'b1,1'b0,1'b1, // pe_c0_r0::ALUconfig
 		1'b0, // mem_7::WriteRq
 		1'bx,1'bx,1'bx, // mem_7::MuxData
 		1'bx,1'bx,1'bx, // mem_7::MuxAddr
@@ -1820,20 +1820,20 @@ module CGRA_configurator(
 		1'bx,1'bx,1'bx, // mem_6::MuxData
 		1'bx,1'bx,1'bx, // mem_6::MuxAddr
 		1'b1, // mem_5::WriteRq
-		1'b0,1'b1,1'b0, // mem_5::MuxData
-		1'b1,1'b1,1'b1, // mem_5::MuxAddr
+		1'b1,1'b0,1'b0, // mem_5::MuxData
+		1'b0,1'b1,1'b1, // mem_5::MuxAddr
 		1'b1, // mem_4::WriteRq
 		1'b0,1'b0,1'b1, // mem_4::MuxData
-		1'b0,1'b1,1'b1, // mem_4::MuxAddr
+		1'b0,1'b0,1'b0, // mem_4::MuxAddr
 		1'b0, // mem_3::WriteRq
 		1'bx,1'bx,1'bx, // mem_3::MuxData
-		1'b0,1'b0,1'b0, // mem_3::MuxAddr
+		1'b1,1'b0,1'b1, // mem_3::MuxAddr
 		1'b0, // mem_2::WriteRq
 		1'bx,1'bx,1'bx, // mem_2::MuxData
-		1'b1,1'b0,1'b1, // mem_2::MuxAddr
+		1'b1,1'b1,1'b1, // mem_2::MuxAddr
 		1'b0, // mem_1::WriteRq
 		1'bx,1'bx,1'bx, // mem_1::MuxData
-		1'b1,1'b0,1'b0, // mem_1::MuxAddr
+		1'b0,1'b1,1'b0, // mem_1::MuxAddr
 		1'b0, // mem_0::WriteRq
 		1'bx,1'bx,1'bx, // mem_0::MuxData
 		1'bx,1'bx,1'bx, // mem_0::MuxAddr
@@ -1900,13 +1900,13 @@ module CGRA_configurator(
 		1'b1, // io_bottom_3::RegOutConfig
 		1'bx, // io_bottom_3::RegInConfig
 		1'b0, // io_bottom_3::IOPinConfig
-		1'bx, // io_bottom_2::RegOutConfig
+		1'b1, // io_bottom_2::RegOutConfig
 		1'bx, // io_bottom_2::RegInConfig
 		1'b0, // io_bottom_2::IOPinConfig
 		1'b1, // io_bottom_1::RegOutConfig
 		1'bx, // io_bottom_1::RegInConfig
 		1'b0, // io_bottom_1::IOPinConfig
-		1'b1, // io_bottom_0::RegOutConfig
+		1'bx, // io_bottom_0::RegOutConfig
 		1'bx, // io_bottom_0::RegInConfig
 		1'b0 // io_bottom_0::IOPinConfig
 	};

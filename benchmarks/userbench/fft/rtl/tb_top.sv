@@ -65,7 +65,7 @@ module tb_top
                 $display("[TESTBENCH] %t: loading firmware %0s ...",
                          $time, firmware);
             $readmemh(firmware, riscv_wrapper_i.ram_i.instruc_ram_i.mem);
-	        //$readmemh(firmware, riscv_wrapper_i.ram_i.dp_ram_i.mem);
+	        $readmemh(firmware, riscv_wrapper_i.ram_i.dp_ram_0.mem);
 
         end else begin
             $display("No firmware specified");
@@ -126,10 +126,11 @@ module tb_top
 		CGRA_Clock_en = 0;
 		configurator_reset = 1;
 		Config_Reset = 1;
-		CGRA_Reset = 0;
+
+		CGRA_Reset = 1'b1;
 		riscv_enable = 0;
 		rst_ni = 1'b1;
-		CGRA_Reset = 1'b0;
+		
 		
 		#CLK_PERIOD;
 		Config_Reset = 0;
@@ -140,12 +141,14 @@ module tb_top
 
 		configurator_enable = 0;
 		Config_Clock_en = 0;
-		CGRA_Reset = 1;
+
+        #CLK_PERIOD;
+		CGRA_Reset = 0;
+
 		rst_ni = 1'b0;
 		CGRA_Clock_en = 1;
 
-		#CLK_PERIOD;
-		CGRA_Reset = 0;
+		
 		rst_ni = 1'b1;
 		riscv_enable = 1;
 	end  

@@ -1,6 +1,6 @@
 PROJECT = cgrame
-DATA_DOT_FILE = data/final_graph_loop.dot
-FIX_PORT_DATA = data/fft_ports.txt
+DATA_DOT_FILE = fft_kernal/final_graph_loop.dot
+FIX_PORT_DATA = fft_kernal/fft_ports.txt
 FFT_C_SOURCE = firmware/fft_main.c
 COL = 8
 ROW = 8
@@ -16,7 +16,7 @@ VERILOG_OPT = --verilog-opts "hybrid=$(HYBRID) memsize=$(MEMORY)"
 
 COMPILER = riscv32-unknown-elf
 
-#ASSEM_DATA = firmware/data/fir4.S
+#ASSEM_DATA = firmware/fft_kernal/fir4.S
 #ASSEM_COUNTER = firmware/counter/cgra_fir_4_1.S
 #VSIM = vsim
 #VLOG = vlog
@@ -68,6 +68,7 @@ hex_fft:
 	
 # 	转换成 Verilog 格式的 Hex 文件
 	$(COMPILER)-objcopy -O verilog firmware/firmware.elf firmware/firmware.hex
+	$(COMPILER)-objdump -M numeric,no-aliases -S -D firmware/firmware.elf > firmware/firmware.dump
 
 #start simulation for the hybrid system	
 #simulation:
@@ -94,7 +95,7 @@ package:
 
 # C. 复制固件
 	cp firmware/firmware.hex sim_pkg/firmware/
-	
+	cp firmware/firmware.dump sim_pkg/firmware/
 # D. 生成 Windows ModelSim 脚本 (run.do)
 	echo "vlib work" >> sim_pkg/run.do
 	echo "vlog -f filelist.f" >> sim_pkg/run.do
@@ -107,4 +108,4 @@ package:
 #clean: 
 #	rm -rf work hybrid.h firmware/*.o firmware/*.hex firmware/*.map $(VERILOG_PATH)/control.sv $(VERILOG_PATH)/cgrame.v transcript vsim.wlf trace_core_00* 
 clean: 
-	rm -rf firmware/hybrid.h firmware/*.o firmware/*.hex firmware/*.elf rtl/cgrame.v rtl/control.sv hybrid.h log.out testbench.v
+	rm -rf  firmware/*.o firmware/*.hex firmware/*.elf log.out testbench.v rtl/cgrame.v rtl/control.sv firmware/hybrid.h   hybrid.h 
