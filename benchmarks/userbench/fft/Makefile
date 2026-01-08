@@ -108,4 +108,5 @@ package:
 #clean: 
 #	rm -rf work hybrid.h firmware/*.o firmware/*.hex firmware/*.map $(VERILOG_PATH)/control.sv $(VERILOG_PATH)/cgrame.v transcript vsim.wlf trace_core_00* 
 clean: 
-	rm -rf  firmware/*.o firmware/*.hex firmware/*.elf log.out testbench.v rtl/cgrame.v rtl/control.sv firmware/hybrid.h   hybrid.h 
+	rm -rf  firmware/*.o firmware/*.hex firmware/*.elf  firmware/firmware.dump
+# log.out testbench.v rtl/cgrame.v rtl/control.sv firmware/hybrid.h   hybrid.h 

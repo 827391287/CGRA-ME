@@ -67,6 +67,7 @@ module tb_top
             $readmemh(firmware, riscv_wrapper_i.ram_i.instruc_ram_i.mem);
 	        $readmemh(firmware, riscv_wrapper_i.ram_i.dp_ram_0.mem);
 
+
         end else begin
             $display("No firmware specified");
             $finish;
@@ -152,5 +153,18 @@ module tb_top
 		rst_ni = 1'b1;
 		riscv_enable = 1;
 	end  
+
+
+    localparam PRINT_ADDR = 32'h10000000;
+
+    always @(posedge clk_i) begin
+
+        if (riscv_wrapper_i.riscv_core_i.data_req_o && 
+            riscv_wrapper_i.riscv_core_i.data_we_o  && 
+            riscv_wrapper_i.riscv_core_i.data_addr_o == PRINT_ADDR) begin
+            
+            $write("%c", riscv_wrapper_i.riscv_core_i.data_wdata_o[7:0]);
+        end
+    end
 
 endmodule

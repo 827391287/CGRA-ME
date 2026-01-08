@@ -166,7 +166,7 @@ Disassembly of section .text:
 __no_irq_handler:
 	la a0, no_exception_handler_msg
  184:	00001517          	auipc	x10,0x1
- 188:	b5950513          	addi	x10,x10,-1191 # cdd <no_exception_handler_msg>
+ 188:	ba950513          	addi	x10,x10,-1111 # d2d <no_exception_handler_msg>
 	jal ra, print_str
  18c:	22c000ef          	jal	x1,3b8 <print_str>
 	j __no_irq_handler
@@ -210,7 +210,7 @@ handle_ecall:
 handle_ebreak:
 	la a0, ebreak_msg
  1c0:	00001517          	auipc	x10,0x1
- 1c4:	ad850513          	addi	x10,x10,-1320 # c98 <ebreak_msg>
+ 1c4:	b2850513          	addi	x10,x10,-1240 # ce8 <ebreak_msg>
 	jal ra, print_str
  1c8:	1f0000ef          	jal	x1,3b8 <print_str>
 	j fail_test
@@ -221,7 +221,7 @@ handle_ebreak:
 handle_illegal_insn:
 	la a0, illegal_insn_msg
  1d0:	00001517          	auipc	x10,0x1
- 1d4:	a7850513          	addi	x10,x10,-1416 # c48 <illegal_insn_msg>
+ 1d4:	ac850513          	addi	x10,x10,-1336 # c98 <illegal_insn_msg>
 	jal ra, print_str
  1d8:	1e0000ef          	jal	x1,3b8 <print_str>
 	j fail_test
@@ -232,7 +232,7 @@ handle_illegal_insn:
 handle_unknown:
 	la a0, unknown_msg
  1e0:	00001517          	auipc	x10,0x1
- 1e4:	ada50513          	addi	x10,x10,-1318 # cba <unknown_msg>
+ 1e4:	b2a50513          	addi	x10,x10,-1238 # d0a <unknown_msg>
 	jal ra, print_str
  1e8:	1d0000ef          	jal	x1,3b8 <print_str>
 	mv a0, t0
@@ -267,7 +267,7 @@ fail_test:
 timer_irq_handler:
 	la a0, timeout_msg
  218:	00001517          	auipc	x10,0x1
- 21c:	b1a50513          	addi	x10,x10,-1254 # d32 <timeout_msg>
+ 21c:	b6a50513          	addi	x10,x10,-1174 # d82 <timeout_msg>
 	jal ra, print_str
  220:	198000ef          	jal	x1,3b8 <print_str>
 	li a0, 1
@@ -299,7 +299,7 @@ start:
     /* 依赖修改后的 link.ld 提供的符号 */
     la a0, _data_lma_start  /* 源地址：Firmware 中的数据位置 */
  240:	00001517          	auipc	x10,0x1
- 244:	bb450513          	addi	x10,x10,-1100 # df4 <_data_lma_start>
+ 244:	c0450513          	addi	x10,x10,-1020 # e44 <_data_lma_start>
     la a1, _data_start      /* 目的地址：RAM 中的起始位置 */
  248:	00000597          	auipc	x11,0x0
  24c:	db858593          	addi	x11,x11,-584 # 0 <__irq_base_vector>
@@ -627,7 +627,7 @@ void print_hex(unsigned int val, int digits)
  4cc:	fec42783          	lw	x15,-20(x8)
  4d0:	00f757b3          	srl	x15,x14,x15
  4d4:	00f7f713          	andi	x14,x15,15
- 4d8:	55018793          	addi	x15,x3,1360 # d50 <timeout_msg+0x1e>
+ 4d8:	5a018793          	addi	x15,x3,1440 # da0 <timeout_msg+0x1e>
  4dc:	00f707b3          	add	x15,x14,x15
  4e0:	0007c703          	lbu	x14,0(x15)
  4e4:	100007b7          	lui	x15,0x10000
@@ -789,7 +789,7 @@ void stats(void)
  68c:	781027f3          	csrrs	x15,pccr1,x0
  690:	fef42423          	sw	x15,-24(x8)
     print_str("Cycle counter ........");
- 694:	56418513          	addi	x10,x3,1380 # d64 <timeout_msg+0x32>
+ 694:	5b418513          	addi	x10,x3,1460 # db4 <timeout_msg+0x32>
  698:	d21ff0ef          	jal	x1,3b8 <print_str>
     stats_print_dec(num_cycles, 8, false);
  69c:	00000613          	addi	x12,x0,0
@@ -797,7 +797,7 @@ void stats(void)
  6a4:	fec42503          	lw	x10,-20(x8)
  6a8:	e69ff0ef          	jal	x1,510 <stats_print_dec>
     print_str("\nInstruction counter ..");
- 6ac:	57c18513          	addi	x10,x3,1404 # d7c <timeout_msg+0x4a>
+ 6ac:	5cc18513          	addi	x10,x3,1484 # dcc <timeout_msg+0x4a>
  6b0:	d09ff0ef          	jal	x1,3b8 <print_str>
     stats_print_dec(num_instr, 8, false);
  6b4:	00000613          	addi	x12,x0,0
@@ -805,7 +805,7 @@ void stats(void)
  6bc:	fe842503          	lw	x10,-24(x8)
  6c0:	e51ff0ef          	jal	x1,510 <stats_print_dec>
     print_str("\nCPI: ");
- 6c4:	59418513          	addi	x10,x3,1428 # d94 <timeout_msg+0x62>
+ 6c4:	5e418513          	addi	x10,x3,1508 # de4 <timeout_msg+0x62>
  6c8:	cf1ff0ef          	jal	x1,3b8 <print_str>
     stats_print_dec((num_cycles / num_instr), 0, false);
  6cc:	fec42703          	lw	x14,-20(x8)
@@ -816,7 +816,7 @@ void stats(void)
  6e0:	00078513          	addi	x10,x15,0
  6e4:	e2dff0ef          	jal	x1,510 <stats_print_dec>
     print_str(".");
- 6e8:	59c18513          	addi	x10,x3,1436 # d9c <timeout_msg+0x6a>
+ 6e8:	5ec18513          	addi	x10,x3,1516 # dec <timeout_msg+0x6a>
  6ec:	ccdff0ef          	jal	x1,3b8 <print_str>
     stats_print_dec(((100 * num_cycles) / num_instr) % 100, 2, true);
  6f0:	fec42703          	lw	x14,-20(x8)
@@ -831,7 +831,7 @@ void stats(void)
  714:	00078513          	addi	x10,x15,0
  718:	df9ff0ef          	jal	x1,510 <stats_print_dec>
     print_str("\n");
- 71c:	5a018513          	addi	x10,x3,1440 # da0 <timeout_msg+0x6e>
+ 71c:	5f018513          	addi	x10,x3,1520 # df0 <timeout_msg+0x6e>
  720:	c99ff0ef          	jal	x1,3b8 <print_str>
 }
  724:	00000013          	addi	x0,x0,0
@@ -841,16 +841,16 @@ void stats(void)
  734:	00008067          	jalr	x0,0(x1)
 
 00000738 <init_data>:
+
 // =============================================================
-//  Part 5: 初始化与主程序
+//  Part 5: 主程序
 // =============================================================
 
-// 初始化数据
 void init_data() {
  738:	fe010113          	addi	x2,x2,-32
  73c:	00812e23          	sw	x8,28(x2)
  740:	02010413          	addi	x8,x2,32
-    // 初始化全部为0
+
     for(int i=0; i<MAX_FFT_SIZE; i++) twiddle_table[i] = 0;
  744:	fe042623          	sw	x0,-20(x8)
  748:	0280006f          	jal	x0,770 <init_data+0x38>
@@ -866,48 +866,46 @@ void init_data() {
  770:	fec42703          	lw	x14,-20(x8)
  774:	1ff00793          	addi	x15,x0,511
  778:	fce7dae3          	bge	x15,x14,74c <init_data+0x14>
-
-    twiddle_table[1] = COMBINE(32767, 0);       // W_2^0
+    twiddle_table[1] = COMBINE(32767, 0);       
  77c:	000017b7          	lui	x15,0x1
  780:	80878793          	addi	x15,x15,-2040 # 808 <twiddle_table>
  784:	7fff0737          	lui	x14,0x7fff0
  788:	00e7a223          	sw	x14,4(x15)
-    twiddle_table[2] = COMBINE(32767, 0);       // W_4^0
+    twiddle_table[2] = COMBINE(32767, 0);       
  78c:	000017b7          	lui	x15,0x1
  790:	80878793          	addi	x15,x15,-2040 # 808 <twiddle_table>
  794:	7fff0737          	lui	x14,0x7fff0
  798:	00e7a423          	sw	x14,8(x15)
-    twiddle_table[3] = COMBINE(0, -32767);      // W_4^1
+    twiddle_table[3] = COMBINE(0, -32767);      
  79c:	000017b7          	lui	x15,0x1
  7a0:	80878793          	addi	x15,x15,-2040 # 808 <twiddle_table>
  7a4:	00008737          	lui	x14,0x8
  7a8:	00170713          	addi	x14,x14,1 # 8001 <__bss_end+0x6ff9>
  7ac:	00e7a623          	sw	x14,12(x15)
-    twiddle_table[4] = COMBINE(32767, 0);       // W_8^0
+    twiddle_table[4] = COMBINE(32767, 0);       
  7b0:	000017b7          	lui	x15,0x1
  7b4:	80878793          	addi	x15,x15,-2040 # 808 <twiddle_table>
  7b8:	7fff0737          	lui	x14,0x7fff0
  7bc:	00e7a823          	sw	x14,16(x15)
-    twiddle_table[5] = COMBINE(23170, -23170);  // W_8^1
+    twiddle_table[5] = COMBINE(23170, -23170);  
  7c0:	000017b7          	lui	x15,0x1
  7c4:	80878793          	addi	x15,x15,-2040 # 808 <twiddle_table>
  7c8:	5a82a737          	lui	x14,0x5a82a
  7cc:	57e70713          	addi	x14,x14,1406 # 5a82a57e <test_ret_val+0x3a82a57e>
  7d0:	00e7aa23          	sw	x14,20(x15)
-    twiddle_table[6] = COMBINE(0, -32767);      // W_8^2
+    twiddle_table[6] = COMBINE(0, -32767);      
  7d4:	000017b7          	lui	x15,0x1
  7d8:	80878793          	addi	x15,x15,-2040 # 808 <twiddle_table>
  7dc:	00008737          	lui	x14,0x8
  7e0:	00170713          	addi	x14,x14,1 # 8001 <__bss_end+0x6ff9>
  7e4:	00e7ac23          	sw	x14,24(x15)
-    twiddle_table[7] = COMBINE(-23170, -23170); // W_8^3
+    twiddle_table[7] = COMBINE(-23170, -23170); 
  7e8:	000017b7          	lui	x15,0x1
  7ec:	80878793          	addi	x15,x15,-2040 # 808 <twiddle_table>
  7f0:	a57ea737          	lui	x14,0xa57ea
  7f4:	57e70713          	addi	x14,x14,1406 # a57ea57e <pulp__FC+0xa57ea57f>
  7f8:	00e7ae23          	sw	x14,28(x15)
 
-    // 初始化输入数据
     for(int i=0; i<N; i++) {
  7fc:	fe042423          	sw	x0,-24(x8)
  800:	0340006f          	jal	x0,834 <twiddle_table+0x2c>
@@ -944,59 +942,48 @@ int app() {
  85c:	07010413          	addi	x8,x2,112
     init_data();
  860:	ed9ff0ef          	jal	x1,738 <init_data>
-    print_str("Starting Hybrid FFT (II=1, 8x8 8-Bank Mode)...\n");
- 864:	5a418513          	addi	x10,x3,1444 # da4 <timeout_msg+0x72>
+    print_str("Starting Hybrid FFT (Fixed IO & Latency)...\n");
+ 864:	5f418513          	addi	x10,x3,1524 # df4 <timeout_msg+0x72>
  868:	b51ff0ef          	jal	x1,3b8 <print_str>
 
-    // --- 1. 定义指向物理 Bank 的指针 ---
-    // i3_load (Input A) -> mem_1 -> Bank 1
-    volatile int *ptr_in_a = BANK1_BASE;
+    // 定义 CPU 视角的指针 (用于数据搬运)
+    volatile int *ptr_cpu_in_a = BANK1_BASE;
  86c:	000807b7          	lui	x15,0x80
- 870:	fcf42223          	sw	x15,-60(x8)
-    
-    // i5_load (Input B) -> mem_2 -> Bank 2
-    volatile int *ptr_in_b = BANK2_BASE;
+ 870:	fcf42023          	sw	x15,-64(x8)
+    volatile int *ptr_cpu_in_b = BANK2_BASE;
  874:	001007b7          	lui	x15,0x100
- 878:	fcf42023          	sw	x15,-64(x8)
-
-    // i7_load (Weight)  -> mem_3 -> Bank 3
-    volatile int *ptr_w    = BANK3_BASE;
+ 878:	faf42e23          	sw	x15,-68(x8)
+    volatile int *ptr_cpu_w    = BANK3_BASE;
  87c:	001807b7          	lui	x15,0x180
- 880:	faf42e23          	sw	x15,-68(x8)
-
-    // i43_store (Out A) -> mem_4 -> Bank 4
-    volatile int *ptr_out_a = BANK4_BASE;
+ 880:	faf42c23          	sw	x15,-72(x8)
+    volatile int *ptr_cpu_out_a = BANK4_BASE;
  884:	002007b7          	lui	x15,0x200
- 888:	faf42c23          	sw	x15,-72(x8)
-
-    // i45_store (Out B) -> mem_5 -> Bank 5
-    volatile int *ptr_out_b = BANK5_BASE;
+ 888:	faf42a23          	sw	x15,-76(x8)
+    volatile int *ptr_cpu_out_b = BANK5_BASE;
  88c:	002807b7          	lui	x15,0x280
- 890:	faf42a23          	sw	x15,-76(x8)
+ 890:	faf42823          	sw	x15,-80(x8)
 
-
-    // --- 2. 设置 CGRA 硬件参数 ---
-    const int HW_LATENCY = 30; // 假设延迟，可根据仿真微调
+    const int HW_LATENCY = 30;
  894:	01e00793          	addi	x15,x0,30
- 898:	faf42823          	sw	x15,-80(x8)
-    const int HW_II = 1;       // 映射结果确认 II=1
+ 898:	faf42623          	sw	x15,-84(x8)
+    const int HW_II = 1;
  89c:	00100793          	addi	x15,x0,1
- 8a0:	faf42623          	sw	x15,-84(x8)
-
+ 8a0:	faf42423          	sw	x15,-88(x8)
     int basedist = 1;
  8a4:	00100793          	addi	x15,x0,1
  8a8:	fef42623          	sw	x15,-20(x8)
 
-    // --- FFT 外层循环 (级数) ---
+    // --- FFT 外层循环 ---
     for (int BlockSize = 2; BlockSize <= N; BlockSize <<= 1) {
  8ac:	00200793          	addi	x15,x0,2
  8b0:	fef42423          	sw	x15,-24(x8)
- 8b4:	2c00006f          	jal	x0,b74 <app+0x324>
+ 8b4:	3100006f          	jal	x0,bc4 <app+0x374>
         
         int batch_count = 0;
  8b8:	fe042223          	sw	x0,-28(x8)
         
-        // --- 3. Data Marshalling (数据分发到各 Bank) ---
+        // --- 1. Data Marshalling (CPU 搬运数据) ---
+        // 使用全局地址 (BANKx_BASE)
         for (int i = 0; i < N; i += BlockSize) {
  8bc:	fe042023          	sw	x0,-32(x8)
  8c0:	0f00006f          	jal	x0,9b0 <app+0x160>
@@ -1009,18 +996,17 @@ int app() {
  8d4:	fdc42703          	lw	x14,-36(x8)
  8d8:	fec42783          	lw	x15,-20(x8)
  8dc:	00f707b3          	add	x15,x14,x15
- 8e0:	faf42023          	sw	x15,-96(x8)
+ 8e0:	f8f42c23          	sw	x15,-104(x8)
                 int table_index = basedist + n;
  8e4:	fec42703          	lw	x14,-20(x8)
  8e8:	fd842783          	lw	x15,-40(x8)
  8ec:	00f707b3          	add	x15,x14,x15
- 8f0:	f8f42e23          	sw	x15,-100(x8)
+ 8f0:	f8f42a23          	sw	x15,-108(x8)
                 
-                // Input A (上路) -> Bank 1
-                ptr_in_a[batch_count] = data_out[j];
+                ptr_cpu_in_a[batch_count] = data_out[j];
  8f4:	fe442783          	lw	x15,-28(x8)
  8f8:	00279793          	slli	x15,x15,0x2
- 8fc:	fc442703          	lw	x14,-60(x8)
+ 8fc:	fc042703          	lw	x14,-64(x8)
  900:	00f707b3          	add	x15,x14,x15
  904:	fdc42683          	lw	x13,-36(x8)
  908:	00269693          	slli	x13,x13,0x2
@@ -1028,28 +1014,24 @@ int app() {
  910:	00e68733          	add	x14,x13,x14
  914:	00072703          	lw	x14,0(x14)
  918:	00e7a023          	sw	x14,0(x15) # 280000 <_stack_top+0x200000>
-                
-                // Input B (下路) -> Bank 2
-                ptr_in_b[batch_count] = data_out[k];
+                ptr_cpu_in_b[batch_count] = data_out[k];
  91c:	fe442783          	lw	x15,-28(x8)
  920:	00279793          	slli	x15,x15,0x2
- 924:	fc042703          	lw	x14,-64(x8)
+ 924:	fbc42703          	lw	x14,-68(x8)
  928:	00f707b3          	add	x15,x14,x15
- 92c:	fa042683          	lw	x13,-96(x8)
+ 92c:	f9842683          	lw	x13,-104(x8)
  930:	00269693          	slli	x13,x13,0x2
  934:	00800713          	addi	x14,x0,8
  938:	00e68733          	add	x14,x13,x14
  93c:	00072703          	lw	x14,0(x14)
  940:	00e7a023          	sw	x14,0(x15)
-                
-                // Weight -> Bank 3
-                ptr_w[batch_count] = twiddle_table[table_index];
+                ptr_cpu_w[batch_count]    = twiddle_table[table_index];
  944:	fe442783          	lw	x15,-28(x8)
  948:	00279793          	slli	x15,x15,0x2
- 94c:	fbc42703          	lw	x14,-68(x8)
+ 94c:	fb842703          	lw	x14,-72(x8)
  950:	00f707b3          	add	x15,x14,x15
  954:	00001737          	lui	x14,0x1
- 958:	f9c42683          	lw	x13,-100(x8)
+ 958:	f9442683          	lw	x13,-108(x8)
  95c:	00269693          	slli	x13,x13,0x2
  960:	80870713          	addi	x14,x14,-2040 # 808 <twiddle_table>
  964:	00e68733          	add	x14,x13,x14
@@ -1078,447 +1060,486 @@ int app() {
  9b0:	00402783          	lw	x15,4(x0) # 4 <N>
  9b4:	fe042703          	lw	x14,-32(x8)
  9b8:	f0f746e3          	blt	x14,x15,8c4 <app+0x74>
-            }
         }
+		// =========================================================
+        // 【新增修复】尾部填充 (Tail Padding)
+        // 在有效数据之后填充 0，防止流水线多读时读到 X 导致结果污染
+        // =========================================================
+        int tail_padding = 4; // 多清零4个位置，覆盖流水线尾部
+ 9bc:	00400793          	addi	x15,x0,4
+ 9c0:	faf42223          	sw	x15,-92(x8)
+        for(int k=0; k<tail_padding; k++) {
+ 9c4:	fc042a23          	sw	x0,-44(x8)
+ 9c8:	0640006f          	jal	x0,a2c <app+0x1dc>
+            ptr_cpu_in_a[batch_count + k] = 0;
+ 9cc:	fe442703          	lw	x14,-28(x8)
+ 9d0:	fd442783          	lw	x15,-44(x8)
+ 9d4:	00f707b3          	add	x15,x14,x15
+ 9d8:	00279793          	slli	x15,x15,0x2
+ 9dc:	fc042703          	lw	x14,-64(x8)
+ 9e0:	00f707b3          	add	x15,x14,x15
+ 9e4:	0007a023          	sw	x0,0(x15)
+            ptr_cpu_in_b[batch_count + k] = 0;
+ 9e8:	fe442703          	lw	x14,-28(x8)
+ 9ec:	fd442783          	lw	x15,-44(x8)
+ 9f0:	00f707b3          	add	x15,x14,x15
+ 9f4:	00279793          	slli	x15,x15,0x2
+ 9f8:	fbc42703          	lw	x14,-68(x8)
+ 9fc:	00f707b3          	add	x15,x14,x15
+ a00:	0007a023          	sw	x0,0(x15)
+            ptr_cpu_w[batch_count + k]    = 0; // 权重清零最重要，X乘任何数都是X
+ a04:	fe442703          	lw	x14,-28(x8)
+ a08:	fd442783          	lw	x15,-44(x8)
+ a0c:	00f707b3          	add	x15,x14,x15
+ a10:	00279793          	slli	x15,x15,0x2
+ a14:	fb842703          	lw	x14,-72(x8)
+ a18:	00f707b3          	add	x15,x14,x15
+ a1c:	0007a023          	sw	x0,0(x15)
+        for(int k=0; k<tail_padding; k++) {
+ a20:	fd442783          	lw	x15,-44(x8)
+ a24:	00178793          	addi	x15,x15,1
+ a28:	fcf42a23          	sw	x15,-44(x8)
+ a2c:	fd442703          	lw	x14,-44(x8)
+ a30:	fa442783          	lw	x15,-92(x8)
+ a34:	f8f74ce3          	blt	x14,x15,9cc <app+0x17c>
 
-        // --- 4. 配置 CGRA 端口 (写入 Bank 基地址) ---
-        MMIO_WRITE(PORT_IN_A_ADDR,   (int)ptr_in_a);
- 9bc:	004007b7          	lui	x15,0x400
- 9c0:	04478793          	addi	x15,x15,68 # 400044 <_stack_top+0x380044>
- 9c4:	fc442703          	lw	x14,-60(x8)
- 9c8:	00e7a023          	sw	x14,0(x15)
-        MMIO_WRITE(PORT_IN_B_ADDR,   (int)ptr_in_b);
- 9cc:	004007b7          	lui	x15,0x400
- 9d0:	fc042703          	lw	x14,-64(x8)
- 9d4:	00e7a023          	sw	x14,0(x15) # 400000 <_stack_top+0x380000>
-        MMIO_WRITE(PORT_WEIGHT_ADDR, (int)ptr_w);
- 9d8:	004007b7          	lui	x15,0x400
- 9dc:	05078793          	addi	x15,x15,80 # 400050 <_stack_top+0x380050>
- 9e0:	fbc42703          	lw	x14,-68(x8)
- 9e4:	00e7a023          	sw	x14,0(x15)
-        MMIO_WRITE(PORT_OUT_A_ADDR,  (int)ptr_out_a);
- 9e8:	004007b7          	lui	x15,0x400
- 9ec:	00c78793          	addi	x15,x15,12 # 40000c <_stack_top+0x38000c>
- 9f0:	fb842703          	lw	x14,-72(x8)
- 9f4:	00e7a023          	sw	x14,0(x15)
-        MMIO_WRITE(PORT_OUT_B_ADDR,  (int)ptr_out_b);
- 9f8:	004007b7          	lui	x15,0x400
- 9fc:	00478793          	addi	x15,x15,4 # 400004 <_stack_top+0x380004>
- a00:	fb442703          	lw	x14,-76(x8)
- a04:	00e7a023          	sw	x14,0(x15)
-
-        // --- 5. 设置运行时间 ---
-        int exec_cycles = HW_LATENCY + (batch_count - 1) * HW_II;
- a08:	fe442783          	lw	x15,-28(x8)
- a0c:	fff78713          	addi	x14,x15,-1
- a10:	fac42783          	lw	x15,-84(x8)
- a14:	02f707b3          	mul	x15,x14,x15
- a18:	fb042703          	lw	x14,-80(x8)
- a1c:	00f707b3          	add	x15,x14,x15
- a20:	faf42423          	sw	x15,-88(x8)
-        MMIO_WRITE(CGRA_LOOP_CNT_ADDR, exec_cycles);
- a24:	004007b7          	lui	x15,0x400
- a28:	06078793          	addi	x15,x15,96 # 400060 <_stack_top+0x380060>
- a2c:	fa842703          	lw	x14,-88(x8)
- a30:	00e7a023          	sw	x14,0(x15)
-
-        // --- 6. 启动硬件 ---
-        MMIO_WRITE(CGRA_ENABLE_ADDR, 1);
- a34:	004007b7          	lui	x15,0x400
- a38:	06c78793          	addi	x15,x15,108 # 40006c <_stack_top+0x38006c>
- a3c:	00100713          	addi	x14,x0,1
- a40:	00e7a023          	sw	x14,0(x15)
         
-        // --- 7. 轮询等待结束 ---
-        while (MMIO_READ(CGRA_DONE_ADDR) != 1);
- a44:	00000013          	addi	x0,x0,0
- a48:	004007b7          	lui	x15,0x400
- a4c:	06478793          	addi	x15,x15,100 # 400064 <_stack_top+0x380064>
- a50:	0007a703          	lw	x14,0(x15)
- a54:	00100793          	addi	x15,x0,1
- a58:	fef718e3          	bne	x14,x15,a48 <app+0x1f8>
+        // Input 配置：使用本地相对地址 0
+        // 告诉 CGRA 从 Bank 的第 0 个字开始读。
+        // 这解决了 "0x80004" 越界导致的取数停止问题。
+        MMIO_WRITE(PORT_IN_A_ADDR,   0);
+ a38:	004007b7          	lui	x15,0x400
+ a3c:	04c78793          	addi	x15,x15,76 # 40004c <_stack_top+0x38004c>
+ a40:	0007a023          	sw	x0,0(x15)
+        MMIO_WRITE(PORT_IN_B_ADDR,   0);
+ a44:	004007b7          	lui	x15,0x400
+ a48:	00478793          	addi	x15,x15,4 # 400004 <_stack_top+0x380004>
+ a4c:	0007a023          	sw	x0,0(x15)
+        MMIO_WRITE(PORT_WEIGHT_ADDR, 0);
+ a50:	004007b7          	lui	x15,0x400
+ a54:	00c78793          	addi	x15,x15,12 # 40000c <_stack_top+0x38000c>
+ a58:	0007a023          	sw	x0,0(x15)
 
-        // --- 8. 停止与复位 ---
-        MMIO_WRITE(CGRA_ENABLE_ADDR, 0);
+        // Output 配置：使用负偏移量进行时序补偿
+        // 告诉 CGRA 基地址是负数，这样当地址计数器跑到 Latency 时，
+        // 实际物理地址刚好回到 0。
+        // Bank 4: 0 - 0x30
+        MMIO_WRITE(PORT_OUT_A_ADDR,  (int)(0 - LATENCY_OFFSET_A - REPEAT_OFFSET));
  a5c:	004007b7          	lui	x15,0x400
- a60:	06c78793          	addi	x15,x15,108 # 40006c <_stack_top+0x38006c>
- a64:	0007a023          	sw	x0,0(x15)
+ a60:	04478793          	addi	x15,x15,68 # 400044 <_stack_top+0x380044>
+ a64:	fc400713          	addi	x14,x0,-60
+ a68:	00e7a023          	sw	x14,0(x15)
+        // Bank 5: 0 - 0x1C
+        MMIO_WRITE(PORT_OUT_B_ADDR,  (int)(0 - LATENCY_OFFSET_B - REPEAT_OFFSET));
+ a6c:	004007b7          	lui	x15,0x400
+ a70:	00878793          	addi	x15,x15,8 # 400008 <_stack_top+0x380008>
+ a74:	fd800713          	addi	x14,x0,-40
+ a78:	00e7a023          	sw	x14,0(x15)
+
+
+        // --- 3. 彻底复位硬件 ---
         MMIO_WRITE(CGRA_RESET_ADDR, 1);
- a68:	004007b7          	lui	x15,0x400
- a6c:	06878793          	addi	x15,x15,104 # 400068 <_stack_top+0x380068>
- a70:	00100713          	addi	x14,x0,1
- a74:	00e7a023          	sw	x14,0(x15)
-        volatile int dummy = 0; dummy++; 
- a78:	f8042c23          	sw	x0,-104(x8)
- a7c:	f9842783          	lw	x15,-104(x8)
- a80:	00178793          	addi	x15,x15,1
- a84:	f8f42c23          	sw	x15,-104(x8)
+ a7c:	004007b7          	lui	x15,0x400
+ a80:	06878793          	addi	x15,x15,104 # 400068 <_stack_top+0x380068>
+ a84:	00100713          	addi	x14,x0,1
+ a88:	00e7a023          	sw	x14,0(x15)
+        // 延时确保复位生效
+		__asm__("nop");
+ a8c:	00000013          	addi	x0,x0,0
+        __asm__("nop");
+ a90:	00000013          	addi	x0,x0,0
         MMIO_WRITE(CGRA_RESET_ADDR, 0);
- a88:	004007b7          	lui	x15,0x400
- a8c:	06878793          	addi	x15,x15,104 # 400068 <_stack_top+0x380068>
- a90:	0007a023          	sw	x0,0(x15)
+ a94:	004007b7          	lui	x15,0x400
+ a98:	06878793          	addi	x15,x15,104 # 400068 <_stack_top+0x380068>
+ a9c:	0007a023          	sw	x0,0(x15)
+        // 延时确保信号稳定
+		__asm__("nop");
+ aa0:	00000013          	addi	x0,x0,0
+        __asm__("nop");
+ aa4:	00000013          	addi	x0,x0,0
+
+        // --- 4. 设置运行时间 ---
+        // 额外增加 50 个周期，确保最后的数据有足够时间写入
+        int exec_cycles = HW_LATENCY + (batch_count - 1) * HW_II + 50;
+ aa8:	fe442783          	lw	x15,-28(x8)
+ aac:	fff78713          	addi	x14,x15,-1
+ ab0:	fa842783          	lw	x15,-88(x8)
+ ab4:	02f70733          	mul	x14,x14,x15
+ ab8:	fac42783          	lw	x15,-84(x8)
+ abc:	00f707b3          	add	x15,x14,x15
+ ac0:	03278793          	addi	x15,x15,50
+ ac4:	faf42023          	sw	x15,-96(x8)
+        MMIO_WRITE(CGRA_LOOP_CNT_ADDR, exec_cycles);
+ ac8:	004007b7          	lui	x15,0x400
+ acc:	06078793          	addi	x15,x15,96 # 400060 <_stack_top+0x380060>
+ ad0:	fa042703          	lw	x14,-96(x8)
+ ad4:	00e7a023          	sw	x14,0(x15)
+
+       
+        // --- 5. 等待结束 ---
+        __asm__ volatile (
+ ad8:	0c800f93          	addi	x31,x0,200
+ adc:	ffff8f93          	addi	x31,x31,-1
+ ae0:	fe0f9ee3          	bne	x31,x0,adc <app+0x28c>
+		);
 
 
-        // --- 9. Data Writeback (从 Output Banks 取回结果) ---
+        // --- 6. Data Writeback (CPU 取回结果) ---
+        // 使用全局地址读取 Bank4/5
         batch_count = 0;
- a94:	fe042223          	sw	x0,-28(x8)
+ ae4:	fe042223          	sw	x0,-28(x8)
         for (int i = 0; i < N; i += BlockSize) {
- a98:	fc042a23          	sw	x0,-44(x8)
- a9c:	0b40006f          	jal	x0,b50 <app+0x300>
+ ae8:	fc042823          	sw	x0,-48(x8)
+ aec:	0b40006f          	jal	x0,ba0 <app+0x350>
             for (int j = i, n = 0; n < basedist; j++, n++) {
- aa0:	fd442783          	lw	x15,-44(x8)
- aa4:	fcf42823          	sw	x15,-48(x8)
- aa8:	fc042623          	sw	x0,-52(x8)
- aac:	0880006f          	jal	x0,b34 <app+0x2e4>
+ af0:	fd042783          	lw	x15,-48(x8)
+ af4:	fcf42623          	sw	x15,-52(x8)
+ af8:	fc042423          	sw	x0,-56(x8)
+ afc:	0880006f          	jal	x0,b84 <app+0x334>
                 int k = j + basedist;
- ab0:	fd042703          	lw	x14,-48(x8)
- ab4:	fec42783          	lw	x15,-20(x8)
- ab8:	00f707b3          	add	x15,x14,x15
- abc:	faf42223          	sw	x15,-92(x8)
+ b00:	fcc42703          	lw	x14,-52(x8)
+ b04:	fec42783          	lw	x15,-20(x8)
+ b08:	00f707b3          	add	x15,x14,x15
+ b0c:	f8f42e23          	sw	x15,-100(x8)
                 
-                // Out A (上路) -> 来自 Bank 4
-                data_out[j] = ptr_out_a[batch_count];
- ac0:	fe442783          	lw	x15,-28(x8)
- ac4:	00279793          	slli	x15,x15,0x2
- ac8:	fb842703          	lw	x14,-72(x8)
- acc:	00f707b3          	add	x15,x14,x15
- ad0:	0007a703          	lw	x14,0(x15)
- ad4:	fd042683          	lw	x13,-48(x8)
- ad8:	00269693          	slli	x13,x13,0x2
- adc:	00800793          	addi	x15,x0,8
- ae0:	00f687b3          	add	x15,x13,x15
- ae4:	00e7a023          	sw	x14,0(x15)
-                
-                // Out B (下路) -> 来自 Bank 5
-                data_out[k] = ptr_out_b[batch_count];
- ae8:	fe442783          	lw	x15,-28(x8)
- aec:	00279793          	slli	x15,x15,0x2
- af0:	fb442703          	lw	x14,-76(x8)
- af4:	00f707b3          	add	x15,x14,x15
- af8:	0007a703          	lw	x14,0(x15)
- afc:	fa442683          	lw	x13,-92(x8)
- b00:	00269693          	slli	x13,x13,0x2
- b04:	00800793          	addi	x15,x0,8
- b08:	00f687b3          	add	x15,x13,x15
- b0c:	00e7a023          	sw	x14,0(x15)
+                data_out[j] = ptr_cpu_out_a[batch_count];
+ b10:	fe442783          	lw	x15,-28(x8)
+ b14:	00279793          	slli	x15,x15,0x2
+ b18:	fb442703          	lw	x14,-76(x8)
+ b1c:	00f707b3          	add	x15,x14,x15
+ b20:	0007a703          	lw	x14,0(x15)
+ b24:	fcc42683          	lw	x13,-52(x8)
+ b28:	00269693          	slli	x13,x13,0x2
+ b2c:	00800793          	addi	x15,x0,8
+ b30:	00f687b3          	add	x15,x13,x15
+ b34:	00e7a023          	sw	x14,0(x15)
+                data_out[k] = ptr_cpu_out_b[batch_count];
+ b38:	fe442783          	lw	x15,-28(x8)
+ b3c:	00279793          	slli	x15,x15,0x2
+ b40:	fb042703          	lw	x14,-80(x8)
+ b44:	00f707b3          	add	x15,x14,x15
+ b48:	0007a703          	lw	x14,0(x15)
+ b4c:	f9c42683          	lw	x13,-100(x8)
+ b50:	00269693          	slli	x13,x13,0x2
+ b54:	00800793          	addi	x15,x0,8
+ b58:	00f687b3          	add	x15,x13,x15
+ b5c:	00e7a023          	sw	x14,0(x15)
                 
                 batch_count++;
- b10:	fe442783          	lw	x15,-28(x8)
- b14:	00178793          	addi	x15,x15,1
- b18:	fef42223          	sw	x15,-28(x8)
+ b60:	fe442783          	lw	x15,-28(x8)
+ b64:	00178793          	addi	x15,x15,1
+ b68:	fef42223          	sw	x15,-28(x8)
             for (int j = i, n = 0; n < basedist; j++, n++) {
- b1c:	fd042783          	lw	x15,-48(x8)
- b20:	00178793          	addi	x15,x15,1
- b24:	fcf42823          	sw	x15,-48(x8)
- b28:	fcc42783          	lw	x15,-52(x8)
- b2c:	00178793          	addi	x15,x15,1
- b30:	fcf42623          	sw	x15,-52(x8)
- b34:	fcc42703          	lw	x14,-52(x8)
- b38:	fec42783          	lw	x15,-20(x8)
- b3c:	f6f74ae3          	blt	x14,x15,ab0 <app+0x260>
+ b6c:	fcc42783          	lw	x15,-52(x8)
+ b70:	00178793          	addi	x15,x15,1
+ b74:	fcf42623          	sw	x15,-52(x8)
+ b78:	fc842783          	lw	x15,-56(x8)
+ b7c:	00178793          	addi	x15,x15,1
+ b80:	fcf42423          	sw	x15,-56(x8)
+ b84:	fc842703          	lw	x14,-56(x8)
+ b88:	fec42783          	lw	x15,-20(x8)
+ b8c:	f6f74ae3          	blt	x14,x15,b00 <app+0x2b0>
         for (int i = 0; i < N; i += BlockSize) {
- b40:	fd442703          	lw	x14,-44(x8)
- b44:	fe842783          	lw	x15,-24(x8)
- b48:	00f707b3          	add	x15,x14,x15
- b4c:	fcf42a23          	sw	x15,-44(x8)
- b50:	00402783          	lw	x15,4(x0) # 4 <N>
- b54:	fd442703          	lw	x14,-44(x8)
- b58:	f4f744e3          	blt	x14,x15,aa0 <app+0x250>
+ b90:	fd042703          	lw	x14,-48(x8)
+ b94:	fe842783          	lw	x15,-24(x8)
+ b98:	00f707b3          	add	x15,x14,x15
+ b9c:	fcf42823          	sw	x15,-48(x8)
+ ba0:	00402783          	lw	x15,4(x0) # 4 <N>
+ ba4:	fd042703          	lw	x14,-48(x8)
+ ba8:	f4f744e3          	blt	x14,x15,af0 <app+0x2a0>
             }
         }
 
         basedist <<= 1;
- b5c:	fec42783          	lw	x15,-20(x8)
- b60:	00179793          	slli	x15,x15,0x1
- b64:	fef42623          	sw	x15,-20(x8)
+ bac:	fec42783          	lw	x15,-20(x8)
+ bb0:	00179793          	slli	x15,x15,0x1
+ bb4:	fef42623          	sw	x15,-20(x8)
     for (int BlockSize = 2; BlockSize <= N; BlockSize <<= 1) {
- b68:	fe842783          	lw	x15,-24(x8)
- b6c:	00179793          	slli	x15,x15,0x1
- b70:	fef42423          	sw	x15,-24(x8)
- b74:	00402783          	lw	x15,4(x0) # 4 <N>
- b78:	fe842703          	lw	x14,-24(x8)
- b7c:	d2e7dee3          	bge	x15,x14,8b8 <app+0x68>
+ bb8:	fe842783          	lw	x15,-24(x8)
+ bbc:	00179793          	slli	x15,x15,0x1
+ bc0:	fef42423          	sw	x15,-24(x8)
+ bc4:	00402783          	lw	x15,4(x0) # 4 <N>
+ bc8:	fe842703          	lw	x14,-24(x8)
+ bcc:	cee7d6e3          	bge	x15,x14,8b8 <app+0x68>
     }
 
     print_str("FFT Done.\n");
- b80:	5d418513          	addi	x10,x3,1492 # dd4 <timeout_msg+0xa2>
- b84:	835ff0ef          	jal	x1,3b8 <print_str>
+ bd0:	62418513          	addi	x10,x3,1572 # e24 <timeout_msg+0xa2>
+ bd4:	fe4ff0ef          	jal	x1,3b8 <print_str>
     // 验证打印
     for(int i=0; i<N; i++) {
- b88:	fc042423          	sw	x0,-56(x8)
- b8c:	0880006f          	jal	x0,c14 <app+0x3c4>
-        print_str("Out[");
- b90:	5e018513          	addi	x10,x3,1504 # de0 <timeout_msg+0xae>
- b94:	825ff0ef          	jal	x1,3b8 <print_str>
-        print_dec(i);
- b98:	fc842783          	lw	x15,-56(x8)
- b9c:	00078513          	addi	x10,x15,0
- ba0:	861ff0ef          	jal	x1,400 <print_dec>
-        print_str("]: ");
- ba4:	5e818513          	addi	x10,x3,1512 # de8 <timeout_msg+0xb6>
- ba8:	811ff0ef          	jal	x1,3b8 <print_str>
+ bd8:	fc042223          	sw	x0,-60(x8)
+ bdc:	0880006f          	jal	x0,c64 <app+0x414>
+        print_str("Out["); print_dec(i); print_str("]: ");
+ be0:	63018513          	addi	x10,x3,1584 # e30 <timeout_msg+0xae>
+ be4:	fd4ff0ef          	jal	x1,3b8 <print_str>
+ be8:	fc442783          	lw	x15,-60(x8)
+ bec:	00078513          	addi	x10,x15,0
+ bf0:	811ff0ef          	jal	x1,400 <print_dec>
+ bf4:	63818513          	addi	x10,x3,1592 # e38 <timeout_msg+0xb6>
+ bf8:	fc0ff0ef          	jal	x1,3b8 <print_str>
         print_dec(GET_REAL(data_out[i]));
- bac:	fc842703          	lw	x14,-56(x8)
- bb0:	00271713          	slli	x14,x14,0x2
- bb4:	00800793          	addi	x15,x0,8
- bb8:	00f707b3          	add	x15,x14,x15
- bbc:	0007a783          	lw	x15,0(x15)
- bc0:	4107d793          	srai	x15,x15,0x10
- bc4:	01079793          	slli	x15,x15,0x10
- bc8:	4107d793          	srai	x15,x15,0x10
- bcc:	00078513          	addi	x10,x15,0
- bd0:	831ff0ef          	jal	x1,400 <print_dec>
+ bfc:	fc442703          	lw	x14,-60(x8)
+ c00:	00271713          	slli	x14,x14,0x2
+ c04:	00800793          	addi	x15,x0,8
+ c08:	00f707b3          	add	x15,x14,x15
+ c0c:	0007a783          	lw	x15,0(x15)
+ c10:	4107d793          	srai	x15,x15,0x10
+ c14:	01079793          	slli	x15,x15,0x10
+ c18:	4107d793          	srai	x15,x15,0x10
+ c1c:	00078513          	addi	x10,x15,0
+ c20:	fe0ff0ef          	jal	x1,400 <print_dec>
         print_str(" + ");
- bd4:	5ec18513          	addi	x10,x3,1516 # dec <timeout_msg+0xba>
- bd8:	fe0ff0ef          	jal	x1,3b8 <print_str>
+ c24:	63c18513          	addi	x10,x3,1596 # e3c <timeout_msg+0xba>
+ c28:	f90ff0ef          	jal	x1,3b8 <print_str>
         print_dec(GET_IMAG(data_out[i]));
- bdc:	fc842703          	lw	x14,-56(x8)
- be0:	00271713          	slli	x14,x14,0x2
- be4:	00800793          	addi	x15,x0,8
- be8:	00f707b3          	add	x15,x14,x15
- bec:	0007a783          	lw	x15,0(x15)
- bf0:	01079793          	slli	x15,x15,0x10
- bf4:	4107d793          	srai	x15,x15,0x10
- bf8:	00078513          	addi	x10,x15,0
- bfc:	805ff0ef          	jal	x1,400 <print_dec>
+ c2c:	fc442703          	lw	x14,-60(x8)
+ c30:	00271713          	slli	x14,x14,0x2
+ c34:	00800793          	addi	x15,x0,8
+ c38:	00f707b3          	add	x15,x14,x15
+ c3c:	0007a783          	lw	x15,0(x15)
+ c40:	01079793          	slli	x15,x15,0x10
+ c44:	4107d793          	srai	x15,x15,0x10
+ c48:	00078513          	addi	x10,x15,0
+ c4c:	fb4ff0ef          	jal	x1,400 <print_dec>
         print_str("i\n");
- c00:	5f018513          	addi	x10,x3,1520 # df0 <timeout_msg+0xbe>
- c04:	fb4ff0ef          	jal	x1,3b8 <print_str>
+ c50:	64018513          	addi	x10,x3,1600 # e40 <timeout_msg+0xbe>
+ c54:	f64ff0ef          	jal	x1,3b8 <print_str>
     for(int i=0; i<N; i++) {
- c08:	fc842783          	lw	x15,-56(x8)
- c0c:	00178793          	addi	x15,x15,1
- c10:	fcf42423          	sw	x15,-56(x8)
- c14:	00402783          	lw	x15,4(x0) # 4 <N>
- c18:	fc842703          	lw	x14,-56(x8)
- c1c:	f6f74ae3          	blt	x14,x15,b90 <app+0x340>
+ c58:	fc442783          	lw	x15,-60(x8)
+ c5c:	00178793          	addi	x15,x15,1
+ c60:	fcf42223          	sw	x15,-60(x8)
+ c64:	00402783          	lw	x15,4(x0) # 4 <N>
+ c68:	fc442703          	lw	x14,-60(x8)
+ c6c:	f6f74ae3          	blt	x14,x15,be0 <app+0x390>
     }
     
     return 0;
- c20:	00000793          	addi	x15,x0,0
- c24:	00078513          	addi	x10,x15,0
- c28:	06c12083          	lw	x1,108(x2)
- c2c:	06812403          	lw	x8,104(x2)
- c30:	07010113          	addi	x2,x2,112
- c34:	00008067          	jalr	x0,0(x1)
+ c70:	00000793          	addi	x15,x0,0
+ c74:	00078513          	addi	x10,x15,0
+ c78:	06c12083          	lw	x1,108(x2)
+ c7c:	06812403          	lw	x8,104(x2)
+ c80:	07010113          	addi	x2,x2,112
+ c84:	00008067          	jalr	x0,0(x1)
 
 Disassembly of section .legacy_irq:
 
-00000c38 <.legacy_irq>:
+00000c88 <.legacy_irq>:
 	j vector_table
- c38:	bc8ff06f          	jal	x0,0 <__irq_base_vector>
+ c88:	b78ff06f          	jal	x0,0 <__irq_base_vector>
 	j __no_irq_handler
- c3c:	d48ff06f          	jal	x0,184 <__mem_start>
+ c8c:	cf8ff06f          	jal	x0,184 <__mem_start>
 	j __no_irq_handler
- c40:	d44ff06f          	jal	x0,184 <__mem_start>
+ c90:	cf4ff06f          	jal	x0,184 <__mem_start>
 	j vector_table_timer
- c44:	bd8ff06f          	jal	x0,1c <vector_table_timer>
+ c94:	b88ff06f          	jal	x0,1c <vector_table_timer>
 
 Disassembly of section .rodata:
 
-00000c48 <illegal_insn_msg>:
- c48:	6c69                	c.lui	x24,0x1a
- c4a:	656c                	c.flw	f11,76(x10)
- c4c:	206c6167          	0x206c6167
- c50:	6e69                	c.lui	x28,0x1a
- c52:	75727473          	csrrci	x8,0x757,4
- c56:	6f697463          	bgeu	x18,x22,133e <__bss_end+0x336>
- c5a:	206e                	c.fldsp	f0,216(x2)
- c5c:	7865                	c.lui	x16,0xffff9
- c5e:	74706563          	bltu	x0,x7,13a8 <__bss_end+0x3a0>
- c62:	6f69                	c.lui	x30,0x1a
- c64:	206e                	c.fldsp	f0,216(x2)
- c66:	6168                	c.flw	f10,68(x10)
- c68:	646e                	c.flwsp	f8,216(x2)
- c6a:	656c                	c.flw	f11,76(x10)
- c6c:	2072                	c.fldsp	f0,280(x2)
- c6e:	6e65                	c.lui	x28,0x19
- c70:	6574                	c.flw	f13,76(x10)
- c72:	6572                	c.flwsp	f10,28(x2)
- c74:	0a64                	c.addi4spn	x9,x2,284
+00000c98 <illegal_insn_msg>:
+ c98:	6c69                	c.lui	x24,0x1a
+ c9a:	656c                	c.flw	f11,76(x10)
+ c9c:	206c6167          	0x206c6167
+ ca0:	6e69                	c.lui	x28,0x1a
+ ca2:	75727473          	csrrci	x8,0x757,4
+ ca6:	6f697463          	bgeu	x18,x22,138e <__bss_end+0x386>
+ caa:	206e                	c.fldsp	f0,216(x2)
+ cac:	7865                	c.lui	x16,0xffff9
+ cae:	74706563          	bltu	x0,x7,13f8 <__bss_end+0x3f0>
+ cb2:	6f69                	c.lui	x30,0x1a
+ cb4:	206e                	c.fldsp	f0,216(x2)
+ cb6:	6168                	c.flw	f10,68(x10)
+ cb8:	646e                	c.flwsp	f8,216(x2)
+ cba:	656c                	c.flw	f11,76(x10)
+ cbc:	2072                	c.fldsp	f0,280(x2)
+ cbe:	6e65                	c.lui	x28,0x19
+ cc0:	6574                	c.flw	f13,76(x10)
+ cc2:	6572                	c.flwsp	f10,28(x2)
+ cc4:	0a64                	c.addi4spn	x9,x2,284
 	...
 
-00000c77 <ecall_msg>:
- c77:	6365                	c.lui	x6,0x19
- c79:	6c61                	c.lui	x24,0x18
- c7b:	206c                	c.fld	f11,192(x8)
- c7d:	7865                	c.lui	x16,0xffff9
- c7f:	74706563          	bltu	x0,x7,13c9 <__bss_end+0x3c1>
- c83:	6f69                	c.lui	x30,0x1a
- c85:	206e                	c.fldsp	f0,216(x2)
- c87:	6168                	c.flw	f10,68(x10)
- c89:	646e                	c.flwsp	f8,216(x2)
- c8b:	656c                	c.flw	f11,76(x10)
- c8d:	2072                	c.fldsp	f0,280(x2)
- c8f:	6e65                	c.lui	x28,0x19
- c91:	6574                	c.flw	f13,76(x10)
- c93:	6572                	c.flwsp	f10,28(x2)
- c95:	0a64                	c.addi4spn	x9,x2,284
+00000cc7 <ecall_msg>:
+ cc7:	6365                	c.lui	x6,0x19
+ cc9:	6c61                	c.lui	x24,0x18
+ ccb:	206c                	c.fld	f11,192(x8)
+ ccd:	7865                	c.lui	x16,0xffff9
+ ccf:	74706563          	bltu	x0,x7,1419 <__bss_end+0x411>
+ cd3:	6f69                	c.lui	x30,0x1a
+ cd5:	206e                	c.fldsp	f0,216(x2)
+ cd7:	6168                	c.flw	f10,68(x10)
+ cd9:	646e                	c.flwsp	f8,216(x2)
+ cdb:	656c                	c.flw	f11,76(x10)
+ cdd:	2072                	c.fldsp	f0,280(x2)
+ cdf:	6e65                	c.lui	x28,0x19
+ ce1:	6574                	c.flw	f13,76(x10)
+ ce3:	6572                	c.flwsp	f10,28(x2)
+ ce5:	0a64                	c.addi4spn	x9,x2,284
 	...
 
-00000c98 <ebreak_msg>:
- c98:	6265                	c.lui	x4,0x19
- c9a:	6572                	c.flwsp	f10,28(x2)
- c9c:	6b61                	c.lui	x22,0x18
- c9e:	6520                	c.flw	f8,72(x10)
- ca0:	6378                	c.flw	f14,68(x14)
- ca2:	7065                	0x7065
- ca4:	6974                	c.flw	f13,84(x10)
- ca6:	68206e6f          	jal	x28,7328 <__bss_end+0x6320>
- caa:	6e61                	c.lui	x28,0x18
- cac:	6c64                	c.flw	f9,92(x8)
- cae:	7265                	c.lui	x4,0xffff9
- cb0:	6520                	c.flw	f8,72(x10)
- cb2:	746e                	c.flwsp	f8,248(x2)
- cb4:	7265                	c.lui	x4,0xffff9
- cb6:	6465                	c.lui	x8,0x19
- cb8:	000a                	0xa
+00000ce8 <ebreak_msg>:
+ ce8:	6265                	c.lui	x4,0x19
+ cea:	6572                	c.flwsp	f10,28(x2)
+ cec:	6b61                	c.lui	x22,0x18
+ cee:	6520                	c.flw	f8,72(x10)
+ cf0:	6378                	c.flw	f14,68(x14)
+ cf2:	7065                	0x7065
+ cf4:	6974                	c.flw	f13,84(x10)
+ cf6:	68206e6f          	jal	x28,7378 <__bss_end+0x6370>
+ cfa:	6e61                	c.lui	x28,0x18
+ cfc:	6c64                	c.flw	f9,92(x8)
+ cfe:	7265                	c.lui	x4,0xffff9
+ d00:	6520                	c.flw	f8,72(x10)
+ d02:	746e                	c.flwsp	f8,248(x2)
+ d04:	7265                	c.lui	x4,0xffff9
+ d06:	6465                	c.lui	x8,0x19
+ d08:	000a                	0xa
 
-00000cba <unknown_msg>:
- cba:	6e75                	c.lui	x28,0x1d
- cbc:	776f6e6b          	0x776f6e6b
- cc0:	206e                	c.fldsp	f0,216(x2)
- cc2:	7865                	c.lui	x16,0xffff9
- cc4:	74706563          	bltu	x0,x7,140e <__bss_end+0x406>
- cc8:	6f69                	c.lui	x30,0x1a
- cca:	206e                	c.fldsp	f0,216(x2)
- ccc:	6168                	c.flw	f10,68(x10)
- cce:	646e                	c.flwsp	f8,216(x2)
- cd0:	656c                	c.flw	f11,76(x10)
- cd2:	2072                	c.fldsp	f0,280(x2)
- cd4:	6e65                	c.lui	x28,0x19
- cd6:	6574                	c.flw	f13,76(x10)
- cd8:	6572                	c.flwsp	f10,28(x2)
- cda:	0a64                	c.addi4spn	x9,x2,284
+00000d0a <unknown_msg>:
+ d0a:	6e75                	c.lui	x28,0x1d
+ d0c:	776f6e6b          	0x776f6e6b
+ d10:	206e                	c.fldsp	f0,216(x2)
+ d12:	7865                	c.lui	x16,0xffff9
+ d14:	74706563          	bltu	x0,x7,145e <__bss_end+0x456>
+ d18:	6f69                	c.lui	x30,0x1a
+ d1a:	206e                	c.fldsp	f0,216(x2)
+ d1c:	6168                	c.flw	f10,68(x10)
+ d1e:	646e                	c.flwsp	f8,216(x2)
+ d20:	656c                	c.flw	f11,76(x10)
+ d22:	2072                	c.fldsp	f0,280(x2)
+ d24:	6e65                	c.lui	x28,0x19
+ d26:	6574                	c.flw	f13,76(x10)
+ d28:	6572                	c.flwsp	f10,28(x2)
+ d2a:	0a64                	c.addi4spn	x9,x2,284
 	...
 
-00000cdd <no_exception_handler_msg>:
- cdd:	6f6e                	c.flwsp	f30,216(x2)
- cdf:	6520                	c.flw	f8,72(x10)
- ce1:	6378                	c.flw	f14,68(x14)
- ce3:	7065                	0x7065
- ce5:	6974                	c.flw	f13,84(x10)
- ce7:	68206e6f          	jal	x28,7369 <__bss_end+0x6361>
- ceb:	6e61                	c.lui	x28,0x18
- ced:	6c64                	c.flw	f9,92(x8)
- cef:	7265                	c.lui	x4,0xffff9
- cf1:	6920                	c.flw	f8,80(x10)
- cf3:	736e                	c.flwsp	f6,248(x2)
- cf5:	6174                	c.flw	f13,68(x10)
- cf7:	6c6c                	c.flw	f11,92(x8)
- cf9:	6465                	c.lui	x8,0x19
- cfb:	000a                	0xa
+00000d2d <no_exception_handler_msg>:
+ d2d:	6f6e                	c.flwsp	f30,216(x2)
+ d2f:	6520                	c.flw	f8,72(x10)
+ d31:	6378                	c.flw	f14,68(x14)
+ d33:	7065                	0x7065
+ d35:	6974                	c.flw	f13,84(x10)
+ d37:	68206e6f          	jal	x28,73b9 <__bss_end+0x63b1>
+ d3b:	6e61                	c.lui	x28,0x18
+ d3d:	6c64                	c.flw	f9,92(x8)
+ d3f:	7265                	c.lui	x4,0xffff9
+ d41:	6920                	c.flw	f8,80(x10)
+ d43:	736e                	c.flwsp	f6,248(x2)
+ d45:	6174                	c.flw	f13,68(x10)
+ d47:	6c6c                	c.flw	f11,92(x8)
+ d49:	6465                	c.lui	x8,0x19
+ d4b:	000a                	0xa
 
-00000cfd <riscv_tests_msg>:
- cfd:	7572                	c.flwsp	f10,60(x2)
- cff:	6e6e                	c.flwsp	f28,216(x2)
- d01:	6e69                	c.lui	x28,0x1a
- d03:	69722067          	0x69722067
- d07:	2d766373          	csrrsi	x6,0x2d7,12
- d0b:	6574                	c.flw	f13,76(x10)
- d0d:	0a737473          	csrrci	x8,0xa7,6
+00000d4d <riscv_tests_msg>:
+ d4d:	7572                	c.flwsp	f10,60(x2)
+ d4f:	6e6e                	c.flwsp	f28,216(x2)
+ d51:	6e69                	c.lui	x28,0x1a
+ d53:	69722067          	0x69722067
+ d57:	2d766373          	csrrsi	x6,0x2d7,12
+ d5b:	6574                	c.flw	f13,76(x10)
+ d5d:	0a737473          	csrrci	x8,0xa7,6
 	...
 
-00000d12 <riscv_compliance_tests_msg>:
- d12:	7572                	c.flwsp	f10,60(x2)
- d14:	6e6e                	c.flwsp	f28,216(x2)
- d16:	6e69                	c.lui	x28,0x1a
- d18:	69722067          	0x69722067
- d1c:	2d766373          	csrrsi	x6,0x2d7,12
- d20:	706d6f63          	bltu	x26,x6,143e <__bss_end+0x436>
- d24:	696c                	c.flw	f11,84(x10)
- d26:	6e61                	c.lui	x28,0x18
- d28:	742d6563          	bltu	x26,x2,1472 <__bss_end+0x46a>
- d2c:	7365                	c.lui	x6,0xffff9
- d2e:	7374                	c.flw	f13,100(x14)
- d30:	000a                	0xa
+00000d62 <riscv_compliance_tests_msg>:
+ d62:	7572                	c.flwsp	f10,60(x2)
+ d64:	6e6e                	c.flwsp	f28,216(x2)
+ d66:	6e69                	c.lui	x28,0x1a
+ d68:	69722067          	0x69722067
+ d6c:	2d766373          	csrrsi	x6,0x2d7,12
+ d70:	706d6f63          	bltu	x26,x6,148e <__bss_end+0x486>
+ d74:	696c                	c.flw	f11,84(x10)
+ d76:	6e61                	c.lui	x28,0x18
+ d78:	742d6563          	bltu	x26,x2,14c2 <__bss_end+0x4ba>
+ d7c:	7365                	c.lui	x6,0xffff9
+ d7e:	7374                	c.flw	f13,100(x14)
+ d80:	000a                	0xa
 
-00000d32 <timeout_msg>:
- d32:	0a0a                	c.slli	x20,0x2
- d34:	4554                	c.lw	x13,12(x10)
- d36:	54205453          	fmacex.s.ah	x8,x0,x2
- d3a:	4d49                	c.li	x26,18
- d3c:	4f45                	c.li	x30,17
- d3e:	5455                	c.li	x8,-11
- d40:	202c                	c.fld	f11,64(x8)
- d42:	6261                	c.lui	x4,0x18
- d44:	6974726f          	jal	x4,48bda <__bss_end+0x47bd2>
- d48:	676e                	c.flwsp	f14,216(x2)
- d4a:	2e2e                	c.fldsp	f28,200(x2)
- d4c:	0a2e                	c.slli	x20,0xb
- d4e:	000a                	0xa
- d50:	3130                	c.fld	f12,96(x10)
- d52:	3332                	c.fldsp	f6,296(x2)
- d54:	3534                	c.fld	f13,104(x10)
- d56:	3736                	c.fldsp	f14,360(x2)
- d58:	3938                	c.fld	f14,112(x10)
- d5a:	4241                	c.li	x4,16
- d5c:	46454443          	0x46454443
- d60:	0000                	unimp
- d62:	0000                	unimp
- d64:	6c637943          	fmadd.h	x18,x6,x6,x13
- d68:	2065                	c.jal	e10 <_data_lma_start+0x1c>
- d6a:	6e756f63          	bltu	x10,x7,1468 <__bss_end+0x460>
- d6e:	6574                	c.flw	f13,76(x10)
- d70:	2072                	c.fldsp	f0,280(x2)
- d72:	2e2e                	c.fldsp	f28,200(x2)
- d74:	2e2e                	c.fldsp	f28,200(x2)
- d76:	2e2e                	c.fldsp	f28,200(x2)
- d78:	2e2e                	c.fldsp	f28,200(x2)
- d7a:	0000                	unimp
- d7c:	490a                	c.lwsp	x18,128(x2)
- d7e:	736e                	c.flwsp	f6,248(x2)
- d80:	7274                	c.flw	f13,100(x12)
- d82:	6375                	c.lui	x6,0x1d
- d84:	6974                	c.flw	f13,84(x10)
- d86:	63206e6f          	jal	x28,73b8 <__bss_end+0x63b0>
- d8a:	746e756f          	jal	x10,e84d0 <_stack_top+0x684d0>
- d8e:	7265                	c.lui	x4,0xffff9
- d90:	2e20                	c.fld	f8,88(x12)
- d92:	002e                	0x2e
- d94:	430a                	c.lwsp	x6,128(x2)
- d96:	4950                	c.lw	x12,20(x10)
- d98:	203a                	c.fldsp	f0,392(x2)
- d9a:	0000                	unimp
- d9c:	002e                	0x2e
- d9e:	0000                	unimp
- da0:	000a                	0xa
- da2:	0000                	unimp
- da4:	72617453          	0x72617453
- da8:	6974                	c.flw	f13,84(x10)
- daa:	676e                	c.flwsp	f14,216(x2)
- dac:	4820                	c.lw	x8,80(x8)
- dae:	6279                	c.lui	x4,0x1e
- db0:	6972                	c.flwsp	f18,28(x2)
- db2:	2064                	c.fld	f9,192(x8)
- db4:	4646                	c.lwsp	x12,80(x2)
- db6:	2054                	c.fld	f13,128(x8)
- db8:	4928                	c.lw	x10,80(x10)
- dba:	3d49                	c.jal	c4c <illegal_insn_msg+0x4>
- dbc:	2c31                	c.jal	fd8 <_data_lma_start+0x1e4>
- dbe:	3820                	c.fld	f8,112(x8)
- dc0:	3878                	c.fld	f14,240(x8)
- dc2:	3820                	c.fld	f8,112(x8)
- dc4:	422d                	c.li	x4,11
- dc6:	6e61                	c.lui	x28,0x18
- dc8:	6f4d206b          	0x6f4d206b
- dcc:	6564                	c.flw	f9,76(x10)
- dce:	2e29                	c.jal	10e8 <__bss_end+0xe0>
- dd0:	2e2e                	c.fldsp	f28,200(x2)
- dd2:	000a                	0xa
- dd4:	4646                	c.lwsp	x12,80(x2)
- dd6:	2054                	c.fld	f13,128(x8)
- dd8:	6f44                	c.flw	f9,28(x14)
- dda:	656e                	c.flwsp	f10,216(x2)
- ddc:	0a2e                	c.slli	x20,0xb
- dde:	0000                	unimp
- de0:	5b74754f          	fnmadd.d	f10,f8,f23,f11
- de4:	0000                	unimp
- de6:	0000                	unimp
- de8:	3a5d                	c.jal	79e <init_data+0x66>
- dea:	0020                	c.addi4spn	x8,x2,8
- dec:	2b20                	c.fld	f8,80(x14)
- dee:	0020                	c.addi4spn	x8,x2,8
- df0:	0a69                	c.addi	x20,26
+00000d82 <timeout_msg>:
+ d82:	0a0a                	c.slli	x20,0x2
+ d84:	4554                	c.lw	x13,12(x10)
+ d86:	54205453          	fmacex.s.ah	x8,x0,x2
+ d8a:	4d49                	c.li	x26,18
+ d8c:	4f45                	c.li	x30,17
+ d8e:	5455                	c.li	x8,-11
+ d90:	202c                	c.fld	f11,64(x8)
+ d92:	6261                	c.lui	x4,0x18
+ d94:	6974726f          	jal	x4,48c2a <__bss_end+0x47c22>
+ d98:	676e                	c.flwsp	f14,216(x2)
+ d9a:	2e2e                	c.fldsp	f28,200(x2)
+ d9c:	0a2e                	c.slli	x20,0xb
+ d9e:	000a                	0xa
+ da0:	3130                	c.fld	f12,96(x10)
+ da2:	3332                	c.fldsp	f6,296(x2)
+ da4:	3534                	c.fld	f13,104(x10)
+ da6:	3736                	c.fldsp	f14,360(x2)
+ da8:	3938                	c.fld	f14,112(x10)
+ daa:	4241                	c.li	x4,16
+ dac:	46454443          	0x46454443
+ db0:	0000                	unimp
+ db2:	0000                	unimp
+ db4:	6c637943          	fmadd.h	x18,x6,x6,x13
+ db8:	2065                	c.jal	e60 <_data_lma_start+0x1c>
+ dba:	6e756f63          	bltu	x10,x7,14b8 <__bss_end+0x4b0>
+ dbe:	6574                	c.flw	f13,76(x10)
+ dc0:	2072                	c.fldsp	f0,280(x2)
+ dc2:	2e2e                	c.fldsp	f28,200(x2)
+ dc4:	2e2e                	c.fldsp	f28,200(x2)
+ dc6:	2e2e                	c.fldsp	f28,200(x2)
+ dc8:	2e2e                	c.fldsp	f28,200(x2)
+ dca:	0000                	unimp
+ dcc:	490a                	c.lwsp	x18,128(x2)
+ dce:	736e                	c.flwsp	f6,248(x2)
+ dd0:	7274                	c.flw	f13,100(x12)
+ dd2:	6375                	c.lui	x6,0x1d
+ dd4:	6974                	c.flw	f13,84(x10)
+ dd6:	63206e6f          	jal	x28,7408 <__bss_end+0x6400>
+ dda:	746e756f          	jal	x10,e8520 <_stack_top+0x68520>
+ dde:	7265                	c.lui	x4,0xffff9
+ de0:	2e20                	c.fld	f8,88(x12)
+ de2:	002e                	0x2e
+ de4:	430a                	c.lwsp	x6,128(x2)
+ de6:	4950                	c.lw	x12,20(x10)
+ de8:	203a                	c.fldsp	f0,392(x2)
+ dea:	0000                	unimp
+ dec:	002e                	0x2e
+ dee:	0000                	unimp
+ df0:	000a                	0xa
+ df2:	0000                	unimp
+ df4:	72617453          	0x72617453
+ df8:	6974                	c.flw	f13,84(x10)
+ dfa:	676e                	c.flwsp	f14,216(x2)
+ dfc:	4820                	c.lw	x8,80(x8)
+ dfe:	6279                	c.lui	x4,0x1e
+ e00:	6972                	c.flwsp	f18,28(x2)
+ e02:	2064                	c.fld	f9,192(x8)
+ e04:	4646                	c.lwsp	x12,80(x2)
+ e06:	2054                	c.fld	f13,128(x8)
+ e08:	4628                	c.lw	x10,72(x12)
+ e0a:	7869                	c.lui	x16,0xffffa
+ e0c:	6465                	c.lui	x8,0x19
+ e0e:	4920                	c.lw	x8,80(x10)
+ e10:	2026204f          	fnmadd.s	f0,f12,f2,f4,rdn
+ e14:	614c                	c.flw	f11,4(x10)
+ e16:	6574                	c.flw	f13,76(x10)
+ e18:	636e                	c.flwsp	f6,216(x2)
+ e1a:	2979                	c.jal	12b8 <__bss_end+0x2b0>
+ e1c:	2e2e                	c.fldsp	f28,200(x2)
+ e1e:	0a2e                	c.slli	x20,0xb
+ e20:	0000                	unimp
+ e22:	0000                	unimp
+ e24:	4646                	c.lwsp	x12,80(x2)
+ e26:	2054                	c.fld	f13,128(x8)
+ e28:	6f44                	c.flw	f9,28(x14)
+ e2a:	656e                	c.flwsp	f10,216(x2)
+ e2c:	0a2e                	c.slli	x20,0xb
+ e2e:	0000                	unimp
+ e30:	5b74754f          	fnmadd.d	f10,f8,f23,f11
+ e34:	0000                	unimp
+ e36:	0000                	unimp
+ e38:	3a5d                	c.jal	7ee <init_data+0xb6>
+ e3a:	0020                	c.addi4spn	x8,x2,8
+ e3c:	2b20                	c.fld	f8,80(x14)
+ e3e:	0020                	c.addi4spn	x8,x2,8
+ e40:	0a69                	c.addi	x20,26
 	...
 
 Disassembly of section .data:
@@ -1919,7 +1940,7 @@ Disassembly of section .debug_line:
  1ba:	0001                	c.nop
 	j fail_test
  1bc:	0205                	c.addi	x4,1
- 1be:	0c38                	c.addi4spn	x14,x2,536
+ 1be:	0c88                	c.addi4spn	x10,x2,592
 	la a0, ebreak_msg
  1c0:	0000                	unimp
  1c2:	0100d703          	lhu	x14,16(x1)
@@ -2338,7 +2359,7 @@ Disassembly of section .debug_line:
  50e:	6e69                	c.lui	x28,0x1a
 {
  510:	64756c63          	bltu	x10,x7,b68 <app+0x318>
- 514:	2f65                	c.jal	ccc <unknown_msg+0x12>
+ 514:	2f65                	c.jal	ccc <ecall_msg+0x5>
  516:	00737973          	csrrci	x18,0x7,6
  51a:	7000                	c.flw	f8,32(x8)
  51c:	6972                	c.flwsp	f18,28(x2)
@@ -2605,7 +2626,7 @@ Disassembly of section .debug_line:
  736:	0014                	c.addi4spn	x13,x2,0
 void init_data() {
  738:	0100                	c.addi4spn	x8,x2,128
- 73a:	9201                	c.srli	x12,0x20
+ 73a:	b901                	c.j	34a <fast_exit+0x2>
  73c:	02000003          	lb	x0,32(x0) # 20 <vector_table_timer+0x4>
  740:	f200                	c.fsw	f8,32(x12)
  742:	0000                	unimp
@@ -2633,19 +2654,19 @@ void init_data() {
  774:	776f6e6b          	0x776f6e6b
  778:	2d6e                	c.fldsp	f26,216(x2)
  77a:	6c65                	c.lui	x24,0x19
-    twiddle_table[1] = COMBINE(32767, 0);       // W_2^0
+    twiddle_table[1] = COMBINE(32767, 0);       
  77c:	2f66                	c.fldsp	f30,88(x2)
  77e:	2d737973          	csrrci	x18,0x2d7,6
  782:	6e69                	c.lui	x28,0x1a
- 784:	64756c63          	bltu	x10,x7,ddc <timeout_msg+0xaa>
- 788:	2f65                	c.jal	f40 <_data_lma_start+0x14c>
+ 784:	64756c63          	bltu	x10,x7,ddc <timeout_msg+0x5a>
+ 788:	2f65                	c.jal	f40 <_data_lma_start+0xfc>
  78a:	00737973          	csrrci	x18,0x7,6
-    twiddle_table[2] = COMBINE(32767, 0);       // W_4^0
+    twiddle_table[2] = COMBINE(32767, 0);       
  78e:	74706f2f          	0x74706f2f
  792:	7369722f          	0x7369722f
- 796:	6c2f7663          	bgeu	x30,x2,e62 <_data_lma_start+0x6e>
+ 796:	6c2f7663          	bgeu	x30,x2,e62 <_data_lma_start+0x1e>
  79a:	6269                	c.lui	x4,0x1a
-    twiddle_table[3] = COMBINE(0, -32767);      // W_4^1
+    twiddle_table[3] = COMBINE(0, -32767);      
  79c:	6363672f          	0x6363672f
  7a0:	7369722f          	0x7369722f
  7a4:	32337663          	bgeu	x6,x3,ad0 <app+0x280>
@@ -2653,13 +2674,13 @@ void init_data() {
  7aa:	6b6e                	c.flwsp	f22,216(x2)
  7ac:	6f6e                	c.flwsp	f30,216(x2)
  7ae:	652d6e77          	0x652d6e77
-    twiddle_table[4] = COMBINE(32767, 0);       // W_8^0
+    twiddle_table[4] = COMBINE(32767, 0);       
  7b2:	666c                	c.flw	f11,76(x12)
  7b4:	312e372f          	0x312e372f
  7b8:	312e                	c.fldsp	f2,232(x2)
  7ba:	636e692f          	0x636e692f
  7be:	756c                	c.flw	f11,108(x10)
-    twiddle_table[5] = COMBINE(23170, -23170);  // W_8^1
+    twiddle_table[5] = COMBINE(23170, -23170);  
  7c0:	6564                	c.flw	f9,76(x10)
  7c2:	2f00                	c.fld	f8,24(x14)
  7c4:	2f74706f          	jal	x0,482ba <__bss_end+0x472b2>
@@ -2667,7 +2688,7 @@ void init_data() {
  7ca:	2f766373          	csrrsi	x6,0x2f7,12
  7ce:	6972                	c.flwsp	f18,28(x2)
  7d0:	33766373          	csrrsi	x6,0x337,12
-    twiddle_table[6] = COMBINE(0, -32767);      // W_8^2
+    twiddle_table[6] = COMBINE(0, -32767);      
  7d4:	2d32                	c.fldsp	f26,264(x2)
  7d6:	6e75                	c.lui	x28,0x1d
  7d8:	776f6e6b          	0x776f6e6b
@@ -2676,8 +2697,8 @@ void init_data() {
  7e0:	2f66                	c.fldsp	f30,88(x2)
  7e2:	2d737973          	csrrci	x18,0x2d7,6
  7e6:	6e69                	c.lui	x28,0x1a
-    twiddle_table[7] = COMBINE(-23170, -23170); // W_8^3
- 7e8:	64756c63          	bltu	x10,x7,e40 <_data_lma_start+0x4c>
+    twiddle_table[7] = COMBINE(-23170, -23170); 
+ 7e8:	64756c63          	bltu	x10,x7,e40 <timeout_msg+0xbe>
  7ec:	0065                	c.addi	x0,25
  7ee:	6600                	c.flw	f8,8(x12)
  7f0:	7466                	c.flwsp	f8,120(x2)
@@ -2715,7 +2736,7 @@ void init_data() {
  838:	0205                	c.addi	x4,1
  83a:	0738                	c.addi4spn	x14,x2,904
  83c:	0000                	unimp
- 83e:	0100cf03          	lbu	x30,16(x1)
+ 83e:	0100c903          	lbu	x18,16(x1)
 }
  842:	0c090203          	lb	x4,192(x18)
  846:	0100                	c.addi4spn	x8,x2,128
@@ -2731,37 +2752,37 @@ int app() {
  858:	0900                	c.addi4spn	x8,x2,144
  85a:	0024                	c.addi4spn	x9,x2,8
  85c:	0601                	c.addi	x12,0
- 85e:	0c090203          	lb	x4,192(x18)
+ 85e:	0c090103          	lb	x2,192(x18)
     init_data();
  862:	0100                	c.addi4spn	x8,x2,128
-    print_str("Starting Hybrid FFT (II=1, 8x8 8-Bank Mode)...\n");
+    print_str("Starting Hybrid FFT (Fixed IO & Latency)...\n");
  864:	10090103          	lb	x2,256(x18)
  868:	0100                	c.addi4spn	x8,x2,128
  86a:	10090103          	lb	x2,256(x18)
-    volatile int *ptr_in_a = BANK1_BASE;
+    volatile int *ptr_cpu_in_a = BANK1_BASE;
  86e:	0100                	c.addi4spn	x8,x2,128
  870:	14090103          	lb	x2,320(x18)
-    volatile int *ptr_in_b = BANK2_BASE;
+    volatile int *ptr_cpu_in_b = BANK2_BASE;
  874:	0100                	c.addi4spn	x8,x2,128
  876:	10090103          	lb	x2,256(x18)
  87a:	0100                	c.addi4spn	x8,x2,128
-    volatile int *ptr_w    = BANK3_BASE;
+    volatile int *ptr_cpu_w    = BANK3_BASE;
  87c:	14090103          	lb	x2,320(x18)
  880:	0100                	c.addi4spn	x8,x2,128
  882:	14090103          	lb	x2,320(x18)
-    volatile int *ptr_out_a = BANK4_BASE;
+    volatile int *ptr_cpu_out_a = BANK4_BASE;
  886:	0100                	c.addi4spn	x8,x2,128
- 888:	14090303          	lb	x6,320(x18)
-    volatile int *ptr_out_b = BANK5_BASE;
+ 888:	14090203          	lb	x4,320(x18)
+    volatile int *ptr_cpu_out_b = BANK5_BASE;
  88c:	0100                	c.addi4spn	x8,x2,128
  88e:	0200                	c.addi4spn	x8,x2,256
  890:	0304                	c.addi4spn	x9,x2,384
  892:	08090103          	lb	x2,128(x18)
-    const int HW_LATENCY = 30; // 假设延迟，可根据仿真微调
+    const int HW_LATENCY = 30;
  896:	0100                	c.addi4spn	x8,x2,128
  898:	0200                	c.addi4spn	x8,x2,256
  89a:	0304                	c.addi4spn	x9,x2,384
-    const int HW_II = 1;       // 映射结果确认 II=1
+    const int HW_II = 1;
  89c:	24097f03          	0x24097f03
  8a0:	0100                	c.addi4spn	x8,x2,128
  8a2:	0200                	c.addi4spn	x8,x2,256
@@ -2783,30 +2804,30 @@ int app() {
  8c0:	04090103          	lb	x2,64(x18)
             for (int j = i, n = 0; n < basedist; j++, n++) {
  8c4:	0100                	c.addi4spn	x8,x2,128
- 8c6:	08090403          	lb	x8,128(x18)
+ 8c6:	08090303          	lb	x6,128(x18)
  8ca:	0100                	c.addi4spn	x8,x2,128
- 8cc:	08090303          	lb	x6,128(x18)
+ 8cc:	08090103          	lb	x2,128(x18)
  8d0:	0100                	c.addi4spn	x8,x2,128
- 8d2:	08090303          	lb	x6,128(x18)
+ 8d2:	08090103          	lb	x2,128(x18)
                 int k = j + basedist;
  8d6:	0100                	c.addi4spn	x8,x2,128
- 8d8:	08090303          	lb	x6,128(x18)
+ 8d8:	08090103          	lb	x2,128(x18)
  8dc:	0100                	c.addi4spn	x8,x2,128
- 8de:	08090303          	lb	x6,128(x18)
+ 8de:	08090103          	lb	x2,128(x18)
  8e2:	0100                	c.addi4spn	x8,x2,128
                 int table_index = basedist + n;
- 8e4:	08090403          	lb	x8,128(x18)
+ 8e4:	08090203          	lb	x4,128(x18)
  8e8:	0100                	c.addi4spn	x8,x2,128
  8ea:	08090103          	lb	x2,128(x18)
  8ee:	0100                	c.addi4spn	x8,x2,128
- 8f0:	08090203          	lb	x4,128(x18)
-                ptr_in_a[batch_count] = data_out[j];
+ 8f0:	08090103          	lb	x2,128(x18)
+                ptr_cpu_in_a[batch_count] = data_out[j];
  8f4:	0100                	c.addi4spn	x8,x2,128
  8f6:	08090303          	lb	x6,128(x18)
  8fa:	0100                	c.addi4spn	x8,x2,128
  8fc:	0c090203          	lb	x4,192(x18)
  900:	0100                	c.addi4spn	x8,x2,128
- 902:	04090303          	lb	x6,64(x18)
+ 902:	04090403          	lb	x8,64(x18)
  906:	0100                	c.addi4spn	x8,x2,128
  908:	08090103          	lb	x2,128(x18)
  90c:	0100                	c.addi4spn	x8,x2,128
@@ -2816,29 +2837,29 @@ int app() {
  916:	0100                	c.addi4spn	x8,x2,128
  918:	0200                	c.addi4spn	x8,x2,256
  91a:	0304                	c.addi4spn	x9,x2,384
-                ptr_in_b[batch_count] = data_out[k];
+                ptr_cpu_in_b[batch_count] = data_out[k];
  91c:	10090103          	lb	x2,256(x18)
  920:	0100                	c.addi4spn	x8,x2,128
  922:	0200                	c.addi4spn	x8,x2,256
  924:	0304                	c.addi4spn	x9,x2,384
- 926:	10090303          	lb	x6,256(x18)
+ 926:	10090203          	lb	x4,256(x18)
  92a:	0100                	c.addi4spn	x8,x2,128
  92c:	0200                	c.addi4spn	x8,x2,256
  92e:	0304                	c.addi4spn	x9,x2,384
- 930:	28090303          	lb	x6,640(x18)
+ 930:	28090103          	lb	x2,640(x18)
  934:	0100                	c.addi4spn	x8,x2,128
  936:	0200                	c.addi4spn	x8,x2,256
  938:	0304                	c.addi4spn	x9,x2,384
- 93a:	28090303          	lb	x6,640(x18)
+ 93a:	28090103          	lb	x2,640(x18)
  93e:	0100                	c.addi4spn	x8,x2,128
  940:	0200                	c.addi4spn	x8,x2,256
  942:	0304                	c.addi4spn	x9,x2,384
-                ptr_w[batch_count] = twiddle_table[table_index];
+                ptr_cpu_w[batch_count]    = twiddle_table[table_index];
  944:	2c090203          	lb	x4,704(x18)
  948:	0100                	c.addi4spn	x8,x2,128
  94a:	0200                	c.addi4spn	x8,x2,256
  94c:	0304                	c.addi4spn	x9,x2,384
- 94e:	0c097303          	0xc097303
+ 94e:	0c097803          	0xc097803
  952:	0100                	c.addi4spn	x8,x2,128
  954:	0200                	c.addi4spn	x8,x2,256
  956:	0104                	c.addi4spn	x9,x2,128
@@ -2857,167 +2878,182 @@ int app() {
  970:	0900                	c.addi4spn	x8,x2,144
  972:	0010                	c.addi4spn	x12,x2,0
  974:	0601                	c.addi	x12,0
- 976:	0c091303          	lh	x6,192(x18)
+ 976:	0c091003          	lh	x0,192(x18)
  97a:	0100                	c.addi4spn	x8,x2,128
             for (int j = i, n = 0; n < basedist; j++, n++) {
- 97c:	10090103          	lb	x2,256(x18)
+ 97c:	08090103          	lb	x2,128(x18)
  980:	0100                	c.addi4spn	x8,x2,128
- 982:	0c090103          	lb	x2,192(x18)
- 986:	0100                	c.addi4spn	x8,x2,128
- 988:	10090103          	lb	x2,256(x18)
- 98c:	0100                	c.addi4spn	x8,x2,128
- 98e:	10090103          	lb	x2,256(x18)
- 992:	0100                	c.addi4spn	x8,x2,128
- 994:	10090303          	lb	x6,256(x18)
- 998:	0100                	c.addi4spn	x8,x2,128
+ 982:	0200                	c.addi4spn	x8,x2,256
+ 984:	0304                	c.addi4spn	x9,x2,384
+ 986:	08090103          	lb	x2,128(x18)
+ 98a:	0100                	c.addi4spn	x8,x2,128
+ 98c:	0200                	c.addi4spn	x8,x2,256
+ 98e:	0304                	c.addi4spn	x9,x2,384
+ 990:	1c090103          	lb	x2,448(x18)
+ 994:	0100                	c.addi4spn	x8,x2,128
+ 996:	0200                	c.addi4spn	x8,x2,256
+ 998:	0304                	c.addi4spn	x9,x2,384
  99a:	1c090103          	lb	x2,448(x18)
  99e:	0100                	c.addi4spn	x8,x2,128
         for (int i = 0; i < N; i += BlockSize) {
- 9a0:	10090303          	lb	x6,256(x18)
- 9a4:	0100                	c.addi4spn	x8,x2,128
- 9a6:	10090303          	lb	x6,256(x18)
- 9aa:	0100                	c.addi4spn	x8,x2,128
- 9ac:	0200                	c.addi4spn	x8,x2,256
- 9ae:	0104                	c.addi4spn	x9,x2,128
- 9b0:	0306                	c.slli	x6,0x1
- 9b2:	0900                	c.addi4spn	x8,x2,144
- 9b4:	0004                	c.addi4spn	x9,x2,0
- 9b6:	0601                	c.addi	x12,0
- 9b8:	14090303          	lb	x6,320(x18)
-        MMIO_WRITE(PORT_IN_A_ADDR,   (int)ptr_in_a);
- 9bc:	0100                	c.addi4spn	x8,x2,128
- 9be:	0c090103          	lb	x2,192(x18)
- 9c2:	0100                	c.addi4spn	x8,x2,128
- 9c4:	10090103          	lb	x2,256(x18)
- 9c8:	0100                	c.addi4spn	x8,x2,128
- 9ca:	10090103          	lb	x2,256(x18)
-        MMIO_WRITE(PORT_IN_B_ADDR,   (int)ptr_in_b);
- 9ce:	0100                	c.addi4spn	x8,x2,128
- 9d0:	0c090403          	lb	x8,192(x18)
- 9d4:	0100                	c.addi4spn	x8,x2,128
- 9d6:	04090103          	lb	x2,64(x18)
-        MMIO_WRITE(PORT_WEIGHT_ADDR, (int)ptr_w);
- 9da:	0100                	c.addi4spn	x8,x2,128
- 9dc:	08090103          	lb	x2,128(x18)
- 9e0:	0100                	c.addi4spn	x8,x2,128
- 9e2:	0200                	c.addi4spn	x8,x2,256
- 9e4:	0304                	c.addi4spn	x9,x2,384
- 9e6:	10090103          	lb	x2,256(x18)
-        MMIO_WRITE(PORT_OUT_A_ADDR,  (int)ptr_out_a);
+ 9a0:	0200                	c.addi4spn	x8,x2,256
+ 9a2:	0304                	c.addi4spn	x9,x2,384
+ 9a4:	1c097d03          	0x1c097d03
+ 9a8:	0100                	c.addi4spn	x8,x2,128
+ 9aa:	0200                	c.addi4spn	x8,x2,256
+ 9ac:	0104                	c.addi4spn	x9,x2,128
+ 9ae:	0306                	c.slli	x6,0x1
+ 9b0:	0900                	c.addi4spn	x8,x2,144
+ 9b2:	000c                	c.addi4spn	x11,x2,0
+ 9b4:	0601                	c.addi	x12,0
+ 9b6:	0c090c03          	lb	x24,192(x18)
+ 9ba:	0100                	c.addi4spn	x8,x2,128
+        int tail_padding = 4; // 多清零4个位置，覆盖流水线尾部
+ 9bc:	0c090103          	lb	x2,192(x18)
+ 9c0:	0100                	c.addi4spn	x8,x2,128
+ 9c2:	0c090103          	lb	x2,192(x18)
+        for(int k=0; k<tail_padding; k++) {
+ 9c6:	0100                	c.addi4spn	x8,x2,128
+ 9c8:	0c090603          	lb	x12,192(x18)
+            ptr_cpu_in_a[batch_count + k] = 0;
+ 9cc:	0100                	c.addi4spn	x8,x2,128
+ 9ce:	10090203          	lb	x4,256(x18)
+ 9d2:	0100                	c.addi4spn	x8,x2,128
+ 9d4:	10090403          	lb	x8,256(x18)
+ 9d8:	0100                	c.addi4spn	x8,x2,128
+ 9da:	10090203          	lb	x4,256(x18)
+ 9de:	0100                	c.addi4spn	x8,x2,128
+ 9e0:	04090103          	lb	x2,64(x18)
+ 9e4:	0100                	c.addi4spn	x8,x2,128
+ 9e6:	04090103          	lb	x2,64(x18)
+            ptr_cpu_in_b[batch_count + k] = 0;
  9ea:	0100                	c.addi4spn	x8,x2,128
- 9ec:	0200                	c.addi4spn	x8,x2,256
- 9ee:	0304                	c.addi4spn	x9,x2,384
- 9f0:	10090303          	lb	x6,256(x18)
- 9f4:	0100                	c.addi4spn	x8,x2,128
- 9f6:	0200                	c.addi4spn	x8,x2,256
-        MMIO_WRITE(PORT_OUT_B_ADDR,  (int)ptr_out_b);
- 9f8:	0304                	c.addi4spn	x9,x2,384
- 9fa:	28090303          	lb	x6,640(x18)
- 9fe:	0100                	c.addi4spn	x8,x2,128
- a00:	0200                	c.addi4spn	x8,x2,256
- a02:	0304                	c.addi4spn	x9,x2,384
- a04:	28090203          	lb	x4,640(x18)
-        int exec_cycles = HW_LATENCY + (batch_count - 1) * HW_II;
+ 9ec:	0c090203          	lb	x4,192(x18)
+ 9f0:	0100                	c.addi4spn	x8,x2,128
+ 9f2:	04090103          	lb	x2,64(x18)
+ 9f6:	0100                	c.addi4spn	x8,x2,128
+ 9f8:	04090403          	lb	x8,64(x18)
+ 9fc:	0100                	c.addi4spn	x8,x2,128
+ 9fe:	20090103          	lb	x2,512(x18)
+ a02:	0100                	c.addi4spn	x8,x2,128
+            ptr_cpu_w[batch_count + k]    = 0; // 权重清零最重要，X乘任何数都是X
+ a04:	10090403          	lb	x8,256(x18)
  a08:	0100                	c.addi4spn	x8,x2,128
- a0a:	0200                	c.addi4spn	x8,x2,256
- a0c:	0304                	c.addi4spn	x9,x2,384
- a0e:	0c097703          	0xc097703
- a12:	0100                	c.addi4spn	x8,x2,128
- a14:	0200                	c.addi4spn	x8,x2,256
- a16:	0104                	c.addi4spn	x9,x2,128
- a18:	0306                	c.slli	x6,0x1
- a1a:	0900                	c.addi4spn	x8,x2,144
- a1c:	0018                	c.addi4spn	x14,x2,0
- a1e:	0001                	c.nop
- a20:	0402                	c.slli	x8,0x0
- a22:	0602                	c.slli	x12,0x0
-        MMIO_WRITE(CGRA_LOOP_CNT_ADDR, exec_cycles);
- a24:	0c097f03          	0xc097f03
- a28:	0100                	c.addi4spn	x8,x2,128
- a2a:	0200                	c.addi4spn	x8,x2,256
- a2c:	0104                	c.addi4spn	x9,x2,128
- a2e:	0306                	c.slli	x6,0x1
- a30:	0900                	c.addi4spn	x8,x2,144
- a32:	0010                	c.addi4spn	x12,x2,0
-        MMIO_WRITE(CGRA_ENABLE_ADDR, 1);
- a34:	0001                	c.nop
- a36:	0402                	c.slli	x8,0x0
- a38:	0602                	c.slli	x12,0x0
- a3a:	0c090e03          	lb	x28,192(x18)
- a3e:	0100                	c.addi4spn	x8,x2,128
- a40:	0200                	c.addi4spn	x8,x2,256
- a42:	0204                	c.addi4spn	x9,x2,256
-        while (MMIO_READ(CGRA_DONE_ADDR) != 1);
- a44:	0c094103          	lbu	x2,192(x18)
- a48:	0100                	c.addi4spn	x8,x2,128
- a4a:	0200                	c.addi4spn	x8,x2,256
- a4c:	0104                	c.addi4spn	x9,x2,128
- a4e:	0306                	c.slli	x6,0x1
- a50:	0900                	c.addi4spn	x8,x2,144
- a52:	000c                	c.addi4spn	x11,x2,0
- a54:	0601                	c.addi	x12,0
- a56:	0900c203          	lbu	x4,144(x1)
- a5a:	000c                	c.addi4spn	x11,x2,0
-        MMIO_WRITE(CGRA_ENABLE_ADDR, 0);
- a5c:	0301                	c.addi	x6,0
- a5e:	0902                	c.slli	x18,0x0
- a60:	0008                	c.addi4spn	x10,x2,0
- a62:	0001                	c.nop
- a64:	0402                	c.slli	x8,0x0
- a66:	09010303          	lb	x6,144(x2)
+ a0a:	0c090b03          	lb	x22,192(x18)
+ a0e:	0100                	c.addi4spn	x8,x2,128
+ a10:	04090103          	lb	x2,64(x18)
+ a14:	0100                	c.addi4spn	x8,x2,128
+ a16:	08090103          	lb	x2,128(x18)
+ a1a:	0100                	c.addi4spn	x8,x2,128
+ a1c:	0200                	c.addi4spn	x8,x2,256
+ a1e:	0304                	c.addi4spn	x9,x2,384
+        for(int k=0; k<tail_padding; k++) {
+ a20:	10090103          	lb	x2,256(x18)
+ a24:	0100                	c.addi4spn	x8,x2,128
+ a26:	0200                	c.addi4spn	x8,x2,256
+ a28:	0304                	c.addi4spn	x9,x2,384
+ a2a:	10090203          	lb	x4,256(x18)
+ a2e:	0100                	c.addi4spn	x8,x2,128
+ a30:	0200                	c.addi4spn	x8,x2,256
+ a32:	0304                	c.addi4spn	x9,x2,384
+ a34:	28090103          	lb	x2,640(x18)
+        MMIO_WRITE(PORT_IN_A_ADDR,   0);
+ a38:	0100                	c.addi4spn	x8,x2,128
+ a3a:	0200                	c.addi4spn	x8,x2,256
+ a3c:	0304                	c.addi4spn	x9,x2,384
+ a3e:	28090203          	lb	x4,640(x18)
+ a42:	0100                	c.addi4spn	x8,x2,128
+        MMIO_WRITE(PORT_IN_B_ADDR,   0);
+ a44:	0200                	c.addi4spn	x8,x2,256
+ a46:	0304                	c.addi4spn	x9,x2,384
+ a48:	0c097a03          	0xc097a03
+ a4c:	0100                	c.addi4spn	x8,x2,128
+ a4e:	0200                	c.addi4spn	x8,x2,256
+        MMIO_WRITE(PORT_WEIGHT_ADDR, 0);
+ a50:	0104                	c.addi4spn	x9,x2,128
+ a52:	0306                	c.slli	x6,0x1
+ a54:	0900                	c.addi4spn	x8,x2,144
+ a56:	0018                	c.addi4spn	x14,x2,0
+ a58:	0001                	c.nop
+ a5a:	0402                	c.slli	x8,0x0
+        MMIO_WRITE(PORT_OUT_A_ADDR,  (int)(0 - LATENCY_OFFSET_A - REPEAT_OFFSET));
+ a5c:	0602                	c.slli	x12,0x0
+ a5e:	0c097f03          	0xc097f03
+ a62:	0100                	c.addi4spn	x8,x2,128
+ a64:	0200                	c.addi4spn	x8,x2,256
+ a66:	0104                	c.addi4spn	x9,x2,128
+ a68:	0306                	c.slli	x6,0x1
+ a6a:	0900                	c.addi4spn	x8,x2,144
+        MMIO_WRITE(PORT_OUT_B_ADDR,  (int)(0 - LATENCY_OFFSET_B - REPEAT_OFFSET));
+ a6c:	0010                	c.addi4spn	x12,x2,0
+ a6e:	0001                	c.nop
+ a70:	0402                	c.slli	x8,0x0
+ a72:	0602                	c.slli	x12,0x0
+ a74:	0c090b03          	lb	x22,192(x18)
+ a78:	0100                	c.addi4spn	x8,x2,128
+ a7a:	0200                	c.addi4spn	x8,x2,256
         MMIO_WRITE(CGRA_RESET_ADDR, 1);
- a6a:	0008                	c.addi4spn	x10,x2,0
- a6c:	0001                	c.nop
- a6e:	0402                	c.slli	x8,0x0
- a70:	09010303          	lb	x6,144(x2)
- a74:	0008                	c.addi4spn	x10,x2,0
- a76:	0001                	c.nop
-        volatile int dummy = 0; dummy++; 
- a78:	0402                	c.slli	x8,0x0
- a7a:	09010303          	lb	x6,144(x2)
- a7e:	000c                	c.addi4spn	x11,x2,0
- a80:	0001                	c.nop
- a82:	0402                	c.slli	x8,0x0
- a84:	09010303          	lb	x6,144(x2)
+ a7c:	0204                	c.addi4spn	x9,x2,256
+ a7e:	097fa803          	lw	x16,151(x31)
+ a82:	000c                	c.addi4spn	x11,x2,0
+ a84:	0001                	c.nop
+ a86:	0402                	c.slli	x8,0x0
+ a88:	0601                	c.addi	x12,0
+ a8a:	0c090003          	lb	x0,192(x18)
+		__asm__("nop");
+ a8e:	0100                	c.addi4spn	x8,x2,128
+        __asm__("nop");
+ a90:	0306                	c.slli	x6,0x1
+ a92:	0c0900db          	p.mac	x1,x18,x0,x6
         MMIO_WRITE(CGRA_RESET_ADDR, 0);
- a88:	0008                	c.addi4spn	x10,x2,0
- a8a:	0001                	c.nop
- a8c:	0402                	c.slli	x8,0x0
- a8e:	09010303          	lb	x6,144(x2)
- a92:	0028                	c.addi4spn	x10,x2,8
-        batch_count = 0;
- a94:	0001                	c.nop
- a96:	0402                	c.slli	x8,0x0
-        for (int i = 0; i < N; i += BlockSize) {
- a98:	09010303          	lb	x6,144(x2)
- a9c:	0008                	c.addi4spn	x10,x2,0
- a9e:	0001                	c.nop
-            for (int j = i, n = 0; n < basedist; j++, n++) {
- aa0:	0402                	c.slli	x8,0x0
- aa2:	09010303          	lb	x6,144(x2)
- aa6:	0024                	c.addi4spn	x9,x2,8
- aa8:	0001                	c.nop
- aaa:	0402                	c.slli	x8,0x0
- aac:	09790303          	lb	x6,151(x18)
-                int k = j + basedist;
- ab0:	0008                	c.addi4spn	x10,x2,0
- ab2:	0001                	c.nop
- ab4:	0402                	c.slli	x8,0x0
- ab6:	0601                	c.addi	x12,0
- ab8:	0c090003          	lb	x0,192(x18)
- abc:	0100                	c.addi4spn	x8,x2,128
- abe:	0306                	c.slli	x6,0x1
-                data_out[j] = ptr_out_a[batch_count];
- ac0:	090a                	c.slli	x18,0x2
- ac2:	000c                	c.addi4spn	x11,x2,0
- ac4:	0301                	c.addi	x6,0
- ac6:	0901                	c.addi	x18,0
- ac8:	0004                	c.addi4spn	x9,x2,0
- aca:	0901                	c.addi	x18,0
- acc:	0014                	c.addi4spn	x13,x2,0
+ a96:	0100                	c.addi4spn	x8,x2,128
+ a98:	08090203          	lb	x4,128(x18)
+ a9c:	0100                	c.addi4spn	x8,x2,128
+ a9e:	0200                	c.addi4spn	x8,x2,256
+		__asm__("nop");
+ aa0:	0304                	c.addi4spn	x9,x2,384
+ aa2:	08090103          	lb	x2,128(x18)
+        __asm__("nop");
+ aa6:	0100                	c.addi4spn	x8,x2,128
+        int exec_cycles = HW_LATENCY + (batch_count - 1) * HW_II + 50;
+ aa8:	0200                	c.addi4spn	x8,x2,256
+ aaa:	0304                	c.addi4spn	x9,x2,384
+ aac:	1c090103          	lb	x2,448(x18)
+ ab0:	0100                	c.addi4spn	x8,x2,128
+ ab2:	0200                	c.addi4spn	x8,x2,256
+ ab4:	0304                	c.addi4spn	x9,x2,384
+ ab6:	28090103          	lb	x2,640(x18)
+ aba:	0100                	c.addi4spn	x8,x2,128
+ abc:	0200                	c.addi4spn	x8,x2,256
+ abe:	0304                	c.addi4spn	x9,x2,384
+ ac0:	08090103          	lb	x2,128(x18)
+ ac4:	0100                	c.addi4spn	x8,x2,128
+ ac6:	0200                	c.addi4spn	x8,x2,256
+        MMIO_WRITE(CGRA_LOOP_CNT_ADDR, exec_cycles);
+ ac8:	0304                	c.addi4spn	x9,x2,384
+ aca:	24090103          	lb	x2,576(x18)
  ace:	0100                	c.addi4spn	x8,x2,128
- ad0:	01 00 00 00 00          	Address 0x0000000000000ad0 is out of bounds.
-
+ ad0:	0200                	c.addi4spn	x8,x2,256
+ ad2:	0304                	c.addi4spn	x9,x2,384
+ ad4:	08097b03          	0x8097b03
+        __asm__ volatile (
+ ad8:	0100                	c.addi4spn	x8,x2,128
+ ada:	0200                	c.addi4spn	x8,x2,256
+ adc:	0104                	c.addi4spn	x9,x2,128
+ ade:	0306                	c.slli	x6,0x1
+ ae0:	0900                	c.addi4spn	x8,x2,144
+ ae2:	000c                	c.addi4spn	x11,x2,0
+        batch_count = 0;
+ ae4:	0601                	c.addi	x12,0
+ ae6:	0c090803          	lb	x16,192(x18)
+        for (int i = 0; i < N; i += BlockSize) {
+ aea:	0100                	c.addi4spn	x8,x2,128
+ aec:	04090103          	lb	x2,64(x18)
+            for (int j = i, n = 0; n < basedist; j++, n++) {
+ af0:	0100                	c.addi4spn	x8,x2,128
+ af2:	1409                	c.addi	x8,-30
+ af4:	0000                	unimp
+ af6:	0101                	c.addi	x2,0
 
 Disassembly of section .debug_info:
 
@@ -3559,8 +3595,7 @@ Disassembly of section .debug_info:
  340:	0001                	c.nop
  342:	0000                	unimp
 	addi tp, gp, 0
- 344:	0ad8                	c.addi4spn	x14,x2,340
- 346:	0000                	unimp
+ 344:	00000af3          	0xaf3
 	lui a0,print_port>>12
  348:	0004                	c.addi4spn	x9,x2,0
  34a:	000001af          	0x1af
@@ -3570,14 +3605,14 @@ Disassembly of section .debug_info:
  350:	0000                	unimp
  352:	0000                	unimp
 	addi a3,zero,'N'
- 354:	400c                	c.lw	x11,0(x8)
+ 354:	4c0c                	c.lw	x11,24(x8)
  356:	0002                	0x2
 	addi a4,zero,'E'
  358:	3e00                	c.fld	f8,56(x12)
  35a:	0000                	unimp
 	addi a5,zero,'\n'
  35c:	3800                	c.fld	f8,48(x8)
- 35e:	00000007          	0x7
+ 35e:	50000007          	0x50000007
 	sw a1,0(a0)
  362:	0005                	c.addi	x0,1
 	sw a2,0(a0)
@@ -3630,31 +3665,31 @@ Disassembly of section .debug_info:
 {
  3b8:	0200                	c.addi4spn	x8,x2,256
  3ba:	0410                	c.addi4spn	x12,x2,512
- 3bc:	03bd                	c.addi	x7,15
+ 3bc:	03dd                	c.addi	x7,23
  3be:	0000                	unimp
- 3c0:	0706                	c.slli	x14,0x1
+ 3c0:	3406                	c.fldsp	f8,96(x2)
  3c2:	0004                	c.addi4spn	x9,x2,0
  3c4:	0200                	c.addi4spn	x8,x2,256
  3c6:	00005d07          	0x5d07
     while (*p != 0)
  3ca:	0600                	c.addi4spn	x8,x2,768
         *((volatile uint32_t *)OUTPORT) = *(p++);
- 3cc:	03f6                	c.slli	x7,0x1d
+ 3cc:	0416                	c.slli	x8,0x5
  3ce:	0000                	unimp
  3d0:	00412c03          	lw	x24,4(x2)
  3d4:	0000                	unimp
- 3d6:	e206                	c.fswsp	f1,4(x2)
- 3d8:	0004                	c.addi4spn	x9,x2,0
+ 3d6:	1006                	0x1006
+ 3d8:	0005                	c.addi	x0,1
  3da:	0300                	c.addi4spn	x8,x2,384
  3dc:	4172                	c.lwsp	x2,28(x2)
  3de:	0000                	unimp
  3e0:	0600                	c.addi4spn	x8,x2,768
- 3e2:	0589                	c.addi	x11,2
+ 3e2:	05a4                	c.addi4spn	x9,x2,712
     while (*p != 0)
  3e4:	0000                	unimp
  3e6:	005d9103          	lh	x2,5(x27)
  3ea:	0000                	unimp
- 3ec:	00036f07          	0x36f07
+ 3ec:	00038807          	0x38807
 }
  3f0:	0400                	c.addi4spn	x8,x2,512
  3f2:	0165                	c.addi	x2,25
@@ -3664,12 +3699,12 @@ Disassembly of section .debug_info:
  3fa:	00d3a603          	lw	x12,13(x7)
  3fe:	0000                	unimp
 {
- 400:	6909                	c.lui	x18,0x2
+ 400:	8209                	c.srli	x12,0x2
  402:	03000003          	lb	x0,48(x0) # 30 <vector_table_timer+0x14>
  406:	a8a8                	c.fsd	f10,80(x9)
  408:	0000                	unimp
  40a:	0900                	c.addi4spn	x8,x2,144
- 40c:	0300                	c.addi4spn	x8,x2,384
+ 40c:	030c                	c.addi4spn	x11,x2,384
  40e:	0000                	unimp
     char *p = buffer;
  410:	00d3a903          	lw	x18,13(x7)
@@ -3686,24 +3721,24 @@ Disassembly of section .debug_info:
  428:	0308                	c.addi4spn	x10,x2,384
  42a:	000104a3          	sb	x0,9(x2)
  42e:	0d00                	c.addi4spn	x8,x2,656
- 430:	04cc                	c.addi4spn	x11,x2,580
+ 430:	04fa                	c.slli	x9,0x1e
  432:	0000                	unimp
  434:	005da503          	lw	x10,5(x27)
  438:	0000                	unimp
  43a:	0d00                	c.addi4spn	x8,x2,656
         val = val / 10;
- 43c:	04d4                	c.addi4spn	x13,x2,580
+ 43c:	0502                	c.slli	x10,0x0
  43e:	0000                	unimp
  440:	00b4aa03          	lw	x20,11(x9)
  444:	0000                	unimp
  446:	0004                	c.addi4spn	x9,x2,0
- 448:	4e06                	c.lwsp	x28,64(x2)
+ 448:	7c06                	c.flwsp	f24,96(x2)
  44a:	0004                	c.addi4spn	x9,x2,0
     while (val || p == buffer) {
  44c:	0300                	c.addi4spn	x8,x2,384
  44e:	0000e3ab          	p.sw	x0,x7(x1!)
  452:	0600                	c.addi4spn	x8,x2,768
- 454:	02cd                	c.addi	x5,19
+ 454:	02d9                	c.addi	x5,22
  456:	0000                	unimp
  458:	007caf03          	lw	x30,7(x25) # 4007 <__bss_end+0x2fff>
  45c:	0000                	unimp
@@ -3718,19 +3753,20 @@ Disassembly of section .debug_info:
  46c:	0500                	c.addi4spn	x8,x2,640
  46e:	0122                	c.slli	x2,0x8
  470:	0000                	unimp
- 472:	3f06                	c.fldsp	f30,96(x2)
+ 472:	5a06                	c.lwsp	x20,96(x2)
  474:	0005                	c.addi	x0,1
  476:	0500                	c.addi4spn	x8,x2,640
  478:	4816                	c.lwsp	x16,68(x2)
  47a:	0000                	unimp
  47c:	1000                	c.addi4spn	x8,x2,32
- 47e:	02de                	c.slli	x5,0x17
+ 47e:	02ea                	c.slli	x5,0x1a
  480:	0000                	unimp
  482:	0518                	c.addi4spn	x14,x2,640
     while (p != buffer) {
  484:	00018c2f          	0x18c2f
  488:	0d00                	c.addi4spn	x8,x2,656
- 48a:	0000046f          	jal	x8,48a <print_dec+0x8a>
+ 48a:	049d                	c.addi	x9,7
+ 48c:	0000                	unimp
  48e:	3105                	c.jal	ae <vector_table_timer+0x92>
 }
  490:	018c                	c.addi4spn	x11,x2,192
@@ -3740,20 +3776,20 @@ Disassembly of section .debug_info:
  49c:	0000                	unimp
  49e:	0400                	c.addi4spn	x8,x2,512
 {
- 4a0:	b70d                	c.j	3c2 <print_str+0xa>
+ 4a0:	e50d                	c.bnez	x10,4ca <print_hex+0x2a>
  4a2:	0004                	c.addi4spn	x9,x2,0
  4a4:	0500                	c.addi4spn	x8,x2,640
  4a6:	5d32                	c.lwsp	x26,44(x2)
  4a8:	0000                	unimp
  4aa:	0800                	c.addi4spn	x8,x2,16
- 4ac:	c70d                	c.beqz	x14,4d6 <print_hex+0x36>
+ 4ac:	d30d                	c.beqz	x14,3ce <print_str+0x16>
  4ae:	0002                	0x2
  4b0:	0500                	c.addi4spn	x8,x2,640
  4b2:	5d32                	c.lwsp	x26,44(x2)
     for (int i = (4 * digits) - 4; i >= 0; i -= 4)
  4b4:	0000                	unimp
  4b6:	0c00                	c.addi4spn	x8,x2,528
- 4b8:	740d                	c.lui	x8,0xfffe3
+ 4b8:	8f0d                	c.sub	x14,x11
  4ba:	0005                	c.addi	x0,1
  4bc:	0500                	c.addi4spn	x8,x2,640
  4be:	5d32                	c.lwsp	x26,44(x2)
@@ -3776,73 +3812,72 @@ Disassembly of section .debug_info:
  4e0:	006e                	0x6e
  4e2:	0000                	unimp
  4e4:	0000                	unimp
- 4e6:	fb10                	c.fsw	f12,48(x14)
- 4e8:	0002                	0x2
- 4ea:	2400                	c.fld	f8,8(x8)
+ 4e6:	0710                	c.addi4spn	x12,x2,896
+ 4e8:	24000003          	lb	x0,576(x0) # 240 <start+0xc>
     for (int i = (4 * digits) - 4; i >= 0; i -= 4)
  4ec:	3705                	c.jal	40c <print_dec+0xc>
  4ee:	0000021b          	0x21b
- 4f2:	f80d                	c.bnez	x8,424 <print_dec+0x24>
+ 4f2:	ee0d                	c.bnez	x12,52c <stats_print_dec+0x1c>
  4f4:	0001                	c.nop
  4f6:	0500                	c.addi4spn	x8,x2,640
  4f8:	5d39                	c.li	x26,-18
  4fa:	0000                	unimp
  4fc:	0000                	unimp
- 4fe:	020d                	c.addi	x4,3
+ 4fe:	300d                	c.jal	fffffd20 <pulp__FC+0xfffffd21>
 }
  500:	0005                	c.addi	x0,1
  502:	0500                	c.addi4spn	x8,x2,640
  504:	5d3a                	c.lwsp	x26,172(x2)
  506:	0000                	unimp
  508:	0400                	c.addi4spn	x8,x2,512
- 50a:	130d                	c.addi	x6,-29
+ 50a:	1f0d                	c.addi	x30,-29
  50c:	0002                	0x2
  50e:	0500                	c.addi4spn	x8,x2,640
 {
  510:	00005d3b          	0x5d3b
  514:	0800                	c.addi4spn	x8,x2,16
- 516:	f70d                	c.bnez	x14,440 <print_dec+0x40>
- 518:	0005                	c.addi	x0,1
+ 516:	120d                	c.addi	x4,-29
+ 518:	0006                	0x6
  51a:	0500                	c.addi4spn	x8,x2,640
  51c:	5d3c                	c.lw	x15,120(x10)
  51e:	0000                	unimp
  520:	0c00                	c.addi4spn	x8,x2,528
- 522:	d00d                	c.beqz	x8,444 <print_dec+0x44>
+ 522:	f00d                	c.bnez	x8,444 <print_dec+0x44>
  524:	05000003          	lb	x0,80(x0) # 50 <vector_table_timer+0x34>
  528:	5d3d                	c.li	x26,-17
  52a:	0000                	unimp
  52c:	1000                	c.addi4spn	x8,x2,32
- 52e:	aa0d                	c.j	660 <init_stats+0x28>
+ 52e:	bd0d                	c.j	360 <fast_exit+0x18>
     char *p = buffer;
  530:	05000003          	lb	x0,80(x0) # 50 <vector_table_timer+0x34>
  534:	5d3e                	c.lwsp	x26,236(x2)
  536:	0000                	unimp
     while (val || digits > 0) {
  538:	1400                	c.addi4spn	x8,x2,544
- 53a:	790d                	c.lui	x18,0xfffe3
+ 53a:	940d                	c.srai	x8,0x23
 	if (val)
  53c:	0005                	c.addi	x0,1
  53e:	0500                	c.addi4spn	x8,x2,640
- 540:	00005d3f 270d1800 	0x270d180000005d3f
+ 540:	00005d3f 540d1800 	0x540d180000005d3f
 	    *(p++) = '0' + val % 10;
  548:	0004                	c.addi4spn	x9,x2,0
  54a:	0500                	c.addi4spn	x8,x2,640
  54c:	5d40                	c.lw	x8,60(x10)
  54e:	0000                	unimp
  550:	1c00                	c.addi4spn	x8,x2,560
- 552:	be0d                	c.j	84 <vector_table_timer+0x68>
+ 552:	d90d                	c.beqz	x10,484 <print_dec+0x84>
  554:	0005                	c.addi	x0,1
  556:	0500                	c.addi4spn	x8,x2,640
  558:	5d41                	c.li	x26,-16
  55a:	0000                	unimp
  55c:	2000                	c.fld	f8,0(x8)
  55e:	1200                	c.addi4spn	x8,x2,288
- 560:	0222                	c.slli	x4,0x8
+ 560:	022e                	c.slli	x4,0xb
  562:	0000                	unimp
  564:	0108                	c.addi4spn	x10,x2,128
  566:	4a05                	c.li	x20,1
  568:	0000025b          	p.mac	x4,x0,x0,x0
- 56c:	ab0d                	c.j	a9e <app+0x24e>
+ 56c:	b70d                	c.j	48e <print_dec+0x8e>
  56e:	0002                	0x2
 	    *(p++) = zero_pad ? '0' : ' ';
  570:	0500                	c.addi4spn	x8,x2,640
@@ -3854,13 +3889,13 @@ Disassembly of section .debug_info:
  57e:	5b4c                	c.lw	x11,52(x14)
  580:	0002                	0x2
  582:	8000                	0x8000
- 584:	00052813          	slt	x16,x10,0
+ 584:	00054c13          	xori	x24,x10,0
  588:	0500                	c.addi4spn	x8,x2,640
  58a:	2e4e                	c.fldsp	f28,208(x2)
  58c:	0001                	c.nop
  58e:	0000                	unimp
  590:	1301                	c.addi	x6,-32
- 592:	0000025b          	p.mac	x4,x0,x0,x0
+ 592:	00000267          	jalr	x4,0(x0) # 0 <__irq_base_vector>
 	val = val / 10;
  596:	5105                	c.li	x2,-31
  598:	012e                	c.slli	x2,0xb
@@ -3875,13 +3910,13 @@ Disassembly of section .debug_info:
  5ac:	1f00                	c.addi4spn	x8,x2,944
  5ae:	1200                	c.addi4spn	x8,x2,288
     while (val || digits > 0) {
- 5b0:	03d9                	c.addi	x7,22
+ 5b0:	03f9                	c.addi	x7,30
  5b2:	0000                	unimp
  5b4:	0190                	c.addi4spn	x12,x2,192
  5b6:	5d05                	c.li	x26,-31
  5b8:	02a9                	c.addi	x5,10
  5ba:	0000                	unimp
- 5bc:	6f0d                	c.lui	x30,0x3
+ 5bc:	9d0d                	0x9d0d
  5be:	0004                	c.addi4spn	x9,x2,0
     while (p != buffer) {
  5c0:	0500                	c.addi4spn	x8,x2,640
@@ -3889,17 +3924,17 @@ Disassembly of section .debug_info:
 	if (p[-1] == ' ' && p[-2] == ' ')
  5c4:	0002                	0x2
  5c6:	0000                	unimp
- 5c8:	870d                	c.srai	x14,0x3
+ 5c8:	b50d                	c.j	3ea <print_str+0x32>
  5ca:	0004                	c.addi4spn	x9,x2,0
  5cc:	0500                	c.addi4spn	x8,x2,640
  5ce:	5d5f 0000 0400      	0x40000005d5f
- 5d4:	c20d                	c.beqz	x12,5f6 <stats_print_dec+0xe6>
+ 5d4:	ce0d                	c.beqz	x12,60e <stats_print_dec+0xfe>
  5d6:	0002                	0x2
  5d8:	0500                	c.addi4spn	x8,x2,640
- 5da:	af61                	c.j	d72 <timeout_msg+0x40>
+ 5da:	af61                	c.j	d72 <riscv_compliance_tests_msg+0x10>
  5dc:	0002                	0x2
  5de:	0800                	c.addi4spn	x8,x2,16
- 5e0:	220d                	c.jal	702 <stats+0x8e>
+ 5e0:	2e0d                	c.jal	912 <app+0xc2>
  5e2:	0002                	0x2
  5e4:	0500                	c.addi4spn	x8,x2,640
  5e6:	1b62                	c.slli	x22,0x38
@@ -3918,12 +3953,12 @@ Disassembly of section .debug_info:
  604:	c504                	c.sw	x9,8(x10)
  606:	0002                	0x2
  608:	1400                	c.addi4spn	x8,x2,544
- 60a:	3110                	c.fld	f12,32(x10)
+ 60a:	5e10                	c.lw	x12,56(x12)
  60c:	0004                	c.addi4spn	x9,x2,0
  60e:	0800                	c.addi4spn	x8,x2,16
  610:	7505                	c.lui	x10,0xfffe1
  612:	000002eb          	0x2eb
- 616:	070d                	c.addi	x14,3
+ 616:	190d                	c.addi	x18,-29
     while (p != buffer) {
  618:	0002                	0x2
  61a:	0500                	c.addi4spn	x8,x2,640
@@ -3940,9 +3975,8 @@ Disassembly of section .debug_info:
  630:	2c04                	c.fld	f9,24(x8)
  632:	0000                	unimp
  634:	1000                	c.addi4spn	x8,x2,32
- 636:	0459                	c.addi	x8,22
+ 636:	00000487          	0x487
 {
- 638:	0000                	unimp
  63a:	0568                	c.addi4spn	x10,x2,652
  63c:	1bb5                	c.addi	x23,-19
  63e:	0004                	c.addi4spn	x9,x2,0
@@ -3963,14 +3997,14 @@ Disassembly of section .debug_info:
     __asm__ volatile("csrw 0x7e1, %0" ::"r"(pcmr));
  65e:	0000                	unimp
  660:	0800                	c.addi4spn	x8,x2,16
- 662:	540d                	c.li	x8,-29
+ 662:	600d                	0x600d
 }
  664:	0002                	0x2
  666:	0500                	c.addi4spn	x8,x2,640
  668:	33b9                	c.jal	3b6 <print_chr+0x2e>
  66a:	0000                	unimp
  66c:	0c00                	c.addi4spn	x8,x2,528
- 66e:	280d                	c.jal	6a0 <stats+0x2c>
+ 66e:	340d                	c.jal	90 <vector_table_timer+0x74>
  670:	05000003          	lb	x0,80(x0) # 50 <vector_table_timer+0x34>
 {
  674:	33ba                	c.fldsp	f7,424(x2)
@@ -3982,39 +4016,38 @@ Disassembly of section .debug_info:
  680:	0002c6bb          	0x2c6bb
     __asm__ volatile("csrr %0, 0x780" : "=r"(num_cycles));
  684:	1000                	c.addi4spn	x8,x2,32
- 686:	c70d                	c.beqz	x14,6b0 <stats+0x3c>
+ 686:	bd0d                	c.j	4b8 <print_hex+0x18>
  688:	0001                	c.nop
  68a:	0500                	c.addi4spn	x8,x2,640
     __asm__ volatile("csrr %0, 0x781" : "=r"(num_instr));
  68c:	5dbc                	c.lw	x15,120(x11)
  68e:	0000                	unimp
  690:	1800                	c.addi4spn	x8,x2,48
- 692:	300d                	c.jal	fffffeb4 <pulp__FC+0xfffffeb5>
+ 692:	3c0d                	c.jal	c4 <vector_table_timer+0xa8>
     print_str("Cycle counter ........");
  694:	0002                	0x2
  696:	0500                	c.addi4spn	x8,x2,640
  698:	00011ac3          	fmadd.s	f21,f2,f0,f0,rtz
     stats_print_dec(num_cycles, 8, false);
  69c:	1c00                	c.addi4spn	x8,x2,560
- 69e:	f50d                	c.bnez	x10,5c8 <stats_print_dec+0xb8>
- 6a0:	0002                	0x2
- 6a2:	0500                	c.addi4spn	x8,x2,640
+ 69e:	010d                	c.addi	x2,3
+ 6a0:	05000003          	lb	x0,80(x0) # 50 <vector_table_timer+0x34>
  6a4:	76c5                	c.lui	x13,0xffff1
  6a6:	0005                	c.addi	x0,1
  6a8:	2000                	c.fld	f8,0(x8)
- 6aa:	a30d                	c.j	bcc <app+0x37c>
+ 6aa:	b60d                	c.j	1cc <handle_ebreak+0xc>
     print_str("\nInstruction counter ..");
  6ac:	05000003          	lb	x0,80(x0) # 50 <vector_table_timer+0x34>
  6b0:	0005a0c7          	fmsub.s	f1,f11,f0,f0,rdn
     stats_print_dec(num_instr, 8, false);
  6b4:	2400                	c.fld	f8,8(x8)
- 6b6:	dc0d                	c.beqz	x8,5f0 <stats_print_dec+0xe0>
- 6b8:	0004                	c.addi4spn	x9,x2,0
+ 6b6:	0a0d                	c.addi	x20,3
+ 6b8:	0005                	c.addi	x0,1
  6ba:	0500                	c.addi4spn	x8,x2,640
  6bc:	c4ca                	c.swsp	x18,72(x2)
  6be:	0005                	c.addi	x0,1
  6c0:	2800                	c.fld	f8,16(x8)
- 6c2:	d80d                	c.beqz	x8,5f4 <stats_print_dec+0xe4>
+ 6c2:	f30d                	c.bnez	x14,5e4 <stats_print_dec+0xd4>
     print_str("\nCPI: ");
  6c4:	0005                	c.addi	x0,1
  6c6:	0500                	c.addi4spn	x8,x2,640
@@ -4040,12 +4073,12 @@ Disassembly of section .debug_info:
  6ee:	0000                	unimp
     stats_print_dec(((100 * num_cycles) / num_instr) % 100, 2, true);
  6f0:	3c00                	c.fld	f8,56(x8)
- 6f2:	010d                	c.addi	x2,3
+ 6f2:	130d                	c.addi	x6,-29
  6f4:	0002                	0x2
  6f6:	0500                	c.addi4spn	x8,x2,640
  6f8:	0005e4d3          	fadd.s	f9,f11,f0,unknown
  6fc:	4000                	c.lw	x8,0(x8)
- 6fe:	b00d                	c.j	ffffff20 <pulp__FC+0xffffff21>
+ 6fe:	cb0d                	c.beqz	x14,730 <stats+0xbc>
  700:	0005                	c.addi	x0,1
  702:	0500                	c.addi4spn	x8,x2,640
  704:	f4d4                	c.fsw	f13,44(x9)
@@ -4056,39 +4089,39 @@ Disassembly of section .debug_info:
  70e:	0500                	c.addi4spn	x8,x2,640
  710:	0002c6d7          	pv.add.sc.h	x13,x5,x0
  714:	4400                	c.lw	x8,8(x8)
- 716:	6a0d                	c.lui	x20,0x3
+ 716:	760d                	c.lui	x12,0xfffe3
  718:	0002                	0x2
  71a:	0500                	c.addi4spn	x8,x2,640
     print_str("\n");
  71c:	5dda                	c.lwsp	x27,180(x2)
  71e:	0000                	unimp
  720:	4c00                	c.lw	x8,24(x8)
- 722:	840d                	c.srai	x8,0x3
+ 722:	900d                	c.srli	x8,0x23
 }
  724:	0002                	0x2
  726:	0500                	c.addi4spn	x8,x2,640
  728:	000087db          	p.mac	x15,x1,x0,x0
  72c:	5000                	c.lw	x8,32(x8)
- 72e:	aa0d                	c.j	860 <app+0x10>
+ 72e:	c50d                	c.beqz	x10,758 <init_data+0x20>
  730:	0005                	c.addi	x0,1
  732:	0500                	c.addi4spn	x8,x2,640
  734:	39de                	c.fldsp	f19,496(x2)
  736:	0004                	c.addi4spn	x9,x2,0
 void init_data() {
  738:	5400                	c.lw	x8,40(x8)
- 73a:	760d                	c.lui	x12,0xfffe3
+ 73a:	8f0d                	c.sub	x14,x11
  73c:	05000003          	lb	x0,80(x0) # 50 <vector_table_timer+0x34>
  740:	0fe2                	c.slli	x31,0x18
  742:	0001                	c.nop
     for(int i=0; i<MAX_FFT_SIZE; i++) twiddle_table[i] = 0;
  744:	5800                	c.lw	x8,48(x8)
- 746:	610d                	c.addi16sp	x2,160
+ 746:	8f0d                	c.sub	x14,x11
  748:	0004                	c.addi4spn	x9,x2,0
  74a:	0500                	c.addi4spn	x8,x2,640
  74c:	04e4                	c.addi4spn	x9,x2,588
  74e:	0001                	c.nop
  750:	5c00                	c.lw	x8,56(x8)
- 752:	820d                	c.srli	x12,0x3
+ 752:	950d                	c.srai	x10,0x23
  754:	05000003          	lb	x0,80(x0) # 50 <vector_table_timer+0x34>
  758:	5de5                	c.li	x27,-7
  75a:	0000                	unimp
@@ -4108,163 +4141,164 @@ void init_data() {
  776:	1600                	c.addi4spn	x8,x2,800
  778:	005d                	c.addi	x0,23
  77a:	0000                	unimp
-    twiddle_table[1] = COMBINE(32767, 0);       // W_2^0
+    twiddle_table[1] = COMBINE(32767, 0);       
  77c:	0f00                	c.addi4spn	x8,x2,912
  77e:	4404                	c.lw	x9,8(x8)
  780:	0004                	c.addi4spn	x9,x2,0
  782:	0500                	c.addi4spn	x8,x2,640
  784:	0439                	c.addi	x8,14
  786:	0000                	unimp
- 788:	0004bf17          	auipc	x30,0x4b
-    twiddle_table[2] = COMBINE(32767, 0);       // W_4^0
+ 788:	0004ed17          	auipc	x26,0x4e
+    twiddle_table[2] = COMBINE(32767, 0);       
  78c:	2800                	c.fld	f8,16(x8)
  78e:	0504                	c.addi4spn	x9,x2,640
  790:	0239                	c.addi	x4,14
  792:	0576                	c.slli	x10,0x1d
  794:	0000                	unimp
- 796:	2018                	c.fld	f14,0(x8)
+ 796:	4d18                	c.lw	x14,24(x10)
  798:	0004                	c.addi4spn	x9,x2,0
  79a:	0500                	c.addi4spn	x8,x2,640
-    twiddle_table[3] = COMBINE(0, -32767);      // W_4^1
+    twiddle_table[3] = COMBINE(0, -32767);      
  79c:	005d023b          	0x5d023b
  7a0:	0000                	unimp
  7a2:	1800                	c.addi4spn	x8,x2,48
- 7a4:	00000263          	beq	x0,x0,7a8 <init_data+0x70>
+ 7a4:	0000026f          	jal	x4,7a4 <init_data+0x6c>
  7a8:	4005                	0x4005
  7aa:	4b02                	c.lwsp	x22,0(x2)
  7ac:	0006                	0x6
  7ae:	0400                	c.addi4spn	x8,x2,512
-    twiddle_table[4] = COMBINE(32767, 0);       // W_8^0
- 7b0:	1818                	c.addi4spn	x14,x2,48
+    twiddle_table[4] = COMBINE(32767, 0);       
+ 7b0:	2418                	c.fld	f14,8(x8)
  7b2:	05000003          	lb	x0,80(x0) # 50 <vector_table_timer+0x34>
  7b6:	0240                	c.addi4spn	x8,x2,260
  7b8:	0000064b          	fnmsub.s	f12,f0,f0,f0,rne
  7bc:	1808                	c.addi4spn	x10,x2,48
- 7be:	02d6                	c.slli	x5,0x15
-    twiddle_table[5] = COMBINE(23170, -23170);  // W_8^1
+ 7be:	02e2                	c.slli	x5,0x18
+    twiddle_table[5] = COMBINE(23170, -23170);  
  7c0:	0000                	unimp
  7c2:	4005                	0x4005
  7c4:	4b02                	c.lwsp	x22,0(x2)
  7c6:	0006                	0x6
  7c8:	0c00                	c.addi4spn	x8,x2,528
- 7ca:	8218                	0x8218
+ 7ca:	b018                	c.fsd	f14,32(x8)
  7cc:	0004                	c.addi4spn	x9,x2,0
  7ce:	0500                	c.addi4spn	x8,x2,640
  7d0:	0242                	c.slli	x4,0x10
  7d2:	005d                	c.addi	x0,23
-    twiddle_table[6] = COMBINE(0, -32767);      // W_8^2
+    twiddle_table[6] = COMBINE(0, -32767);      
  7d4:	0000                	unimp
  7d6:	1810                	c.addi4spn	x12,x2,48
- 7d8:	00000197          	auipc	x3,0x0
+ 7d8:	018d                	c.addi	x3,3
+ 7da:	0000                	unimp
  7dc:	4305                	c.li	x6,1
  7de:	2d02                	c.fldsp	f26,0(x2)
  7e0:	0008                	c.addi4spn	x10,x2,0
  7e2:	1400                	c.addi4spn	x8,x2,544
- 7e4:	9e18                	0x9e18
+ 7e4:	cc18                	c.sw	x14,24(x8)
  7e6:	0004                	c.addi4spn	x9,x2,0
-    twiddle_table[7] = COMBINE(-23170, -23170); // W_8^3
+    twiddle_table[7] = COMBINE(-23170, -23170); 
  7e8:	0500                	c.addi4spn	x8,x2,640
  7ea:	0246                	c.slli	x4,0x11
  7ec:	005d                	c.addi	x0,23
  7ee:	0000                	unimp
  7f0:	1830                	c.addi4spn	x12,x2,56
- 7f2:	048c                	c.addi4spn	x11,x2,576
+ 7f2:	04ba                	c.slli	x9,0xe
  7f4:	0000                	unimp
  7f6:	4705                	c.li	x14,1
  7f8:	4202                	c.lwsp	x4,0(x2)
  7fa:	0008                	c.addi4spn	x10,x2,0
     for(int i=0; i<N; i++) {
  7fc:	3400                	c.fld	f8,40(x8)
- 7fe:	eb18                	c.fsw	f14,16(x14)
- 800:	05000003          	lb	x0,80(x0) # 50 <vector_table_timer+0x34>
+ 7fe:	0b18                	c.addi4spn	x14,x2,400
+ 800:	0004                	c.addi4spn	x9,x2,0
+ 802:	0500                	c.addi4spn	x8,x2,640
         data_out[i] = COMBINE(i*100, 0); 
  804:	0249                	c.addi	x4,18
  806:	005d                	c.addi	x0,23
  808:	0000                	unimp
  80a:	1838                	c.addi4spn	x14,x2,56
- 80c:	0494                	c.addi4spn	x13,x2,576
+ 80c:	04c2                	c.slli	x9,0x10
  80e:	0000                	unimp
  810:	4b05                	c.li	x22,1
  812:	5302                	c.lwsp	x6,32(x2)
  814:	0008                	c.addi4spn	x10,x2,0
  816:	3c00                	c.fld	f8,56(x8)
- 818:	6118                	c.flw	f14,0(x10)
+ 818:	7a18                	c.flw	f14,48(x12)
  81a:	05000003          	lb	x0,80(x0) # 50 <vector_table_timer+0x34>
  81e:	024e                	c.slli	x4,0x13
  820:	018c                	c.addi4spn	x11,x2,192
  822:	0000                	unimp
  824:	1840                	c.addi4spn	x8,x2,52
- 826:	034a                	c.slli	x6,0x12
+ 826:	0356                	c.slli	x6,0x15
     for(int i=0; i<N; i++) {
  828:	0000                	unimp
  82a:	4f05                	c.li	x30,1
  82c:	5d02                	c.lwsp	x26,32(x2)
  82e:	0000                	unimp
  830:	4400                	c.lw	x8,8(x8)
- 832:	f218                	c.fsw	f14,32(x12)
- 834:	0005                	c.addi	x0,1
+ 832:	0d18                	c.addi4spn	x14,x2,656
+ 834:	0006                	0x6
  836:	0500                	c.addi4spn	x8,x2,640
  838:	0250                	c.addi4spn	x12,x2,260
  83a:	018c                	c.addi4spn	x11,x2,192
  83c:	0000                	unimp
  83e:	1848                	c.addi4spn	x10,x2,52
 }
- 840:	03fd                	c.addi	x7,31
+ 840:	041d                	c.addi	x8,7
  842:	0000                	unimp
  844:	5105                	c.li	x2,-31
  846:	5902                	c.lwsp	x18,32(x2)
  848:	0008                	c.addi4spn	x10,x2,0
  84a:	4c00                	c.lw	x8,24(x8)
- 84c:	2018                	c.fld	f14,0(x8)
+ 84c:	2c18                	c.fld	f14,24(x8)
  84e:	05000003          	lb	x0,80(x0) # 50 <vector_table_timer+0x34>
 int app() {
  852:	0254                	c.addi4spn	x13,x2,260
  854:	005d                	c.addi	x0,23
  856:	0000                	unimp
  858:	1850                	c.addi4spn	x12,x2,52
- 85a:	027c                	c.addi4spn	x15,x2,268
+ 85a:	0288                	c.addi4spn	x10,x2,320
  85c:	0000                	unimp
  85e:	5505                	c.li	x10,-31
     init_data();
  860:	1c02                	c.slli	x24,0x20
  862:	0001                	c.nop
-    print_str("Starting Hybrid FFT (II=1, 8x8 8-Bank Mode)...\n");
+    print_str("Starting Hybrid FFT (Fixed IO & Latency)...\n");
  864:	5400                	c.lw	x8,40(x8)
- 866:	1918                	c.addi4spn	x14,x2,176
+ 866:	4618                	c.lw	x14,8(x12)
  868:	0004                	c.addi4spn	x9,x2,0
  86a:	0500                	c.addi4spn	x8,x2,640
-    volatile int *ptr_in_a = BANK1_BASE;
+    volatile int *ptr_cpu_in_a = BANK1_BASE;
  86c:	0278                	c.addi4spn	x14,x2,268
  86e:	0000080b          	p.lb	x16,0(x0!) # 0 <__irq_base_vector>
  872:	1958                	c.addi4spn	x14,x2,180
-    volatile int *ptr_in_b = BANK2_BASE;
- 874:	03d9                	c.addi	x7,22
+    volatile int *ptr_cpu_in_b = BANK2_BASE;
+ 874:	03f9                	c.addi	x7,30
  876:	0000                	unimp
  878:	7c05                	c.lui	x24,0xfffe1
  87a:	a902                	c.fsdsp	f0,144(x2)
-    volatile int *ptr_w    = BANK3_BASE;
+    volatile int *ptr_cpu_w    = BANK3_BASE;
  87c:	0002                	0x2
  87e:	4800                	c.lw	x8,16(x8)
  880:	1901                	c.addi	x18,-32
- 882:	0341                	c.addi	x6,16
-    volatile int *ptr_out_a = BANK4_BASE;
+ 882:	034d                	c.addi	x6,19
+    volatile int *ptr_cpu_out_a = BANK4_BASE;
  884:	0000                	unimp
  886:	7d05                	c.lui	x26,0xfffe1
  888:	6b02                	c.flwsp	f22,0(x2)
  88a:	0002                	0x2
-    volatile int *ptr_out_b = BANK5_BASE;
+    volatile int *ptr_cpu_out_b = BANK5_BASE;
  88c:	4c00                	c.lw	x8,24(x8)
  88e:	1901                	c.addi	x18,-32
- 890:	059c                	c.addi4spn	x15,x2,704
- 892:	0000                	unimp
-    const int HW_LATENCY = 30; // 假设延迟，可根据仿真微调
+ 890:	000005b7          	lui	x11,0x0
+    const int HW_LATENCY = 30;
  894:	8105                	c.srli	x10,0x1
  896:	6a02                	c.flwsp	f20,0(x2)
  898:	0008                	c.addi4spn	x10,x2,0
  89a:	dc00                	c.sw	x8,56(x8)
-    const int HW_II = 1;       // 映射结果确认 II=1
+    const int HW_II = 1;
  89c:	1902                	c.slli	x18,0x20
- 89e:	0238                	c.addi4spn	x14,x2,264
+ 89e:	0244                	c.addi4spn	x9,x2,260
  8a0:	0000                	unimp
  8a2:	8605                	c.srai	x12,0x1
     int basedist = 1;
@@ -4273,7 +4307,7 @@ int app() {
  8a8:	e000                	c.fsw	f8,0(x8)
  8aa:	1902                	c.slli	x18,0x20
     for (int BlockSize = 2; BlockSize <= N; BlockSize <<= 1) {
- 8ac:	021d                	c.addi	x4,7
+ 8ac:	0229                	c.addi	x4,10
  8ae:	0000                	unimp
  8b0:	8705                	c.srai	x14,0x1
  8b2:	7602                	c.flwsp	f12,32(x2)
@@ -4311,7 +4345,7 @@ int app() {
  8ee:	c400                	c.sw	x8,8(x8)
  8f0:	0005                	c.addi	x0,1
  8f2:	1600                	c.addi4spn	x8,x2,800
-                ptr_in_a[batch_count] = data_out[j];
+                ptr_cpu_in_a[batch_count] = data_out[j];
  8f4:	0439                	c.addi	x8,14
  8f6:	0000                	unimp
  8f8:	1a16                	c.slli	x20,0x25
@@ -4331,7 +4365,7 @@ int app() {
  916:	1600                	c.addi4spn	x8,x2,800
  918:	0439                	c.addi	x8,14
  91a:	0000                	unimp
-                ptr_in_b[batch_count] = data_out[k];
+                ptr_cpu_in_b[batch_count] = data_out[k];
  91c:	1a16                	c.slli	x20,0x25
  91e:	0001                	c.nop
  920:	0000                	unimp
@@ -4351,25 +4385,26 @@ int app() {
  93e:	0006                	0x6
  940:	0b00                	c.addi4spn	x8,x2,400
  942:	006e                	0x6e
-                ptr_w[batch_count] = twiddle_table[table_index];
+                ptr_cpu_w[batch_count]    = twiddle_table[table_index];
  944:	0000                	unimp
  946:	0000                	unimp
- 948:	00044707          	0x44707
+ 948:	00047507          	0x47507
  94c:	0500                	c.addi4spn	x8,x2,640
  94e:	011f 02f1 0000      	0x2f1011f
- 954:	831a                	c.mv	x6,x6
+ 954:	9e1a                	c.add	x28,x6
  956:	0005                	c.addi	x0,1
  958:	0c00                	c.addi4spn	x8,x2,528
- 95a:	2305                	c.jal	e7a <_data_lma_start+0x86>
+ 95a:	2305                	c.jal	e7a <_data_lma_start+0x36>
  95c:	4501                	c.li	x10,0
  95e:	0006                	0x6
  960:	1800                	c.addi4spn	x8,x2,48
- 962:	0000046f          	jal	x8,962 <app+0x112>
- 966:	2505                	c.jal	f86 <_data_lma_start+0x192>
+ 962:	049d                	c.addi	x9,7
+ 964:	0000                	unimp
+ 966:	2505                	c.jal	f86 <_data_lma_start+0x142>
  968:	4501                	c.li	x10,0
  96a:	0006                	0x6
  96c:	0000                	unimp
- 96e:	2e18                	c.fld	f14,24(x12)
+ 96e:	3a18                	c.fld	f14,48(x12)
                 batch_count++;
  970:	05000003          	lb	x0,80(x0) # 50 <vector_table_timer+0x34>
  974:	0126                	c.slli	x2,0x9
@@ -4377,7 +4412,7 @@ int app() {
  978:	0000                	unimp
  97a:	1804                	c.addi4spn	x9,x2,48
             for (int j = i, n = 0; n < basedist; j++, n++) {
- 97c:	0441                	c.addi	x8,16
+ 97c:	0465                	c.addi	x8,25
  97e:	0000                	unimp
  980:	2705                	c.jal	10a0 <__bss_end+0x98>
  982:	4b01                	c.li	x22,0
@@ -4390,9 +4425,10 @@ int app() {
  990:	0404                	c.addi4spn	x9,x2,512
  992:	0006                	0x6
  994:	1a00                	c.addi4spn	x8,x2,304
- 996:	0000018f          	0x18f
+ 996:	0185                	c.addi	x3,1
+ 998:	0000                	unimp
  99a:	050e                	c.slli	x10,0x3
- 99c:	0686013f c6180000 	0xc61800000686013f
+ 99c:	0686013f f4180000 	0xf41800000686013f
         for (int i = 0; i < N; i += BlockSize) {
  9a4:	0004                	c.addi4spn	x9,x2,0
  9a6:	0500                	c.addi4spn	x8,x2,640
@@ -4400,192 +4436,201 @@ int app() {
  9aa:	0686                	c.slli	x13,0x1
  9ac:	0000                	unimp
  9ae:	1800                	c.addi4spn	x8,x2,48
- 9b0:	0000050b          	p.lb	x10,0(x0!) # 0 <__irq_base_vector>
+ 9b0:	0539                	c.addi	x10,14
+ 9b2:	0000                	unimp
  9b4:	4105                	c.li	x2,1
  9b6:	8601                	c.srai	x12,0x0
  9b8:	0006                	0x6
  9ba:	0600                	c.addi4spn	x8,x2,768
-        MMIO_WRITE(PORT_IN_A_ADDR,   (int)ptr_in_a);
- 9bc:	3a18                	c.fld	f14,48(x12)
+        int tail_padding = 4; // 多清零4个位置，覆盖流水线尾部
+ 9bc:	5518                	c.lw	x14,40(x10)
  9be:	0005                	c.addi	x0,1
  9c0:	0500                	c.addi4spn	x8,x2,640
  9c2:	0142                	c.slli	x2,0x10
+        for(int k=0; k<tail_padding; k++) {
  9c4:	003a                	0x3a
  9c6:	0000                	unimp
  9c8:	000c                	c.addi4spn	x11,x2,0
  9ca:	3a0a                	c.fldsp	f20,160(x2)
-        MMIO_WRITE(PORT_IN_B_ADDR,   (int)ptr_in_b);
+            ptr_cpu_in_a[batch_count + k] = 0;
  9cc:	0000                	unimp
  9ce:	9600                	0x9600
  9d0:	0006                	0x6
  9d2:	0b00                	c.addi4spn	x8,x2,400
  9d4:	006e                	0x6e
  9d6:	0000                	unimp
-        MMIO_WRITE(PORT_WEIGHT_ADDR, (int)ptr_w);
  9d8:	0002                	0x2
  9da:	5905d01b          	0x5905d01b
  9de:	9702                	c.jalr	x14
  9e0:	18000007          	0x18000007
- 9e4:	00000567          	jalr	x10,0(x0) # 0 <__irq_base_vector>
-        MMIO_WRITE(PORT_OUT_A_ADDR,  (int)ptr_out_a);
+ 9e4:	0582                	c.slli	x11,0x0
+ 9e6:	0000                	unimp
+            ptr_cpu_in_b[batch_count + k] = 0;
  9e8:	5b05                	c.li	x22,-31
  9ea:	6e02                	c.flwsp	f28,0(x2)
  9ec:	0000                	unimp
  9ee:	0000                	unimp
- 9f0:	1b18                	c.addi4spn	x14,x2,432
+ 9f0:	3f18                	c.fld	f14,56(x14)
  9f2:	0005                	c.addi	x0,1
  9f4:	0500                	c.addi4spn	x8,x2,640
  9f6:	025c                	c.addi4spn	x15,x2,260
-        MMIO_WRITE(PORT_OUT_B_ADDR,  (int)ptr_out_b);
  9f8:	011c                	c.addi4spn	x15,x2,128
  9fa:	0000                	unimp
  9fc:	1804                	c.addi4spn	x9,x2,48
- 9fe:	0354                	c.addi4spn	x13,x2,388
+ 9fe:	0360                	c.addi4spn	x8,x2,396
  a00:	0000                	unimp
  a02:	5d05                	c.li	x26,-31
+            ptr_cpu_w[batch_count + k]    = 0; // 权重清零最重要，X乘任何数都是X
  a04:	9702                	c.jalr	x14
  a06:	08000007          	0x8000007
-        int exec_cycles = HW_LATENCY + (batch_count - 1) * HW_II;
- a0a:	c918                	c.sw	x14,16(x10)
+ a0a:	e418                	c.fsw	f14,8(x8)
  a0c:	0005                	c.addi	x0,1
  a0e:	0500                	c.addi4spn	x8,x2,640
  a10:	025e                	c.slli	x4,0x17
  a12:	01a2                	c.slli	x3,0x8
  a14:	0000                	unimp
  a16:	1824                	c.addi4spn	x9,x2,56
- a18:	02e6                	c.slli	x5,0x19
+ a18:	02f2                	c.slli	x5,0x1c
  a1a:	0000                	unimp
  a1c:	5f05                	c.li	x30,-31
  a1e:	5d02                	c.lwsp	x26,32(x2)
+        for(int k=0; k<tail_padding; k++) {
  a20:	0000                	unimp
  a22:	4800                	c.lw	x8,16(x8)
-        MMIO_WRITE(CGRA_LOOP_CNT_ADDR, exec_cycles);
- a24:	6a18                	c.flw	f14,16(x12)
+ a24:	9818                	0x9818
  a26:	0004                	c.addi4spn	x9,x2,0
  a28:	0500                	c.addi4spn	x8,x2,640
  a2a:	0260                	c.addi4spn	x8,x2,268
  a2c:	0056                	0x56
  a2e:	0000                	unimp
  a30:	1850                	c.addi4spn	x12,x2,52
- a32:	05df 0000 6105      	0x6105000005df
-        MMIO_WRITE(CGRA_ENABLE_ADDR, 1);
+ a32:	05fa                	c.slli	x11,0x1e
+ a34:	0000                	unimp
+ a36:	6105                	c.addi16sp	x2,32
+        MMIO_WRITE(PORT_IN_A_ADDR,   0);
  a38:	5102                	c.lwsp	x2,32(x2)
  a3a:	0006                	0x6
  a3c:	5800                	c.lw	x8,48(x8)
- a3e:	7518                	c.flw	f14,40(x10)
+ a3e:	a318                	c.fsd	f14,0(x14)
  a40:	0004                	c.addi4spn	x9,x2,0
  a42:	0500                	c.addi4spn	x8,x2,640
-        while (MMIO_READ(CGRA_DONE_ADDR) != 1);
+        MMIO_WRITE(PORT_IN_B_ADDR,   0);
  a44:	0262                	c.slli	x4,0x18
  a46:	0104                	c.addi4spn	x9,x2,128
  a48:	0000                	unimp
  a4a:	1868                	c.addi4spn	x10,x2,60
- a4c:	05e4                	c.addi4spn	x9,x2,716
+ a4c:	05ff                	0x5ff
  a4e:	0000                	unimp
+        MMIO_WRITE(PORT_WEIGHT_ADDR, 0);
  a50:	6305                	c.lui	x6,0x1
  a52:	0402                	c.slli	x8,0x0
  a54:	0001                	c.nop
  a56:	7000                	c.flw	f8,32(x8)
- a58:	ea18                	c.fsw	f14,16(x12)
+ a58:	e018                	c.fsw	f14,0(x8)
  a5a:	0001                	c.nop
-        MMIO_WRITE(CGRA_ENABLE_ADDR, 0);
+        MMIO_WRITE(PORT_OUT_A_ADDR,  (int)(0 - LATENCY_OFFSET_A - REPEAT_OFFSET));
  a5c:	0500                	c.addi4spn	x8,x2,640
  a5e:	0264                	c.addi4spn	x9,x2,268
  a60:	0104                	c.addi4spn	x9,x2,128
  a62:	0000                	unimp
  a64:	1878                	c.addi4spn	x14,x2,60
- a66:	0592                	c.slli	x11,0x4
-        MMIO_WRITE(CGRA_RESET_ADDR, 1);
+ a66:	05ad                	c.addi	x11,11
  a68:	0000                	unimp
  a6a:	6505                	c.lui	x10,0x1
+        MMIO_WRITE(PORT_OUT_B_ADDR,  (int)(0 - LATENCY_OFFSET_B - REPEAT_OFFSET));
  a6c:	a702                	c.fsdsp	f0,392(x2)
  a6e:	80000007          	0x80000007
- a72:	bb18                	c.fsd	f14,48(x14)
+ a72:	b118                	c.fsd	f14,32(x10)
  a74:	0001                	c.nop
  a76:	0500                	c.addi4spn	x8,x2,640
-        volatile int dummy = 0; dummy++; 
  a78:	0266                	c.slli	x4,0x19
  a7a:	000007b7          	lui	x15,0x0
+        MMIO_WRITE(CGRA_RESET_ADDR, 1);
  a7e:	1888                	c.addi4spn	x10,x2,112
- a80:	00000547          	fmsub.s	f10,f0,f0,f0,rne
+ a80:	0562                	c.slli	x10,0x18
+ a82:	0000                	unimp
  a84:	6705                	c.lui	x14,0x1
  a86:	5d02                	c.lwsp	x26,32(x2)
-        MMIO_WRITE(CGRA_RESET_ADDR, 0);
  a88:	0000                	unimp
  a8a:	a000                	c.fsd	f8,0(x8)
- a8c:	9d18                	0x9d18
+		__asm__("nop");
+ a8c:	a918                	c.fsd	f14,16(x10)
  a8e:	0002                	0x2
+        __asm__("nop");
  a90:	0500                	c.addi4spn	x8,x2,640
  a92:	0268                	c.addi4spn	x10,x2,268
-        batch_count = 0;
+        MMIO_WRITE(CGRA_RESET_ADDR, 0);
  a94:	0104                	c.addi4spn	x9,x2,128
  a96:	0000                	unimp
-        for (int i = 0; i < N; i += BlockSize) {
  a98:	18a4                	c.addi4spn	x9,x2,120
- a9a:	000001db          	p.mac	x3,x0,x0,x0
+ a9a:	01d1                	c.addi	x3,20
+ a9c:	0000                	unimp
  a9e:	6905                	c.lui	x18,0x1
-            for (int j = i, n = 0; n < basedist; j++, n++) {
+		__asm__("nop");
  aa0:	0402                	c.slli	x8,0x0
  aa2:	0001                	c.nop
+        __asm__("nop");
  aa4:	ac00                	c.fsd	f8,24(x8)
- aa6:	8c18                	0x8c18
+ aa6:	9818                	0x9818
+        int exec_cycles = HW_LATENCY + (batch_count - 1) * HW_II + 50;
  aa8:	0002                	0x2
  aaa:	0500                	c.addi4spn	x8,x2,640
  aac:	026a                	c.slli	x4,0x1a
  aae:	0104                	c.addi4spn	x9,x2,128
-                int k = j + basedist;
  ab0:	0000                	unimp
  ab2:	18b4                	c.addi4spn	x13,x2,120
- ab4:	01a2                	c.slli	x3,0x8
+ ab4:	0198                	c.addi4spn	x14,x2,192
  ab6:	0000                	unimp
  ab8:	6b05                	c.lui	x22,0x1
  aba:	0402                	c.slli	x8,0x0
  abc:	0001                	c.nop
  abe:	bc00                	c.fsd	f8,56(x8)
-                data_out[j] = ptr_out_a[batch_count];
- ac0:	0718                	c.addi4spn	x14,x2,896
+ ac0:	1318                	c.addi4spn	x14,x2,416
  ac2:	05000003          	lb	x0,80(x0) # 50 <vector_table_timer+0x34>
  ac6:	026c                	c.addi4spn	x11,x2,268
+        MMIO_WRITE(CGRA_LOOP_CNT_ADDR, exec_cycles);
  ac8:	0104                	c.addi4spn	x9,x2,128
  aca:	0000                	unimp
  acc:	18c4                	c.addi4spn	x9,x2,116
- ace:	041e                	c.slli	x8,0x7
- ad0:	0000                	unimp
+ ace:	0000044b          	fnmsub.s	f8,f0,f0,f0,rne
  ad2:	6d05                	c.lui	x26,0x1
  ad4:	5d02                	c.lwsp	x26,32(x2)
  ad6:	0000                	unimp
+        __asm__ volatile (
  ad8:	cc00                	c.sw	x8,24(x8)
  ada:	0a00                	c.addi4spn	x8,x2,272
  adc:	0122                	c.slli	x2,0x8
  ade:	0000                	unimp
  ae0:	000007a7          	0x7a7
+        batch_count = 0;
  ae4:	00006e0b          	0x6e0b
-                data_out[k] = ptr_out_b[batch_count];
+        for (int i = 0; i < N; i += BlockSize) {
  ae8:	1900                	c.addi4spn	x8,x2,176
  aea:	0a00                	c.addi4spn	x8,x2,272
  aec:	0122                	c.slli	x2,0x8
  aee:	0000                	unimp
+            for (int j = i, n = 0; n < basedist; j++, n++) {
  af0:	000007b7          	lui	x15,0x0
  af4:	00006e0b          	0x6e0b
  af8:	0700                	c.addi4spn	x8,x2,896
  afa:	0a00                	c.addi4spn	x8,x2,272
  afc:	0122                	c.slli	x2,0x8
  afe:	0000                	unimp
+                int k = j + basedist;
  b00:	000007c7          	fmsub.s	f15,f0,f0,f0,rne
  b04:	00006e0b          	0x6e0b
  b08:	1700                	c.addi4spn	x8,x2,928
  b0a:	1b00                	c.addi4spn	x8,x2,432
  b0c:	05f0                	c.addi4spn	x12,x2,716
  b0e:	0272                	c.slli	x4,0x1c
-                batch_count++;
+                data_out[j] = ptr_cpu_out_a[batch_count];
  b10:	000007eb          	0x7eb
- b14:	c918                	c.sw	x14,16(x10)
+ b14:	e918                	c.fsw	f14,16(x10)
  b16:	05000003          	lb	x0,80(x0) # 50 <vector_table_timer+0x34>
  b1a:	0275                	c.addi	x4,29
-            for (int j = i, n = 0; n < basedist; j++, n++) {
  b1c:	000007eb          	0x7eb
  b20:	1800                	c.addi4spn	x8,x2,48
- b22:	03b4                	c.addi4spn	x13,x2,456
+ b22:	03d4                	c.addi4spn	x13,x2,452
  b24:	0000                	unimp
  b26:	7605                	c.lui	x12,0xfffe1
  b28:	fb02                	c.fswsp	f0,180(x2)
@@ -4593,10 +4638,10 @@ int app() {
  b2e:	0a00                	c.addi4spn	x8,x2,272
  b30:	000002eb          	0x2eb
  b34:	000007fb          	lp.starti	x15,b34 <app+0x2e4>
+                data_out[k] = ptr_cpu_out_b[batch_count];
  b38:	00006e0b          	0x6e0b
  b3c:	1d00                	c.addi4spn	x8,x2,688
  b3e:	0a00                	c.addi4spn	x8,x2,272
-        for (int i = 0; i < N; i += BlockSize) {
  b40:	006e                	0x6e
  b42:	0000                	unimp
  b44:	0000080b          	p.lb	x16,0(x0!) # 0 <__irq_base_vector>
@@ -4606,18 +4651,18 @@ int app() {
  b50:	05f0                	c.addi4spn	x12,x2,716
  b52:	082d0257          	pv.sub.h	x4,x26,x2
  b56:	0000                	unimp
- b58:	bf1d                	c.j	a8e <app+0x23e>
+ b58:	ed1d                	c.bnez	x10,b96 <app+0x346>
  b5a:	0004                	c.addi4spn	x9,x2,0
-        basedist <<= 1;
  b5c:	0500                	c.addi4spn	x8,x2,640
  b5e:	026e                	c.slli	x4,0x1b
+                batch_count++;
  b60:	0696                	c.slli	x13,0x5
  b62:	0000                	unimp
- b64:	b61d                	c.j	68a <stats+0x16>
+ b64:	d11d                	c.beqz	x10,a8a <app+0x23a>
  b66:	0005                	c.addi	x0,1
-    for (int BlockSize = 2; BlockSize <= N; BlockSize <<= 1) {
  b68:	0500                	c.addi4spn	x8,x2,640
  b6a:	07c70277          	0x7c70277
+            for (int j = i, n = 0; n < basedist; j++, n++) {
  b6e:	0000                	unimp
  b70:	0a00                	c.addi4spn	x8,x2,272
  b72:	0122                	c.slli	x2,0x8
@@ -4626,35 +4671,32 @@ int app() {
  b78:	0000                	unimp
  b7a:	00006e0b          	0x6e0b
  b7e:	1800                	c.addi4spn	x8,x2,48
-    print_str("FFT Done.\n");
  b80:	1e00                	c.addi4spn	x8,x2,816
- b82:	01d0                	c.addi4spn	x12,x2,196
+ b82:	01c6                	c.slli	x3,0x11
  b84:	0000                	unimp
  b86:	083d040f          	0x83d040f
-    for(int i=0; i<N; i++) {
  b8a:	0000                	unimp
  b8c:	531f 0008 1600      	0x16000008531f
-        print_str("Out[");
+        for (int i = 0; i < N; i += BlockSize) {
  b92:	0439                	c.addi	x8,14
  b94:	0000                	unimp
  b96:	0f00                	c.addi4spn	x8,x2,912
-        print_dec(i);
  b98:	4804                	c.lw	x9,16(x8)
  b9a:	0008                	c.addi4spn	x10,x2,0
  b9c:	0f00                	c.addi4spn	x8,x2,912
  b9e:	8c04                	0x8c04
  ba0:	0001                	c.nop
  ba2:	1f00                	c.addi4spn	x8,x2,944
-        print_str("]: ");
  ba4:	086a                	c.slli	x16,0x1a
  ba6:	0000                	unimp
  ba8:	5d16                	c.lwsp	x26,100(x2)
  baa:	0000                	unimp
-        print_dec(GET_REAL(data_out[i]));
+        basedist <<= 1;
  bac:	0000                	unimp
  bae:	0870040f          	0x870040f
  bb2:	0000                	unimp
  bb4:	085f040f          	0x85f040f
+    for (int BlockSize = 2; BlockSize <= N; BlockSize <<= 1) {
  bb8:	0000                	unimp
  bba:	040a                	c.slli	x8,0x2
  bbc:	0006                	0x6
@@ -4664,19 +4706,20 @@ int app() {
  bc4:	006e                	0x6e
  bc6:	0000                	unimp
  bc8:	0002                	0x2
- bca:	5b20                	c.lw	x8,112(x14)
+ bca:	7620                	c.flw	f8,104(x12)
  bcc:	0005                	c.addi	x0,1
  bce:	0500                	c.addi4spn	x8,x2,640
+    print_str("FFT Done.\n");
  bd0:	02fe                	c.slli	x5,0x1f
  bd2:	0439                	c.addi	x8,14
-        print_str(" + ");
  bd4:	0000                	unimp
- bd6:	5420                	c.lw	x8,104(x8)
+ bd6:	6f20                	c.flw	f8,88(x14)
+    for(int i=0; i<N; i++) {
  bd8:	0005                	c.addi	x0,1
  bda:	0500                	c.addi4spn	x8,x2,640
-        print_dec(GET_IMAG(data_out[i]));
  bdc:	02ff                	0x2ff
- bde:	0000043f 0003e121 	0x3e1210000043f
+ bde:	0000043f 00040121 	0x401210000043f
+        print_str("Out["); print_dec(i); print_str("]: ");
  be6:	0600                	c.addi4spn	x8,x2,768
  be8:	00011c63          	bne	x2,x0,c00 <app+0x3b0>
  bec:	0a00                	c.addi4spn	x8,x2,272
@@ -4687,267 +4730,269 @@ int app() {
  bf6:	6e22                	c.flwsp	f28,8(x2)
  bf8:	0000                	unimp
  bfa:	ff00                	c.fsw	f8,56(x14)
+        print_dec(GET_REAL(data_out[i]));
  bfc:	0001                	c.nop
- bfe:	0002b923          	0x2b923
-        print_str("i\n");
+ bfe:	0002c523          	p.sb	x0,x10(x5)
  c02:	0100                	c.addi4spn	x8,x2,128
- c04:	0008a947          	fmsub.s	f18,f17,f0,f0,rdn
-    for(int i=0; i<N; i++) {
+ c04:	a942                	c.fsdsp	f16,144(x2)
+ c06:	0008                	c.addi4spn	x10,x2,0
  c08:	0500                	c.addi4spn	x8,x2,640
  c0a:	00000803          	lb	x16,0(x0) # 0 <__irq_base_vector>
  c0e:	2300                	c.fld	f8,0(x14)
- c10:	038a                	c.slli	x7,0x2
+ c10:	039d                	c.addi	x7,7
  c12:	0000                	unimp
- c14:	4801                	c.li	x16,0
+ c14:	4301                	c.li	x6,0
  c16:	08a9                	c.addi	x17,10
  c18:	0000                	unimp
  c1a:	0305                	c.addi	x6,1
  c1c:	0808                	c.addi4spn	x10,x2,16
  c1e:	0000                	unimp
-    return 0;
  c20:	4e24                	c.lw	x9,88(x12)
  c22:	0100                	c.addi4spn	x8,x2,128
- c24:	5d49                	c.li	x26,-14
+        print_str(" + ");
+ c24:	5d44                	c.lw	x9,60(x10)
  c26:	0000                	unimp
  c28:	0500                	c.addi4spn	x8,x2,640
  c2a:	00000403          	lb	x8,0(x0) # 0 <__irq_base_vector>
+        print_dec(GET_IMAG(data_out[i]));
  c2e:	2500                	c.fld	f8,8(x10)
  c30:	7061                	0x7061
  c32:	0070                	c.addi4spn	x12,x2,12
- c34:	6201                	c.lui	x4,0x0
+ c34:	5a01                	c.li	x20,-32
  c36:	005d                	c.addi	x0,23
-	j vector_table
  c38:	0000                	unimp
  c3a:	0850                	c.addi4spn	x12,x2,20
-	j __no_irq_handler
  c3c:	0000                	unimp
- c3e:	03e8                	c.addi4spn	x10,x2,460
-	j __no_irq_handler
+ c3e:	0438                	c.addi4spn	x14,x2,520
  c40:	0000                	unimp
  c42:	9c01                	0x9c01
-	j vector_table_timer
- c44:	00000a93          	addi	x21,x0,0
- c48:	3826                	c.fldsp	f16,104(x2)
+ c44:	0aae                	c.slli	x21,0xb
+ c46:	0000                	unimp
+ c48:	2726                	c.fldsp	f14,72(x2)
  c4a:	0004                	c.addi4spn	x9,x2,0
  c4c:	0100                	c.addi4spn	x8,x2,128
- c4e:	9368                	0x9368
- c50:	000a                	0xa
- c52:	0200                	c.addi4spn	x8,x2,256
- c54:	4491                	c.li	x9,4
- c56:	3126                	c.fldsp	f2,104(x2)
- c58:	0005                	c.addi	x0,1
- c5a:	0100                	c.addi4spn	x8,x2,128
- c5c:	000a936b          	0xa936b
- c60:	0200                	c.addi4spn	x8,x2,256
- c62:	4091                	c.li	x1,4
- c64:	7c26                	c.flwsp	f24,104(x2)
- c66:	01000003          	lb	x0,16(x0) # 10 <_data_end+0x8>
- c6a:	936e                	c.add	x6,x27
- c6c:	000a                	0xa
- c6e:	0300                	c.addi4spn	x8,x2,384
- c70:	bc91                	c.j	6c4 <stats+0x50>
- c72:	267f                	0x267f
- c74:	0511                	c.addi	x10,4
- c76:	0000                	unimp
- c78:	7101                	c.addi16sp	x2,-512
- c7a:	00000a93          	addi	x21,x0,0
- c7e:	7fb89103          	lh	x2,2043(x17)
- c82:	8526                	c.mv	x10,x9
- c84:	0001                	c.nop
- c86:	0100                	c.addi4spn	x8,x2,128
- c88:	9374                	0x9374
- c8a:	000a                	0xa
- c8c:	0300                	c.addi4spn	x8,x2,384
- c8e:	b491                	c.j	6d2 <stats+0x5e>
- c90:	267f                	0x267f
- c92:	0398                	c.addi4spn	x14,x2,448
- c94:	0000                	unimp
- c96:	7801                	c.lui	x16,0xfffe0
- c98:	0069                	c.addi	x0,26
+ c4e:	ae5f 000a 0200      	0x200000aae5f
+        print_str("i\n");
+ c54:	4091                	c.li	x1,4
+ c56:	6d26                	c.flwsp	f26,72(x2)
+    for(int i=0; i<N; i++) {
+ c58:	01000003          	lb	x0,16(x0) # 10 <_data_end+0x8>
+ c5c:	ae60                	c.fsd	f8,216(x12)
+ c5e:	000a                	0xa
+ c60:	0300                	c.addi4spn	x8,x2,384
+ c62:	bc91                	c.j	6b6 <stats+0x42>
+ c64:	267f                	0x267f
+ c66:	0000046b          	0x46b
+ c6a:	6101                	c.addi16sp	x2,0
+ c6c:	0aae                	c.slli	x21,0xb
+ c6e:	0000                	unimp
+    return 0;
+ c70:	7fb89103          	lh	x2,2043(x17)
+ c74:	f726                	c.fswsp	f9,172(x2)
+ c76:	0001                	c.nop
+ c78:	0100                	c.addi4spn	x8,x2,128
+ c7a:	ae62                	c.fsdsp	f24,280(x2)
+ c7c:	000a                	0xa
+ c7e:	0300                	c.addi4spn	x8,x2,384
+ c80:	b491                	c.j	6c4 <stats+0x50>
+ c82:	267f                	0x267f
+ c84:	0205                	c.addi	x4,1
+ c86:	0000                	unimp
+	j vector_table
+ c88:	6301                	c.lui	x6,0x0
+ c8a:	0aae                	c.slli	x21,0xb
+	j __no_irq_handler
+ c8c:	0000                	unimp
+ c8e:	7fb09103          	lh	x2,2043(x1) # 47fb <__bss_end+0x37f3>
+	j __no_irq_handler
+ c92:	ab26                	c.fsdsp	f9,400(x2)
+	j vector_table_timer
+ c94:	01000003          	lb	x0,16(x0) # 10 <_data_end+0x8>
+ c98:	6965                	c.lui	x18,0x19
  c9a:	0000                	unimp
- c9c:	7fb09103          	lh	x2,2043(x1) # 47fb <__bss_end+0x37f3>
- ca0:	b326                	c.fsdsp	f9,416(x2)
- ca2:	0002                	0x2
- ca4:	0100                	c.addi4spn	x8,x2,128
- ca6:	6979                	c.lui	x18,0x1e
- ca8:	0000                	unimp
- caa:	0300                	c.addi4spn	x8,x2,384
- cac:	ac91                	c.j	f00 <_data_lma_start+0x10c>
- cae:	267f                	0x267f
- cb0:	00000273          	0x273
- cb4:	7b01                	c.lui	x22,0xfffe0
- cb6:	005d                	c.addi	x0,23
- cb8:	0000                	unimp
- cba:	9102                	c.jalr	x2
- cbc:	276c                	c.fld	f11,200(x14)
- cbe:	08ac                	c.addi4spn	x11,x2,88
- cc0:	0000                	unimp
- cc2:	02d4                	c.addi4spn	x13,x2,324
- cc4:	0000                	unimp
- cc6:	0a7c                	c.addi4spn	x15,x2,284
- cc8:	0000                	unimp
- cca:	b126                	c.fsdsp	f9,160(x2)
- ccc:	0001                	c.nop
- cce:	0100                	c.addi4spn	x8,x2,128
- cd0:	5d7e                	c.lwsp	x26,252(x2)
- cd2:	0000                	unimp
- cd4:	0200                	c.addi4spn	x8,x2,256
- cd6:	6891                	c.lui	x17,0x4
- cd8:	b828                	c.fsd	f10,112(x8)
- cda:	0008                	c.addi4spn	x10,x2,0
- cdc:	b000                	c.fsd	f8,32(x8)
- cde:	0002                	0x2
- ce0:	2600                	c.fld	f8,8(x12)
- ce2:	04ea                	c.slli	x9,0x1a
- ce4:	0000                	unimp
- ce6:	8001                	c.srli	x8,0x0
- ce8:	005d                	c.addi	x0,23
+ c9c:	0300                	c.addi4spn	x8,x2,384
+ c9e:	ac91                	c.j	ef2 <_data_lma_start+0xae>
+ ca0:	267f                	0x267f
+ ca2:	000002bf 00696601 	0x696601000002bf
+ caa:	0000                	unimp
+ cac:	7fa89103          	lh	x2,2042(x17)
+ cb0:	7f26                	c.flwsp	f30,104(x2)
+ cb2:	0002                	0x2
+ cb4:	0100                	c.addi4spn	x8,x2,128
+ cb6:	00005d67          	0x5d67
+ cba:	0200                	c.addi4spn	x8,x2,256
+ cbc:	6c91                	c.lui	x25,0x4
+ cbe:	0008ac27          	fsw	f0,24(x17)
+ cc2:	2400                	c.fld	f8,8(x8)
+ cc4:	97000003          	lb	x0,-1680(x0) # fffff970 <pulp__FC+0xfffff971>
+ cc8:	000a                	0xa
+ cca:	2600                	c.fld	f8,8(x12)
+ ccc:	000001a7          	0x1a7
+ cd0:	6a01                	c.lui	x20,0x0
+ cd2:	005d                	c.addi	x0,23
+ cd4:	0000                	unimp
+ cd6:	9102                	c.jalr	x2
+ cd8:	2868                	c.fld	f10,208(x8)
+ cda:	08b8                	c.addi4spn	x14,x2,88
+ cdc:	0000                	unimp
+ cde:	0300                	c.addi4spn	x8,x2,384
+ ce0:	0000                	unimp
+ ce2:	1826                	c.slli	x16,0x29
+ ce4:	0005                	c.addi	x0,1
+ ce6:	0100                	c.addi4spn	x8,x2,128
+ ce8:	5d6c                	c.lw	x11,124(x10)
  cea:	0000                	unimp
- cec:	9102                	c.jalr	x2
- cee:	2664                	c.fld	f9,200(x12)
- cf0:	0335                	c.addi	x6,13
- cf2:	0000                	unimp
- cf4:	9d01                	0x9d01
- cf6:	005d                	c.addi	x0,23
+ cec:	0200                	c.addi4spn	x8,x2,256
+ cee:	6491                	c.lui	x9,0x4
+ cf0:	c726                	c.swsp	x9,140(x2)
+ cf2:	01000003          	lb	x0,16(x0) # 10 <_data_end+0x8>
+ cf6:	5d80                	c.lw	x8,56(x11)
  cf8:	0000                	unimp
- cfa:	7fa89103          	lh	x2,2042(x17) # 47fa <__bss_end+0x37f2>
- cfe:	0d26                	c.slli	x26,0x9
- d00:	0002                	0x2
- d02:	0100                	c.addi4spn	x8,x2,128
- d04:	64a9                	c.lui	x9,0xa
- d06:	0000                	unimp
- d08:	0300                	c.addi4spn	x8,x2,384
- d0a:	9891                	c.andi	x9,-28
- d0c:	277f                	0x277f
- d0e:	08bc                	c.addi4spn	x15,x2,88
- d10:	0000                	unimp
- d12:	0100                	c.addi4spn	x8,x2,128
- d14:	0000                	unimp
- d16:	00000a2b          	p.sb	x0,20(x0!) # 14 <_data_end+0xc>
- d1a:	6929                	c.lui	x18,0xa
- d1c:	0100                	c.addi4spn	x8,x2,128
- d1e:	00005d83          	lhu	x27,0(x0) # 0 <__irq_base_vector>
- d22:	0200                	c.addi4spn	x8,x2,256
- d24:	6091                	c.lui	x1,0x4
- d26:	c428                	c.sw	x10,72(x8)
- d28:	0008                	c.addi4spn	x10,x2,0
- d2a:	dc00                	c.sw	x8,56(x8)
- d2c:	0000                	unimp
- d2e:	2900                	c.fld	f8,16(x10)
- d30:	006a                	0x6a
- d32:	8401                	c.srai	x8,0x0
- d34:	005d                	c.addi	x0,23
+ cfa:	0300                	c.addi4spn	x8,x2,384
+ cfc:	a491                	c.j	f40 <_data_lma_start+0xfc>
+ cfe:	267f                	0x267f
+ d00:	0341                	c.addi	x6,16
+ d02:	0000                	unimp
+ d04:	a601                	c.j	1004 <_data_lma_start+0x1c0>
+ d06:	005d                	c.addi	x0,23
+ d08:	0000                	unimp
+ d0a:	7fa09103          	lh	x2,2042(x1)
+ d0e:	0008bc27          	fsd	f0,24(x17)
+ d12:	0000                	unimp
+ d14:	0001                	c.nop
+ d16:	2c00                	c.fld	f8,24(x8)
+ d18:	000a                	0xa
+ d1a:	2900                	c.fld	f8,16(x10)
+ d1c:	0069                	c.addi	x0,26
+ d1e:	7001                	0x7001
+ d20:	005d                	c.addi	x0,23
+ d22:	0000                	unimp
+ d24:	9102                	c.jalr	x2
+ d26:	2860                	c.fld	f8,208(x8)
+ d28:	08c4                	c.addi4spn	x9,x2,84
+ d2a:	0000                	unimp
+ d2c:	00dc                	c.addi4spn	x15,x2,68
+ d2e:	0000                	unimp
+ d30:	6a29                	c.lui	x20,0xa
+ d32:	0100                	c.addi4spn	x8,x2,128
+ d34:	5d71                	c.li	x26,-4
  d36:	0000                	unimp
- d38:	9102                	c.jalr	x2
- d3a:	295c                	c.fld	f15,144(x10)
- d3c:	006e                	0x6e
- d3e:	8401                	c.srai	x8,0x0
- d40:	005d                	c.addi	x0,23
+ d38:	0200                	c.addi4spn	x8,x2,256
+ d3a:	5c91                	c.li	x25,-28
+ d3c:	6e29                	c.lui	x28,0xa
+ d3e:	0100                	c.addi4spn	x8,x2,128
+ d40:	5d71                	c.li	x26,-4
  d42:	0000                	unimp
- d44:	9102                	c.jalr	x2
- d46:	2858                	c.fld	f14,144(x8)
- d48:	08d4                	c.addi4spn	x13,x2,84
- d4a:	0000                	unimp
- d4c:	00a8                	c.addi4spn	x10,x2,72
+ d44:	0200                	c.addi4spn	x8,x2,256
+ d46:	5891                	c.li	x17,-28
+ d48:	d428                	c.sw	x10,104(x8)
+ d4a:	0008                	c.addi4spn	x10,x2,0
+ d4c:	a800                	c.fsd	f8,16(x8)
  d4e:	0000                	unimp
- d50:	6b29                	c.lui	x22,0xa
- d52:	0100                	c.addi4spn	x8,x2,128
- d54:	5d85                	c.li	x27,-31
- d56:	0000                	unimp
- d58:	0300                	c.addi4spn	x8,x2,384
- d5a:	a091                	c.j	d9e <timeout_msg+0x6c>
- d5c:	267f                	0x267f
- d5e:	04f6                	c.slli	x9,0x1d
- d60:	0000                	unimp
- d62:	8601                	c.srai	x12,0x0
- d64:	005d                	c.addi	x0,23
- d66:	0000                	unimp
- d68:	7f9c9103          	lh	x2,2041(x25)
- d6c:	0000                	unimp
- d6e:	2800                	c.fld	f8,16(x8)
- d70:	0a98                	c.addi4spn	x14,x2,336
- d72:	0000                	unimp
- d74:	00c4                	c.addi4spn	x9,x2,68
+ d50:	2900                	c.fld	f8,16(x10)
+ d52:	7201006b          	0x7201006b
+ d56:	005d                	c.addi	x0,23
+ d58:	0000                	unimp
+ d5a:	7f989103          	lh	x2,2041(x17)
+ d5e:	2426                	c.fldsp	f8,72(x2)
+ d60:	0005                	c.addi	x0,1
+ d62:	0100                	c.addi4spn	x8,x2,128
+ d64:	00005d73          	csrrwi	x26,0x0,0
+ d68:	0300                	c.addi4spn	x8,x2,384
+ d6a:	9491                	c.srai	x9,0x24
+ d6c:	007f                	0x7f
+ d6e:	0000                	unimp
+ d70:	0009c427          	0x9c427
+ d74:	7400                	c.flw	f8,40(x8)
  d76:	0000                	unimp
- d78:	6929                	c.lui	x18,0xa
- d7a:	0100                	c.addi4spn	x8,x2,128
- d7c:	00005daf          	0x5daf
- d80:	0200                	c.addi4spn	x8,x2,256
- d82:	5491                	c.li	x9,-28
- d84:	a028                	c.fsd	f10,64(x8)
- d86:	000a                	0xa
- d88:	a000                	c.fsd	f8,0(x8)
- d8a:	0000                	unimp
- d8c:	2900                	c.fld	f8,16(x10)
- d8e:	006a                	0x6a
- d90:	b001                	c.j	590 <stats_print_dec+0x80>
- d92:	005d                	c.addi	x0,23
- d94:	0000                	unimp
- d96:	9102                	c.jalr	x2
- d98:	2950                	c.fld	f12,144(x10)
- d9a:	006e                	0x6e
- d9c:	b001                	c.j	59c <stats_print_dec+0x8c>
- d9e:	005d                	c.addi	x0,23
- da0:	0000                	unimp
- da2:	9102                	c.jalr	x2
- da4:	284c                	c.fld	f11,144(x8)
- da6:	0ab0                	c.addi4spn	x12,x2,344
- da8:	0000                	unimp
- daa:	006c                	c.addi4spn	x11,x2,12
- dac:	0000                	unimp
- dae:	6b29                	c.lui	x22,0xa
- db0:	0100                	c.addi4spn	x8,x2,128
- db2:	5db1                	c.li	x27,-20
- db4:	0000                	unimp
- db6:	0300                	c.addi4spn	x8,x2,384
- db8:	a491                	c.j	ffc <_data_lma_start+0x208>
- dba:	007f                	0x7f
- dbc:	0000                	unimp
- dbe:	0000                	unimp
- dc0:	8828                	0x8828
- dc2:	9800000b          	p.lb	x0,-1664(x0!) # fffff980 <pulp__FC+0xfffff981>
+ d78:	4600                	c.lw	x8,8(x12)
+ d7a:	000a                	0xa
+ d7c:	2900                	c.fld	f8,16(x10)
+ d7e:	8101006b          	0x8101006b
+ d82:	005d                	c.addi	x0,23
+ d84:	0000                	unimp
+ d86:	9102                	c.jalr	x2
+ d88:	0054                	c.addi4spn	x13,x2,4
+ d8a:	e828                	c.fsw	f10,80(x8)
+ d8c:	000a                	0xa
+ d8e:	c400                	c.sw	x8,8(x8)
+ d90:	0000                	unimp
+ d92:	2900                	c.fld	f8,16(x10)
+ d94:	0069                	c.addi	x0,26
+ d96:	b701                	c.j	c96 <_etext+0xe>
+ d98:	005d                	c.addi	x0,23
+ d9a:	0000                	unimp
+ d9c:	9102                	c.jalr	x2
+ d9e:	2850                	c.fld	f12,144(x8)
+ da0:	0af0                	c.addi4spn	x12,x2,348
+ da2:	0000                	unimp
+ da4:	00a0                	c.addi4spn	x8,x2,72
+ da6:	0000                	unimp
+ da8:	6a29                	c.lui	x20,0xa
+ daa:	0100                	c.addi4spn	x8,x2,128
+ dac:	5db8                	c.lw	x14,120(x11)
+ dae:	0000                	unimp
+ db0:	0200                	c.addi4spn	x8,x2,256
+ db2:	4c91                	c.li	x25,4
+ db4:	6e29                	c.lui	x28,0xa
+ db6:	0100                	c.addi4spn	x8,x2,128
+ db8:	5db8                	c.lw	x14,120(x11)
+ dba:	0000                	unimp
+ dbc:	0200                	c.addi4spn	x8,x2,256
+ dbe:	4891                	c.li	x17,4
+ dc0:	0028                	c.addi4spn	x10,x2,8
+ dc2:	6c00000b          	p.lb	x0,1728(x0!) # 6c0 <stats+0x4c>
  dc6:	0000                	unimp
  dc8:	2900                	c.fld	f8,16(x10)
- dca:	0069                	c.addi	x0,26
- dcc:	c201                	c.beqz	x12,dcc <timeout_msg+0x9a>
+ dca:	b901006b          	0xb901006b
  dce:	005d                	c.addi	x0,23
  dd0:	0000                	unimp
- dd2:	9102                	c.jalr	x2
- dd4:	0048                	c.addi4spn	x10,x2,4
- dd6:	0f00                	c.addi4spn	x8,x2,912
- dd8:	6404                	c.flw	f9,8(x8)
- dda:	0000                	unimp
- ddc:	2a00                	c.fld	f8,16(x12)
- dde:	05a6                	c.slli	x11,0x9
- de0:	0000                	unimp
- de2:	5001                	0x5001
- de4:	0738                	c.addi4spn	x14,x2,904
- de6:	0000                	unimp
- de8:	0118                	c.addi4spn	x14,x2,128
- dea:	0000                	unimp
- dec:	9c01                	0x9c01
- dee:	00074427          	0x74427
- df2:	3800                	c.fld	f8,48(x8)
- df4:	0000                	unimp
- df6:	c400                	c.sw	x8,8(x8)
- df8:	000a                	0xa
- dfa:	2900                	c.fld	f8,16(x10)
- dfc:	0069                	c.addi	x0,26
- dfe:	5201                	c.li	x4,-32
- e00:	005d                	c.addi	x0,23
- e02:	0000                	unimp
- e04:	9102                	c.jalr	x2
- e06:	006c                	c.addi4spn	x11,x2,12
- e08:	fc28                	c.fsw	f10,120(x8)
- e0a:	44000007          	0x44000007
- e0e:	0000                	unimp
- e10:	2900                	c.fld	f8,16(x10)
- e12:	0069                	c.addi	x0,26
- e14:	5d01                	c.li	x26,-32
- e16:	005d                	c.addi	x0,23
- e18:	0000                	unimp
- e1a:	9102                	c.jalr	x2
- e1c:	0068                	c.addi4spn	x10,x2,12
+ dd2:	7f9c9103          	lh	x2,2041(x25) # 47f9 <__bss_end+0x37f1>
+ dd6:	0000                	unimp
+ dd8:	0000                	unimp
+ dda:	2800                	c.fld	f8,16(x8)
+ ddc:	0bd8                	c.addi4spn	x14,x2,468
+ dde:	0000                	unimp
+ de0:	0098                	c.addi4spn	x14,x2,64
+ de2:	0000                	unimp
+ de4:	6929                	c.lui	x18,0xa
+ de6:	0100                	c.addi4spn	x8,x2,128
+ de8:	00005dc7          	fmsub.s	f27,f0,f0,f0,unknown
+ dec:	0200                	c.addi4spn	x8,x2,256
+ dee:	4491                	c.li	x9,4
+ df0:	0000                	unimp
+ df2:	0064040f          	0x64040f
+ df6:	0000                	unimp
+ df8:	c12a                	c.swsp	x10,128(x2)
+ dfa:	0005                	c.addi	x0,1
+ dfc:	0100                	c.addi4spn	x8,x2,128
+ dfe:	384a                	c.fldsp	f16,176(x2)
+ e00:	18000007          	0x18000007
+ e04:	0001                	c.nop
+ e06:	0100                	c.addi4spn	x8,x2,128
+ e08:	279c                	c.fld	f15,8(x15)
+ e0a:	0744                	c.addi4spn	x9,x2,900
+ e0c:	0000                	unimp
+ e0e:	0038                	c.addi4spn	x14,x2,8
+ e10:	0000                	unimp
+ e12:	0adf 0000 6929      	0x692900000adf
+ e18:	0100                	c.addi4spn	x8,x2,128
+ e1a:	5d4c                	c.lw	x11,60(x10)
+ e1c:	0000                	unimp
+ e1e:	0200                	c.addi4spn	x8,x2,256
+ e20:	6c91                	c.lui	x25,0x4
+ e22:	2800                	c.fld	f8,16(x8)
+ e24:	07fc                	c.addi4spn	x15,x2,972
+ e26:	0000                	unimp
+ e28:	0044                	c.addi4spn	x9,x2,4
+ e2a:	0000                	unimp
+ e2c:	6929                	c.lui	x18,0xa
+ e2e:	0100                	c.addi4spn	x8,x2,128
+ e30:	5d55                	c.li	x26,-11
+ e32:	0000                	unimp
+ e34:	0200                	c.addi4spn	x8,x2,256
+ e36:	6891                	c.lui	x17,0x4
+ e38:	0000                	unimp
 	...
 
 Disassembly of section .debug_abbrev:
@@ -4972,7 +5017,7 @@ Disassembly of section .debug_abbrev:
   14:	2501                	c.jal	614 <stats_print_dec+0x104>
   16:	130e                	c.slli	x6,0x23
 	j __no_irq_handler
-  18:	1b0e030b          	p.lb	x6,432(x28!) # 1a1b0 <__bss_end+0x191a8>
+  18:	1b0e030b          	p.lb	x6,432(x28!) # a1b0 <__bss_end+0x91a8>
 	j timer_irq_handler
   1c:	110e                	c.slli	x2,0x23
   1e:	1201                	c.addi	x4,-32
@@ -5024,12 +5069,12 @@ Disassembly of section .debug_abbrev:
 	j __no_irq_handler
   68:	490b3b0b          	0x490b3b0b
 	j __no_irq_handler
-  6c:	00180213          	addi	x4,x16,1 # fffe0001 <pulp__FC+0xfffe0002>
+  6c:	00180213          	addi	x4,x16,1 # ffff8001 <pulp__FC+0xffff8002>
 	j __no_irq_handler
   70:	0700                	c.addi4spn	x8,x2,896
   72:	0005                	c.addi	x0,1
 	j __no_irq_handler
-  74:	0b3a0e03          	lb	x28,179(x20) # 30b3 <__bss_end+0x20ab>
+  74:	0b3a0e03          	lb	x28,179(x20) # a0b3 <__bss_end+0x90ab>
 	j __no_irq_handler
   78:	13490b3b          	0x13490b3b
 	j __no_irq_handler
@@ -5082,7 +5127,7 @@ Disassembly of section .debug_abbrev:
   c0:	0f0e                	c.slli	x30,0x3
   c2:	0b00                	c.addi4spn	x8,x2,400
 	j __no_irq_handler
-  c4:	0013490b          	p.lbu	x18,1(x6!) # 1001 <_data_lma_start+0x20d>
+  c4:	0013490b          	p.lbu	x18,1(x6!) # 1 <__irq_base_vector+0x1>
 	j __no_irq_handler
   c8:	0f00                	c.addi4spn	x8,x2,912
   ca:	012e                	c.slli	x2,0xb
@@ -5378,7 +5423,7 @@ Disassembly of section .debug_abbrev:
  2e4:	0105                	c.addi	x2,1
  2e6:	1b000013          	addi	x0,x0,432
 	addi x22, zero, 0
- 2ea:	0b0b0113          	addi	x2,x22,176 # a0b0 <__bss_end+0x90a8>
+ 2ea:	0b0b0113          	addi	x2,x22,176 # 10b0 <__bss_end+0xa8>
 	addi x23, zero, 0
  2ee:	0b3a                	c.slli	x22,0xe
 	addi x24, zero, 0
@@ -5511,7 +5556,7 @@ Disassembly of section .debug_aranges:
   14:	0100                	c.addi4spn	x8,x2,128
   16:	0000                	unimp
 	j __no_irq_handler
-  18:	0c38                	c.addi4spn	x14,x2,536
+  18:	0c88                	c.addi4spn	x10,x2,592
   1a:	0000                	unimp
 	j timer_irq_handler
   1c:	0010                	c.addi4spn	x12,x2,0
@@ -5585,7 +5630,7 @@ Disassembly of section .debug_aranges:
   88:	0738                	c.addi4spn	x14,x2,904
   8a:	0000                	unimp
 	j __no_irq_handler
-  8c:	0500                	c.addi4spn	x8,x2,640
+  8c:	0550                	c.addi4spn	x12,x2,644
 	...
 
 Disassembly of section .debug_ranges:
@@ -5599,10 +5644,10 @@ Disassembly of section .debug_ranges:
    c:	0100                	c.addi4spn	x8,x2,128
    e:	0000                	unimp
 	j __no_irq_handler
-  10:	0c38                	c.addi4spn	x14,x2,536
+  10:	0c88                	c.addi4spn	x10,x2,592
   12:	0000                	unimp
 	j __no_irq_handler
-  14:	0c48                	c.addi4spn	x10,x2,532
+  14:	0c98                	c.addi4spn	x14,x2,592
   16:	0000                	unimp
 	j __no_irq_handler
   18:	0180                	c.addi4spn	x8,x2,192
@@ -5951,7 +5996,7 @@ Disassembly of section .debug_frame:
  1e8:	0850                	c.addi4spn	x12,x2,20
  1ea:	0000                	unimp
 	mv a0, t0
- 1ec:	03e8                	c.addi4spn	x10,x2,460
+ 1ec:	0438                	c.addi4spn	x14,x2,520
  1ee:	0000                	unimp
 	jal ra, print_chr
  1f0:	0404                	c.addi4spn	x9,x2,512
@@ -5971,9 +6016,10 @@ Disassembly of section .debug_frame:
  204:	0c00                	c.addi4spn	x8,x2,528
  206:	0008                	c.addi4spn	x10,x2,0
 	addi a0, a0, 4
- 208:	cc04                	c.sw	x9,24(x8)
- 20a:	c1000003          	lb	x0,-1008(x0) # fffffc10 <pulp__FC+0xfffffc11>
+ 208:	1c04                	c.addi4spn	x9,x2,560
+ 20a:	0004                	c.addi4spn	x9,x2,0
 	csrw mepc, a0
+ 20c:	c100                	c.sw	x8,0(x10)
  20e:	0404                	c.addi4spn	x9,x2,512
 	mret
  210:	0000                	unimp
@@ -6208,496 +6254,506 @@ Disassembly of section .debug_str:
 	j start
  180:	657a6973          	csrrsi	x18,0x657,20
 	la a0, no_exception_handler_msg
- 184:	7000                	c.flw	f8,32(x8)
- 186:	7274                	c.flw	f13,100(x12)
- 188:	6f5f 7475 625f      	0x625f74756f5f
+ 184:	5f00                	c.lw	x8,56(x14)
+ 186:	6172                	c.flwsp	f2,28(x2)
+ 188:	646e                	c.flwsp	f8,216(x2)
+ 18a:	3834                	c.fld	f13,112(x8)
 	jal ra, print_str
- 18e:	5f00                	c.lw	x8,56(x14)
+ 18c:	5f00                	c.lw	x8,56(x14)
+ 18e:	6d65                	c.lui	x26,0x19
 	j __no_irq_handler
- 190:	6172                	c.flwsp	f2,28(x2)
- 192:	646e                	c.flwsp	f8,216(x2)
+ 190:	7265                	c.lui	x4,0xffff9
+ 192:	636e6567          	0x636e6567
 	csrr t0, mcause
- 194:	3834                	c.fld	f13,112(x8)
- 196:	5f00                	c.lw	x8,56(x14)
+ 196:	0079                	c.addi	x0,30
 	slli t0, t0, 1  /* shift off the high bit */
- 198:	6d65                	c.lui	x26,0x19
- 19a:	7265                	c.lui	x4,0xffff9
+ 198:	775f 7263 6f74      	0x6f747263775f
 	srli t0, t0, 1
- 19c:	636e6567          	0x636e6567
+ 19e:	626d                	c.lui	x4,0x1b
 	li t1, 2
- 1a0:	0079                	c.addi	x0,30
- 1a2:	775f 7263 6f74      	0x6f747263775f
+ 1a0:	735f 6174 6574      	0x65746174735f
+	beq t0, t1, handle_illegal_insn
+ 1a6:	4200                	c.lw	x8,0(x12)
 	li t1, 11
- 1a8:	626d                	c.lui	x4,0x1b
- 1aa:	735f 6174 6574      	0x65746174735f
+ 1a8:	6f6c                	c.flw	f11,92(x14)
+ 1aa:	69536b63          	bltu	x6,x21,840 <twiddle_table+0x38>
+	beq t0, t1, handle_ecall
+ 1ae:	657a                	c.flwsp	f10,156(x2)
 	li t1, 3
- 1b0:	4200                	c.lw	x8,0(x12)
- 1b2:	6f6c                	c.flw	f11,92(x14)
+ 1b0:	5f00                	c.lw	x8,56(x14)
+ 1b2:	6e676973          	csrrsi	x18,0x6e6,14
 	beq t0, t1, handle_ebreak
- 1b4:	69536b63          	bltu	x6,x21,84a <twiddle_table+0x42>
+ 1b6:	6c61                	c.lui	x24,0x18
 	j handle_unknown
- 1b8:	657a                	c.flwsp	f10,156(x2)
- 1ba:	5f00                	c.lw	x8,56(x14)
+ 1b8:	625f 6675 5f00      	0x5f006675625f
 	j fail_test
- 1bc:	6e676973          	csrrsi	x18,0x6e6,14
+ 1be:	626c                	c.flw	f11,68(x12)
 	la a0, ebreak_msg
- 1c0:	6c61                	c.lui	x24,0x18
- 1c2:	625f 6675 5f00      	0x5f006675625f
-	jal ra, print_str
- 1c8:	626c                	c.flw	f11,68(x12)
- 1ca:	7366                	c.flwsp	f6,120(x2)
+ 1c0:	7366                	c.flwsp	f6,120(x2)
+ 1c2:	7a69                	c.lui	x20,0xffffa
+ 1c4:	0065                	c.addi	x0,25
+ 1c6:	5f5f 6f6c 6163      	0x61636f6c5f5f
 	j fail_test
- 1cc:	7a69                	c.lui	x20,0xffffa
- 1ce:	0065                	c.addi	x0,25
+ 1cc:	656c                	c.flw	f11,76(x10)
+ 1ce:	745f 5f00 626d      	0x626d5f00745f
 	la a0, illegal_insn_msg
- 1d0:	5f5f 6f6c 6163      	0x61636f6c5f5f
- 1d6:	656c                	c.flw	f11,76(x10)
+ 1d4:	7472                	c.flwsp	f8,60(x2)
+ 1d6:	5f63776f          	jal	x14,377cc <__bss_end+0x367c4>
 	jal ra, print_str
- 1d8:	745f 5f00 626d      	0x626d5f00745f
+ 1da:	74617473          	csrrci	x8,0x746,2
 	j fail_test
- 1de:	7472                	c.flwsp	f8,60(x2)
+ 1de:	0065                	c.addi	x0,25
 	la a0, unknown_msg
- 1e0:	5f63776f          	jal	x14,377d6 <__bss_end+0x367ce>
- 1e4:	74617473          	csrrci	x8,0x746,2
+ 1e0:	775f 7463 6d6f      	0x6d6f7463775f
+ 1e6:	5f62                	c.lwsp	x30,56(x2)
 	jal ra, print_str
- 1e8:	0065                	c.addi	x0,25
- 1ea:	775f 7463 6d6f      	0x6d6f7463775f
-	jal ra, print_chr
- 1f0:	5f62                	c.lwsp	x30,56(x2)
- 1f2:	74617473          	csrrci	x8,0x746,2
+ 1e8:	74617473          	csrrci	x8,0x746,2
+	mv a0, t0
+ 1ec:	0065                	c.addi	x0,25
+ 1ee:	5f5f 6d74 735f      	0x735f6d745f5f
 	j fail_test
- 1f6:	0065                	c.addi	x0,25
+ 1f4:	6365                	c.lui	x6,0x19
+ 1f6:	7000                	c.flw	f8,32(x8)
 	li a0, 1
- 1f8:	5f5f 6d74 735f      	0x735f6d745f5f
+ 1f8:	7274                	c.flw	f13,100(x12)
+ 1fa:	635f 7570 6f5f      	0x6f5f7570635f
 	sw a0, test_results, t1 /* signal failure */
- 1fe:	6365                	c.lui	x6,0x19
- 200:	5f00                	c.lw	x8,56(x14)
- 202:	6275                	c.lui	x4,0x1d
-	csrr a0, mepc
- 204:	6675                	c.lui	x12,0x1d
- 206:	5f00                	c.lw	x8,56(x14)
+ 200:	7475                	c.lui	x8,0xffffd
+ 202:	615f 7000 7274      	0x72747000615f
 	addi a0, a0, 4
- 208:	6162                	c.flwsp	f2,24(x2)
- 20a:	64006573          	csrrsi	x10,0x640,0
+ 208:	635f 7570 6f5f      	0x6f5f7570635f
 	csrw mepc, a0
- 20e:	6d75                	c.lui	x26,0x1d
+ 20e:	7475                	c.lui	x8,0xffffd
 	mret
- 210:	796d                	c.lui	x18,0xffffb
- 212:	5f00                	c.lw	x8,56(x14)
+ 210:	625f 5f00 6275      	0x62755f00625f
 	wfi
- 214:	745f 5f6d 6f68      	0x6f685f6d745f
+ 216:	6675                	c.lui	x12,0x1d
 	la a0, timeout_msg
- 21a:	7275                	c.lui	x4,0xffffd
- 21c:	5f00                	c.lw	x8,56(x14)
- 21e:	735f 0066 6f5f      	0x6f5f0066735f
+ 218:	5f00                	c.lw	x8,56(x14)
+ 21a:	6162                	c.flwsp	f2,24(x2)
+ 21c:	5f006573          	csrrsi	x10,0x5f0,0
+	jal ra, print_str
+ 220:	745f 5f6d 6f68      	0x6f685f6d745f
 	li a0, 1
- 224:	5f6e                	c.lwsp	x30,248(x2)
- 226:	7865                	c.lui	x16,0xffff9
+ 226:	7275                	c.lui	x4,0xffffd
 	sw a0, test_results, t1 /* signal failure */
- 228:	7469                	c.lui	x8,0xffffa
- 22a:	615f 6772 0073      	0x736772615f
+ 228:	5f00                	c.lw	x8,56(x14)
+ 22a:	735f 0066 6f5f      	0x6f5f0066735f
 	j fast_exit
- 230:	635f 6f6f 696b      	0x696b6f6f635f
+ 230:	5f6e                	c.lwsp	x30,248(x2)
+ 232:	7865                	c.lui	x16,0xffff9
 1:	auipc gp, %pcrel_hi(__global_pointer$)
- 236:	0065                	c.addi	x0,25
-	addi  gp, gp, %pcrel_lo(1b)
- 238:	5f5f 6773 756c      	0x756c67735f5f
+ 234:	7469                	c.lui	x8,0xffffa
+ 236:	615f 6772 0073      	0x736772615f
 	lui sp,(1024*1024)>>12 
- 23e:	0065                	c.addi	x0,25
+ 23c:	635f 6f6f 696b      	0x696b6f6f635f
     la a0, _data_lma_start  /* 源地址：Firmware 中的数据位置 */
- 240:	6966                	c.flwsp	f18,88(x2)
- 242:	6d72                	c.flwsp	f26,28(x2)
- 244:	65726177          	0x65726177
+ 242:	0065                	c.addi	x0,25
+ 244:	5f5f 6773 756c      	0x756c67735f5f
     la a1, _data_start      /* 目的地址：RAM 中的起始位置 */
- 248:	7466662f          	0x7466662f
- 24c:	6d5f 6961 2e6e      	0x2e6e69616d5f
+ 24a:	0065                	c.addi	x0,25
+ 24c:	6966                	c.flwsp	f18,88(x2)
+ 24e:	6d72                	c.flwsp	f26,28(x2)
     la a2, _data_end        /* 目的地址：RAM 中的结束位置 */
- 252:	665f0063          	beq	x30,x5,8b2 <app+0x62>
- 256:	616c                	c.flw	f11,68(x10)
+ 250:	65726177          	0x65726177
+ 254:	7466662f          	0x7466662f
     beq a0, a1, copy_data_done
- 258:	5f007367          	0x5f007367
+ 258:	6d5f 6961 2e6e      	0x2e6e69616d5f
     bge a1, a2, copy_data_done /* 如果当前地址 >= 结束地址，完成 */
- 25c:	7369                	c.lui	x6,0xffffa
- 25e:	635f 6178 5f00      	0x5f006178635f
+ 25e:	665f0063          	beq	x30,x5,8be <app+0x6e>
+    lw t0, 0(a0)               /* 从 ROM 读取一个字 */
+ 262:	616c                	c.flw	f11,68(x10)
     sw t0, 0(a1)               /* 写入 RAM 一个字 */
- 264:	69647473          	csrrci	x8,0x696,8
+ 264:	5f007367          	0x5f007367
     addi a0, a0, 4             /* 源指针 +4 */
- 268:	006e                	0x6e
- 26a:	625f 6b6c 6973      	0x69736b6c625f
+ 268:	7369                	c.lui	x6,0xffffa
+ 26a:	635f 6178 5f00      	0x5f006178635f
     j copy_data_loop
- 270:	657a                	c.flwsp	f10,156(x2)
- 272:	6200                	c.flw	f8,0(x12)
+ 270:	69647473          	csrrci	x8,0x696,8
 	jal ra, init_stats
- 274:	7361                	c.lui	x6,0xffff8
- 276:	6465                	c.lui	x8,0x19
-	li t0, 0
- 278:	7369                	c.lui	x6,0xffffa
- 27a:	0074                	c.addi4spn	x13,x2,12
+ 274:	006e                	0x6e
+ 276:	625f 6b6c 6973      	0x69736b6c625f
 	la t1, __bss_start
- 27c:	635f 7476 7562      	0x75627476635f
- 282:	0066                	0x66
+ 27c:	657a                	c.flwsp	f10,156(x2)
+ 27e:	6200                	c.flw	f8,0(x12)
+ 280:	7361                	c.lui	x6,0xffff8
+ 282:	6465                	c.lui	x8,0x19
 	la t2, __bss_end
- 284:	6f5f 6666 6573      	0x657366666f5f
- 28a:	0074                	c.addi4spn	x13,x2,12
+ 284:	7369                	c.lui	x6,0xffffa
+ 286:	0074                	c.addi4spn	x13,x2,12
+ 288:	635f 7476 7562      	0x75627476635f
 	bge t1, t2, loop_bss_done
- 28c:	6d5f 7362 7472      	0x747273626d5f
+ 28e:	0066                	0x66
 	sw t0, 0(t1)
- 292:	7363776f          	jal	x14,379c8 <__bss_end+0x369c0>
+ 290:	6f5f 6666 6573      	0x657366666f5f
 	addi t1, t1, 4
- 296:	735f 6174 6574      	0x65746174735f
+ 296:	0074                	c.addi4spn	x13,x2,12
+	j loop_bss
+ 298:	6d5f 7362 7472      	0x747273626d5f
 	addi x1, zero, 0
- 29c:	5f00                	c.lw	x8,56(x14)
- 29e:	626d                	c.lui	x4,0x1b
+ 29e:	7363776f          	jal	x14,379d4 <__bss_end+0x369cc>
 	addi x4, zero, 0
- 2a0:	6c72                	c.flwsp	f24,28(x2)
- 2a2:	6e65                	c.lui	x28,0x19
-	addi x5, zero, 0
- 2a4:	735f 6174 6574      	0x65746174735f
+ 2a2:	735f 6174 6574      	0x65746174735f
 	addi x6, zero, 0
- 2aa:	5f00                	c.lw	x8,56(x14)
+ 2a8:	5f00                	c.lw	x8,56(x14)
+ 2aa:	626d                	c.lui	x4,0x1b
 	addi x7, zero, 0
- 2ac:	6e66                	c.flwsp	f28,88(x2)
- 2ae:	7261                	c.lui	x4,0xffff8
+ 2ac:	6c72                	c.flwsp	f24,28(x2)
+ 2ae:	6e65                	c.lui	x28,0x19
 	addi x8, zero, 0
- 2b0:	48007367          	0x48007367
+ 2b0:	735f 6174 6574      	0x65746174735f
 	addi x9, zero, 0
- 2b4:	49495f57          	pv.sra.sc.b	x30,x18,x20
+ 2b6:	5f00                	c.lw	x8,56(x14)
 	addi x10, zero, 0
- 2b8:	6400                	c.flw	f8,8(x8)
- 2ba:	7461                	c.lui	x8,0xffff8
+ 2b8:	6e66                	c.flwsp	f28,88(x2)
+ 2ba:	7261                	c.lui	x4,0xffff8
 	addi x11, zero, 0
- 2bc:	5f61                	c.li	x30,-8
- 2be:	0074756f          	jal	x10,47ac4 <__bss_end+0x46abc>
+ 2bc:	48007367          	0x48007367
 	addi x12, zero, 0
- 2c2:	665f 736e 5f00      	0x5f00736e665f
+ 2c0:	49495f57          	pv.sra.sc.b	x30,x18,x20
+	addi x13, zero, 0
+ 2c4:	6400                	c.flw	f8,8(x8)
+ 2c6:	7461                	c.lui	x8,0xffff8
 	addi x14, zero, 0
- 2c8:	6e676973          	csrrsi	x18,0x6e6,14
+ 2c8:	5f61                	c.li	x30,-8
+ 2ca:	0074756f          	jal	x10,47ad0 <__bss_end+0x46ac8>
 	addi x15, zero, 0
- 2cc:	5f00                	c.lw	x8,56(x14)
- 2ce:	6c66                	c.flwsp	f24,88(x2)
-	addi x16, zero, 0
- 2d0:	5f6b636f          	jal	x6,b68c6 <_stack_top+0x368c6>
+ 2ce:	665f 736e 5f00      	0x5f00736e665f
 	addi x17, zero, 0
- 2d4:	0074                	c.addi4spn	x13,x2,12
- 2d6:	735f 6474 7265      	0x72656474735f
+ 2d4:	6e676973          	csrrsi	x18,0x6e6,14
+	addi x18, zero, 0
+ 2d8:	5f00                	c.lw	x8,56(x14)
+ 2da:	6c66                	c.flwsp	f24,88(x2)
 	addi x19, zero, 0
- 2dc:	0072                	0x72
- 2de:	425f 6769 6e69      	0x6e696769425f
-	addi x21, zero, 0
- 2e4:	0074                	c.addi4spn	x13,x2,12
- 2e6:	675f 6d61 616d      	0x616d6d61675f
-	addi x23, zero, 0
- 2ec:	735f 6769 676e      	0x676e6769735f
+ 2dc:	5f6b636f          	jal	x6,b68d2 <_stack_top+0x368d2>
+	addi x20, zero, 0
+ 2e0:	0074                	c.addi4spn	x13,x2,12
+ 2e2:	735f 6474 7265      	0x72656474735f
+	addi x22, zero, 0
+ 2e8:	0072                	0x72
+ 2ea:	425f 6769 6e69      	0x6e696769425f
 	addi x24, zero, 0
- 2f2:	6d61                	c.lui	x26,0x18
-	addi x25, zero, 0
- 2f4:	5f00                	c.lw	x8,56(x14)
- 2f6:	6572                	c.flwsp	f10,28(x2)
+ 2f0:	0074                	c.addi4spn	x13,x2,12
+ 2f2:	675f 6d61 616d      	0x616d6d61675f
 	addi x26, zero, 0
- 2f8:	6461                	c.lui	x8,0x18
- 2fa:	5f00                	c.lw	x8,56(x14)
+ 2f8:	735f 6769 676e      	0x676e6769735f
 	addi x27, zero, 0
- 2fc:	745f 006d 5f5f      	0x5f5f006d745f
+ 2fe:	6d61                	c.lui	x26,0x18
 	addi x28, zero, 0
- 302:	62686377          	0x62686377
+ 300:	5f00                	c.lw	x8,56(x14)
+ 302:	6572                	c.flwsp	f10,28(x2)
 	addi x29, zero, 0
+ 304:	6461                	c.lui	x8,0x18
  306:	5f00                	c.lw	x8,56(x14)
 	addi x30, zero, 0
- 308:	72736377          	0x72736377
+ 308:	745f 006d 5f5f      	0x5f5f006d745f
 	addi x31, zero, 0
- 30c:	6f74                	c.flw	f13,92(x14)
- 30e:	626d                	c.lui	x4,0x1b
+ 30e:	62686377          	0x62686377
 	li      t0, 8
- 310:	74735f73          	csrrwi	x30,0x747,6
+ 312:	5f00                	c.lw	x8,56(x14)
 	csrrs   zero, mstatus, t0
- 314:	7461                	c.lui	x8,0xffff8
- 316:	0065                	c.addi	x0,25
+ 314:	72736377          	0x72736377
 	li a0, timer_irq_mask
- 318:	735f 6474 756f      	0x756f6474735f
+ 318:	6f74                	c.flw	f13,92(x14)
+ 31a:	626d                	c.lui	x4,0x1b
 	li a1, 0x8
- 31e:	0074                	c.addi4spn	x13,x2,12
+ 31c:	74735f73          	csrrwi	x30,0x747,6
 	sw a1,0(a0)
- 320:	635f 7476 656c      	0x656c7476635f
+ 320:	7461                	c.lui	x8,0xffff8
+ 322:	0065                	c.addi	x0,25
 	TEST(app)
- 326:	006e                	0x6e
- 328:	665f 6c69 0065      	0x656c69665f
- 32e:	6e5f 6f69 7362      	0x73626f696e5f
- 334:	6500                	c.flw	f8,8(x10)
- 336:	6578                	c.flw	f14,76(x10)
- 338:	79635f63          	bge	x6,x22,ad6 <app+0x286>
-	lui gp, %hi(0xdeadbeef)
- 33c:	73656c63          	bltu	x10,x22,a74 <app+0x224>
+ 324:	735f 6474 756f      	0x756f6474735f
+ 32a:	0074                	c.addi4spn	x13,x2,12
+ 32c:	635f 7476 656c      	0x656c7476635f
+ 332:	006e                	0x6e
+ 334:	665f 6c69 0065      	0x656c69665f
+ 33a:	6e5f 6f69 7362      	0x73626f696e5f
 	addi gp, gp, %lo(0xdeadbeef)
- 340:	5f00                	c.lw	x8,56(x14)
- 342:	7461                	c.lui	x8,0xffff8
+ 340:	6500                	c.flw	f8,8(x10)
+ 342:	6578                	c.flw	f14,76(x10)
 	addi tp, gp, 0
- 344:	7865                	c.lui	x16,0xffff9
- 346:	7469                	c.lui	x8,0xffffa
+ 344:	79635f63          	bge	x6,x22,ae2 <app+0x292>
 	lui a0,print_port>>12
- 348:	0030                	c.addi4spn	x12,x2,8
- 34a:	725f 7365 6c75      	0x6c757365725f
+ 348:	73656c63          	bltu	x10,x22,a80 <app+0x230>
+	addi a1,zero,'D'
+ 34c:	5f00                	c.lw	x8,56(x14)
+ 34e:	7461                	c.lui	x8,0xffff8
 	addi a2,zero,'O'
- 350:	5f74                	c.lw	x13,124(x14)
- 352:	615f006b          	0x615f006b
+ 350:	7865                	c.lui	x16,0xffff9
+ 352:	7469                	c.lui	x8,0xffffa
 	addi a3,zero,'N'
- 356:	69746373          	csrrsi	x6,0x697,8
-	addi a4,zero,'E'
- 35a:	656d                	c.lui	x10,0x1b
+ 354:	0030                	c.addi4spn	x12,x2,8
+ 356:	725f 7365 6c75      	0x6c757365725f
 	addi a5,zero,'\n'
- 35c:	625f 6675 5f00      	0x5f006675625f
+ 35c:	5f74                	c.lw	x13,124(x14)
+ 35e:	615f006b          	0x615f006b
 	sw a1,0(a0)
- 362:	6572                	c.flwsp	f10,28(x2)
+ 362:	69746373          	csrrsi	x6,0x697,8
 	sw a2,0(a0)
- 364:	746c7573          	csrrci	x10,0x746,24
+ 366:	656d                	c.lui	x10,0x1b
 	sw a3,0(a0)
- 368:	5f00                	c.lw	x8,56(x14)
- 36a:	775f 6863 7700      	0x77006863775f
+ 368:	625f 6675 7000      	0x70006675625f
+	sw a4,0(a0)
+ 36e:	7274                	c.flw	f13,100(x12)
 	sw a5,0(a0)
- 370:	6e69                	c.lui	x28,0x1a
- 372:	5f74                	c.lw	x13,124(x14)
+ 370:	635f 7570 695f      	0x695f7570635f
 	li a0, test_ret_val
- 374:	0074                	c.addi4spn	x13,x2,12
- 376:	6c5f 636f 006b      	0x6b636f6c5f
+ 376:	5f6e                	c.lwsp	x30,248(x2)
 	lw a1, test_results
- 37c:	7470                	c.flw	f12,108(x8)
- 37e:	5f72                	c.lwsp	x30,60(x2)
+ 378:	0062                	0x62
+ 37a:	725f 7365 6c75      	0x6c757365725f
 	sw a1,0(a0)
- 380:	665f0077          	0x665f0077
-	wfi  /* we are done */
- 384:	616c                	c.flw	f11,68(x10)
- 386:	00327367          	0x327367
+ 380:	0074                	c.addi4spn	x13,x2,12
+ 382:	5f5f 6377 0068      	0x6863775f5f
 {
- 38a:	7774                	c.flw	f13,108(x14)
- 38c:	6469                	c.lui	x8,0x1a
- 38e:	6c64                	c.flw	f9,92(x8)
- 390:	5f65                	c.li	x30,-7
- 392:	6174                	c.flw	f13,68(x10)
- 394:	6c62                	c.flwsp	f24,24(x2)
- 396:	0065                	c.addi	x0,25
- 398:	5748                	c.lw	x10,44(x14)
- 39a:	4c5f 5441 4e45      	0x4e4554414c5f
+ 388:	746e6977          	0x746e6977
+ 38c:	745f 5f00 6f6c      	0x6f6c5f00745f
+ 392:	5f006b63          	bltu	x0,x16,988 <app+0x138>
+ 396:	6c66                	c.flwsp	f24,88(x2)
+ 398:	6761                	c.lui	x14,0x18
+ 39a:	74003273          	csrrc	x4,0x740,x0
     *((volatile uint32_t *)OUTPORT) = ch;
- 3a0:	5f005943          	0x5f005943
- 3a4:	74697277          	0x74697277
+ 39e:	64646977          	0x64646977
+ 3a2:	656c                	c.flw	f11,76(x10)
+ 3a4:	745f 6261 656c      	0x656c6261745f
 }
- 3a8:	0065                	c.addi	x0,25
- 3aa:	5f5f 6d74 795f      	0x795f6d745f5f
- 3b0:	6165                	c.addi16sp	x2,112
- 3b2:	0072                	0x72
- 3b4:	6e5f 616d 6c6c      	0x6c6c616d6e5f
+ 3aa:	4800                	c.lw	x8,16(x8)
+ 3ac:	414c5f57          	pv.srl.sc.b	x30,x24,x20
+ 3b0:	4554                	c.lw	x13,12(x10)
+ 3b2:	434e                	c.lwsp	x6,208(x2)
+ 3b4:	0059                	c.addi	x0,22
+ 3b6:	775f 6972 6574      	0x65746972775f
 {
- 3ba:	6c00636f          	jal	x6,6a7a <__bss_end+0x5a72>
- 3be:	20676e6f          	jal	x28,765c4 <__bss_end+0x755bc>
- 3c2:	6f64                	c.flw	f9,92(x14)
- 3c4:	6275                	c.lui	x4,0x1d
- 3c6:	656c                	c.flw	f11,76(x10)
+ 3bc:	5f00                	c.lw	x8,56(x14)
+ 3be:	745f 5f6d 6579      	0x65795f6d745f
+ 3c4:	7261                	c.lui	x4,0xffff8
+ 3c6:	7400                	c.flw	f8,40(x8)
     while (*p != 0)
- 3c8:	5f00                	c.lw	x8,56(x14)
- 3ca:	656e                	c.flwsp	f10,216(x2)
+ 3c8:	6961                	c.lui	x18,0x18
+ 3ca:	5f6c                	c.lw	x11,124(x14)
         *((volatile uint32_t *)OUTPORT) = *(p++);
- 3cc:	7478                	c.flw	f14,108(x8)
- 3ce:	0066                	0x66
- 3d0:	5f5f 6d74 6d5f      	0x6d5f6d745f5f
- 3d6:	5f006e6f          	jal	x28,69c6 <__bss_end+0x59be>
- 3da:	7461                	c.lui	x8,0xffff8
- 3dc:	7865                	c.lui	x16,0xffff9
- 3de:	7469                	c.lui	x8,0xffffa
- 3e0:	7300                	c.flw	f8,32(x14)
- 3e2:	6275                	c.lui	x4,0x1d
+ 3cc:	6170                	c.flw	f12,68(x10)
+ 3ce:	6464                	c.flw	f9,76(x8)
+ 3d0:	6e69                	c.lui	x28,0x1a
+ 3d2:	6e5f0067          	jalr	x0,1765(x30) # fffe36e5 <pulp__FC+0xfffe36e6>
+ 3d6:	616d                	c.addi16sp	x2,240
+ 3d8:	6c6c                	c.flw	f11,92(x8)
+ 3da:	6c00636f          	jal	x6,6a9a <__bss_end+0x5a92>
+ 3de:	20676e6f          	jal	x28,765e4 <__bss_end+0x755dc>
+ 3e2:	6f64                	c.flw	f9,92(x14)
     while (*p != 0)
- 3e4:	6174706f          	jal	x0,481fa <__bss_end+0x471f2>
- 3e8:	6772                	c.flwsp	f14,28(x2)
- 3ea:	5f00                	c.lw	x8,56(x14)
- 3ec:	735f 6964 6964      	0x69646964735f
+ 3e4:	6275                	c.lui	x4,0x1d
+ 3e6:	656c                	c.flw	f11,76(x10)
+ 3e8:	5f00                	c.lw	x8,56(x14)
+ 3ea:	656e                	c.flwsp	f10,216(x2)
+ 3ec:	7478                	c.flw	f14,108(x8)
+ 3ee:	0066                	0x66
 }
- 3f2:	696e                	c.flwsp	f18,216(x2)
- 3f4:	0074                	c.addi4spn	x13,x2,12
- 3f6:	6f5f 6666 745f      	0x745f66666f5f
- 3fc:	5f00                	c.lw	x8,56(x14)
- 3fe:	7266                	c.flwsp	f4,120(x2)
+ 3f0:	5f5f 6d74 6d5f      	0x6d5f6d745f5f
+ 3f6:	5f006e6f          	jal	x28,69e6 <__bss_end+0x59de>
+ 3fa:	7461                	c.lui	x8,0xffff8
+ 3fc:	7865                	c.lui	x16,0xffff9
+ 3fe:	7469                	c.lui	x8,0xffffa
 {
- 400:	6565                	c.lui	x10,0x19
- 402:	696c                	c.flw	f11,84(x10)
- 404:	5f007473          	csrrci	x8,0x5f0,0
- 408:	4f4c                	c.lw	x11,28(x14)
- 40a:	525f4b43          	fmadd.d	f22,f30,f5,f10,rmm
- 40e:	4345                	c.li	x6,17
+ 400:	7300                	c.flw	f8,32(x14)
+ 402:	6275                	c.lui	x4,0x1d
+ 404:	6174706f          	jal	x0,4821a <__bss_end+0x47212>
+ 408:	6772                	c.flwsp	f14,28(x2)
+ 40a:	5f00                	c.lw	x8,56(x14)
+ 40c:	735f 6964 6964      	0x69646964735f
     char *p = buffer;
- 410:	5255                	c.li	x4,-11
- 412:	45564953          	0x45564953
- 416:	545f 5f00 656e      	0x656e5f00545f
+ 412:	696e                	c.flwsp	f18,216(x2)
+ 414:	0074                	c.addi4spn	x13,x2,12
+ 416:	6f5f 6666 745f      	0x745f66666f5f
         *(p++) = val % 10;
- 41c:	685f0077          	0x685f0077
- 420:	655f 7272 6f6e      	0x6f6e7272655f
- 426:	5f00                	c.lw	x8,56(x14)
- 428:	745f 5f6d 6479      	0x64795f6d745f
- 42e:	7961                	c.lui	x18,0xffff8
- 430:	5f00                	c.lw	x8,56(x14)
- 432:	735f 7562 0066      	0x667562735f
- 438:	7470                	c.flw	f12,108(x8)
- 43a:	5f72                	c.lwsp	x30,60(x2)
+ 41c:	5f00                	c.lw	x8,56(x14)
+ 41e:	7266                	c.flwsp	f4,120(x2)
+ 420:	6565                	c.lui	x10,0x19
+ 422:	696c                	c.flw	f11,84(x10)
+ 424:	70007473          	csrrci	x8,0x700,0
+ 428:	7274                	c.flw	f13,100(x12)
+ 42a:	635f 7570 695f      	0x695f7570635f
+ 430:	5f6e                	c.lwsp	x30,248(x2)
+ 432:	0061                	c.addi	x0,24
+ 434:	4c5f 434f 5f4b      	0x5f4b434f4c5f
+ 43a:	4552                	c.lwsp	x10,20(x2)
         val = val / 10;
- 43c:	6e69                	c.lui	x28,0x1a
- 43e:	615f 5f00 6f69      	0x6f695f00615f
- 444:	7362                	c.flwsp	f6,56(x2)
- 446:	5f00                	c.lw	x8,56(x14)
- 448:	465f 4c49 0045      	0x454c49465f
+ 43c:	53525543          	fmadd.d	f10,f4,f21,f10,unknown
+ 440:	5649                	c.li	x12,-14
+ 442:	5f45                	c.li	x30,-15
+ 444:	0054                	c.addi4spn	x13,x2,4
+ 446:	6e5f 7765 5f00      	0x5f0077656e5f
     while (val || p == buffer) {
- 44e:	6d5f 7362 6174      	0x617473626d5f
- 454:	6574                	c.flw	f13,76(x10)
- 456:	745f 5f00 735f      	0x735f5f00745f
- 45c:	4946                	c.lwsp	x18,80(x2)
- 45e:	454c                	c.lw	x11,12(x10)
-    while (p != buffer) {
- 460:	5f00                	c.lw	x8,56(x14)
- 462:	626d                	c.lui	x4,0x1b
+ 44c:	5f68                	c.lw	x10,124(x14)
+ 44e:	7265                	c.lui	x4,0xffff9
+ 450:	6e72                	c.flwsp	f28,28(x2)
+ 452:	5f5f006f          	jal	x0,f1246 <_stack_top+0x71246>
+ 456:	6d74                	c.flw	f13,92(x10)
+ 458:	795f 6164 0079      	0x796164795f
+ 45e:	5f5f 6273 6675      	0x667562735f5f
         *((volatile uint32_t *)OUTPORT) = '0' + *(--p);
- 464:	74617473          	csrrci	x8,0x746,2
- 468:	0065                	c.addi	x0,25
- 46a:	725f 6e61 5f64      	0x5f646e61725f
- 470:	656e                	c.flwsp	f10,216(x2)
- 472:	7478                	c.flw	f14,108(x8)
+ 464:	5f00                	c.lw	x8,56(x14)
+ 466:	6f69                	c.lui	x30,0x1a
+ 468:	7362                	c.flwsp	f6,56(x2)
+ 46a:	7000                	c.flw	f8,32(x8)
+ 46c:	7274                	c.flw	f13,100(x12)
+ 46e:	635f 7570 775f      	0x775f7570635f
  474:	5f00                	c.lw	x8,56(x14)
- 476:	626d                	c.lui	x4,0x1b
- 478:	656c                	c.flw	f11,76(x10)
- 47a:	5f6e                	c.lwsp	x30,248(x2)
- 47c:	74617473          	csrrci	x8,0x746,2
- 480:	0065                	c.addi	x0,25
- 482:	695f 636e 5f00      	0x5f00636e695f
+ 476:	465f 4c49 0045      	0x454c49465f
+ 47c:	6d5f 7362 6174      	0x617473626d5f
+ 482:	6574                	c.flw	f13,76(x10)
     while (p != buffer) {
- 488:	6e69                	c.lui	x28,0x1a
- 48a:	0064                	c.addi4spn	x9,x2,12
- 48c:	6c5f 636f 6c61      	0x6c61636f6c5f
+ 484:	745f 5f00 735f      	0x735f5f00745f
+ 48a:	4946                	c.lwsp	x18,80(x2)
+ 48c:	454c                	c.lw	x11,12(x10)
+ 48e:	5f00                	c.lw	x8,56(x14)
 }
- 492:	0065                	c.addi	x0,25
- 494:	5f5f 6c63 6165      	0x61656c635f5f
- 49a:	756e                	c.flwsp	f10,248(x2)
- 49c:	0070                	c.addi4spn	x12,x2,12
- 49e:	755f 736e 6570      	0x6570736e755f
+ 490:	626d                	c.lui	x4,0x1b
+ 492:	74617473          	csrrci	x8,0x746,2
+ 496:	0065                	c.addi	x0,25
+ 498:	725f 6e61 5f64      	0x5f646e61725f
+ 49e:	656e                	c.flwsp	f10,216(x2)
 {
- 4a4:	69666963          	bltu	x12,x22,b36 <app+0x2e6>
- 4a8:	6465                	c.lui	x8,0x19
- 4aa:	6c5f 636f 6c61      	0x6c61636f6c5f
- 4b0:	5f65                	c.li	x30,-7
- 4b2:	6e69                	c.lui	x28,0x1a
+ 4a0:	7478                	c.flw	f14,108(x8)
+ 4a2:	5f00                	c.lw	x8,56(x14)
+ 4a4:	626d                	c.lui	x4,0x1b
+ 4a6:	656c                	c.flw	f11,76(x10)
+ 4a8:	5f6e                	c.lwsp	x30,248(x2)
+ 4aa:	74617473          	csrrci	x8,0x746,2
+ 4ae:	0065                	c.addi	x0,25
+ 4b0:	695f 636e 5f00      	0x5f00636e695f
     for (int i = (4 * digits) - 4; i >= 0; i -= 4)
- 4b4:	6f66                	c.flwsp	f30,88(x2)
- 4b6:	5f00                	c.lw	x8,56(x14)
- 4b8:	616d                	c.addi16sp	x2,240
- 4ba:	7778                	c.flw	f14,108(x14)
- 4bc:	7364                	c.flw	f9,100(x14)
- 4be:	5f00                	c.lw	x8,56(x14)
- 4c0:	6572                	c.flwsp	f10,28(x2)
- 4c2:	6e65                	c.lui	x28,0x19
- 4c4:	0074                	c.addi4spn	x13,x2,12
- 4c6:	735f 6565 0064      	0x646565735f
+ 4b6:	6e69                	c.lui	x28,0x1a
+ 4b8:	0064                	c.addi4spn	x9,x2,12
+ 4ba:	6c5f 636f 6c61      	0x6c61636f6c5f
+ 4c0:	0065                	c.addi	x0,25
+ 4c2:	5f5f 6c63 6165      	0x61656c635f5f
         *((volatile uint32_t *)OUTPORT) = "0123456789ABCDEF"[(val >> i) % 16];
- 4cc:	5f5f 6f63 6e75      	0x6e756f635f5f
- 4d2:	0074                	c.addi4spn	x13,x2,12
- 4d4:	5f5f 6176 756c      	0x756c61765f5f
- 4da:	0065                	c.addi	x0,25
- 4dc:	735f 6565 006b      	0x6b6565735f
- 4e2:	665f 6f70 5f73      	0x5f736f70665f
- 4e8:	0074                	c.addi4spn	x13,x2,12
- 4ea:	6162                	c.flwsp	f2,24(x2)
+ 4c8:	756e                	c.flwsp	f10,248(x2)
+ 4ca:	0070                	c.addi4spn	x12,x2,12
+ 4cc:	755f 736e 6570      	0x6570736e755f
+ 4d2:	69666963          	bltu	x12,x22,b64 <app+0x314>
+ 4d6:	6465                	c.lui	x8,0x19
+ 4d8:	6c5f 636f 6c61      	0x6c61636f6c5f
+ 4de:	5f65                	c.li	x30,-7
+ 4e0:	6e69                	c.lui	x28,0x1a
+ 4e2:	6f66                	c.flwsp	f30,88(x2)
+ 4e4:	5f00                	c.lw	x8,56(x14)
+ 4e6:	616d                	c.addi16sp	x2,240
+ 4e8:	7778                	c.flw	f14,108(x14)
+ 4ea:	7364                	c.flw	f9,100(x14)
     for (int i = (4 * digits) - 4; i >= 0; i -= 4)
- 4ec:	6374                	c.flw	f13,68(x14)
- 4ee:	5f68                	c.lw	x10,124(x14)
- 4f0:	6e756f63          	bltu	x10,x7,bee <app+0x39e>
- 4f4:	0074                	c.addi4spn	x13,x2,12
- 4f6:	6174                	c.flw	f13,68(x10)
- 4f8:	6c62                	c.flwsp	f24,24(x2)
- 4fa:	5f65                	c.li	x30,-7
- 4fc:	6e69                	c.lui	x28,0x1a
- 4fe:	6564                	c.flw	f9,76(x10)
+ 4ec:	5f00                	c.lw	x8,56(x14)
+ 4ee:	6572                	c.flwsp	f10,28(x2)
+ 4f0:	6e65                	c.lui	x28,0x19
+ 4f2:	0074                	c.addi4spn	x13,x2,12
+ 4f4:	735f 6565 0064      	0x646565735f
+ 4fa:	5f5f 6f63 6e75      	0x6e756f635f5f
 }
- 500:	0078                	c.addi4spn	x14,x2,12
- 502:	5f5f 6d74 6d5f      	0x6d5f6d745f5f
- 508:	6e69                	c.lui	x28,0x1a
- 50a:	5f00                	c.lw	x8,56(x14)
- 50c:	756d                	c.lui	x10,0xffffb
- 50e:	746c                	c.flw	f11,108(x8)
+ 500:	0074                	c.addi4spn	x13,x2,12
+ 502:	5f5f 6176 756c      	0x756c61765f5f
+ 508:	0065                	c.addi	x0,25
+ 50a:	735f 6565 006b      	0x6b6565735f
 {
- 510:	7000                	c.flw	f8,32(x8)
- 512:	7274                	c.flw	f13,100(x12)
- 514:	6f5f 7475 615f      	0x615f74756f5f
- 51a:	5f00                	c.lw	x8,56(x14)
- 51c:	74727473          	csrrci	x8,0x747,4
- 520:	6c5f6b6f          	jal	x22,f73e4 <_stack_top+0x773e4>
- 524:	7361                	c.lui	x6,0xffff8
- 526:	0074                	c.addi4spn	x13,x2,12
- 528:	665f 746e 7079      	0x7079746e665f
- 52e:	7365                	c.lui	x6,0xffff9
+ 510:	665f 6f70 5f73      	0x5f736f70665f
+ 516:	0074                	c.addi4spn	x13,x2,12
+ 518:	6162                	c.flwsp	f2,24(x2)
+ 51a:	6374                	c.flw	f13,68(x14)
+ 51c:	5f68                	c.lw	x10,124(x14)
+ 51e:	6e756f63          	bltu	x10,x7,c1c <app+0x3cc>
+ 522:	0074                	c.addi4spn	x13,x2,12
+ 524:	6174                	c.flw	f13,68(x10)
+ 526:	6c62                	c.flwsp	f24,24(x2)
+ 528:	5f65                	c.li	x30,-7
+ 52a:	6e69                	c.lui	x28,0x1a
+ 52c:	6564                	c.flw	f9,76(x10)
+ 52e:	0078                	c.addi4spn	x14,x2,12
     char *p = buffer;
- 530:	7000                	c.flw	f8,32(x8)
- 532:	7274                	c.flw	f13,100(x12)
- 534:	695f 5f6e 0062      	0x625f6e695f
+ 530:	5f5f 6d74 6d5f      	0x6d5f6d745f5f
+ 536:	6e69                	c.lui	x28,0x1a
     while (val || digits > 0) {
- 53a:	615f 6464 5f00      	0x5f006464615f
+ 538:	5f00                	c.lw	x8,56(x14)
+ 53a:	756d                	c.lui	x10,0xffffb
 	if (val)
- 540:	555f 6f4c 676e      	0x676e6f4c555f
+ 53c:	746c                	c.flw	f11,108(x8)
+ 53e:	5f00                	c.lw	x8,56(x14)
+ 540:	74727473          	csrrci	x8,0x747,4
 	    *(p++) = '0' + val % 10;
- 546:	5f00                	c.lw	x8,56(x14)
- 548:	64746567          	0x64746567
- 54c:	7461                	c.lui	x8,0xffff8
- 54e:	5f65                	c.li	x30,-7
- 550:	7265                	c.lui	x4,0xffff9
- 552:	0072                	0x72
- 554:	675f 6f6c 6162      	0x61626f6c675f
- 55a:	5f6c                	c.lw	x11,124(x14)
- 55c:	6d69                	c.lui	x26,0x1a
- 55e:	7570                	c.flw	f12,108(x10)
- 560:	6572                	c.flwsp	f10,28(x2)
- 562:	705f 7274 5f00      	0x5f007274705f
- 568:	6e75                	c.lui	x28,0x1d
- 56a:	7375                	c.lui	x6,0xffffd
- 56c:	6465                	c.lui	x8,0x19
- 56e:	725f 6e61 0064      	0x646e61725f
+ 544:	6c5f6b6f          	jal	x22,f7408 <_stack_top+0x77408>
+ 548:	7361                	c.lui	x6,0xffff8
+ 54a:	0074                	c.addi4spn	x13,x2,12
+ 54c:	665f 746e 7079      	0x7079746e665f
+ 552:	7365                	c.lui	x6,0xffff9
+ 554:	5f00                	c.lw	x8,56(x14)
+ 556:	6461                	c.lui	x8,0x18
+ 558:	0064                	c.addi4spn	x9,x2,12
+ 55a:	5f5f 4c55 6e6f      	0x6e6f4c555f5f
+ 560:	675f0067          	jalr	x0,1653(x30) # 1a675 <__bss_end+0x1966d>
+ 564:	7465                	c.lui	x8,0xffff9
+ 566:	6164                	c.flw	f9,68(x10)
+ 568:	6574                	c.flw	f13,76(x10)
+ 56a:	655f 7272 5f00      	0x5f007272655f
 	    *(p++) = zero_pad ? '0' : ' ';
- 574:	775f 7364 5f00      	0x5f007364775f
- 57a:	745f 5f6d 6477      	0x64775f6d745f
- 580:	7961                	c.lui	x18,0xffff8
- 582:	5f00                	c.lw	x8,56(x14)
- 584:	65756c67          	0x65756c67
- 588:	5f00                	c.lw	x8,56(x14)
- 58a:	7a697373          	csrrci	x6,0x7a6,18
- 58e:	5f65                	c.li	x30,-7
- 590:	0074                	c.addi4spn	x13,x2,12
- 592:	6c5f 3436 5f61      	0x5f6134366c5f
+ 570:	626f6c67          	0x626f6c67
+ 574:	6c61                	c.lui	x24,0x18
+ 576:	695f 706d 7275      	0x7275706d695f
+ 57c:	5f65                	c.li	x30,-7
+ 57e:	7470                	c.flw	f12,108(x8)
+ 580:	0072                	0x72
+ 582:	755f 756e 6573      	0x6573756e755f
+ 588:	5f64                	c.lw	x9,124(x14)
+ 58a:	6172                	c.flwsp	f2,28(x2)
+ 58c:	646e                	c.flwsp	f8,216(x2)
+ 58e:	5f00                	c.lw	x8,56(x14)
+ 590:	00736477          	0x736477
 	val = val / 10;
- 598:	7562                	c.flwsp	f10,56(x2)
- 59a:	0066                	0x66
- 59c:	735f 6769 665f      	0x665f6769735f
- 5a2:	6e75                	c.lui	x28,0x1d
+ 594:	5f5f 6d74 775f      	0x775f6d745f5f
+ 59a:	6164                	c.flw	f9,68(x10)
+ 59c:	0079                	c.addi	x0,30
+ 59e:	675f 756c 0065      	0x65756c675f
 	digits--;
- 5a4:	6e690063          	beq	x18,x6,c84 <ecall_msg+0xd>
- 5a8:	7469                	c.lui	x8,0xffffa
- 5aa:	645f 7461 0061      	0x617461645f
+ 5a4:	735f 6973 657a      	0x657a6973735f
+ 5aa:	745f 5f00 366c      	0x366c5f00745f
     while (val || digits > 0) {
- 5b0:	6e5f 7562 0066      	0x6675626e5f
- 5b6:	755f 756e 6573      	0x6573756e755f
- 5bc:	0064                	c.addi4spn	x9,x2,12
- 5be:	5f5f 6d74 695f      	0x695f6d745f5f
+ 5b0:	6134                	c.flw	f13,64(x10)
+ 5b2:	625f 6675 5f00      	0x5f006675625f
+ 5b8:	5f676973          	csrrsi	x18,0x5f6,14
+ 5bc:	7566                	c.flwsp	f10,120(x2)
+ 5be:	636e                	c.flwsp	f6,216(x2)
+    while (p != buffer) {
+ 5c0:	6900                	c.flw	f8,16(x10)
+ 5c2:	696e                	c.flwsp	f18,216(x2)
 	if (p[-1] == ' ' && p[-2] == ' ')
- 5c4:	74736473          	csrrsi	x8,0x747,6
- 5c8:	5f00                	c.lw	x8,56(x14)
- 5ca:	6f6c                	c.flw	f11,92(x14)
- 5cc:	746c6163          	bltu	x24,x6,d0e <riscv_tests_msg+0x11>
- 5d0:	6d69                	c.lui	x26,0x1a
- 5d2:	5f65                	c.li	x30,-7
- 5d4:	7562                	c.flwsp	f10,56(x2)
- 5d6:	0066                	0x66
- 5d8:	635f 6f6c 6573      	0x65736f6c635f
- 5de:	5f00                	c.lw	x8,56(x14)
- 5e0:	3472                	c.fldsp	f8,312(x2)
- 5e2:	0038                	c.addi4spn	x14,x2,8
- 5e4:	6d5f 7462 776f      	0x776f74626d5f
- 5ea:	74735f63          	bge	x6,x7,d48 <timeout_msg+0x16>
+ 5c4:	5f74                	c.lw	x13,124(x14)
+ 5c6:	6164                	c.flw	f9,68(x10)
+ 5c8:	6174                	c.flw	f13,68(x10)
+ 5ca:	5f00                	c.lw	x8,56(x14)
+ 5cc:	626e                	c.flwsp	f4,216(x2)
+ 5ce:	6675                	c.lui	x12,0x1d
+ 5d0:	5f00                	c.lw	x8,56(x14)
+ 5d2:	6e75                	c.lui	x28,0x1d
+ 5d4:	7375                	c.lui	x6,0xffffd
+ 5d6:	6465                	c.lui	x8,0x19
+ 5d8:	5f00                	c.lw	x8,56(x14)
+ 5da:	745f 5f6d 7369      	0x73695f6d745f
+ 5e0:	7364                	c.flw	f9,100(x14)
+ 5e2:	0074                	c.addi4spn	x13,x2,12
+ 5e4:	6c5f 636f 6c61      	0x6c61636f6c5f
+ 5ea:	6974                	c.flw	f13,84(x10)
 	    p[-1] = '.';
- 5ee:	7461                	c.lui	x8,0xffff8
- 5f0:	0065                	c.addi	x0,25
- 5f2:	705f 7335 5f00      	0x5f007335705f
- 5f8:	745f 5f6d 646d      	0x646d5f6d745f
+ 5ec:	656d                	c.lui	x10,0x1b
+ 5ee:	625f 6675 5f00      	0x5f006675625f
+ 5f4:	736f6c63          	bltu	x30,x22,d2c <unknown_msg+0x22>
+ 5f8:	0065                	c.addi	x0,25
+ 5fa:	725f 3834 5f00      	0x5f003834725f
 	print_chr(*(--p));
- 5fe:	7961                	c.lui	x18,0xffff8
-	...
+ 600:	626d                	c.lui	x4,0x1b
+ 602:	6f74                	c.flw	f13,92(x14)
+ 604:	735f6377          	0x735f6377
+ 608:	6174                	c.flw	f13,68(x10)
+ 60a:	6574                	c.flw	f13,76(x10)
+ 60c:	5f00                	c.lw	x8,56(x14)
+ 60e:	3570                	c.fld	f12,232(x10)
+ 610:	5f5f0073          	0x5f5f0073
+ 614:	6d74                	c.flw	f13,92(x10)
+ 616:	6d5f 6164 0079      	0x7961646d5f
