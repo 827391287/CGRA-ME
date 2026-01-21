@@ -1,0 +1,34 @@
+digraph G {
+    const1 [opcode=const, constVal="1"];
+    const2 [opcode=const, constVal="1"];
+    i10_store [opcode=store, memName=""];
+    i11_add [opcode=add];
+    i2_addrcal [opcode=addrcal];
+    i3_load [opcode=load, memName=""];
+    i4_call [opcode=get_real];
+    i5_call [opcode=get_imag];
+    i6_add [opcode=add];
+    i7_shl [opcode=shl];
+    i8_call [opcode=combine];
+    i9_addrcal [opcode=addrcal];
+    input0 [opcode=input];
+    input1 [opcode=input];
+    const1_dup0 [opcode=const, constVal="1"];
+    const1 -> i6_add [operand=any2input];
+    const2 -> i11_add [operand=any2input];
+    i11_add -> i2_addrcal [operand=RHS];
+    i11_add -> i9_addrcal [operand=RHS];
+    i11_add -> i11_add [operand=any2input];
+    i2_addrcal -> i3_load [operand=addr];
+    i3_load -> i4_call [operand=LHS];
+    i3_load -> i5_call [operand=LHS];
+    i4_call -> i6_add [operand=any2input];
+    i5_call -> i7_shl [operand=LHS];
+    i6_add -> i8_call [operand=LHS];
+    i7_shl -> i8_call [operand=RHS];
+    i8_call -> i10_store [operand=data];
+    i9_addrcal -> i10_store [operand=addr];
+    input0 -> i2_addrcal [operand=LHS];
+    input1 -> i9_addrcal [operand=LHS];
+    const1_dup0 -> i7_shl [operand=RHS];
+}

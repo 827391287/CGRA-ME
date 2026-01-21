@@ -1,0 +1,1800 @@
+
+CGRA - Modelling and Exploration (http://cgra-me.ece.utoronto.ca/)
+Copyright (c) 2015-2023 University of Toronto. All Rights Reserved.
+For research and academic purposes only. Commercial use is prohibited.
+Please email questions to: Jason Anderson (janders@ece.utoronto.ca)
+Compiled: Dec 18 2025 03:32:08
+
+[INFO] Parsing DFG...
+[INFO] Using C++ architecture ID hycube
+[INFO] Architecture description: HyCUBE CGRA Architecture
+[INFO] Creating "hycube" Architecture from C++...
+[INFO] Creating MRRG...
+[INFO] Creating Mapper 'ILPHeuristicMapper'...
+[INFO] Reducing MRRG...
+[INFO] Mapping...
+[INFO] Starting flow `ILP heuristic mapping cache warmup'
+finding a mapping via TestPlacement, with...
+ 	Options = {
+	Base Options = {
+	find_all_neighbour_FUs = set
+	solution_selector = set
+	edge_coster = unset
+	general = {
+               add_self_as_neighbour_if_path = true
+                  allow_multiple_op_mappings = true
+                    allow_unbalanced_latency = true
+          allowable_routing_usage_multiplier = 1
+    intermediate_solution_dump_filename_base = 
+                         just_warm_up_caches = true
+                            map_unmapped_ops = true
+                   max_num_paths_between_FUs = 20
+                               max_solutions = 2000000000
+                                 max_threads = 1
+                     model_IIS_dump_filename = 
+                         model_dump_filename = 
+                    operand_nodes_are_normal = false
+   path_exclusivity_constraints_are_pairwise = true
+                  path_exclusivity_modelling = false
+                      print_compatible_nodes = false
+          print_configuration_and_statistics = true
+                       print_initial_mapping = false
+                 print_intermediate_mappings = false
+  print_intermediate_mappings_placement_only = false
+                               print_mapping = false
+                            print_neighbours = false
+                                 print_paths = false
+                        print_solve_progress = true
+                                        seed = 0
+                            silence_warnings = false
+                         solve_approach_name = TestPlacement
+                                      solver = gurobi
+                       status_print_interval = 100
+                                   timelimit = 7200
+}
+}
+	solver_id = gurobi
+	use_solver_gurobi = 1
+	use_solver_gor_classic_cp = 0
+	use_solver_gor_sat_cp = 0
+}
+Problem Statistics = {
+      DFG - number of OPs = 15
+  average neighbour count = 25.750000
+}
+     start of TestPlacement +0.000000 @0.000000
+compute compatible_fu_nodes +0.030532 @0.030532
+                      setup +0.000508 @0.031039
+             warm up caches +0.000001 @0.031040
+       end of TestPlacement +0.000127 @0.031167
+finding a mapping via OuterSolve, with...
+ 	Options = {
+	Base Options = {
+	find_all_neighbour_FUs = set
+	solution_selector = set
+	edge_coster = unset
+	general = {
+               add_self_as_neighbour_if_path = true
+                  allow_multiple_op_mappings = true
+                    allow_unbalanced_latency = true
+          allowable_routing_usage_multiplier = 2
+    intermediate_solution_dump_filename_base = 
+                         just_warm_up_caches = true
+                            map_unmapped_ops = true
+                   max_num_paths_between_FUs = 20
+                               max_solutions = 100
+                                 max_threads = 1
+                     model_IIS_dump_filename = 
+                         model_dump_filename = 
+                    operand_nodes_are_normal = false
+   path_exclusivity_constraints_are_pairwise = true
+                  path_exclusivity_modelling = on
+                      print_compatible_nodes = false
+          print_configuration_and_statistics = true
+                       print_initial_mapping = false
+                 print_intermediate_mappings = true
+  print_intermediate_mappings_placement_only = yes
+                               print_mapping = false
+                            print_neighbours = false
+                                 print_paths = false
+                        print_solve_progress = true
+                                        seed = 0
+                            silence_warnings = false
+                         solve_approach_name = OuterSolve
+                                      solver = gurobi
+                       status_print_interval = 100
+                                   timelimit = 7200
+}
+}
+	solver_id = gurobi
+	use_solver_gurobi = 1
+	use_solver_gor_classic_cp = 0
+	use_solver_gor_sat_cp = 0
+}
+Problem Statistics = {
+      DFG - number of OPs = 15
+  average neighbour count = 25.750000
+}
+        start of OuterSolve +0.000000 @0.000000
+compute compatible_fu_nodes +0.014870 @0.014870
+         compute mrrg_paths +15.417315 @15.432186
+                      setup +0.000114 @15.432300
+             warm up caches +0.000003 @15.432303
+          end of OuterSolve +0.002040 @15.434342
+[INFO] Starting flow `ILP heuristic mapping'
+finding a mapping via TestPlacement, with...
+ 	Options = {
+	Base Options = {
+	find_all_neighbour_FUs = set
+	solution_selector = set
+	edge_coster = unset
+	general = {
+               add_self_as_neighbour_if_path = true
+                  allow_multiple_op_mappings = true
+                    allow_unbalanced_latency = true
+          allowable_routing_usage_multiplier = 1
+    intermediate_solution_dump_filename_base = 
+                         just_warm_up_caches = false
+                            map_unmapped_ops = true
+                   max_num_paths_between_FUs = 20
+                               max_solutions = 2000000000
+                                 max_threads = 1
+                     model_IIS_dump_filename = 
+                         model_dump_filename = 
+                    operand_nodes_are_normal = false
+   path_exclusivity_constraints_are_pairwise = true
+                  path_exclusivity_modelling = false
+                      print_compatible_nodes = false
+          print_configuration_and_statistics = true
+                       print_initial_mapping = false
+                 print_intermediate_mappings = false
+  print_intermediate_mappings_placement_only = false
+                               print_mapping = false
+                            print_neighbours = false
+                                 print_paths = false
+                        print_solve_progress = true
+                                        seed = 0
+                            silence_warnings = false
+                         solve_approach_name = TestPlacement
+                                      solver = gurobi
+                       status_print_interval = 100
+                                   timelimit = 7200
+}
+}
+	solver_id = gurobi
+	use_solver_gurobi = 1
+	use_solver_gor_classic_cp = 0
+	use_solver_gor_sat_cp = 0
+}
+Problem Statistics = {
+      DFG - number of OPs = 15
+  average neighbour count = 10.625000
+}
+Set parameter TimeLimit to value 7200
+TICK: solve setup +0.004072 @0.015922
+Set parameter Threads to value 1
+Set parameter PoolSearchMode to value 2
+Set parameter PoolSolutions to value 2000000000
+Gurobi Optimizer version 11.0.3 build v11.0.3rc0 (linux64 - "Ubuntu 22.04.2 LTS")
+
+CPU model: AMD Ryzen 7 5800H with Radeon Graphics, instruction set [SSE2|AVX|AVX2]
+Thread count: 8 physical cores, 8 logical processors, using up to 1 threads
+
+Optimize a model with 2410 rows, 1262 columns and 5931 nonzeros
+Model fingerprint: 0xf711c3ca
+Variable types: 0 continuous, 1262 integer (1262 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [0e+00, 0e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+Presolve removed 952 rows and 478 columns
+Presolve time: 0.04s
+Presolved: 1458 rows, 784 columns, 3612 nonzeros
+Variable types: 0 continuous, 784 integer (784 binary)
+Found heuristic solution: objective 0.0000000
+
+Explored 0 nodes (0 simplex iterations) in 0.04 seconds (0.05 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 1: 0 
+
+Solve interrupted
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 345, time in user-callback 0.00 sec
+Solve Statistics = {
+          num edge_is_used_vars = 1060
+  number of solutions evaluated = 1
+    op_is_mapped_to_vars.size() = 202
+       path_is_used_vars.size() = 0
+}
+start of TestPlacement +0.000000 @0.000000
+                 setup +0.009034 @0.009034
+      create variables +0.002817 @0.011850
+           solve setup +0.004072 @0.015922
+                 solve +0.044997 @0.060919
+  end of TestPlacement +0.000910 @0.061829
+TICK: test placement for NN = 7 +0.061882 @0.061882
+finding a mapping via OuterSolve, with...
+ 	Options = {
+	Base Options = {
+	find_all_neighbour_FUs = set
+	solution_selector = set
+	edge_coster = unset
+	general = {
+               add_self_as_neighbour_if_path = true
+                  allow_multiple_op_mappings = true
+                    allow_unbalanced_latency = true
+          allowable_routing_usage_multiplier = 2
+    intermediate_solution_dump_filename_base = 
+                         just_warm_up_caches = false
+                            map_unmapped_ops = true
+                   max_num_paths_between_FUs = 5
+                               max_solutions = 100
+                                 max_threads = 1
+                     model_IIS_dump_filename = 
+                         model_dump_filename = 
+                    operand_nodes_are_normal = false
+   path_exclusivity_constraints_are_pairwise = true
+                  path_exclusivity_modelling = on
+                      print_compatible_nodes = false
+          print_configuration_and_statistics = true
+                       print_initial_mapping = false
+                 print_intermediate_mappings = true
+  print_intermediate_mappings_placement_only = yes
+                               print_mapping = false
+                            print_neighbours = false
+                                 print_paths = false
+                        print_solve_progress = true
+                                        seed = 0
+                            silence_warnings = false
+                         solve_approach_name = OuterSolve
+                                      solver = gurobi
+                       status_print_interval = 100
+                                   timelimit = 7200
+}
+}
+	solver_id = gurobi
+	use_solver_gurobi = 1
+	use_solver_gor_classic_cp = 0
+	use_solver_gor_sat_cp = 0
+}
+Problem Statistics = {
+      DFG - number of OPs = 15
+  average neighbour count = 10.625000
+}
+Set parameter TimeLimit to value 7200
+TICK: solve setup +0.000007 @0.746891
+Set parameter Threads to value 1
+Set parameter PoolSearchMode to value 2
+Set parameter PoolSolutions to value 100
+Gurobi Optimizer version 11.0.3 build v11.0.3rc0 (linux64 - "Ubuntu 22.04.2 LTS")
+
+CPU model: AMD Ryzen 7 5800H with Radeon Graphics, instruction set [SSE2|AVX|AVX2]
+Thread count: 8 physical cores, 8 logical processors, using up to 1 threads
+
+Optimize a model with 83508 rows, 3644 columns and 172093 nonzeros
+Model fingerprint: 0xbb35e4ad
+Variable types: 0 continuous, 3644 integer (3644 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [0e+00, 0e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 2e+00]
+Presolve removed 77752 rows and 422 columns
+Presolve time: 0.02s
+Presolved: 5756 rows, 3222 columns, 14518 nonzeros
+Variable types: 0 continuous, 3222 integer (3222 binary)
+Operation Mapping Result:
+const1(const):   0:pe_c0_r1.const_val.const
+
+const1_dup0(const):   0:pe_c0_r0.const_val.const
+
+const2(const):   0:pe_c0_r2.const_val.const
+
+i10_store(store):   0:mem_2.mem_unit.mem
+
+i11_add(add):   0:pe_c1_r3.ALU.fu
+
+i2_addrcal(addrcal):   0:pe_c0_r3.ALU.fu
+
+i3_load(load):   0:mem_1.mem_unit.mem
+
+i4_call(get_real):   0:pe_c1_r1.ALU.fu
+
+i5_call(get_imag):   0:pe_c1_r2.ALU.fu
+
+i6_add(add):   0:pe_c1_r0.ALU.fu
+
+i7_shl(shl):   0:pe_c0_r1.ALU.fu
+
+i8_call(combine):   0:pe_c0_r0.ALU.fu
+
+i9_addrcal(addrcal):   0:pe_c0_r2.ALU.fu
+
+input0(input):   0:io_bottom_1.IOPin.io
+
+input1(input):   0:io_bottom_0.IOPin.io
+
+
+Connection Mapping Result:
+const1_out:
+__NOT_MAPPED__
+const1_dup0_out:
+__NOT_MAPPED__
+const2_out:
+__NOT_MAPPED__
+i11_add_out:
+__NOT_MAPPED__
+i2_addrcal_out:
+__NOT_MAPPED__
+i3_load_out:
+__NOT_MAPPED__
+i4_call_out:
+__NOT_MAPPED__
+i5_call_out:
+__NOT_MAPPED__
+i6_add_out:
+__NOT_MAPPED__
+i7_shl_out:
+__NOT_MAPPED__
+i8_call_out:
+__NOT_MAPPED__
+i9_addrcal_out:
+__NOT_MAPPED__
+input0_out:
+__NOT_MAPPED__
+input1_out:
+__NOT_MAPPED__
+finding a mapping via InnerSolve, with...
+ 	Options = {
+	Base Options = {
+	find_all_neighbour_FUs = unset
+	solution_selector = set
+	edge_coster = unset
+	general = {
+               add_self_as_neighbour_if_path = true
+                  allow_multiple_op_mappings = true
+                    allow_unbalanced_latency = false
+          allowable_routing_usage_multiplier = 1
+    intermediate_solution_dump_filename_base = 
+                         just_warm_up_caches = false
+                            map_unmapped_ops = false
+                   max_num_paths_between_FUs = 20
+                               max_solutions = 2000000000
+                                 max_threads = 1
+                     model_IIS_dump_filename = 
+                         model_dump_filename = 
+                    operand_nodes_are_normal = false
+   path_exclusivity_constraints_are_pairwise = true
+                  path_exclusivity_modelling = true
+                      print_compatible_nodes = false
+          print_configuration_and_statistics = true
+                       print_initial_mapping = false
+                 print_intermediate_mappings = false
+  print_intermediate_mappings_placement_only = false
+                               print_mapping = false
+                            print_neighbours = false
+                                 print_paths = false
+                        print_solve_progress = true
+                                        seed = 0
+                            silence_warnings = false
+                         solve_approach_name = InnerSolve
+                                      solver = gurobi
+                       status_print_interval = 100
+                                   timelimit = 7200
+}
+}
+	solver_id = gurobi
+	use_solver_gurobi = 1
+	use_solver_gor_classic_cp = 0
+	use_solver_gor_sat_cp = 0
+}
+Problem Statistics = {
+      DFG - number of OPs = 15
+  average neighbour count = 1.214286
+}
+Set parameter TimeLimit to value 7200
+TICK: solve setup +0.000759 @0.072569
+Set parameter Threads to value 1
+Set parameter PoolSearchMode to value 2
+Set parameter PoolSolutions to value 2000000000
+Gurobi Optimizer version 11.0.3 build v11.0.3rc0 (linux64 - "Ubuntu 22.04.2 LTS")
+
+CPU model: AMD Ryzen 7 5800H with Radeon Graphics, instruction set [SSE2|AVX|AVX2]
+Thread count: 8 physical cores, 8 logical processors, using up to 1 threads
+
+Optimize a model with 12210 rows, 450 columns and 24952 nonzeros
+Model fingerprint: 0x737edb9c
+Model has 47 general constraints
+Variable types: 0 continuous, 450 integer (402 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [0e+00, 0e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+  GenCon rhs range [1e+00, 4e+00]
+  GenCon coe range [1e+00, 1e+00]
+Presolve removed 11851 rows and 95 columns
+Presolve time: 0.04s
+Presolved: 359 rows, 355 columns, 2811 nonzeros
+Presolved model has 39 SOS constraint(s)
+Variable types: 0 continuous, 355 integer (271 binary)
+
+Root relaxation: objective 0.000000e+00, 49 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0   10          -    0.00000      -     -    0s
+     0     0    0.00000    0    8          -    0.00000      -     -    0s
+     0     2    0.00000    0    8          -    0.00000      -     -    0s
+
+Explored 4 nodes (62 simplex iterations) in 0.04 seconds (0.04 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 0
+
+Model is infeasible
+Best objective -, best bound -, gap -
+
+User-callback calls 454, time in user-callback 0.00 sec
+Solve Statistics = {
+          num edge_is_used_vars = 47
+  number of solutions evaluated = 0
+    op_is_mapped_to_vars.size() = 15
+       path_is_used_vars.size() = 340
+}
+        start of InnerSolve +0.000000 @0.000000
+                      setup +0.000818 @0.000818
+           create variables +0.001685 @0.002503
+PathExclusivity constraints +0.069307 @0.071810
+                solve setup +0.000759 @0.072569
+                      solve +0.045627 @0.118196
+          end of InnerSolve +0.000986 @0.119182
+Found heuristic solution: objective 0.0000000
+
+Root relaxation: objective 0.000000e+00, 886 iterations, 0.02 seconds (0.04 work units)
+Operation Mapping Result:
+const1(const):   0:pe_c0_r0.const_val.const
+  0:pe_c3_r0.const_val.const
+
+const1_dup0(const):   0:pe_c1_r2.const_val.const
+  0:pe_c2_r2.const_val.const
+  0:pe_c3_r1.const_val.const
+
+const2(const):   0:pe_c1_r3.const_val.const
+  0:pe_c2_r3.const_val.const
+
+i10_store(store):   0:mem_2.mem_unit.mem
+
+i11_add(add):   0:pe_c1_r3.ALU.fu
+  0:pe_c3_r3.ALU.fu
+
+i2_addrcal(addrcal):   0:pe_c0_r3.ALU.fu
+  0:pe_c2_r2.ALU.fu
+
+i3_load(load):   0:mem_1.mem_unit.mem
+
+i4_call(get_real):   0:pe_c0_r0.ALU.fu
+
+i5_call(get_imag):   0:pe_c1_r2.ALU.fu
+
+i6_add(add):   0:pe_c1_r0.ALU.fu
+
+i7_shl(shl):   0:pe_c1_r1.ALU.fu
+
+i8_call(combine):   0:pe_c0_r1.ALU.fu
+
+i9_addrcal(addrcal):   0:pe_c0_r2.ALU.fu
+
+input0(input):   0:io_bottom_1.IOPin.io
+
+input1(input):   0:io_bottom_0.IOPin.io
+
+
+Connection Mapping Result:
+const1_out:
+__NOT_MAPPED__
+const1_dup0_out:
+__NOT_MAPPED__
+const2_out:
+__NOT_MAPPED__
+i11_add_out:
+__NOT_MAPPED__
+i2_addrcal_out:
+__NOT_MAPPED__
+i3_load_out:
+__NOT_MAPPED__
+i4_call_out:
+__NOT_MAPPED__
+i5_call_out:
+__NOT_MAPPED__
+i6_add_out:
+__NOT_MAPPED__
+i7_shl_out:
+__NOT_MAPPED__
+i8_call_out:
+__NOT_MAPPED__
+i9_addrcal_out:
+__NOT_MAPPED__
+input0_out:
+__NOT_MAPPED__
+input1_out:
+__NOT_MAPPED__
+finding a mapping via InnerSolve, with...
+ 	Options = {
+	Base Options = {
+	find_all_neighbour_FUs = unset
+	solution_selector = set
+	edge_coster = unset
+	general = {
+               add_self_as_neighbour_if_path = true
+                  allow_multiple_op_mappings = true
+                    allow_unbalanced_latency = false
+          allowable_routing_usage_multiplier = 1
+    intermediate_solution_dump_filename_base = 
+                         just_warm_up_caches = false
+                            map_unmapped_ops = false
+                   max_num_paths_between_FUs = 20
+                               max_solutions = 2000000000
+                                 max_threads = 1
+                     model_IIS_dump_filename = 
+                         model_dump_filename = 
+                    operand_nodes_are_normal = false
+   path_exclusivity_constraints_are_pairwise = true
+                  path_exclusivity_modelling = true
+                      print_compatible_nodes = false
+          print_configuration_and_statistics = true
+                       print_initial_mapping = false
+                 print_intermediate_mappings = false
+  print_intermediate_mappings_placement_only = false
+                               print_mapping = false
+                            print_neighbours = false
+                                 print_paths = false
+                        print_solve_progress = true
+                                        seed = 0
+                            silence_warnings = false
+                         solve_approach_name = InnerSolve
+                                      solver = gurobi
+                       status_print_interval = 100
+                                   timelimit = 7199
+}
+}
+	solver_id = gurobi
+	use_solver_gurobi = 1
+	use_solver_gor_classic_cp = 0
+	use_solver_gor_sat_cp = 0
+}
+Problem Statistics = {
+      DFG - number of OPs = 15
+  average neighbour count = 1.600000
+}
+Set parameter TimeLimit to value 7199
+TICK: solve setup +0.001828 @0.228456
+Set parameter Threads to value 1
+Set parameter PoolSearchMode to value 2
+Set parameter PoolSolutions to value 2000000000
+Gurobi Optimizer version 11.0.3 build v11.0.3rc0 (linux64 - "Ubuntu 22.04.2 LTS")
+
+CPU model: AMD Ryzen 7 5800H with Radeon Graphics, instruction set [SSE2|AVX|AVX2]
+Thread count: 8 physical cores, 8 logical processors, using up to 1 threads
+
+Optimize a model with 30936 rows, 745 columns and 62951 nonzeros
+Model fingerprint: 0xdec15878
+Model has 76 general constraints
+Variable types: 0 continuous, 745 integer (697 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [0e+00, 0e+00]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 1e+00]
+  GenCon rhs range [1e+00, 4e+00]
+  GenCon coe range [1e+00, 1e+00]
+Presolve removed 29905 rows and 68 columns
+Presolve time: 0.13s
+Presolved: 1031 rows, 677 columns, 9033 nonzeros
+Presolved model has 68 SOS constraint(s)
+Variable types: 0 continuous, 677 integer (562 binary)
+
+Root relaxation: objective 0.000000e+00, 128 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0   14          -    0.00000      -     -    0s
+     0     0    0.00000    0   11          -    0.00000      -     -    0s
+     0     2    0.00000    0   11          -    0.00000      -     -    0s
+*   88    68              37       0.0000000    0.00000  0.00%   6.1    0s
+
+Cutting planes:
+  Implied bound: 3
+
+Explored 89 nodes (745 simplex iterations) in 0.19 seconds (0.19 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 1: 0 
+
+Solve interrupted
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 627, time in user-callback 0.00 sec
+Solve Statistics = {
+          num edge_is_used_vars = 76
+  number of solutions evaluated = 1
+    op_is_mapped_to_vars.size() = 21
+       path_is_used_vars.size() = 600
+}
+        start of InnerSolve +0.000000 @0.000000
+         compute mrrg_paths +0.020656 @0.020656
+                      setup +0.000012 @0.020668
+           create variables +0.001792 @0.022459
+PathExclusivity constraints +0.204168 @0.226628
+                solve setup +0.001828 @0.228456
+                      solve +0.189954 @0.418409
+          end of InnerSolve +0.002872 @0.421281
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0    0.00000    0   18    0.00000    0.00000  0.00%     -    0s
+
+Explored 1 nodes (1568 simplex iterations) in 0.68 seconds (0.18 work units)
+Thread count was 1 (of 8 available processors)
+
+Solution count 2: 0 0 
+
+Solve interrupted
+Best objective 0.000000000000e+00, best bound 0.000000000000e+00, gap 0.0000%
+
+User-callback calls 154, time in user-callback 0.54 sec
+Solve Statistics = {
+          num edge_is_used_vars = 2072
+  number of solutions evaluated = 2
+    op_is_mapped_to_vars.size() = 202
+       path_is_used_vars.size() = 1370
+}
+         start of OuterSolve +0.000000 @0.000000
+                       setup +0.007976 @0.007976
+            create variables +0.004419 @0.012395
+EdgeRequiresPath constraints +0.015967 @0.028362
+ PathExclusivity constraints +0.718522 @0.746884
+                 solve setup +0.000007 @0.746891
+                       solve +0.690600 @1.437490
+           end of OuterSolve +0.007367 @1.444858
+TICK: tried NN = 7 +1.444950 @1.506832
+start of ILP heuristic mapping +0.000000 @0.000000
+     test placement for NN = 7 +0.061882 @0.061882
+                  tried NN = 7 +1.444950 @1.506832
+  end of ILP heuristic mapping +0.000068 @1.506900
+[INFO] Mapping Success: 1
+[INFO] Mapping Time: 1.506899
+[INFO] Mapping Timeout: 0
+Operation Mapping Result:
+const1(const):   0:pe_c3_r0.const_val.const
+
+const1_dup0(const):   0:pe_c1_r2.const_val.const
+  0:pe_c3_r1.const_val.const
+
+const2(const):   0:pe_c1_r3.const_val.const
+  0:pe_c2_r3.const_val.const
+
+i10_store(store):   0:mem_2.mem_unit.mem
+
+i11_add(add):   0:pe_c1_r3.ALU.fu
+  0:pe_c3_r3.ALU.fu
+
+i2_addrcal(addrcal):   0:pe_c2_r2.ALU.fu
+
+i3_load(load):   0:mem_1.mem_unit.mem
+
+i4_call(get_real):   0:pe_c0_r0.ALU.fu
+
+i5_call(get_imag):   0:pe_c1_r2.ALU.fu
+
+i6_add(add):   0:pe_c1_r0.ALU.fu
+
+i7_shl(shl):   0:pe_c1_r1.ALU.fu
+
+i8_call(combine):   0:pe_c0_r1.ALU.fu
+
+i9_addrcal(addrcal):   0:pe_c0_r2.ALU.fu
+
+input0(input):   0:io_bottom_1.IOPin.io
+
+input1(input):   0:io_bottom_0.IOPin.io
+
+
+Connection Mapping Result:
+const1_out:
+  0:pe_c3_r0.const_val.out
+  0:pe_c3_r0.crossbar.in7
+  0:pe_c3_r0.crossbar.mux_4.in7
+  0:pe_c3_r0.crossbar.mux_4.mux
+  0:pe_c2_r1.in5
+  0:pe_c3_r0.out7
+  0:pe_c3_r0.crossbar.out4
+  0:pe_c3_r0.crossbar.mux_4.out
+  0:pe_c2_r1.reg5.in
+  0:pe_c2_r1.reg5.m_in
+  0:pe_c2_r1.reg5.reg
+  0:pe_c2_r1.reg5.out
+  0:pe_c2_r1.reg5.m_out
+  0:pe_c2_r1.mux_5.in1
+  0:pe_c2_r1.mux_5.mux
+  0:pe_c2_r1.mux_5.out
+  0:pe_c2_r1.crossbar.in5
+  0:pe_c2_r1.crossbar.mux_4.in5
+  0:pe_c2_r1.crossbar.mux_4.mux
+  0:pe_c2_r1.out4
+  0:pe_c1_r0.in6
+  0:pe_c2_r1.crossbar.out4
+  0:pe_c2_r1.crossbar.mux_4.out
+  0:pe_c1_r0.mux_6.in0
+  0:pe_c1_r0.mux_6.mux
+  0:pe_c1_r0.mux_6.out
+  0:pe_c1_r0.crossbar.in4
+  0:pe_c1_r0.crossbar.mux_6.in4
+  0:pe_c1_r0.crossbar.mux_6.mux
+  0:pe_c1_r0.rega.in
+  0:pe_c1_r0.rega.m_in
+  0:pe_c1_r0.crossbar.out6
+  0:pe_c1_r0.crossbar.mux_6.out
+  0:pe_c1_r0.rega.reg
+  0:pe_c1_r0.rega.out
+  0:pe_c1_r0.rega.m_out
+  0:pe_c1_r0.ALU.in_a
+
+const1_dup0_out:
+  0:pe_c3_r1.const_val.out
+  0:pe_c3_r1.crossbar.in8
+  0:pe_c3_r1.crossbar.mux_4.in8
+  0:pe_c3_r1.out4
+  0:pe_c3_r1.crossbar.mux_4.mux
+  0:pe_c3_r1.crossbar.out4
+  0:pe_c2_r0.in6
+  0:pe_c3_r1.crossbar.mux_4.out
+  0:pe_c2_r0.mux_6.in0
+  0:pe_c2_r0.mux_6.mux
+  0:pe_c2_r0.mux_6.out
+  0:pe_c2_r0.crossbar.in4
+  0:pe_c2_r0.crossbar.mux_5.in4
+  0:pe_c2_r0.crossbar.mux_5.mux
+  0:pe_c2_r0.out7
+  0:pe_c2_r0.crossbar.out5
+  0:pe_c1_r1.in5
+  0:pe_c2_r0.crossbar.mux_5.out
+  0:pe_c1_r1.reg5.in
+  0:pe_c1_r1.reg5.m_in
+  0:pe_c1_r1.reg5.reg
+  0:pe_c1_r1.reg5.out
+  0:pe_c1_r1.reg5.m_out
+  0:pe_c1_r1.mux_5.in1
+  0:pe_c1_r1.mux_5.mux
+  0:pe_c1_r1.mux_5.out
+  0:pe_c1_r1.crossbar.in5
+  0:pe_c1_r1.crossbar.mux_9.in5
+  0:pe_c1_r1.crossbar.mux_9.mux
+  0:pe_c1_r1.regb.m_in
+  0:pe_c1_r1.regb.in
+  0:pe_c1_r1.crossbar.out9
+  0:pe_c1_r1.crossbar.mux_9.out
+  0:pe_c1_r1.regb.reg
+  0:pe_c1_r1.regb.out
+  0:pe_c1_r1.regb.m_out
+  0:pe_c1_r1.ALU.in_b
+
+const2_out:
+  0:pe_c1_r3.const_val.out
+  0:pe_c1_r3.crossbar.in8
+  0:pe_c1_r3.crossbar.mux_1.in8
+  0:pe_c1_r3.crossbar.mux_1.mux
+  0:pe_c2_r3.in3
+  0:pe_c1_r3.out1
+  0:pe_c1_r3.crossbar.out1
+  0:pe_c1_r3.crossbar.mux_1.out
+  0:pe_c2_r3.mux_3.in0
+  0:pe_c2_r3.mux_3.mux
+  0:pe_c2_r3.mux_3.out
+  0:pe_c2_r3.crossbar.in3
+  0:pe_c2_r3.crossbar.mux_5.in3
+  0:pe_c2_r3.crossbar.mux_5.mux
+  0:pe_c3_r2.in7
+  0:pe_c2_r3.out5
+  0:pe_c2_r3.crossbar.out5
+  0:pe_c2_r3.crossbar.mux_5.out
+  0:pe_c3_r2.mux_7.in0
+  0:pe_c3_r2.mux_7.mux
+  0:pe_c3_r2.mux_7.out
+  0:pe_c3_r2.crossbar.in5
+  0:pe_c3_r2.crossbar.mux_2.in5
+  0:pe_c3_r2.crossbar.mux_2.mux
+  0:pe_c3_r3.in0
+  0:pe_c3_r2.out2
+  0:pe_c3_r2.crossbar.out2
+  0:pe_c3_r2.crossbar.mux_2.out
+  0:pe_c3_r3.mux_0.in0
+  0:pe_c3_r3.mux_0.mux
+  0:pe_c3_r3.mux_0.out
+  0:pe_c3_r3.crossbar.in0
+  0:pe_c3_r3.crossbar.mux_6.in0
+  0:pe_c3_r3.crossbar.mux_6.mux
+  0:pe_c3_r3.regb.m_in
+  0:pe_c3_r3.regb.in
+  0:pe_c3_r3.crossbar.out6
+  0:pe_c3_r3.crossbar.mux_6.out
+  0:pe_c3_r3.regb.reg
+  0:pe_c3_r3.regb.out
+  0:pe_c3_r3.regb.m_out
+  0:pe_c3_r3.ALU.in_b
+  0:pe_c2_r3.const_val.out
+  0:pe_c2_r3.crossbar.in8
+  0:pe_c2_r3.crossbar.mux_4.in8
+  0:pe_c2_r3.out4
+  0:pe_c1_r2.in6
+  0:pe_c2_r3.crossbar.mux_4.mux
+  0:pe_c2_r3.crossbar.out4
+  0:pe_c2_r3.crossbar.mux_4.out
+  0:pe_c1_r2.mux_6.in0
+  0:pe_c1_r2.mux_6.mux
+  0:pe_c1_r2.mux_6.out
+  0:pe_c1_r2.crossbar.in6
+  0:pe_c1_r2.crossbar.mux_2.in6
+  0:pe_c1_r3.in0
+  0:pe_c1_r2.out2
+  0:pe_c1_r2.crossbar.mux_2.mux
+  0:pe_c1_r2.crossbar.out2
+  0:pe_c1_r2.crossbar.mux_2.out
+  0:pe_c1_r3.reg0.in
+  0:pe_c1_r3.reg0.m_in
+  0:pe_c1_r3.reg0.reg
+  0:pe_c1_r3.reg0.out
+  0:pe_c1_r3.reg0.m_out
+  0:pe_c1_r3.mux_0.in1
+  0:pe_c1_r3.mux_0.mux
+  0:pe_c1_r3.mux_0.out
+  0:pe_c1_r3.crossbar.in0
+  0:pe_c1_r3.crossbar.mux_7.in0
+  0:pe_c1_r3.crossbar.mux_7.mux
+  0:pe_c1_r3.regb.m_in
+  0:pe_c1_r3.regb.in
+  0:pe_c1_r3.crossbar.out7
+  0:pe_c1_r3.crossbar.mux_7.out
+  0:pe_c1_r3.regb.reg
+  0:pe_c1_r3.regb.out
+  0:pe_c1_r3.regb.m_out
+  0:pe_c1_r3.ALU.in_b
+
+i11_add_out:
+  0:pe_c1_r3.ALU.out
+  0:pe_c1_r3.crossbar.in6
+  0:pe_c1_r3.crossbar.mux_6.in6
+  0:pe_c1_r3.crossbar.mux_6.mux
+  0:pe_c1_r3.rega.in
+  0:pe_c1_r3.rega.m_in
+  0:pe_c1_r3.crossbar.out6
+  0:pe_c1_r3.crossbar.mux_6.out
+  0:pe_c1_r3.rega.reg
+  0:pe_c1_r3.rega.out
+  0:pe_c1_r3.rega.m_out
+  0:pe_c1_r3.ALU.in_a
+  0:pe_c1_r3.crossbar.mux_0.in6
+  0:pe_c1_r3.crossbar.mux_0.mux
+  0:pe_c1_r3.out0
+  0:pe_c1_r2.in2
+  0:pe_c1_r3.crossbar.out0
+  0:pe_c1_r3.crossbar.mux_0.out
+  0:pe_c1_r2.mux_2.in0
+  0:pe_c1_r2.mux_2.mux
+  0:pe_c1_r2.mux_2.out
+  0:pe_c1_r2.crossbar.in2
+  0:pe_c1_r2.crossbar.mux_1.in2
+  0:pe_c1_r2.crossbar.mux_1.mux
+  0:pe_c2_r2.in3
+  0:pe_c1_r2.out1
+  0:pe_c1_r2.crossbar.out1
+  0:pe_c1_r2.crossbar.mux_1.out
+  0:pe_c2_r2.mux_3.in0
+  0:pe_c2_r2.mux_3.mux
+  0:pe_c2_r2.mux_3.out
+  0:pe_c2_r2.crossbar.in3
+  0:pe_c2_r2.crossbar.mux_9.in3
+  0:pe_c2_r2.crossbar.mux_9.mux
+  0:pe_c2_r2.regb.m_in
+  0:pe_c2_r2.regb.in
+  0:pe_c2_r2.crossbar.out9
+  0:pe_c2_r2.crossbar.mux_9.out
+  0:pe_c2_r2.regb.reg
+  0:pe_c2_r2.regb.out
+  0:pe_c2_r2.regb.m_out
+  0:pe_c2_r2.ALU.in_b
+  0:pe_c3_r3.ALU.out
+  0:pe_c3_r3.crossbar.in5
+  0:pe_c3_r3.crossbar.mux_5.in5
+  0:pe_c3_r3.crossbar.mux_5.mux
+  0:pe_c3_r3.rega.m_in
+  0:pe_c3_r3.rega.in
+  0:pe_c3_r3.crossbar.out5
+  0:pe_c3_r3.crossbar.mux_5.out
+  0:pe_c3_r3.rega.reg
+  0:pe_c3_r3.rega.out
+  0:pe_c3_r3.rega.m_out
+  0:pe_c3_r3.ALU.in_a
+  0:pe_c3_r3.RES.in
+  0:pe_c3_r3.RES.m_in
+  0:pe_c3_r3.RES.reg
+  0:pe_c3_r3.RES.out
+  0:pe_c3_r3.RES.m_out
+  0:pe_c3_r3.crossbar.in6
+  0:pe_c3_r3.crossbar.mux_4.in6
+  0:pe_c3_r3.crossbar.mux_4.mux
+  0:pe_c2_r2.in6
+  0:pe_c3_r3.out4
+  0:pe_c3_r3.crossbar.out4
+  0:pe_c3_r3.crossbar.mux_4.out
+  0:pe_c2_r2.mux_6.in0
+  0:pe_c2_r2.mux_6.mux
+  0:pe_c2_r2.mux_6.out
+  0:pe_c2_r2.crossbar.in6
+  0:pe_c2_r2.crossbar.mux_4.in6
+  0:pe_c2_r2.crossbar.mux_4.mux
+  0:pe_c2_r2.out4
+  0:pe_c2_r2.crossbar.out4
+  0:pe_c1_r1.in6
+  0:pe_c2_r2.crossbar.mux_4.out
+  0:pe_c1_r1.mux_6.in0
+  0:pe_c1_r1.mux_6.mux
+  0:pe_c1_r1.mux_6.out
+  0:pe_c1_r1.crossbar.in6
+  0:pe_c1_r1.crossbar.mux_7.in6
+  0:pe_c1_r1.crossbar.mux_7.mux
+  0:pe_c1_r1.out7
+  0:pe_c0_r2.in5
+  0:pe_c1_r1.crossbar.out7
+  0:pe_c1_r1.crossbar.mux_7.out
+  0:pe_c0_r2.mux_5.in0
+  0:pe_c0_r2.mux_5.mux
+  0:pe_c0_r2.mux_5.out
+  0:pe_c0_r2.crossbar.in4
+  0:pe_c0_r2.crossbar.mux_7.in4
+  0:pe_c0_r2.crossbar.mux_7.mux
+  0:pe_c0_r2.regb.m_in
+  0:pe_c0_r2.regb.in
+  0:pe_c0_r2.crossbar.out7
+  0:pe_c0_r2.crossbar.mux_7.out
+  0:pe_c0_r2.regb.reg
+  0:pe_c0_r2.regb.out
+  0:pe_c0_r2.regb.m_out
+  0:pe_c0_r2.ALU.in_b
+
+i2_addrcal_out:
+  0:pe_c2_r2.ALU.out
+  0:pe_c2_r2.RES.in
+  0:pe_c2_r2.RES.m_in
+  0:pe_c2_r2.RES.reg
+  0:pe_c2_r2.RES.out
+  0:pe_c2_r2.RES.m_out
+  0:pe_c2_r2.crossbar.in9
+  0:pe_c2_r2.crossbar.mux_3.in9
+  0:pe_c2_r2.crossbar.mux_3.mux
+  0:pe_c2_r2.out3
+  0:pe_c1_r2.in1
+  0:pe_c2_r2.crossbar.out3
+  0:pe_c2_r2.crossbar.mux_3.out
+  0:pe_c1_r2.mux_1.in0
+  0:pe_c1_r2.mux_1.mux
+  0:pe_c1_r2.mux_1.out
+  0:pe_c1_r2.crossbar.in1
+  0:pe_c1_r2.crossbar.mux_3.in1
+  0:pe_c1_r2.crossbar.mux_3.mux
+  0:pe_c1_r2.out3
+  0:pe_c0_r2.in1
+  0:pe_c1_r2.crossbar.out3
+  0:pe_c1_r2.crossbar.mux_3.out
+  0:pe_c0_r2.mux_1.in0
+  0:pe_c0_r2.mux_1.mux
+  0:pe_c0_r2.mux_1.out
+  0:pe_c0_r2.crossbar.in1
+  0:pe_c0_r2.crossbar.mux_3.in1
+  0:pe_c0_r2.crossbar.mux_3.mux
+  0:pe_c0_r2.out3
+  0:pe_c0_r2.crossbar.out3
+  0:pe_c0_r2.crossbar.mux_3.out
+  0:mem_1.in2
+  0:mem_1.mux_addr.in2
+  0:mem_1.mux_addr.mux
+  0:mem_1.mux_addr.out
+  0:mem_1.mem_unit.addr
+
+i3_load_out:
+  0:mem_1.mem_unit.data_out
+  0:pe_c0_r1.in3
+  0:mem_1.out
+  0:pe_c0_r1.reg3.in
+  0:pe_c0_r1.reg3.m_in
+  0:pe_c0_r1.reg3.reg
+  0:pe_c0_r1.reg3.out
+  0:pe_c0_r1.reg3.m_out
+  0:pe_c0_r1.mux_3.in1
+  0:pe_c0_r1.mux_3.mux
+  0:pe_c0_r1.mux_3.out
+  0:pe_c0_r1.crossbar.in3
+  0:pe_c0_r1.crossbar.mux_0.in3
+  0:pe_c0_r1.out0
+  0:pe_c0_r1.crossbar.out0
+  0:pe_c0_r1.crossbar.mux_0.mux
+  0:pe_c0_r0.in2
+  0:pe_c0_r1.crossbar.mux_0.out
+  0:pe_c0_r0.mux_2.in0
+  0:pe_c0_r0.mux_2.mux
+  0:pe_c0_r0.mux_2.out
+  0:pe_c0_r0.crossbar.in2
+  0:pe_c0_r0.crossbar.mux_5.in2
+  0:pe_c0_r0.rega.m_in
+  0:pe_c0_r0.rega.in
+  0:pe_c0_r0.crossbar.mux_5.mux
+  0:pe_c0_r0.crossbar.out5
+  0:pe_c0_r0.crossbar.mux_5.out
+  0:pe_c0_r0.rega.reg
+  0:pe_c0_r0.rega.out
+  0:pe_c0_r0.rega.m_out
+  0:pe_c0_r0.ALU.in_a
+  0:pe_c0_r1.crossbar.mux_5.in3
+  0:pe_c0_r1.crossbar.mux_5.mux
+  0:pe_c1_r2.in4
+  0:pe_c0_r1.out6
+  0:pe_c0_r1.crossbar.out5
+  0:pe_c0_r1.crossbar.mux_5.out
+  0:pe_c1_r2.reg4.in
+  0:pe_c1_r2.reg4.m_in
+  0:pe_c1_r2.reg4.reg
+  0:pe_c1_r2.reg4.out
+  0:pe_c1_r2.reg4.m_out
+  0:pe_c1_r2.mux_4.in1
+  0:pe_c1_r2.mux_4.mux
+  0:pe_c1_r2.mux_4.out
+  0:pe_c1_r2.crossbar.in4
+  0:pe_c1_r2.crossbar.mux_8.in4
+  0:pe_c1_r2.crossbar.mux_8.mux
+  0:pe_c1_r2.rega.m_in
+  0:pe_c1_r2.rega.in
+  0:pe_c1_r2.crossbar.out8
+  0:pe_c1_r2.crossbar.mux_8.out
+  0:pe_c1_r2.rega.reg
+  0:pe_c1_r2.rega.out
+  0:pe_c1_r2.rega.m_out
+  0:pe_c1_r2.ALU.in_a
+
+i4_call_out:
+  0:pe_c0_r0.ALU.out
+  0:pe_c0_r0.RES.in
+  0:pe_c0_r0.RES.m_in
+  0:pe_c0_r0.RES.reg
+  0:pe_c0_r0.RES.out
+  0:pe_c0_r0.RES.m_out
+  0:pe_c0_r0.crossbar.in6
+  0:pe_c0_r0.crossbar.mux_1.in6
+  0:pe_c0_r0.crossbar.mux_1.mux
+  0:pe_c1_r0.in3
+  0:pe_c0_r0.crossbar.out1
+  0:pe_c0_r0.out1
+  0:pe_c0_r0.crossbar.mux_1.out
+  0:pe_c1_r0.mux_3.in0
+  0:pe_c1_r0.mux_3.mux
+  0:pe_c1_r0.mux_3.out
+  0:pe_c1_r0.crossbar.in3
+  0:pe_c1_r0.crossbar.mux_7.in3
+  0:pe_c1_r0.crossbar.mux_7.mux
+  0:pe_c1_r0.regb.m_in
+  0:pe_c1_r0.regb.in
+  0:pe_c1_r0.crossbar.out7
+  0:pe_c1_r0.crossbar.mux_7.out
+  0:pe_c1_r0.regb.reg
+  0:pe_c1_r0.regb.out
+  0:pe_c1_r0.regb.m_out
+  0:pe_c1_r0.ALU.in_b
+
+i5_call_out:
+  0:pe_c1_r2.ALU.out
+  0:pe_c1_r2.crossbar.in8
+  0:pe_c1_r2.crossbar.mux_0.in8
+  0:pe_c1_r2.crossbar.mux_0.mux
+  0:pe_c1_r2.out0
+  0:pe_c1_r1.in2
+  0:pe_c1_r2.crossbar.out0
+  0:pe_c1_r2.crossbar.mux_0.out
+  0:pe_c1_r1.mux_2.in0
+  0:pe_c1_r1.mux_2.mux
+  0:pe_c1_r1.mux_2.out
+  0:pe_c1_r1.crossbar.in2
+  0:pe_c1_r1.crossbar.mux_8.in2
+  0:pe_c1_r1.crossbar.mux_8.mux
+  0:pe_c1_r1.rega.m_in
+  0:pe_c1_r1.rega.in
+  0:pe_c1_r1.crossbar.out8
+  0:pe_c1_r1.crossbar.mux_8.out
+  0:pe_c1_r1.rega.reg
+  0:pe_c1_r1.rega.out
+  0:pe_c1_r1.rega.m_out
+  0:pe_c1_r1.ALU.in_a
+
+i6_add_out:
+  0:pe_c1_r0.ALU.out
+  0:pe_c1_r0.RES.in
+  0:pe_c1_r0.RES.m_in
+  0:pe_c1_r0.RES.reg
+  0:pe_c1_r0.RES.out
+  0:pe_c1_r0.RES.m_out
+  0:pe_c1_r0.crossbar.in7
+  0:pe_c1_r0.crossbar.mux_5.in7
+  0:pe_c1_r0.crossbar.mux_5.mux
+  0:pe_c1_r0.out7
+  0:pe_c0_r1.in5
+  0:pe_c1_r0.crossbar.out5
+  0:pe_c1_r0.crossbar.mux_5.out
+  0:pe_c0_r1.reg5.in
+  0:pe_c0_r1.reg5.m_in
+  0:pe_c0_r1.reg5.reg
+  0:pe_c0_r1.reg5.out
+  0:pe_c0_r1.reg5.m_out
+  0:pe_c0_r1.mux_5.in1
+  0:pe_c0_r1.mux_5.mux
+  0:pe_c0_r1.mux_5.out
+  0:pe_c0_r1.crossbar.in4
+  0:pe_c0_r1.crossbar.mux_6.in4
+  0:pe_c0_r1.crossbar.mux_6.mux
+  0:pe_c0_r1.rega.m_in
+  0:pe_c0_r1.rega.in
+  0:pe_c0_r1.crossbar.out6
+  0:pe_c0_r1.crossbar.mux_6.out
+  0:pe_c0_r1.rega.reg
+  0:pe_c0_r1.rega.out
+  0:pe_c0_r1.rega.m_out
+  0:pe_c0_r1.ALU.in_a
+
+i7_shl_out:
+  0:pe_c1_r1.ALU.out
+  0:pe_c1_r1.RES.in
+  0:pe_c1_r1.RES.m_in
+  0:pe_c1_r1.RES.reg
+  0:pe_c1_r1.RES.out
+  0:pe_c1_r1.RES.m_out
+  0:pe_c1_r1.crossbar.in9
+  0:pe_c1_r1.crossbar.mux_3.in9
+  0:pe_c1_r1.crossbar.mux_3.mux
+  0:pe_c1_r1.out3
+  0:pe_c0_r1.in1
+  0:pe_c1_r1.crossbar.out3
+  0:pe_c1_r1.crossbar.mux_3.out
+  0:pe_c0_r1.reg1.in
+  0:pe_c0_r1.reg1.m_in
+  0:pe_c0_r1.reg1.reg
+  0:pe_c0_r1.reg1.out
+  0:pe_c0_r1.reg1.m_out
+  0:pe_c0_r1.mux_1.in1
+  0:pe_c0_r1.mux_1.mux
+  0:pe_c0_r1.mux_1.out
+  0:pe_c0_r1.crossbar.in1
+  0:pe_c0_r1.crossbar.mux_7.in1
+  0:pe_c0_r1.crossbar.mux_7.mux
+  0:pe_c0_r1.regb.m_in
+  0:pe_c0_r1.regb.in
+  0:pe_c0_r1.crossbar.out7
+  0:pe_c0_r1.crossbar.mux_7.out
+  0:pe_c0_r1.regb.reg
+  0:pe_c0_r1.regb.out
+  0:pe_c0_r1.regb.m_out
+  0:pe_c0_r1.ALU.in_b
+
+i8_call_out:
+  0:pe_c0_r1.ALU.out
+  0:pe_c0_r1.RES.in
+  0:pe_c0_r1.RES.m_in
+  0:pe_c0_r1.RES.reg
+  0:pe_c0_r1.RES.out
+  0:pe_c0_r1.RES.m_out
+  0:pe_c0_r1.crossbar.in7
+  0:pe_c0_r1.crossbar.mux_3.in7
+  0:pe_c0_r1.out3
+  0:pe_c0_r1.crossbar.out3
+  0:pe_c0_r1.crossbar.mux_3.mux
+  0:pe_c0_r1.crossbar.mux_3.out
+  0:mem_2.in1
+  0:mem_2.mux_data.in1
+  0:mem_2.mux_data.mux
+  0:mem_2.mux_data.out
+  0:mem_2.mem_unit.data_in
+
+i9_addrcal_out:
+  0:pe_c0_r2.ALU.out
+  0:pe_c0_r2.crossbar.in6
+  0:pe_c0_r2.crossbar.mux_2.in6
+  0:pe_c0_r2.crossbar.mux_2.mux
+  0:pe_c0_r3.in0
+  0:pe_c0_r2.out2
+  0:pe_c0_r2.crossbar.out2
+  0:pe_c0_r2.crossbar.mux_2.out
+  0:pe_c0_r3.mux_0.in0
+  0:pe_c0_r3.mux_0.mux
+  0:pe_c0_r3.mux_0.out
+  0:pe_c0_r3.crossbar.in0
+  0:pe_c0_r3.crossbar.mux_3.in0
+  0:pe_c0_r3.crossbar.mux_3.mux
+  0:pe_c0_r3.out3
+  0:pe_c0_r3.crossbar.out3
+  0:pe_c0_r3.crossbar.mux_3.out
+  0:mem_2.in3
+  0:mem_2.mux_addr.in3
+  0:mem_2.mux_addr.mux
+  0:mem_2.mux_addr.out
+  0:mem_2.mem_unit.addr
+
+input0_out:
+  0:io_bottom_1.IOPin.out
+  0:io_bottom_1.reg_out.m_in
+  0:io_bottom_1.reg_out.in
+  0:io_bottom_1.reg_out.reg
+  0:io_bottom_1.reg_out.out
+  0:io_bottom_1.reg_out.m_out
+  0:io_bottom_1.out
+  0:pe_c1_r3.in2
+  0:pe_c1_r3.mux_2.in0
+  0:pe_c1_r3.mux_2.mux
+  0:pe_c1_r3.mux_2.out
+  0:pe_c1_r3.crossbar.in2
+  0:pe_c1_r3.crossbar.mux_5.in2
+  0:pe_c1_r3.crossbar.mux_5.mux
+  0:pe_c2_r2.in7
+  0:pe_c1_r3.out5
+  0:pe_c1_r3.crossbar.out5
+  0:pe_c1_r3.crossbar.mux_5.out
+  0:pe_c2_r2.reg7.in
+  0:pe_c2_r2.reg7.m_in
+  0:pe_c2_r2.reg7.reg
+  0:pe_c2_r2.reg7.out
+  0:pe_c2_r2.reg7.m_out
+  0:pe_c2_r2.mux_7.in1
+  0:pe_c2_r2.mux_7.mux
+  0:pe_c2_r2.mux_7.out
+  0:pe_c2_r2.crossbar.in7
+  0:pe_c2_r2.crossbar.mux_8.in7
+  0:pe_c2_r2.crossbar.mux_8.mux
+  0:pe_c2_r2.rega.m_in
+  0:pe_c2_r2.rega.in
+  0:pe_c2_r2.crossbar.out8
+  0:pe_c2_r2.crossbar.mux_8.out
+  0:pe_c2_r2.rega.reg
+  0:pe_c2_r2.rega.out
+  0:pe_c2_r2.rega.m_out
+  0:pe_c2_r2.ALU.in_a
+
+input1_out:
+  0:io_bottom_0.IOPin.out
+  0:io_bottom_0.reg_out.m_in
+  0:io_bottom_0.reg_out.in
+  0:io_bottom_0.reg_out.reg
+  0:io_bottom_0.reg_out.out
+  0:io_bottom_0.reg_out.m_out
+  0:io_bottom_0.out
+  0:pe_c0_r3.in2
+  0:pe_c0_r3.reg2.in
+  0:pe_c0_r3.reg2.m_in
+  0:pe_c0_r3.reg2.reg
+  0:pe_c0_r3.reg2.out
+  0:pe_c0_r3.reg2.m_out
+  0:pe_c0_r3.mux_2.in1
+  0:pe_c0_r3.mux_2.mux
+  0:pe_c0_r3.mux_2.out
+  0:pe_c0_r3.crossbar.in2
+  0:pe_c0_r3.crossbar.mux_0.in2
+  0:pe_c0_r3.crossbar.mux_0.mux
+  0:pe_c0_r3.out0
+  0:pe_c0_r2.in2
+  0:pe_c0_r3.crossbar.out0
+  0:pe_c0_r3.crossbar.mux_0.out
+  0:pe_c0_r2.reg2.in
+  0:pe_c0_r2.reg2.m_in
+  0:pe_c0_r2.reg2.reg
+  0:pe_c0_r2.reg2.out
+  0:pe_c0_r2.reg2.m_out
+  0:pe_c0_r2.mux_2.in1
+  0:pe_c0_r2.mux_2.mux
+  0:pe_c0_r2.mux_2.out
+  0:pe_c0_r2.crossbar.in2
+  0:pe_c0_r2.crossbar.mux_6.in2
+  0:pe_c0_r2.crossbar.mux_6.mux
+  0:pe_c0_r2.rega.m_in
+  0:pe_c0_r2.rega.in
+  0:pe_c0_r2.crossbar.out6
+  0:pe_c0_r2.crossbar.mux_6.out
+  0:pe_c0_r2.rega.reg
+  0:pe_c0_r2.rega.out
+  0:pe_c0_r2.rega.m_out
+  0:pe_c0_r2.ALU.in_a
+
+No isolated found
+config table: 
+	0x6391b8b4db60 0x6391b8b4df10 0x6391b8b4e2a0 0x6391b8b52a40 0x6391b8b52df0 0x6391b8b53180 0x6391b8b57920 0x6391b8b57cd0 0x6391b8b58060 0x6391b8b5c800 0x6391b8b5cbb0 0x6391b8b5cf40 0x6391b8b5f030 0x6391b8b5f3e0 0x6391b8b5f770 0x6391b8b617a0 0x6391b8b61b50 0x6391b8b61ee0 0x6391b8b63f10 0x6391b8b642c0 0x6391b8b64650 0x6391b8b66680 0x6391b8b66a30 0x6391b8b66dc0 0x6391b8b4b4d0 0x6391b8b4b860 0x6391b8b4bbf0 0x6391b8b50390 0x6391b8b50740 0x6391b8b50ad0 0x6391b8b55270 0x6391b8b55620 0x6391b8b559b0 0x6391b8b5a150 0x6391b8b5a500 0x6391b8b5a890 0x6391b8b3f220 0x6391b8b3f590 0x6391b8b3feb0 0x6391b8b42530 0x6391b8b428c0 0x6391b8b43220 0x6391b8b458a0 0x6391b8b45c30 0x6391b8b46590 0x6391b8b48c10 0x6391b8b48fa0 0x6391b8b49900 0x6391b894d030 0x6391b894e200 0x6391b894e920 0x6391b894f040 0x6391b894f760 0x6391b894fe80 0x6391b894dae0 0x6391b894de70 0x6391b894e590 0x6391b894ecb0 0x6391b894f3d0 0x6391b894faf0 0x6391b894d3c0 0x6391b894d750 0x6391b8948330 0x6391b8943330 0x6391b89436a0 0x6391b8943a30 0x6391b8943dc0 0x6391b8944150 0x6391b89444e0 0x6391b8944870 0x6391b896b9f0 0x6391b896cbc0 0x6391b896d2e0 0x6391b896da00 0x6391b896e120 0x6391b896e840 0x6391b896ef60 0x6391b896c4a0 0x6391b896c830 0x6391b896cf50 0x6391b896d670 0x6391b896dd90 0x6391b896e4b0 0x6391b896ebd0 0x6391b896bd80 0x6391b896c110 0x6391b8965e60 0x6391b89606f0 0x6391b8960a60 0x6391b8960df0 0x6391b8961180 0x6391b8961510 0x6391b89618a0 0x6391b8961c30 0x6391b8961fc0 0x6391b898af70 0x6391b898c140 0x6391b898c860 0x6391b898cf80 0x6391b898d6a0 0x6391b898ddc0 0x6391b898e4e0 0x6391b898ba20 0x6391b898bdb0 0x6391b898c4d0 0x6391b898cbf0 0x6391b898d310 0x6391b898da30 0x6391b898e150 0x6391b898b300 0x6391b898b690 0x6391b89853e0 0x6391b897fc70 0x6391b897ffe0 0x6391b8980370 0x6391b8980700 0x6391b8980a90 0x6391b8980e20 0x6391b89811b0 0x6391b8981540 0x6391b89a7a00 0x6391b89a8bd0 0x6391b89a92f0 0x6391b89a9a10 0x6391b89aa130 0x6391b89aa850 0x6391b89a84b0 0x6391b89a8840 0x6391b89a8f60 0x6391b89a9680 0x6391b89a9da0 0x6391b89aa4c0 0x6391b89a7d90 0x6391b89a8120 0x6391b89a2d00 0x6391b899dd00 0x6391b899e070 0x6391b899e400 0x6391b899e790 0x6391b899eb20 0x6391b899eeb0 0x6391b899f240 0x6391b89c64d0 0x6391b89c76a0 0x6391b89c7dc0 0x6391b89c84e0 0x6391b89c8c00 0x6391b89c9320 0x6391b89c9a40 0x6391b89c6f80 0x6391b89c7310 0x6391b89c7a30 0x6391b89c8150 0x6391b89c8870 0x6391b89c8f90 0x6391b89c96b0 0x6391b89c6860 0x6391b89c6bf0 0x6391b89c0940 0x6391b89bb1d0 0x6391b89bb540 0x6391b89bb8d0 0x6391b89bbc60 0x6391b89bbff0 0x6391b89bc380 0x6391b89bc710 0x6391b89bcaa0 0x6391b89ebc40 0x6391b89ece10 0x6391b89ed530 0x6391b89edc50 0x6391b89ee370 0x6391b89eea90 0x6391b89ef1b0 0x6391b89ef8d0 0x6391b89efff0 0x6391b89ec6f0 0x6391b89eca80 0x6391b89ed1a0 0x6391b89ed8c0 0x6391b89edfe0 0x6391b89ee700 0x6391b89eee20 0x6391b89ef540 0x6391b89efc60 0x6391b89ebfd0 0x6391b89ec360 0x6391b89e4390 0x6391b89ddb10 0x6391b89dde80 0x6391b89de210 0x6391b89de5a0 0x6391b89de930 0x6391b89decc0 0x6391b89df050 0x6391b89df3e0 0x6391b89df770 0x6391b89dfb00 0x6391b8a12bf0 0x6391b8a13dc0 0x6391b8a144e0 0x6391b8a14c00 0x6391b8a15320 0x6391b8a15a40 0x6391b8a160a0 0x6391b8a167c0 0x6391b8a16ee0 0x6391b8a136a0 0x6391b8a13a30 0x6391b8a14150 0x6391b8a14870 0x6391b8a14f90 0x6391b8a156b0 0x6391b8a15dd0 0x6391b8a16430 0x6391b8a16b50 0x6391b8a12f80 0x6391b8a13310 0x6391b8a0b340 0x6391b8a04ac0 0x6391b8a04e30 0x6391b8a051c0 0x6391b8a05550 0x6391b8a058e0 0x6391b8a05c70 0x6391b8a06000 0x6391b8a06390 0x6391b8a06720 0x6391b8a06ab0 0x6391b8a33ac0 0x6391b8a34c90 0x6391b8a353b0 0x6391b8a35ad0 0x6391b8a361f0 0x6391b8a36910 0x6391b8a36fe0 0x6391b8a34570 0x6391b8a34900 0x6391b8a35020 0x6391b8a35740 0x6391b8a35e60 0x6391b8a36580 0x6391b8a36ca0 0x6391b8a33e50 0x6391b8a341e0 0x6391b8a2df30 0x6391b8a287c0 0x6391b8a28b30 0x6391b8a28ec0 0x6391b8a29250 0x6391b8a295e0 0x6391b8a29970 0x6391b8a29d00 0x6391b8a2a090 0x6391b8a53170 0x6391b8a54340 0x6391b8a54a60 0x6391b8a55180 0x6391b8a558a0 0x6391b8a55fc0 0x6391b8a566e0 0x6391b8a53c20 0x6391b8a53fb0 0x6391b8a546d0 0x6391b8a54df0 0x6391b8a55510 0x6391b8a55c30 0x6391b8a56350 0x6391b8a53500 0x6391b8a53890 0x6391b8a4d5e0 0x6391b8a47e70 0x6391b8a481e0 0x6391b8a48570 0x6391b8a48900 0x6391b8a48c90 0x6391b8a49020 0x6391b8a493b0 0x6391b8a49740 0x6391b8a788f0 0x6391b8a79a00 0x6391b8a7a120 0x6391b8a7a840 0x6391b8a7af60 0x6391b8a7b680 0x6391b8a7bda0 0x6391b8a7c4c0 0x6391b8a7cbe0 0x6391b8a792e0 0x6391b8a79670 0x6391b8a79d90 0x6391b8a7a4b0 0x6391b8a7abd0 0x6391b8a7b2f0 0x6391b8a7ba10 0x6391b8a7c130 0x6391b8a7c850 0x6391b8a78c80 0x6391b8a78fc0 0x6391b8a71040 0x6391b8a6a7c0 0x6391b8a6ab30 0x6391b8a6aec0 0x6391b8a6b250 0x6391b8a6b5e0 0x6391b8a6b970 0x6391b8a6bd00 0x6391b8a6c090 0x6391b8a6c420 0x6391b8a6c7b0 0x6391b8a9f7e0 0x6391b8aa09b0 0x6391b8aa10d0 0x6391b8aa17f0 0x6391b8aa1f10 0x6391b8aa2630 0x6391b8aa2d50 0x6391b8aa3470 0x6391b8aa3b90 0x6391b8aa0290 0x6391b8aa0620 0x6391b8aa0d40 0x6391b8aa1460 0x6391b8aa1b80 0x6391b8aa22a0 0x6391b8aa29c0 0x6391b8aa30e0 0x6391b8aa3800 0x6391b8a9fb70 0x6391b8a9ff00 0x6391b8a97fe0 0x6391b8a91760 0x6391b8a91ad0 0x6391b8a91e60 0x6391b8a921f0 0x6391b8a92580 0x6391b8a92910 0x6391b8a92ca0 0x6391b8a93030 0x6391b8a933c0 0x6391b8a93750 0x6391b8ac0720 0x6391b8ac18f0 0x6391b8ac2010 0x6391b8ac2730 0x6391b8ac2e50 0x6391b8ac3570 0x6391b8ac3c90 0x6391b8ac11d0 0x6391b8ac1560 0x6391b8ac1c80 0x6391b8ac23a0 0x6391b8ac2ac0 0x6391b8ac31e0 0x6391b8ac3900 0x6391b8ac0ab0 0x6391b8ac0e40 0x6391b8ababe0 0x6391b8ab5470 0x6391b8ab57e0 0x6391b8ab5b70 0x6391b8ab5f00 0x6391b8ab6290 0x6391b8ab6620 0x6391b8ab69b0 0x6391b8ab6d40 0x6391b8add200 0x6391b8ade3b0 0x6391b8adead0 0x6391b8adf1f0 0x6391b8adf910 0x6391b8ae0030 0x6391b8addc90 0x6391b8ade020 0x6391b8ade740 0x6391b8adee60 0x6391b8adf580 0x6391b8adfca0 0x6391b8add570 0x6391b8add900 0x6391b8ad8500 0x6391b8ad3500 0x6391b8ad3870 0x6391b8ad3c00 0x6391b8ad3f90 0x6391b8ad4320 0x6391b8ad46b0 0x6391b8ad4a40 0x6391b8afbce0 0x6391b8afceb0 0x6391b8afd580 0x6391b8afdca0 0x6391b8afe3c0 0x6391b8afeae0 0x6391b8aff200 0x6391b8afc790 0x6391b8afcb20 0x6391b8afd1f0 0x6391b8afd910 0x6391b8afe030 0x6391b8afe750 0x6391b8afee70 0x6391b8afc070 0x6391b8afc400 0x6391b8af6150 0x6391b8af09e0 0x6391b8af0d50 0x6391b8af10e0 0x6391b8af1470 0x6391b8af1800 0x6391b8af1b90 0x6391b8af1f20 0x6391b8af22b0 0x6391b8b1b390 0x6391b8b1c560 0x6391b8b1cc80 0x6391b8b1d3a0 0x6391b8b1dac0 0x6391b8b1e190 0x6391b8b1e8b0 0x6391b8b1be40 0x6391b8b1c1d0 0x6391b8b1c8f0 0x6391b8b1d010 0x6391b8b1d730 0x6391b8b1de50 0x6391b8b1e520 0x6391b8b1b720 0x6391b8b1bab0 0x6391b8b15800 0x6391b8b10090 0x6391b8b10400 0x6391b8b10790 0x6391b8b10b20 0x6391b8b10eb0 0x6391b8b11240 0x6391b8b115d0 0x6391b8b11960 0x6391b8b37e20 0x6391b8b38ff0 0x6391b8b39710 0x6391b8b39e30 0x6391b8b3a550 0x6391b8b3ac70 0x6391b8b388d0 0x6391b8b38c60 0x6391b8b39380 0x6391b8b39aa0 0x6391b8b3a1c0 0x6391b8b3a8e0 0x6391b8b381b0 0x6391b8b38540 0x6391b8b33120 0x6391b8b2e120 0x6391b8b2e490 0x6391b8b2e820 0x6391b8b2ebb0 0x6391b8b2ef40 0x6391b8b2f2d0 0x6391b8b2f660 
+Value mappings: (val node: {mrrg node })
+0x6391b89399d0:0:pe_c3_r0.const_val.out 0:pe_c3_r0.crossbar.in7 0:pe_c3_r0.crossbar.mux_4.in7 0:pe_c3_r0.crossbar.mux_4.mux 0:pe_c2_r1.in5 0:pe_c3_r0.out7 0:pe_c3_r0.crossbar.out4 0:pe_c3_r0.crossbar.mux_4.out 0:pe_c2_r1.reg5.in 0:pe_c2_r1.reg5.m_in 0:pe_c2_r1.reg5.reg 0:pe_c2_r1.reg5.out 0:pe_c2_r1.reg5.m_out 0:pe_c2_r1.mux_5.in1 0:pe_c2_r1.mux_5.mux 0:pe_c2_r1.mux_5.out 0:pe_c2_r1.crossbar.in5 0:pe_c2_r1.crossbar.mux_4.in5 0:pe_c2_r1.crossbar.mux_4.mux 0:pe_c2_r1.out4 0:pe_c1_r0.in6 0:pe_c2_r1.crossbar.out4 0:pe_c2_r1.crossbar.mux_4.out 0:pe_c1_r0.mux_6.in0 0:pe_c1_r0.mux_6.mux 0:pe_c1_r0.mux_6.out 0:pe_c1_r0.crossbar.in4 0:pe_c1_r0.crossbar.mux_6.in4 0:pe_c1_r0.crossbar.mux_6.mux 0:pe_c1_r0.rega.in 0:pe_c1_r0.rega.m_in 0:pe_c1_r0.crossbar.out6 0:pe_c1_r0.crossbar.mux_6.out 0:pe_c1_r0.rega.reg 0:pe_c1_r0.rega.out 0:pe_c1_r0.rega.m_out 0:pe_c1_r0.ALU.in_a 
+0x6391b89398a0:0:pe_c3_r1.const_val.out 0:pe_c3_r1.crossbar.in8 0:pe_c3_r1.crossbar.mux_4.in8 0:pe_c3_r1.out4 0:pe_c3_r1.crossbar.mux_4.mux 0:pe_c3_r1.crossbar.out4 0:pe_c2_r0.in6 0:pe_c3_r1.crossbar.mux_4.out 0:pe_c2_r0.mux_6.in0 0:pe_c2_r0.mux_6.mux 0:pe_c2_r0.mux_6.out 0:pe_c2_r0.crossbar.in4 0:pe_c2_r0.crossbar.mux_5.in4 0:pe_c2_r0.crossbar.mux_5.mux 0:pe_c2_r0.out7 0:pe_c2_r0.crossbar.out5 0:pe_c1_r1.in5 0:pe_c2_r0.crossbar.mux_5.out 0:pe_c1_r1.reg5.in 0:pe_c1_r1.reg5.m_in 0:pe_c1_r1.reg5.reg 0:pe_c1_r1.reg5.out 0:pe_c1_r1.reg5.m_out 0:pe_c1_r1.mux_5.in1 0:pe_c1_r1.mux_5.mux 0:pe_c1_r1.mux_5.out 0:pe_c1_r1.crossbar.in5 0:pe_c1_r1.crossbar.mux_9.in5 0:pe_c1_r1.crossbar.mux_9.mux 0:pe_c1_r1.regb.m_in 0:pe_c1_r1.regb.in 0:pe_c1_r1.crossbar.out9 0:pe_c1_r1.crossbar.mux_9.out 0:pe_c1_r1.regb.reg 0:pe_c1_r1.regb.out 0:pe_c1_r1.regb.m_out 0:pe_c1_r1.ALU.in_b 
+0x6391b8939790:0:pe_c1_r3.const_val.out 0:pe_c1_r3.crossbar.in8 0:pe_c1_r3.crossbar.mux_1.in8 0:pe_c1_r3.crossbar.mux_1.mux 0:pe_c2_r3.in3 0:pe_c1_r3.out1 0:pe_c1_r3.crossbar.out1 0:pe_c1_r3.crossbar.mux_1.out 0:pe_c2_r3.mux_3.in0 0:pe_c2_r3.mux_3.mux 0:pe_c2_r3.mux_3.out 0:pe_c2_r3.crossbar.in3 0:pe_c2_r3.crossbar.mux_5.in3 0:pe_c2_r3.crossbar.mux_5.mux 0:pe_c3_r2.in7 0:pe_c2_r3.out5 0:pe_c2_r3.crossbar.out5 0:pe_c2_r3.crossbar.mux_5.out 0:pe_c3_r2.mux_7.in0 0:pe_c3_r2.mux_7.mux 0:pe_c3_r2.mux_7.out 0:pe_c3_r2.crossbar.in5 0:pe_c3_r2.crossbar.mux_2.in5 0:pe_c3_r2.crossbar.mux_2.mux 0:pe_c3_r3.in0 0:pe_c3_r2.out2 0:pe_c3_r2.crossbar.out2 0:pe_c3_r2.crossbar.mux_2.out 0:pe_c3_r3.mux_0.in0 0:pe_c3_r3.mux_0.mux 0:pe_c3_r3.mux_0.out 0:pe_c3_r3.crossbar.in0 0:pe_c3_r3.crossbar.mux_6.in0 0:pe_c3_r3.crossbar.mux_6.mux 0:pe_c3_r3.regb.m_in 0:pe_c3_r3.regb.in 0:pe_c3_r3.crossbar.out6 0:pe_c3_r3.crossbar.mux_6.out 0:pe_c3_r3.regb.reg 0:pe_c3_r3.regb.out 0:pe_c3_r3.regb.m_out 0:pe_c3_r3.ALU.in_b 0:pe_c2_r3.const_val.out 0:pe_c2_r3.crossbar.in8 0:pe_c2_r3.crossbar.mux_4.in8 0:pe_c2_r3.out4 0:pe_c1_r2.in6 0:pe_c2_r3.crossbar.mux_4.mux 0:pe_c2_r3.crossbar.out4 0:pe_c2_r3.crossbar.mux_4.out 0:pe_c1_r2.mux_6.in0 0:pe_c1_r2.mux_6.mux 0:pe_c1_r2.mux_6.out 0:pe_c1_r2.crossbar.in6 0:pe_c1_r2.crossbar.mux_2.in6 0:pe_c1_r3.in0 0:pe_c1_r2.out2 0:pe_c1_r2.crossbar.mux_2.mux 0:pe_c1_r2.crossbar.out2 0:pe_c1_r2.crossbar.mux_2.out 0:pe_c1_r3.reg0.in 0:pe_c1_r3.reg0.m_in 0:pe_c1_r3.reg0.reg 0:pe_c1_r3.reg0.out 0:pe_c1_r3.reg0.m_out 0:pe_c1_r3.mux_0.in1 0:pe_c1_r3.mux_0.mux 0:pe_c1_r3.mux_0.out 0:pe_c1_r3.crossbar.in0 0:pe_c1_r3.crossbar.mux_7.in0 0:pe_c1_r3.crossbar.mux_7.mux 0:pe_c1_r3.regb.m_in 0:pe_c1_r3.regb.in 0:pe_c1_r3.crossbar.out7 0:pe_c1_r3.crossbar.mux_7.out 0:pe_c1_r3.regb.reg 0:pe_c1_r3.regb.out 0:pe_c1_r3.regb.m_out 0:pe_c1_r3.ALU.in_b 
+0x6391b89370a0:0:pe_c1_r3.ALU.out 0:pe_c1_r3.crossbar.in6 0:pe_c1_r3.crossbar.mux_6.in6 0:pe_c1_r3.crossbar.mux_6.mux 0:pe_c1_r3.rega.in 0:pe_c1_r3.rega.m_in 0:pe_c1_r3.crossbar.out6 0:pe_c1_r3.crossbar.mux_6.out 0:pe_c1_r3.rega.reg 0:pe_c1_r3.rega.out 0:pe_c1_r3.rega.m_out 0:pe_c1_r3.ALU.in_a 0:pe_c1_r3.crossbar.mux_0.in6 0:pe_c1_r3.crossbar.mux_0.mux 0:pe_c1_r3.out0 0:pe_c1_r2.in2 0:pe_c1_r3.crossbar.out0 0:pe_c1_r3.crossbar.mux_0.out 0:pe_c1_r2.mux_2.in0 0:pe_c1_r2.mux_2.mux 0:pe_c1_r2.mux_2.out 0:pe_c1_r2.crossbar.in2 0:pe_c1_r2.crossbar.mux_1.in2 0:pe_c1_r2.crossbar.mux_1.mux 0:pe_c2_r2.in3 0:pe_c1_r2.out1 0:pe_c1_r2.crossbar.out1 0:pe_c1_r2.crossbar.mux_1.out 0:pe_c2_r2.mux_3.in0 0:pe_c2_r2.mux_3.mux 0:pe_c2_r2.mux_3.out 0:pe_c2_r2.crossbar.in3 0:pe_c2_r2.crossbar.mux_9.in3 0:pe_c2_r2.crossbar.mux_9.mux 0:pe_c2_r2.regb.m_in 0:pe_c2_r2.regb.in 0:pe_c2_r2.crossbar.out9 0:pe_c2_r2.crossbar.mux_9.out 0:pe_c2_r2.regb.reg 0:pe_c2_r2.regb.out 0:pe_c2_r2.regb.m_out 0:pe_c2_r2.ALU.in_b 0:pe_c3_r3.ALU.out 0:pe_c3_r3.crossbar.in5 0:pe_c3_r3.crossbar.mux_5.in5 0:pe_c3_r3.crossbar.mux_5.mux 0:pe_c3_r3.rega.m_in 0:pe_c3_r3.rega.in 0:pe_c3_r3.crossbar.out5 0:pe_c3_r3.crossbar.mux_5.out 0:pe_c3_r3.rega.reg 0:pe_c3_r3.rega.out 0:pe_c3_r3.rega.m_out 0:pe_c3_r3.ALU.in_a 0:pe_c3_r3.RES.in 0:pe_c3_r3.RES.m_in 0:pe_c3_r3.RES.reg 0:pe_c3_r3.RES.out 0:pe_c3_r3.RES.m_out 0:pe_c3_r3.crossbar.in6 0:pe_c3_r3.crossbar.mux_4.in6 0:pe_c3_r3.crossbar.mux_4.mux 0:pe_c2_r2.in6 0:pe_c3_r3.out4 0:pe_c3_r3.crossbar.out4 0:pe_c3_r3.crossbar.mux_4.out 0:pe_c2_r2.mux_6.in0 0:pe_c2_r2.mux_6.mux 0:pe_c2_r2.mux_6.out 0:pe_c2_r2.crossbar.in6 0:pe_c2_r2.crossbar.mux_4.in6 0:pe_c2_r2.crossbar.mux_4.mux 0:pe_c2_r2.out4 0:pe_c2_r2.crossbar.out4 0:pe_c1_r1.in6 0:pe_c2_r2.crossbar.mux_4.out 0:pe_c1_r1.mux_6.in0 0:pe_c1_r1.mux_6.mux 0:pe_c1_r1.mux_6.out 0:pe_c1_r1.crossbar.in6 0:pe_c1_r1.crossbar.mux_7.in6 0:pe_c1_r1.crossbar.mux_7.mux 0:pe_c1_r1.out7 0:pe_c0_r2.in5 0:pe_c1_r1.crossbar.out7 0:pe_c1_r1.crossbar.mux_7.out 0:pe_c0_r2.mux_5.in0 0:pe_c0_r2.mux_5.mux 0:pe_c0_r2.mux_5.out 0:pe_c0_r2.crossbar.in4 0:pe_c0_r2.crossbar.mux_7.in4 0:pe_c0_r2.crossbar.mux_7.mux 0:pe_c0_r2.regb.m_in 0:pe_c0_r2.regb.in 0:pe_c0_r2.crossbar.out7 0:pe_c0_r2.crossbar.mux_7.out 0:pe_c0_r2.regb.reg 0:pe_c0_r2.regb.out 0:pe_c0_r2.regb.m_out 0:pe_c0_r2.ALU.in_b 
+0x6391b89372e0:0:pe_c2_r2.ALU.out 0:pe_c2_r2.RES.in 0:pe_c2_r2.RES.m_in 0:pe_c2_r2.RES.reg 0:pe_c2_r2.RES.out 0:pe_c2_r2.RES.m_out 0:pe_c2_r2.crossbar.in9 0:pe_c2_r2.crossbar.mux_3.in9 0:pe_c2_r2.crossbar.mux_3.mux 0:pe_c2_r2.out3 0:pe_c1_r2.in1 0:pe_c2_r2.crossbar.out3 0:pe_c2_r2.crossbar.mux_3.out 0:pe_c1_r2.mux_1.in0 0:pe_c1_r2.mux_1.mux 0:pe_c1_r2.mux_1.out 0:pe_c1_r2.crossbar.in1 0:pe_c1_r2.crossbar.mux_3.in1 0:pe_c1_r2.crossbar.mux_3.mux 0:pe_c1_r2.out3 0:pe_c0_r2.in1 0:pe_c1_r2.crossbar.out3 0:pe_c1_r2.crossbar.mux_3.out 0:pe_c0_r2.mux_1.in0 0:pe_c0_r2.mux_1.mux 0:pe_c0_r2.mux_1.out 0:pe_c0_r2.crossbar.in1 0:pe_c0_r2.crossbar.mux_3.in1 0:pe_c0_r2.crossbar.mux_3.mux 0:pe_c0_r2.out3 0:pe_c0_r2.crossbar.out3 0:pe_c0_r2.crossbar.mux_3.out 0:mem_1.in2 0:mem_1.mux_addr.in2 0:mem_1.mux_addr.mux 0:mem_1.mux_addr.out 0:mem_1.mem_unit.addr 
+0x6391b8937460:0:mem_1.mem_unit.data_out 0:pe_c0_r1.in3 0:mem_1.out 0:pe_c0_r1.reg3.in 0:pe_c0_r1.reg3.m_in 0:pe_c0_r1.reg3.reg 0:pe_c0_r1.reg3.out 0:pe_c0_r1.reg3.m_out 0:pe_c0_r1.mux_3.in1 0:pe_c0_r1.mux_3.mux 0:pe_c0_r1.mux_3.out 0:pe_c0_r1.crossbar.in3 0:pe_c0_r1.crossbar.mux_0.in3 0:pe_c0_r1.out0 0:pe_c0_r1.crossbar.out0 0:pe_c0_r1.crossbar.mux_0.mux 0:pe_c0_r0.in2 0:pe_c0_r1.crossbar.mux_0.out 0:pe_c0_r0.mux_2.in0 0:pe_c0_r0.mux_2.mux 0:pe_c0_r0.mux_2.out 0:pe_c0_r0.crossbar.in2 0:pe_c0_r0.crossbar.mux_5.in2 0:pe_c0_r0.rega.m_in 0:pe_c0_r0.rega.in 0:pe_c0_r0.crossbar.mux_5.mux 0:pe_c0_r0.crossbar.out5 0:pe_c0_r0.crossbar.mux_5.out 0:pe_c0_r0.rega.reg 0:pe_c0_r0.rega.out 0:pe_c0_r0.rega.m_out 0:pe_c0_r0.ALU.in_a 0:pe_c0_r1.crossbar.mux_5.in3 0:pe_c0_r1.crossbar.mux_5.mux 0:pe_c1_r2.in4 0:pe_c0_r1.out6 0:pe_c0_r1.crossbar.out5 0:pe_c0_r1.crossbar.mux_5.out 0:pe_c1_r2.reg4.in 0:pe_c1_r2.reg4.m_in 0:pe_c1_r2.reg4.reg 0:pe_c1_r2.reg4.out 0:pe_c1_r2.reg4.m_out 0:pe_c1_r2.mux_4.in1 0:pe_c1_r2.mux_4.mux 0:pe_c1_r2.mux_4.out 0:pe_c1_r2.crossbar.in4 0:pe_c1_r2.crossbar.mux_8.in4 0:pe_c1_r2.crossbar.mux_8.mux 0:pe_c1_r2.rega.m_in 0:pe_c1_r2.rega.in 0:pe_c1_r2.crossbar.out8 0:pe_c1_r2.crossbar.mux_8.out 0:pe_c1_r2.rega.reg 0:pe_c1_r2.rega.out 0:pe_c1_r2.rega.m_out 0:pe_c1_r2.ALU.in_a 
+0x6391b8937f30:0:pe_c0_r0.ALU.out 0:pe_c0_r0.RES.in 0:pe_c0_r0.RES.m_in 0:pe_c0_r0.RES.reg 0:pe_c0_r0.RES.out 0:pe_c0_r0.RES.m_out 0:pe_c0_r0.crossbar.in6 0:pe_c0_r0.crossbar.mux_1.in6 0:pe_c0_r0.crossbar.mux_1.mux 0:pe_c1_r0.in3 0:pe_c0_r0.crossbar.out1 0:pe_c0_r0.out1 0:pe_c0_r0.crossbar.mux_1.out 0:pe_c1_r0.mux_3.in0 0:pe_c1_r0.mux_3.mux 0:pe_c1_r0.mux_3.out 0:pe_c1_r0.crossbar.in3 0:pe_c1_r0.crossbar.mux_7.in3 0:pe_c1_r0.crossbar.mux_7.mux 0:pe_c1_r0.regb.m_in 0:pe_c1_r0.regb.in 0:pe_c1_r0.crossbar.out7 0:pe_c1_r0.crossbar.mux_7.out 0:pe_c1_r0.regb.reg 0:pe_c1_r0.regb.out 0:pe_c1_r0.regb.m_out 0:pe_c1_r0.ALU.in_b 
+0x6391b8938090:0:pe_c1_r2.ALU.out 0:pe_c1_r2.crossbar.in8 0:pe_c1_r2.crossbar.mux_0.in8 0:pe_c1_r2.crossbar.mux_0.mux 0:pe_c1_r2.out0 0:pe_c1_r1.in2 0:pe_c1_r2.crossbar.out0 0:pe_c1_r2.crossbar.mux_0.out 0:pe_c1_r1.mux_2.in0 0:pe_c1_r1.mux_2.mux 0:pe_c1_r1.mux_2.out 0:pe_c1_r1.crossbar.in2 0:pe_c1_r1.crossbar.mux_8.in2 0:pe_c1_r1.crossbar.mux_8.mux 0:pe_c1_r1.rega.m_in 0:pe_c1_r1.rega.in 0:pe_c1_r1.crossbar.out8 0:pe_c1_r1.crossbar.mux_8.out 0:pe_c1_r1.rega.reg 0:pe_c1_r1.rega.out 0:pe_c1_r1.rega.m_out 0:pe_c1_r1.ALU.in_a 
+0x6391b89381f0:0:pe_c1_r0.ALU.out 0:pe_c1_r0.RES.in 0:pe_c1_r0.RES.m_in 0:pe_c1_r0.RES.reg 0:pe_c1_r0.RES.out 0:pe_c1_r0.RES.m_out 0:pe_c1_r0.crossbar.in7 0:pe_c1_r0.crossbar.mux_5.in7 0:pe_c1_r0.crossbar.mux_5.mux 0:pe_c1_r0.out7 0:pe_c0_r1.in5 0:pe_c1_r0.crossbar.out5 0:pe_c1_r0.crossbar.mux_5.out 0:pe_c0_r1.reg5.in 0:pe_c0_r1.reg5.m_in 0:pe_c0_r1.reg5.reg 0:pe_c0_r1.reg5.out 0:pe_c0_r1.reg5.m_out 0:pe_c0_r1.mux_5.in1 0:pe_c0_r1.mux_5.mux 0:pe_c0_r1.mux_5.out 0:pe_c0_r1.crossbar.in4 0:pe_c0_r1.crossbar.mux_6.in4 0:pe_c0_r1.crossbar.mux_6.mux 0:pe_c0_r1.rega.m_in 0:pe_c0_r1.rega.in 0:pe_c0_r1.crossbar.out6 0:pe_c0_r1.crossbar.mux_6.out 0:pe_c0_r1.rega.reg 0:pe_c0_r1.rega.out 0:pe_c0_r1.rega.m_out 0:pe_c0_r1.ALU.in_a 
+0x6391b893a300:0:pe_c1_r1.ALU.out 0:pe_c1_r1.RES.in 0:pe_c1_r1.RES.m_in 0:pe_c1_r1.RES.reg 0:pe_c1_r1.RES.out 0:pe_c1_r1.RES.m_out 0:pe_c1_r1.crossbar.in9 0:pe_c1_r1.crossbar.mux_3.in9 0:pe_c1_r1.crossbar.mux_3.mux 0:pe_c1_r1.out3 0:pe_c0_r1.in1 0:pe_c1_r1.crossbar.out3 0:pe_c1_r1.crossbar.mux_3.out 0:pe_c0_r1.reg1.in 0:pe_c0_r1.reg1.m_in 0:pe_c0_r1.reg1.reg 0:pe_c0_r1.reg1.out 0:pe_c0_r1.reg1.m_out 0:pe_c0_r1.mux_1.in1 0:pe_c0_r1.mux_1.mux 0:pe_c0_r1.mux_1.out 0:pe_c0_r1.crossbar.in1 0:pe_c0_r1.crossbar.mux_7.in1 0:pe_c0_r1.crossbar.mux_7.mux 0:pe_c0_r1.regb.m_in 0:pe_c0_r1.regb.in 0:pe_c0_r1.crossbar.out7 0:pe_c0_r1.crossbar.mux_7.out 0:pe_c0_r1.regb.reg 0:pe_c0_r1.regb.out 0:pe_c0_r1.regb.m_out 0:pe_c0_r1.ALU.in_b 
+0x6391b893a470:0:pe_c0_r1.ALU.out 0:pe_c0_r1.RES.in 0:pe_c0_r1.RES.m_in 0:pe_c0_r1.RES.reg 0:pe_c0_r1.RES.out 0:pe_c0_r1.RES.m_out 0:pe_c0_r1.crossbar.in7 0:pe_c0_r1.crossbar.mux_3.in7 0:pe_c0_r1.out3 0:pe_c0_r1.crossbar.out3 0:pe_c0_r1.crossbar.mux_3.mux 0:pe_c0_r1.crossbar.mux_3.out 0:mem_2.in1 0:mem_2.mux_data.in1 0:mem_2.mux_data.mux 0:mem_2.mux_data.out 0:mem_2.mem_unit.data_in 
+0x6391b893a600:0:pe_c0_r2.ALU.out 0:pe_c0_r2.crossbar.in6 0:pe_c0_r2.crossbar.mux_2.in6 0:pe_c0_r2.crossbar.mux_2.mux 0:pe_c0_r3.in0 0:pe_c0_r2.out2 0:pe_c0_r2.crossbar.out2 0:pe_c0_r2.crossbar.mux_2.out 0:pe_c0_r3.mux_0.in0 0:pe_c0_r3.mux_0.mux 0:pe_c0_r3.mux_0.out 0:pe_c0_r3.crossbar.in0 0:pe_c0_r3.crossbar.mux_3.in0 0:pe_c0_r3.crossbar.mux_3.mux 0:pe_c0_r3.out3 0:pe_c0_r3.crossbar.out3 0:pe_c0_r3.crossbar.mux_3.out 0:mem_2.in3 0:mem_2.mux_addr.in3 0:mem_2.mux_addr.mux 0:mem_2.mux_addr.out 0:mem_2.mem_unit.addr 
+0x6391b8939050:0:io_bottom_1.IOPin.out 0:io_bottom_1.reg_out.m_in 0:io_bottom_1.reg_out.in 0:io_bottom_1.reg_out.reg 0:io_bottom_1.reg_out.out 0:io_bottom_1.reg_out.m_out 0:io_bottom_1.out 0:pe_c1_r3.in2 0:pe_c1_r3.mux_2.in0 0:pe_c1_r3.mux_2.mux 0:pe_c1_r3.mux_2.out 0:pe_c1_r3.crossbar.in2 0:pe_c1_r3.crossbar.mux_5.in2 0:pe_c1_r3.crossbar.mux_5.mux 0:pe_c2_r2.in7 0:pe_c1_r3.out5 0:pe_c1_r3.crossbar.out5 0:pe_c1_r3.crossbar.mux_5.out 0:pe_c2_r2.reg7.in 0:pe_c2_r2.reg7.m_in 0:pe_c2_r2.reg7.reg 0:pe_c2_r2.reg7.out 0:pe_c2_r2.reg7.m_out 0:pe_c2_r2.mux_7.in1 0:pe_c2_r2.mux_7.mux 0:pe_c2_r2.mux_7.out 0:pe_c2_r2.crossbar.in7 0:pe_c2_r2.crossbar.mux_8.in7 0:pe_c2_r2.crossbar.mux_8.mux 0:pe_c2_r2.rega.m_in 0:pe_c2_r2.rega.in 0:pe_c2_r2.crossbar.out8 0:pe_c2_r2.crossbar.mux_8.out 0:pe_c2_r2.rega.reg 0:pe_c2_r2.rega.out 0:pe_c2_r2.rega.m_out 0:pe_c2_r2.ALU.in_a 
+0x6391b89391e0:0:io_bottom_0.IOPin.out 0:io_bottom_0.reg_out.m_in 0:io_bottom_0.reg_out.in 0:io_bottom_0.reg_out.reg 0:io_bottom_0.reg_out.out 0:io_bottom_0.reg_out.m_out 0:io_bottom_0.out 0:pe_c0_r3.in2 0:pe_c0_r3.reg2.in 0:pe_c0_r3.reg2.m_in 0:pe_c0_r3.reg2.reg 0:pe_c0_r3.reg2.out 0:pe_c0_r3.reg2.m_out 0:pe_c0_r3.mux_2.in1 0:pe_c0_r3.mux_2.mux 0:pe_c0_r3.mux_2.out 0:pe_c0_r3.crossbar.in2 0:pe_c0_r3.crossbar.mux_0.in2 0:pe_c0_r3.crossbar.mux_0.mux 0:pe_c0_r3.out0 0:pe_c0_r2.in2 0:pe_c0_r3.crossbar.out0 0:pe_c0_r3.crossbar.mux_0.out 0:pe_c0_r2.reg2.in 0:pe_c0_r2.reg2.m_in 0:pe_c0_r2.reg2.reg 0:pe_c0_r2.reg2.out 0:pe_c0_r2.reg2.m_out 0:pe_c0_r2.mux_2.in1 0:pe_c0_r2.mux_2.mux 0:pe_c0_r2.mux_2.out 0:pe_c0_r2.crossbar.in2 0:pe_c0_r2.crossbar.mux_6.in2 0:pe_c0_r2.crossbar.mux_6.mux 0:pe_c0_r2.rega.m_in 0:pe_c0_r2.rega.in 0:pe_c0_r2.crossbar.out6 0:pe_c0_r2.crossbar.mux_6.out 0:pe_c0_r2.rega.reg 0:pe_c0_r2.rega.out 0:pe_c0_r2.rega.m_out 0:pe_c0_r2.ALU.in_a 
+BitStream {
+IOPinConfig: {0}
+RegInConfig: {x}
+RegOutConfig: {1}
+IOPinConfig: {0}
+RegInConfig: {x}
+RegOutConfig: {1}
+IOPinConfig: {0}
+RegInConfig: {x}
+RegOutConfig: {x}
+IOPinConfig: {0}
+RegInConfig: {x}
+RegOutConfig: {x}
+IOPinConfig: {0}
+RegInConfig: {x}
+RegOutConfig: {x}
+IOPinConfig: {0}
+RegInConfig: {x}
+RegOutConfig: {x}
+IOPinConfig: {0}
+RegInConfig: {x}
+RegOutConfig: {x}
+IOPinConfig: {0}
+RegInConfig: {x}
+RegOutConfig: {x}
+IOPinConfig: {0}
+RegInConfig: {x}
+RegOutConfig: {x}
+IOPinConfig: {0}
+RegInConfig: {x}
+RegOutConfig: {x}
+IOPinConfig: {0}
+RegInConfig: {x}
+RegOutConfig: {x}
+IOPinConfig: {0}
+RegInConfig: {x}
+RegOutConfig: {x}
+MuxAddr: {xx}
+MuxData: {xx}
+WriteRq: {0}
+MuxAddr: {10}
+MuxData: {xx}
+WriteRq: {0}
+MuxAddr: {11}
+MuxData: {01}
+WriteRq: {1}
+MuxAddr: {xx}
+MuxData: {xx}
+WriteRq: {0}
+ALUconfig: {1011}
+Mux0config: {x}
+Mux1config: {x}
+Mux2config: {0}
+Mux3config: {x}
+Mux6config: {x}
+RESConfig: {1}
+Reg0config: {x}
+Reg1config: {x}
+Reg2config: {x}
+Reg3config: {x}
+Reg6config: {x}
+RegAConfig: {x}
+RegBConfig: {1}
+ConstVal: {00000000000000000000000000000000}
+Mux0config: {xxx}
+Mux1config: {110}
+Mux2config: {xxx}
+Mux3config: {xxx}
+Mux4config: {xxx}
+Mux5config: {010}
+Mux6config: {xxx}
+ALUconfig: {1101}
+Mux0config: {x}
+Mux1config: {1}
+Mux2config: {x}
+Mux3config: {1}
+Mux5config: {1}
+Mux6config: {x}
+RESConfig: {1}
+Reg0config: {x}
+Reg1config: {1}
+Reg2config: {x}
+Reg3config: {1}
+Reg5config: {1}
+Reg6config: {x}
+RegAConfig: {1}
+RegBConfig: {1}
+ConstVal: {00000000000000000000000000000000}
+Mux0config: {0011}
+Mux1config: {xxxx}
+Mux2config: {xxxx}
+Mux3config: {0111}
+Mux4config: {xxxx}
+Mux5config: {0011}
+Mux6config: {0100}
+Mux7config: {0001}
+ALUconfig: {1010}
+Mux0config: {x}
+Mux1config: {0}
+Mux2config: {1}
+Mux3config: {x}
+Mux5config: {0}
+Mux6config: {x}
+RESConfig: {x}
+Reg0config: {x}
+Reg1config: {x}
+Reg2config: {1}
+Reg3config: {x}
+Reg5config: {x}
+Reg6config: {x}
+RegAConfig: {1}
+RegBConfig: {1}
+ConstVal: {00000000000000000000000000000000}
+Mux0config: {xxxx}
+Mux1config: {xxxx}
+Mux2config: {0110}
+Mux3config: {0001}
+Mux4config: {xxxx}
+Mux5config: {xxxx}
+Mux6config: {0010}
+Mux7config: {0100}
+ALUconfig: {xxxx}
+Mux0config: {0}
+Mux1config: {x}
+Mux2config: {1}
+Mux3config: {x}
+Mux5config: {x}
+RESConfig: {x}
+Reg0config: {x}
+Reg1config: {x}
+Reg2config: {1}
+Reg3config: {x}
+Reg5config: {x}
+RegAConfig: {x}
+RegBConfig: {x}
+ConstVal: {00000000000000000000000000000000}
+Mux0config: {010}
+Mux1config: {xxx}
+Mux2config: {xxx}
+Mux3config: {000}
+Mux4config: {xxx}
+Mux5config: {xxx}
+Mux6config: {xxx}
+ALUconfig: {0000}
+Mux0config: {x}
+Mux1config: {x}
+Mux2config: {x}
+Mux3config: {0}
+Mux6config: {0}
+Mux7config: {x}
+RESConfig: {1}
+Reg0config: {x}
+Reg1config: {x}
+Reg2config: {x}
+Reg3config: {x}
+Reg6config: {x}
+Reg7config: {x}
+RegAConfig: {1}
+RegBConfig: {1}
+ConstVal: {00000000000000000000000000000000}
+Mux0config: {xxxx}
+Mux1config: {xxxx}
+Mux2config: {xxxx}
+Mux3config: {xxxx}
+Mux4config: {xxxx}
+Mux5config: {0111}
+Mux6config: {0100}
+Mux7config: {0011}
+ALUconfig: {0110}
+Mux0config: {x}
+Mux1config: {x}
+Mux2config: {0}
+Mux3config: {x}
+Mux4config: {x}
+Mux5config: {1}
+Mux6config: {0}
+Mux7config: {x}
+RESConfig: {1}
+Reg0config: {x}
+Reg1config: {x}
+Reg2config: {x}
+Reg3config: {x}
+Reg4config: {x}
+Reg5config: {1}
+Reg6config: {x}
+Reg7config: {x}
+RegAConfig: {1}
+RegBConfig: {1}
+ConstVal: {00000000000000000000000000000000}
+Mux0config: {xxxx}
+Mux1config: {xxxx}
+Mux2config: {xxxx}
+Mux3config: {1001}
+Mux4config: {xxxx}
+Mux5config: {xxxx}
+Mux6config: {xxxx}
+Mux7config: {0110}
+Mux8config: {0010}
+Mux9config: {0101}
+ALUconfig: {1100}
+Mux0config: {x}
+Mux1config: {0}
+Mux2config: {0}
+Mux3config: {x}
+Mux4config: {1}
+Mux5config: {x}
+Mux6config: {0}
+Mux7config: {x}
+RESConfig: {x}
+Reg0config: {x}
+Reg1config: {x}
+Reg2config: {x}
+Reg3config: {x}
+Reg4config: {1}
+Reg5config: {x}
+Reg6config: {x}
+Reg7config: {x}
+RegAConfig: {x}
+RegBConfig: {1}
+ConstVal: {00000000000000000000000000000001}
+Mux0config: {1000}
+Mux1config: {0010}
+Mux2config: {0110}
+Mux3config: {0001}
+Mux4config: {xxxx}
+Mux5config: {xxxx}
+Mux6config: {xxxx}
+Mux7config: {xxxx}
+Mux8config: {0100}
+Mux9config: {xxxx}
+ALUconfig: {0000}
+Mux0config: {1}
+Mux1config: {x}
+Mux2config: {0}
+Mux3config: {x}
+Mux4config: {x}
+Mux5config: {x}
+RESConfig: {x}
+Reg0config: {1}
+Reg1config: {x}
+Reg2config: {x}
+Reg3config: {x}
+Reg4config: {x}
+Reg5config: {x}
+RegAConfig: {1}
+RegBConfig: {1}
+ConstVal: {00000000000000000000000000000001}
+Mux0config: {0110}
+Mux1config: {1000}
+Mux2config: {xxxx}
+Mux3config: {xxxx}
+Mux4config: {xxxx}
+Mux5config: {0010}
+Mux6config: {0110}
+Mux7config: {0000}
+ALUconfig: {xxxx}
+Mux0config: {x}
+Mux1config: {x}
+Mux2config: {x}
+Mux3config: {x}
+Mux6config: {0}
+Mux7config: {x}
+RESConfig: {x}
+Reg0config: {x}
+Reg1config: {x}
+Reg2config: {x}
+Reg3config: {x}
+Reg6config: {x}
+Reg7config: {x}
+RegAConfig: {x}
+RegBConfig: {x}
+ConstVal: {00000000000000000000000000000000}
+Mux0config: {xxxx}
+Mux1config: {xxxx}
+Mux2config: {xxxx}
+Mux3config: {xxxx}
+Mux4config: {xxxx}
+Mux5config: {0100}
+Mux6config: {xxxx}
+Mux7config: {xxxx}
+ALUconfig: {xxxx}
+Mux0config: {x}
+Mux1config: {x}
+Mux2config: {x}
+Mux3config: {x}
+Mux4config: {x}
+Mux5config: {1}
+Mux6config: {x}
+Mux7config: {x}
+RESConfig: {x}
+Reg0config: {x}
+Reg1config: {x}
+Reg2config: {x}
+Reg3config: {x}
+Reg4config: {x}
+Reg5config: {1}
+Reg6config: {x}
+Reg7config: {x}
+RegAConfig: {x}
+RegBConfig: {x}
+ConstVal: {00000000000000000000000000000000}
+Mux0config: {xxxx}
+Mux1config: {xxxx}
+Mux2config: {xxxx}
+Mux3config: {xxxx}
+Mux4config: {0101}
+Mux5config: {xxxx}
+Mux6config: {xxxx}
+Mux7config: {xxxx}
+Mux8config: {xxxx}
+Mux9config: {xxxx}
+ALUconfig: {1010}
+Mux0config: {x}
+Mux1config: {x}
+Mux2config: {x}
+Mux3config: {0}
+Mux4config: {x}
+Mux5config: {x}
+Mux6config: {0}
+Mux7config: {1}
+RESConfig: {1}
+Reg0config: {x}
+Reg1config: {x}
+Reg2config: {x}
+Reg3config: {x}
+Reg4config: {x}
+Reg5config: {x}
+Reg6config: {x}
+Reg7config: {1}
+RegAConfig: {1}
+RegBConfig: {1}
+ConstVal: {00000000000000000000000000000000}
+Mux0config: {xxxx}
+Mux1config: {xxxx}
+Mux2config: {xxxx}
+Mux3config: {1001}
+Mux4config: {0110}
+Mux5config: {xxxx}
+Mux6config: {xxxx}
+Mux7config: {xxxx}
+Mux8config: {0111}
+Mux9config: {0011}
+ALUconfig: {xxxx}
+Mux0config: {x}
+Mux1config: {x}
+Mux2config: {x}
+Mux3config: {0}
+Mux4config: {x}
+Mux5config: {x}
+RESConfig: {x}
+Reg0config: {x}
+Reg1config: {x}
+Reg2config: {x}
+Reg3config: {x}
+Reg4config: {x}
+Reg5config: {x}
+RegAConfig: {x}
+RegBConfig: {x}
+ConstVal: {00000000000000000000000000000001}
+Mux0config: {xxxx}
+Mux1config: {xxxx}
+Mux2config: {xxxx}
+Mux3config: {xxxx}
+Mux4config: {1000}
+Mux5config: {0011}
+Mux6config: {xxxx}
+Mux7config: {xxxx}
+ALUconfig: {xxxx}
+Mux0config: {x}
+Mux1config: {x}
+Mux2config: {x}
+Mux3config: {x}
+Mux7config: {x}
+RESConfig: {x}
+Reg0config: {x}
+Reg1config: {x}
+Reg2config: {x}
+Reg3config: {x}
+Reg7config: {x}
+RegAConfig: {x}
+RegBConfig: {x}
+ConstVal: {00000000000000000000000000000001}
+Mux0config: {xxx}
+Mux1config: {xxx}
+Mux2config: {xxx}
+Mux3config: {xxx}
+Mux4config: {111}
+Mux5config: {xxx}
+Mux6config: {xxx}
+ALUconfig: {xxxx}
+Mux0config: {x}
+Mux1config: {x}
+Mux2config: {x}
+Mux3config: {x}
+Mux4config: {x}
+Mux7config: {x}
+RESConfig: {x}
+Reg0config: {x}
+Reg1config: {x}
+Reg2config: {x}
+Reg3config: {x}
+Reg4config: {x}
+Reg7config: {x}
+RegAConfig: {x}
+RegBConfig: {x}
+ConstVal: {00000000000000000000000000000001}
+Mux0config: {xxxx}
+Mux1config: {xxxx}
+Mux2config: {xxxx}
+Mux3config: {xxxx}
+Mux4config: {1000}
+Mux5config: {xxxx}
+Mux6config: {xxxx}
+Mux7config: {xxxx}
+ALUconfig: {xxxx}
+Mux0config: {x}
+Mux1config: {x}
+Mux2config: {x}
+Mux3config: {x}
+Mux4config: {x}
+Mux7config: {0}
+RESConfig: {x}
+Reg0config: {x}
+Reg1config: {x}
+Reg2config: {x}
+Reg3config: {x}
+Reg4config: {x}
+Reg7config: {x}
+RegAConfig: {x}
+RegBConfig: {x}
+ConstVal: {00000000000000000000000000000000}
+Mux0config: {xxxx}
+Mux1config: {xxxx}
+Mux2config: {0101}
+Mux3config: {xxxx}
+Mux4config: {xxxx}
+Mux5config: {xxxx}
+Mux6config: {xxxx}
+Mux7config: {xxxx}
+ALUconfig: {0000}
+Mux0config: {0}
+Mux1config: {x}
+Mux2config: {x}
+Mux3config: {x}
+Mux4config: {x}
+RESConfig: {1}
+Reg0config: {x}
+Reg1config: {x}
+Reg2config: {x}
+Reg3config: {x}
+Reg4config: {x}
+RegAConfig: {1}
+RegBConfig: {1}
+ConstVal: {00000000000000000000000000000000}
+Mux0config: {xxx}
+Mux1config: {xxx}
+Mux2config: {xxx}
+Mux3config: {xxx}
+Mux4config: {110}
+Mux5config: {101}
+Mux6config: {000}
+}  start of CGRA-ME +0.000000 @0.000000
+       create MRRG +0.013684 @0.013684
+       reduce MRRG +0.011767 @0.025451
+           mapping +16.973608 @16.999059
+generate testbench +0.013777 @17.012836
+    end of CGRA-ME +0.001593 @17.014430
